@@ -1651,7 +1651,7 @@ assert totalAssignments&lt;=count</scriptText>
     </con:property>
     <con:property>
       <con:name>SubmittedAssignmentsCount</con:name>
-      <con:value>48</con:value>
+      <con:value>1</con:value>
     </con:property>
     <con:property>
       <con:name>StatusCode</con:name>

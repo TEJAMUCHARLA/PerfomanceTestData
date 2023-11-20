@@ -36,11 +36,11 @@
     </con:property>
     <con:property>
       <con:name>CourseId</con:name>
-      <con:value>g1148RYUD32U</con:value>
+      <con:value>g11A5D32YNP</con:value>
     </con:property>
     <con:property>
       <con:name>Section1Id</con:name>
-      <con:value>g1148RYUD32U_s1148RYUEHNA</con:value>
+      <con:value>g11A5D32YNP_s11A5D332A4</con:value>
     </con:property>
     <con:property>
       <con:name>CourseEnrollmentToken</con:name>
@@ -48,14 +48,14 @@
     </con:property>
     <con:property>
       <con:name>CourseName</con:name>
-      <con:value>Performance Test Data 50 Assignments _Nov20_131340</con:value>
+      <con:value>Performance Test Data 50 Assignments _Nov20_155909</con:value>
     </con:property>
     <con:property>
       <con:name>Assignment_BodyData</con:name>
       <con:value>{
-  "courseId": "g1148RYUD32U",
+  "courseId": "g11A5D32YNP",
   "points": 100,
-  "isGraded": false,
+  "isGraded": 0,
   "attemptType": "Highest Grade",
   "isHighlightLateSubmission": true,
   "isBroadcastingRequired": false,
@@ -69,14 +69,14 @@
         "*" 
       ],
       "dueDate": "2024-02-28",
-      "dueDateTime": "06:45 AM",
+      "dueDateTime": "09:29 AM",
       "dueDateTimezone": "US/Eastern",
-      "accessibleFrom": "2023-11-20T02:45:53-05:00",
-      "accessibleFromTime": "02:45 AM",
+      "accessibleFrom": "2023-11-20T05:29:50-05:00",
+      "accessibleFromTime": "05:29 AM",
       "accessibleFromTimezone": "US/Eastern",
-      "isForEveryOne": false,
-      "isImmediateAvailable":true,
-      "isUnlocked": true
+      "isForEveryOne": 0,
+      "isImmediateAvailable":1,
+      "isUnlocked": 1
     }
   ],
   
@@ -99,7 +99,7 @@
     </con:property>
     <con:property>
       <con:name>CourseSerialNumber</con:name>
-      <con:value>419</con:value>
+      <con:value>421</con:value>
     </con:property>
     <con:property>
       <con:name>CCM2_EbookAssignmentNames</con:name>
@@ -327,11 +327,11 @@
     </con:property>
     <con:property>
       <con:name>AllResourceTypesNames</con:name>
-      <con:value>["Downloads", "Ebook", "Pre-Lecture Quizzes", "Picmonic", "Journals", "PrepU Mastery Level Quizzes by Chapter", "Videos", "Animations", "Interactive Case Studies", "Next-Gen vSim", "Interactive Tutorials", "vSim"]</con:value>
+      <con:value>["Downloads", "Ebook", "Pre-Lecture Quizzes", "Picmonic", "Journals", "PrepU Mastery Level Quizzes by Chapter", "Videos", "Animations", "Interactive Case Studies", "Interactive Tutorials"]</con:value>
     </con:property>
     <con:property>
       <con:name>AllResourceTypeIds</con:name>
-      <con:value>[4, 2, 9, 17, 3, 12, 5, 6, 16, 25, 13, 8]</con:value>
+      <con:value>[4, 2, 9, 17, 3, 12, 5, 6, 16, 13]</con:value>
     </con:property>
     <con:property>
       <con:name>Skills_Topic OverviewAssignmentNames</con:name>
@@ -526,7 +526,7 @@
     </con:property>
     <con:property>
       <con:name>collectionId_List</con:name>
-      <con:value>567131394539520000#567131402127015936#567131411618725888#567131414714122240#567131419755675648#567131424499433472#567131429356437504#567131434062446592#567131441498947584#567131452827762688#567131461237342208#567131474675892224#567131477913894912#567131481160286208#567131485937598464#567131489355956224#567131492614930432#567131500231786496#567131510335864832#567131515146731520#567131519840157696#567131529088598016#567131532381126656#567131535510077440#567131538714525696#567131542199992320#567131547803582464#567131561175023616#567131567386787840#567131572487061504#567131575662149632#567131585959165952#567131589088116736#567131592305147904#567131595555733504#567131598890205184#567131617324171264#567131622252478464#567131626945904640#567131630024523776#567131638136307712#567131641219121152#567131644234825728#567131647602851840#567131650731802624#567131666452054016#567131671200006144#567131676040232960#567131679454396416#567131682608513024#567131685825544192#567131693463371776#567131696638459904#567131699851296768#</con:value>
+      <con:value/>
     </con:property>
     <con:property>
       <con:name>CollectionQnID</con:name>

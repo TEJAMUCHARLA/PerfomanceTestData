@@ -282,7 +282,6 @@ log.info tomorrow2</script>
     "productId": null,
     "activityName": "${Create Skills quiz with 2 sections and immediate access#Response#$['name']}",
     "correlationId": "${Create Skills quiz with 2 sections and immediate access#Response#$['id']}",
-
     "startedAt": "${#TestCase#startAt}",
  "completedAt": "${#TestCase#completedAt}",
  "sentAt": "${#TestCase#sentAt}",</con:request>

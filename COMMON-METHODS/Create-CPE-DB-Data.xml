@@ -267,7 +267,7 @@ testRunner.testCase.setPropertyValue("accessTime", accessTime)</script>
   </con:testStep>
   <con:testStep type="restrequest" name="Enter Child Assignment Details Video" id="7bdddaa4-2d88-4bcd-a47b-0f4f188ff2be">
     <con:settings/>
-    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Create Batch Assignment" resourcePath="/api/phx-batch-assignment-management/v1/assignments" methodName="Method 1" xsi:type="con:RestRequestStep">
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Assignmnet" resourcePath="/api/phx-assignment-management/v1/assignment" methodName="Method 1" xsi:type="con:RestRequestStep">
       <con:restRequest name="Enter Child Assignment Details Video" id="51dc24ed-ef5f-4c1c-90af-9e3bd077eea0" mediaType="application/json" postQueryString="false">
         <con:settings>
           <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_ssoInstructor}" value="${#Project#ssoInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
@@ -449,7 +449,7 @@ log.info("Child Asserts = "+i)</script>
   </con:testStep>
   <con:testStep type="restrequest" name="Create Assignment Video batch" id="0474d408-f52b-4c46-9b2b-f5802c6286e1">
     <con:settings/>
-    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Create Batch Assignment" resourcePath="/api/phx-batch-assignment-management/v1/assignments" methodName="Method 1" xsi:type="con:RestRequestStep">
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Assignmnet" resourcePath="/api/phx-assignment-management/v1/assignment" methodName="Method 1" xsi:type="con:RestRequestStep">
       <con:restRequest name="Create Assignment Video batch" id="51dc24ed-ef5f-4c1c-90af-9e3bd077eea0" mediaType="application/json" postQueryString="false">
         <con:settings>
           <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${#Project#CourseEnrollmentToken} " xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_ssoInstructor}" value="${#Project#ssoStudent}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
@@ -534,7 +534,7 @@ assert verifyResponse.assignmentUUID.size() ==childAssertsCount as int</scriptTe
   </con:testStep>
   <con:testStep type="restrequest" name="Enter Child Assignment Details H and B Batch" id="e7e5b781-ce40-463a-8358-5d28e7c08f09">
     <con:settings/>
-    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Create Batch Assignment" resourcePath="/api/phx-batch-assignment-management/v1/assignments" methodName="Method 1" xsi:type="con:RestRequestStep">
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Assignmnet" resourcePath="/api/phx-assignment-management/v1/assignment" methodName="Method 1" xsi:type="con:RestRequestStep">
       <con:restRequest name="Enter Child Assignment Details H and B Batch" id="51dc24ed-ef5f-4c1c-90af-9e3bd077eea0" mediaType="application/json" postQueryString="false">
         <con:settings>
           <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${Create Course#Response#$['enrollmentToken']}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_ssoInstructor}" value="${#Project#ssoInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
@@ -716,7 +716,7 @@ log.info("Child Asserts = "+i)</script>
   </con:testStep>
   <con:testStep type="restrequest" name="Create Assignment H and B Batch" id="868ca3c6-16dd-4e96-9407-de8cecaaa885">
     <con:settings/>
-    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Create Batch Assignment" resourcePath="/api/phx-batch-assignment-management/v1/assignments" methodName="Method 1" xsi:type="con:RestRequestStep">
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Assignmnet" resourcePath="/api/phx-assignment-management/v1/assignment" methodName="Method 1" xsi:type="con:RestRequestStep">
       <con:restRequest name="Create Assignment H and B Batch" id="51dc24ed-ef5f-4c1c-90af-9e3bd077eea0" mediaType="application/json" postQueryString="false">
         <con:settings>
           <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${#Project#CourseEnrollmentToken}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_ssoInstructor}" value="${#Project#ssoInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
@@ -801,7 +801,7 @@ assert verifyResponse.assignmentUUID.size() ==childAssertsCount as int</scriptTe
   </con:testStep>
   <con:testStep type="restrequest" name="Enter Child Assignment Details Vism" id="07d81630-0bca-44fa-855e-65f3e4758a2f">
     <con:settings/>
-    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Create Batch Assignment" resourcePath="/api/phx-batch-assignment-management/v1/assignments" methodName="Method 1" xsi:type="con:RestRequestStep">
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Assignmnet" resourcePath="/api/phx-assignment-management/v1/assignment" methodName="Method 1" xsi:type="con:RestRequestStep">
       <con:restRequest name="Enter Child Assignment Details Vism" id="51dc24ed-ef5f-4c1c-90af-9e3bd077eea0" mediaType="application/json" postQueryString="false">
         <con:settings>
           <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${Create Course#Response#$['enrollmentToken']}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_ssoInstructor}" value="${#Project#ssoInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
@@ -1022,7 +1022,7 @@ log.info("Child Asserts = " + i)
   </con:testStep>
   <con:testStep type="restrequest" name="Create Assignment Vism" id="3cb79070-c3df-4ca1-9ee7-a3558d900ca3">
     <con:settings/>
-    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Create Batch Assignment" resourcePath="/api/phx-batch-assignment-management/v1/assignments" methodName="Method 1" xsi:type="con:RestRequestStep">
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Assignmnet" resourcePath="/api/phx-assignment-management/v1/assignment" methodName="Method 1" xsi:type="con:RestRequestStep">
       <con:restRequest name="Create Assignment Vism" id="51dc24ed-ef5f-4c1c-90af-9e3bd077eea0" mediaType="application/json" postQueryString="false">
         <con:settings>
           <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${#Project#CourseEnrollmentToken}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_ssoInstructor}" value="${#Project#ssoInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>

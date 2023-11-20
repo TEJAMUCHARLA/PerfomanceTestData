@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite xmlns:con="http://eviware.com/soapui/config" id="0b6eb84f-2600-489b-88eb-f32bad817334" name="Multi Student Attempt">
+  <con:settings id="f2d5e083-9c73-42ab-8381-f17455f9b58b">
+    <con:setting id="0b6eb84f-2600-489b-88eb-f32bad817334fileName">Multi-Student-Attempt</con:setting>
+  </con:settings>
+  <con:runType>SEQUENTIAL</con:runType>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testSuite>

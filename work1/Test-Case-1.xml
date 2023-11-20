@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase xmlns:con="http://eviware.com/soapui/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="1d8ca26b-8945-48c0-836a-6b89cf13da18" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Test Case 1" searchProperties="true" timeout="0">
+  <con:settings id="4342e468-c9e5-4532-9977-ff42cb67057a">
+    <con:setting id="1d8ca26b-8945-48c0-836a-6b89cf13da18fileName">Test-Case-1</con:setting>
+  </con:settings>
+  <con:testStep type="restrequest" name="Get Product Assignment Details" id="e3f21b3b-fea3-49bf-a45d-4225d1054904">
+    <con:settings/>
+    <con:config service="Get Asset list from product" resourcePath="/api/product-title-management/v1/product/isbn/{ISBN}/published" methodName="Method 1" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Get Product Assignment Details" id="8a2c7d41-f915-4cce-9f92-b9c8787e3af4" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/></con:setting>
+        </con:settings>
+        <con:request/>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/product-title-management/v1/product/isbn/9781975124465/published</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="c4d0abc4-492d-4f4c-9d60-d712436c113b" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="0b42c78e-fd0f-4660-b0d2-245e31f11f02" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="ISBN" value="9781975186708"/>
+        </con:parameters>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Groovy Script" id="9a6d6df6-fc1b-42f8-b4f4-67dd3c3f2c9d">
+    <con:settings/>
+    <con:config>
+      <script><![CDATA[import groovy.json.JsonSlurper
+import com.eviware.soapui.model.testsuite.TestRunner.Status
+
+def value = testRunner.testCase.testSteps["Get Product Assignment Details"].testRequest.response
+def responseValue = value.responseContent
+
+def slurper = new JsonSlurper()
+def json = slurper.parseText(responseValue)
+def allconatins=json.containers
+def MatchContainerId="6013"
+def MatchAssetId="340715"
+def MatchResourceType="Pre-Lecture Quizzes"
+def MatchresourceTypeId="9"
+
+def AssetExisted = true
+for(def eachContainer in allconatins)
+{
+	//log.info("eachContainer "+eachContainer.id)
+  for(def Unit in eachContainer.containers)
+  {
+       //  if(Unit.id.toString()=="6013")
+        // {
+         	
+              for(def Assets in Unit.assets)
+              {
+              		
+                        if(Assets.container.toString().equals(MatchContainerId)&&Assets.externalAssetId.toString().equals(MatchAssetId)
+                        &&Assets.resourceTypeId.toString().equals(MatchresourceTypeId)&&Assets.resourceType.toString().equals(MatchResourceType))
+                        {
+                        	AssetExisted=true
+                       log.info("Assets "+Assets.assetCode)
+                       log.info("Assets "+Assets.label)
+                       break;
+                        	
+                        }
+              	 
+              		
+              }
+         		
+         //}	
+  }
+	
+	
+}
+
+assert AssetExisted]]></script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Verify final Student Grades After Attempt" id="3d4de5da-4daa-44bc-8045-4449183e9c91">
+    <con:settings/>
+    <con:config service="GetAssignedGrades" resourcePath="/api/phx-gradebook-management/v1/ccm/course/{courseId}/section/{sectionId}/grades" methodName="Method 1" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Verify final Student Grades After Attempt" id="17b947f0-bc28-40d6-a2c7-1f869e08db62" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="${#Project#Key_ssoStudent}" value="${#Project#ssoStudent}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenStudent}" value="${#Project#xaccessTokenStudent}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:endpoint xsi:nil="true"/>
+        <con:request/>
+        <con:originalUri>https://dev01-ccm.hlrpphoenix.com/api/phx-gradebook-management/v1/ccm/course/gM3MIFVPW5L/section/gM3MIFVPW5L_sM3MIFVRAQ1/grades</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="44745bfe-b054-4b69-a903-ea70d658d185" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="0130b747-8cc6-4c76-beed-706840b09912" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" name="Script Assertion" id="cd25367b-d27a-4728-82bf-427dbeb77588">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+
+def testCase = messageExchange.modelItem.testCase;
+def response = context.expand( '${Verify final Student Grades After Attempt#Response}' )
+
+def Getresponse = new JsonSlurper().parseText(response)
+
+log.info(Getresponse.grades.assetDetails.attemptDetails.displayScoreLabel.size())
+
+//Getresponse.grades.assetDetails
+
+int count =0
+for(def eachAssert in Getresponse.grades)
+{
+	//og.info(eachAssert.assetDetails.attemptDetails[0].displayScoreLabel[0].toString())
+	
+  if(eachAssert.assetDetails.attemptDetails[0].displayScoreLabel[0].toString()!=null)
+  {
+  	count++
+  }
+}
+
+log.info("Submitted Assets "+count)
+testCase.setPropertyValue("SubmittedAssignmentsCount",(count).toString())
+
+def totalAssignments = context.expand( '${#Project#TotalAssignments}' )as int 
+totalAssignments = totalAssignments/2
+
+assert totalAssignments&lt;=count</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="studentId" value="${#Project#StudentUserId}"/>
+          <con:entry key="sectionId" value="${#Project#JoinedSectionid}"/>
+          <con:entry key="courseId" value="g11979PF3Y4"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>courseId</con:entry>
+          <con:entry>sectionId</con:entry>
+          <con:entry>studentId</con:entry>
+        </con:parameterOrder>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="GET Instrcutor resulust Page Details" id="909a196f-c87c-45f3-abb1-7b04d0997f84">
+    <con:settings/>
+    <con:config service="GetAssignedGradesInstructor" resourcePath="/api/phx-gradebook-management/v1/ccm/course/{course}/section/{section}/grades" methodName="Method 1" xsi:type="con:RestRequestStep">
+      <con:restRequest name="GET Instrcutor resulust Page Details" id="7710fec7-99ae-42cb-9579-57e6fcbc47ed" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="${#Project#Key_ssoInstructor}" value="${#Project#ssoInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="X-Enrollment-Token" value="kfgym119OFO2do2VgoBor6CM8oEFtQ0CXSOBEaDFE8V0H_poEDG_DjtLBtp8aemah-UA0505i73Cf-eenop4e7J5o8XKJAngA3GackN8LoxY0ZfKmtvEvKcklwyIaS70YHzRZo8X2ASA0IFKfx2s X-Enrollment-Token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA2NDkwMTEsImp0aSI6ImJjYzM0MmI3LWNkZDAtNDdjYi1hMDBlLTQyMThhM2IzNzZhYyIsImlhdCI6MTcwMDQ3NjIxMSwiaXNzIjoiaHR0cHM6Ly9waG9lbml4LWNjbS50aGVwb2ludC5sd3cuY29tIiwibmJmIjoxNzAwNDc2MjExLCJzdWIiOiI5Y2RiZTIwMC0zNDUyLTQ3N2EtOGIyNi00NjE3MDA5YTA1OTAiLCJobHJwX2NjbSI6W3siciI6ImkiLCJjcnMiOiJnMTFBNUQzMllOUCJ9XX0.RCUNDqSOpjmux39T87llPijfxbLf-lEV29Ottamy6B_MyPb2lFgDs0xejrdn6IeeDV2bA0O94FPYQaTR4RzkdLUzNi3Vmmljhh9RvI4O1T8CZnaoXVTie3zXzfzi6stIc-ybGTSj4Ex-wOJ1PJVRPnsDITfe04hLw5vN-tXxJzvWXV6liwo189VU1jYMMqifpwWTNhvssyEFhM2F65esu_O90c_-4YzT67tH0N1YsWkIpYar5NLD0Dj5ODHqzyxtjFYJWYGQShEM6_I2soa0drPEvsGb3Lz4Z7fki6pH1StnHib38_X2LH_ZV8kPgLAg0htJiTl89LBEU2IQCgLIlsA5QMdzWJDchVsWCoXbJo2dxo9xCrpyXZnYoW7bT2NHvwnXeIvNlX8pU2w42RKu_3QjNgA97kRNUfiX07m4VFRwy_sFS3fWCFzvynH0E72ncP4TBucLp7uT32XPyemxCfV-iqQUFymG-JDG67XgdR8aO6dmcJA5lVNQ7Jaln0vwuTHFqsEA_a5BkfxZrxtQ3dO8SeSO-7VNyhXA7HyjHgBZHuMo6yAzhtiWn4sqpy6pEcilWgYrAYYXMM5IZrDkQ1mpVZ1H360AbdnqYP6lAL6A79ylLh-97K-JUCcsQAq6kuy2Y_utZyX8M-RWt_FT0sL0lM-3mfmlGlzvColU5hw" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:request/>
+        <con:originalUri>https://qe02-ccm.hlrpphoenix.com/api/phx-gradebook-management/v1/ccm/course/g11979PF3Y4/section/g11A5D32YNP_s11A5D332A4/grades</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="d4789a67-84ff-4071-b192-525946d221bd" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="course" value="g11979PF3Y4"/>
+          <con:entry key="section" value="${#Project#JoinedSectionid}"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>course</con:entry>
+          <con:entry>section</con:entry>
+        </con:parameterOrder>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Attempt Instructor Page All assignments" id="e5d196c1-4039-4c0d-8e80-10901c6c767a">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import com.eviware.soapui.model.testsuite.TestRunner.Status
+
+
+def response = context.expand( '${GET Instrcutor resulust Page Details#Response}' )
+
+def slurper = new JsonSlurper()
+def json = slurper.parseText(response)
+
+def ExistingAssignmentsCount =null
+
+
+ExistingAssignmentsCount =json.grades.size() as int 
+
+log.info("ExistingAssignmentsCount "+ExistingAssignmentsCount)
+
+
+/*
+def gradedAssignments = json.grades
+def AttemptAssetId=""
+def AttemptCorrelationId=""
+
+def AttemptResourceType=""
+def AttemptActivityId=""
+
+
+
+for(def GetAssignment in gradedAssignments)
+{
+
+     if(GetAssignment.assetDetails.size()>0)
+     {
+     		//log.info(GetAssignment.assetDetails[0].label)
+     		def assetDetails=GetAssignment.assetDetails[0]
+     		AttemptAssetId=assetDetails.assetId
+     		AttemptResourceType=assetDetails.resourceType
+     		
+     		AttemptCorrelationId=GetAssignment.assignmentId
+     	 //break;
+     } 
+}
+log.info("AttemptAssetId "+AttemptAssetId)
+log.info("AttemptResourceType "+AttemptResourceType)
+log.info("AttemptAssetId "+AttemptCorrelationId)\
+
+*/</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasource" name="Get Assignmnet Type" id="32c24082-7d42-4fc8-9a10-2ac24c332606">
+    <con:settings/>
+    <con:config xsi:type="con:DataSourceStep">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>${#Project#TestDataExcelFile}</file>
+          <worksheet>AllAssignmentsPushBody</worksheet>
+          <cell>A2</cell>
+          <ignoreEmpty>false</ignoreEmpty>
+          <evaluateFormulas>false</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:preload>true</con:preload>
+      <con:property>number</con:property>
+      <con:property>resourceType</con:property>
+      <con:property>AttemptBodyData</con:property>
+      <con:property>DetailsMapedName</con:property>
+      <con:startRow/>
+      <con:endRow/>
+      <con:recordsPerIteration>1</con:recordsPerIteration>
+      <con:completeLastOperation>false</con:completeLastOperation>
+      <con:trimValues>false</con:trimValues>
+      <con:entitizeValues>false</con:entitizeValues>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:expandProperties>false</con:expandProperties>
+      <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Attempt Instructor Page All assignments 2" id="ad90a220-5628-410c-81c2-6fc47222ca0a">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import com.eviware.soapui.model.testsuite.TestRunner.Status
+
+
+def response = context.expand( '${GET Instrcutor resulust Page Details#Response}' )
+
+def slurper = new JsonSlurper()
+def json = slurper.parseText(response)
+
+def gradedAssignments = json.grades
+def AttemptAssetId=""
+def AttemptCorrelationId=""
+
+def AttemptResourceType=""
+def AttemptActivityId=""
+
+for(def GetAssignment in gradedAssignments)
+{
+
+     if(GetAssignment.assetDetails.size()>0)
+     {
+     		//log.info(GetAssignment.assetDetails[0].label)
+     		def assetDetails=GetAssignment.assetDetails[0]
+     		AttemptAssetId=assetDetails.assetId
+     		AttemptResourceType=assetDetails.resourceType
+     		
+     		AttemptCorrelationId=GetAssignment.assignmentId
+     	 //break;
+     } 
+}
+log.info("AttemptAssetId "+AttemptAssetId)
+log.info("AttemptResourceType "+AttemptResourceType)
+log.info("AttemptAssetId "+AttemptCorrelationId)</script>
+    </con:config>
+  </con:testStep>
+  <con:properties>
+    <con:property>
+      <con:name>SubmittedAssignmentsCount</con:name>
+      <con:value>48</con:value>
+    </con:property>
+  </con:properties>
+  <con:reportParameters/>
+</con:testCase>

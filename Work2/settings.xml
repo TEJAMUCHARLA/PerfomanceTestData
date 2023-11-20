@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite xmlns:con="http://eviware.com/soapui/config" id="59703d9f-6ced-4f92-b9f7-f2ad93e7229e" name="Work2">
+  <con:settings id="eaf3243e-f967-4870-a709-fe154b44fb09">
+    <con:setting id="59703d9f-6ced-4f92-b9f7-f2ad93e7229efileName">Work2</con:setting>
+  </con:settings>
+  <con:runType>SEQUENTIAL</con:runType>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testSuite>

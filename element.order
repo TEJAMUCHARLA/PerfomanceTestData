@@ -20,10 +20,9 @@ Get-Asset-list-from-the-product
 Get-Asset-list-from-Concept
 Unassign-Assignment
 Edit-Batch-Assignment
-Create-Batch-Assignment
+Create-Batch-assignment
 Get-prepu-Qc-list
 Edit-Course
-Create-Batch-assignment
 Update-batch-assignment
 Get-Asset-list-from-skills-product
 Edit-Course-2
@@ -59,3 +58,6 @@ QCAddItem
 TEST-CASES
 COMMON-METHODS
 ProjectTestData
+work1
+Multi-Student-Attempt
+Work2

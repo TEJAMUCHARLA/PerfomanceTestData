@@ -20,9 +20,8 @@ Get-Asset-list-from-the-product
 Get-Asset-list-from-Concept
 Unassign-Assignment
 Edit-Batch-Assignment
-Create-Batch-Assignment
+Create-Batch-assignment
 Get-prepu-Qc-list
 Edit-Course
-Create-Batch-assignment
 Update-batch-assignment
 Get-Asset-list-from-skills-product
