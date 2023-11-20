@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" xsi:type="con:RestService" id="d87a9d52-4a74-472e-b671-7aa871c501c3" name="Submission History student /Instructor" type="rest_ex" wadlVersion="https://swagger.io/openapiv3/specification">
+  <con:settings id="80706d2c-e303-429f-bd8d-922bae7923f0">
+    <con:setting id="d87a9d52-4a74-472e-b671-7aa871c501c3fileName">Submission-History-student-%2FInstructor</con:setting>
+  </con:settings>
+  <con:definitionCache type="TEXT" rootPart="Submisition History.json">
+    <con:part>
+      <con:url>Submisition History.json</con:url>
+      <con:content>{"openapi":"3.0.1","info":{"title":"Submisition History","version":"1.0.0"},"servers":[{"url":"/"}],"paths":{"/api/gradebook-process-management/v1/submissionHistory/student/{Student id}":{"get":{"responses":{"default":{"description":"Default response"}}},"parameters":[{"name":"Student id","in":"path","required":true,"style":"simple","explode":false},{"name":"isAssigned","in":"query","required":false,"style":"form","explode":true},{"name":"classId","in":"query","required":false,"style":"form","explode":true},{"name":"assetId","in":"query","required":false,"style":"form","explode":true}]}}}</con:content>
+      <con:type>https://swagger.io/openapiv3/specification</con:type>
+    </con:part>
+  </con:definitionCache>
+  <con:endpoints>
+    <con:endpoint>${#Project#ENV_URL}</con:endpoint>
+  </con:endpoints>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:interface>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="sections" path="/api/ccm/v2/course/{Course Id}/sections" id="fed69fe5-9778-444a-aca1-fcf0348773de">
+  <con:settings id="05bc1b6b-b3c2-410c-b94c-570be8ebfc07">
+    <con:setting id="fed69fe5-9778-444a-aca1-fcf0348773defileName">sections</con:setting>
+  </con:settings>
+  <con:parameters>
+    <con:parameter>
+      <con:name>Course Id</con:name>
+      <con:value>Course Id</con:value>
+      <con:style>TEMPLATE</con:style>
+      <con:default>Course Id</con:default>
+    </con:parameter>
+  </con:parameters>
+  <con:method name="Method 1" id="016dc20a-b67d-414e-8471-4df9c904438d" method="POST">
+    <con:settings/>
+    <con:parameters/>
+    <con:request name="Request 1" id="badc349d-31d9-48d1-a03a-e579d24169d2" mediaType="application/json" postQueryString="false">
+      <con:settings/>
+      <con:request/>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters>
+        <con:entry key="Course Id" value=""/>
+      </con:parameters>
+      <con:parameterOrder>
+        <con:entry>Course Id</con:entry>
+      </con:parameterOrder>
+      <con:environmentSpec>
+        <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+        <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+        <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:request>
+    <con:environmentSpec>
+      <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
+  </con:method>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:resource>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="Get Assert Viewer path" path="/api/asset-management/v1/assets/{AssertId}/retrieve-path" id="b6c91bce-1c9b-4911-866d-8c6071a4b4fe">
+  <con:settings id="0fb6a83e-a527-41dd-8757-578af52011ae">
+    <con:setting id="b6c91bce-1c9b-4911-866d-8c6071a4b4fefileName">Get-Assert-Viewer-path</con:setting>
+  </con:settings>
+  <con:parameters>
+    <con:parameter>
+      <con:name>AssertId</con:name>
+      <con:value>1234</con:value>
+      <con:style>TEMPLATE</con:style>
+      <con:default>1234</con:default>
+    </con:parameter>
+  </con:parameters>
+  <con:method name="Method 1" id="aad2dcc3-29a9-4335-95e4-19f327c41422" method="GET">
+    <con:settings/>
+    <con:parameters>
+      <con:parameter required="true">
+        <con:name>version</con:name>
+        <con:value/>
+        <con:style>QUERY</con:style>
+        <con:default/>
+      </con:parameter>
+    </con:parameters>
+    <con:request name="Request 1" id="8a6ff277-dd81-43fc-bd33-bfa7656fa709" mediaType="application/json">
+      <con:settings>
+        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="${#Project#Key_ssoInstructor}" value="${#Project#ssoInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value=" ${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+      </con:settings>
+      <con:request/>
+      <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/asset-management/v1/assets/1234/retrieve-path</con:originalUri>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters>
+        <con:entry key="version" value="1234"/>
+      </con:parameters>
+      <con:parameterOrder>
+        <con:entry>AssertId</con:entry>
+        <con:entry>version</con:entry>
+      </con:parameterOrder>
+      <con:environmentSpec>
+        <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+        <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+        <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:request>
+    <con:environmentSpec>
+      <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
+  </con:method>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:resource>

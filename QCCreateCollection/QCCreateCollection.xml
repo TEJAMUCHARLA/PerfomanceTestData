@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="QCCreateCollection" path="/1/questionSets" id="17c1f36d-ed44-469c-b986-44539ce0390c">
+  <con:settings id="0fc4573c-100e-4ffe-bf80-1a3abf324458">
+    <con:setting id="17c1f36d-ed44-469c-b986-44539ce0390cfileName">QCCreateCollection</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:method name="Method 1" id="b254f904-14b7-453c-8182-11dd83920da4" method="POST">
+    <con:settings/>
+    <con:parameters>
+      <con:parameter required="true">
+        <con:name>Authorization</con:name>
+        <con:value/>
+        <con:style>HEADER</con:style>
+        <con:default/>
+      </con:parameter>
+    </con:parameters>
+    <con:request name="Request 1" id="4a8634a6-dc16-4aa5-9e8e-9a1252d796d3" mediaType="application/json" postQueryString="false">
+      <con:settings>
+        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+      </con:settings>
+      <con:endpoint xsi:nil="true"/>
+      <con:request>{
+  "parentId": null,
+  "name": "test api automation12345",
+  "mode": null,
+  "totalQuestions": null,
+  "totalRetiredQuestions": null,
+  "enabled": false,
+  "isStandardizedExam": false,
+  "classIdScope": null,
+  "parentOwner": null,
+  "user": "1500626634",
+  "product": "165"
+}</con:request>
+      <con:originalUri>https://sakurai-api-preproduction.prep-u.com/1/authKeys/sso</con:originalUri>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters/>
+      <con:parameterOrder>
+        <con:entry>Authorization</con:entry>
+      </con:parameterOrder>
+      <con:environmentSpec>
+        <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+        <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:request>
+    <con:environmentSpec>
+      <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
+  </con:method>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:resource>

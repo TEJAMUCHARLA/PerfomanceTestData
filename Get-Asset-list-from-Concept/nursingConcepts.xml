@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="nursingConcepts" path="/api/product-title-management/v1/product/{ISBN}/nursingConcepts" id="e9cef86b-6849-463f-82d6-9db72c66d3e6">
+  <con:settings id="488c6c75-5751-4844-b97e-a5ac5375fbfa">
+    <con:setting id="e9cef86b-6849-463f-82d6-9db72c66d3e6fileName">nursingConcepts</con:setting>
+  </con:settings>
+  <con:parameters>
+    <con:parameter required="true">
+      <con:name>ISBN</con:name>
+      <con:value>ISBN</con:value>
+      <con:style>TEMPLATE</con:style>
+      <con:default>ISBN</con:default>
+    </con:parameter>
+    <con:parameter required="true">
+      <con:name>published</con:name>
+      <con:value>{true}</con:value>
+      <con:style>QUERY</con:style>
+      <con:default>{true}</con:default>
+    </con:parameter>
+  </con:parameters>
+  <con:method name="Method 1" id="6682dade-8150-4272-90f2-51667b720b88" method="GET">
+    <con:settings/>
+    <con:parameters/>
+    <con:request name="Request 1" id="87b6218e-f68b-423f-8eb7-64fd8c17fae1" mediaType="application/json">
+      <con:settings/>
+      <con:request/>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters>
+        <con:entry key="published" value="true"/>
+      </con:parameters>
+      <con:environmentSpec>
+        <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+        <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+        <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:request>
+    <con:environmentSpec>
+      <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
+  </con:method>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:resource>

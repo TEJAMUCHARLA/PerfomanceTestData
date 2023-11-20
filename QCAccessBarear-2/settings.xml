@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" xsi:type="con:RestService" id="89d923ce-326e-40f1-ad47-2ec1e8bec4cd" name="QCAccessBarear 2" type="rest_ex" wadlVersion="https://swagger.io/openapiv3/specification">
+  <con:settings id="224b7618-5f3b-4a36-b1cd-c55f98659ce9">
+    <con:setting id="89d923ce-326e-40f1-ad47-2ec1e8bec4cdfileName">QCAccessBarear-2</con:setting>
+  </con:settings>
+  <con:definitionCache type="TEXT" rootPart="QCAccessBarear.json">
+    <con:part>
+      <con:url>QCAccessBarear.json</con:url>
+      <con:content>{"openapi":"3.0.1","info":{"title":"QCAccessBarear","version":"1.0.0"},"servers":[{"url":"/"}],"paths":{"/1/authKeys/sso":{"get":{"responses":{"default":{"description":"Default response"}}}}}}</con:content>
+      <con:type>https://swagger.io/openapiv3/specification</con:type>
+    </con:part>
+  </con:definitionCache>
+  <con:endpoints/>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:interface>

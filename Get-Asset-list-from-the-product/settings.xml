@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" xsi:type="con:RestService" id="db265fc2-2e6c-43c6-b2ec-1701d3b38423" name="Get Asset list from the product" type="rest_ex" wadlVersion="https://swagger.io/openapiv3/specification">
+  <con:settings id="4a90e163-6b46-47b2-ab0f-3ab84a527f62">
+    <con:setting id="db265fc2-2e6c-43c6-b2ec-1701d3b38423fileName">Get-Asset-list-from-the-product</con:setting>
+  </con:settings>
+  <con:definitionCache type="TEXT" rootPart="Get the Asset details for creating the assignment.json">
+    <con:part>
+      <con:url>Get the Asset details for creating the assignment.json</con:url>
+      <con:content>{"openapi":"3.0.1","info":{"title":"Get the Asset details for creating the assignment","version":"1.0.0"},"servers":[{"url":"/"}],"paths":{"/api/product-title-management/v1/product/isbn/{ISBN}/published":{"get":{"responses":{"default":{"description":"Default response"}}},"parameters":[{"name":"ISBN","in":"path","required":true,"style":"simple","explode":false}]}}}</con:content>
+      <con:type>https://swagger.io/openapiv3/specification</con:type>
+    </con:part>
+  </con:definitionCache>
+  <con:endpoints/>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:interface>

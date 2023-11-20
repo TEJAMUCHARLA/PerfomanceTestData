@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="unassign" path="/api/phx-batch-assignment-management/v1/assignments/{Asset id}/unassign" id="e518c2e1-2218-401f-b7fd-e0df20505d1e">
+  <con:settings id="8dd62960-ac8a-4022-8fc7-00f8116dceba">
+    <con:setting id="e518c2e1-2218-401f-b7fd-e0df20505d1efileName">unassign</con:setting>
+  </con:settings>
+  <con:parameters>
+    <con:parameter required="true">
+      <con:name>Asset id</con:name>
+      <con:value>Asset id</con:value>
+      <con:style>TEMPLATE</con:style>
+      <con:default>Asset id</con:default>
+    </con:parameter>
+  </con:parameters>
+  <con:method name="Method 1" id="91d4f036-3824-48b9-be48-6985a9b46660" method="PUT">
+    <con:settings/>
+    <con:parameters/>
+    <con:request name="Request 1" id="e853f7b4-3591-4a3b-8c7b-a442eb0b098b" mediaType="application/json" postQueryString="false">
+      <con:settings/>
+      <con:request/>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters/>
+      <con:environmentSpec>
+        <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+        <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+        <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:request>
+    <con:environmentSpec>
+      <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
+  </con:method>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:resource>

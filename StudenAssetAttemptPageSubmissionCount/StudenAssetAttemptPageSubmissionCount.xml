@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="StudenAssetAttemptPageSubmissionCount" path="/api/gradebook-process-management/v1/phx-assignment/submission-count" id="2d30aafd-71aa-45d6-ad1a-1a17cf8d58c2">
+  <con:settings id="67bc2b9a-a838-4b36-9e5e-93230da43bec">
+    <con:setting id="2d30aafd-71aa-45d6-ad1a-1a17cf8d58c2fileName">StudenAssetAttemptPageSubmissionCount</con:setting>
+  </con:settings>
+  <con:parameters>
+    <con:parameter>
+      <con:name>ids</con:name>
+      <con:value>1234</con:value>
+      <con:style>QUERY</con:style>
+      <con:default>1234</con:default>
+    </con:parameter>
+  </con:parameters>
+  <con:method name="Method 1" id="025512cd-926d-4873-9a39-1edd5ec20381" method="GET">
+    <con:settings/>
+    <con:parameters>
+      <con:parameter required="true">
+        <con:name>userId</con:name>
+        <con:value/>
+        <con:style>QUERY</con:style>
+        <con:default/>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>sectionId</con:name>
+        <con:value/>
+        <con:style>QUERY</con:style>
+        <con:default/>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>correlationId</con:name>
+        <con:value/>
+        <con:style>QUERY</con:style>
+        <con:default/>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>assetId</con:name>
+        <con:value/>
+        <con:style>QUERY</con:style>
+        <con:default/>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>activityId</con:name>
+        <con:value/>
+        <con:style>QUERY</con:style>
+        <con:default/>
+      </con:parameter>
+    </con:parameters>
+    <con:request name="Request 1" id="bf651f68-6b17-4858-aa3a-ab53ad360442" mediaType="application/x-www-form-urlencoded" postQueryString="true">
+      <con:settings>
+        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenStudent}" value="${#Project#xaccessTokenStudent}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_ssoStudent}" value="${#Project#ssoStudent}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+      </con:settings>
+      <con:request/>
+      <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/class-management/v2/class-wrapper/search/passcode/</con:originalUri>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters>
+        <con:entry key="activityId" value=""/>
+        <con:entry key="ids" value="RI2GGA1FVA"/>
+        <con:entry key="userId" value=""/>
+      </con:parameters>
+      <con:parameterOrder>
+        <con:entry>ids</con:entry>
+        <con:entry>userId</con:entry>
+        <con:entry>sectionId</con:entry>
+        <con:entry>correlationId</con:entry>
+        <con:entry>assetId</con:entry>
+        <con:entry>activityId</con:entry>
+      </con:parameterOrder>
+      <con:environmentSpec>
+        <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+        <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+        <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:request>
+    <con:environmentSpec>
+      <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
+  </con:method>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:resource>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" xsi:type="con:RestService" id="ca9c80a8-8840-41f9-84b4-960716037f99" name="Get Assignment details for a course" type="rest_ex" wadlVersion="https://swagger.io/openapiv3/specification">
+  <con:settings id="58f5e744-580c-43fb-9492-d1ffc7a07225">
+    <con:setting id="ca9c80a8-8840-41f9-84b4-960716037f99fileName">Get-Assignment-details-for-a-course1</con:setting>
+  </con:settings>
+  <con:definitionCache type="TEXT" rootPart="Instructor verify the Created Assignment in Assignments page.json">
+    <con:part>
+      <con:url>Instructor verify the Created Assignment in Assignments page.json</con:url>
+      <con:content>{"openapi":"3.0.1","info":{"title":"Instructor verify the Created Assignment in Assignments page","version":"1.0.0"},"servers":[{"url":"/"}],"paths":{"/api/phx-batch-assignment-management/v1/assignment-wrapper/assignments":{"get":{"responses":{"default":{"description":"Default response"}}},"parameters":[{"name":"course","in":"query","required":false,"style":"form","explode":true},{"name":"mergeBatch","in":"query","required":false,"style":"form","explode":true}]}}}</con:content>
+      <con:type>https://swagger.io/openapiv3/specification</con:type>
+    </con:part>
+  </con:definitionCache>
+  <con:endpoints/>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:interface>

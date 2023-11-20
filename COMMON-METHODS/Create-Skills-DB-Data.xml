@@ -1,0 +1,1663 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase xmlns:con="http://eviware.com/soapui/config" id="04bee245-0ed7-41a2-bcd3-986138315854" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Create Skills DB Data" searchProperties="true" timeout="0">
+  <con:settings id="d3d97a33-47aa-45e6-874b-3a90c71dc7d0">
+    <con:setting id="GeneratableJUnitReport@Folder">D:\Ready APi Daily Data\March30\Issue</con:setting>
+    <con:setting id="04bee245-0ed7-41a2-bcd3-986138315854fileName">Create-Skills-DB-Data</con:setting>
+  </con:settings>
+  <con:testStep type="calltestcase" name="Assign Skills Single Resource Type Assignments" id="9731996e-67a9-42ec-b7ba-d1b7d834f06a">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RunTestCaseStep" copyHttpSession="true" copyLoadTestProperties="true" ignoreEmptyProperties="true">
+      <con:targetTestCase>f3bcfc9f-e26e-4e6a-8118-205bb13b5c9e</con:targetTestCase>
+      <con:properties>
+        <con:property>
+          <con:name>accessDate</con:name>
+          <con:value>2023-05-08T09:20:03+05:30</con:value>
+        </con:property>
+        <con:property>
+          <con:name>DueDate</con:name>
+          <con:value>2023-05-09</con:value>
+        </con:property>
+        <con:property>
+          <con:name>EffectiveDate</con:name>
+          <con:value>2023-04-18T00:00:00.000Z</con:value>
+        </con:property>
+        <con:property>
+          <con:name>ExpireDate</con:name>
+          <con:value>2023-05-18T00:00:00.000Z</con:value>
+        </con:property>
+        <con:property>
+          <con:name>tomorrow</con:name>
+          <con:value>Tue, Apr 18 2023</con:value>
+        </con:property>
+        <con:property>
+          <con:name>tomorrow2</con:name>
+          <con:value>2023-04-18</con:value>
+        </con:property>
+        <con:property>
+          <con:name>instructorUserId</con:name>
+          <con:value>0345b785-ba3e-4b3a-9c6c-447101694d75</con:value>
+        </con:property>
+        <con:property>
+          <con:name>numberOfAttempts</con:name>
+          <con:value>1</con:value>
+        </con:property>
+        <con:property>
+          <con:name>StudentenrollmentToken</con:name>
+          <con:value>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODE4ODU5NjAsImp0aSI6IjAxZDNiYzFlLWJlMzMtNGNjOS04OGU3LWI4ZTcxMjMzNTNhNSIsImlhdCI6MTY4MTcxMzE2MCwiaXNzIjoiaHR0cHM6Ly9waG9lbml4LWNjbS50aGVwb2ludC5sd3cuY29tIiwibmJmIjoxNjgxNzEzMTYwLCJzdWIiOiI5ZTZlOGM1Ny02ODNlLTRjNTQtODkzMS00NDc0MDE1OWQ2ODUiLCJobHJwX2NjbSI6W3siciI6InMiLCJjcnMiOiJnU0VCUUJLRzk5SUIiLCJzZWMiOiJnU0VCUUJLRzk5SUJfc1NFQlFCS0dBMlIifV19.kKMRJHB4y0Tno_H-esNrWhe-RsUn8zHCmazkZhhKCgXyBFbLRWiD2zyGp5MOZCZbIW1WIlQg4CjosIPwQtw204mHb6iNohaZtznNKEaZ5_BbW3241Stf9E_xo2X9qBCl_zrYUpX1M4uR066aPvoD5d_hViNCAynUW7OXzK3nC4VgF9F6amwQSDrje6AeD8D8vLTw_kmFk9eGSkVvEWnd5ZssYCAzqyVdgadLGbFrWj2N3TOIPsEkgR3HoJ17Ipg_ZCAwBqrAiPG5WMqQsNbMexKeSeb2bMA5FQuasV9Qc3YK9aphsr4ER17HAAZ1F1GtO_gmaYBO8xKU11WX1_UDGx5Dt0cpeRM24oonRf4sGS-BIsWXCsG8fTyaYzfJajIv7xh-ibK5NYtp2fji4W1l9ErKyfMX8bh27B5TnSOPjKZQydo4bqRnpK6IeiSCKmhbi195Yzzzns9h3Zs0edCV70UnEnFPO23gHIM2tSjkk_HNUitc8rR3ErYXKQx_p3t4RyAYcP8dbqi0RdepDBYoyR8LtFpfF63PYKKSk9SD5ePpqcqyqfHDibuL_Onmn0q14sF5TkXmnFLrj15Bxx4dgJV6BwTwbc3n_I-y5unOB6nbSR2PwINbsueSx7hjmebMPzZJqUwCGeehUnvGvt5vMbMY1ofYglw1HxryhcCvgdo</con:value>
+        </con:property>
+        <con:property>
+          <con:name>accessTime</con:name>
+          <con:value>09:20 PM</con:value>
+        </con:property>
+        <con:property>
+          <con:name>DueTime</con:name>
+          <con:value>01:20 AM</con:value>
+        </con:property>
+      </con:properties>
+      <con:returnProperties>
+        <con:entry>accessDate</con:entry>
+        <con:entry>DueDate</con:entry>
+        <con:entry>EffectiveDate</con:entry>
+        <con:entry>ExpireDate</con:entry>
+        <con:entry>tomorrow</con:entry>
+        <con:entry>tomorrow2</con:entry>
+        <con:entry>instructorUserId</con:entry>
+        <con:entry>numberOfAttempts</con:entry>
+        <con:entry>StudentenrollmentToken</con:entry>
+        <con:entry>accessTime</con:entry>
+        <con:entry>DueTime</con:entry>
+      </con:returnProperties>
+      <con:runMode>SINGLETON_AND_WAIT</con:runMode>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasource" name="CreateAssignment" id="c7e2552e-e0ea-4bf0-a2bc-d71b097a64f0">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:DataSourceStep">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>${#Project#TestDataExcelFile}</file>
+          <worksheet>CreateAssignment</worksheet>
+          <cell>A117</cell>
+          <ignoreEmpty>false</ignoreEmpty>
+          <evaluateFormulas>false</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>points</con:property>
+      <con:property>isAssigned</con:property>
+      <con:property>isGraded</con:property>
+      <con:property>attemptType</con:property>
+      <con:property>submissionCount</con:property>
+      <con:property>accessibleFromTimezone</con:property>
+      <con:property>timeZoneOffset</con:property>
+      <con:property>isForEveryOne</con:property>
+      <con:property>isImmediateAvailable</con:property>
+      <con:property>isUnlocked</con:property>
+      <con:property>maxAttempts</con:property>
+      <con:property>isCoded</con:property>
+      <con:property>isHighlightLateSubmission</con:property>
+      <con:property>isBroadcastingRequired</con:property>
+      <con:property>showActivitiesCheckBox</con:property>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Get product details" id="c5dc8c64-b1c8-448e-9545-1e10315d952d">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Get Asset list from skills product" methodName="Method 1" resourcePath="/api/skills-pt-refactor-management/v1/product/isbn/{ISBN}/published" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Get product details" id="6d94ab01-d6f9-4e72-88cf-11d42d7d3258" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${Create course#Response#$['enrollmentToken']}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_ssoInstructor}" value="${#Project#ssoInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:request/>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/skills-pt-refactor-management/v1/product/isbn/9781975182380/published</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="e4ca2611-f1ee-439a-af79-688c8dc7ad65" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="fe9828fd-605f-4cf4-ba2e-522b9e160fc7" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="ISBN" value="9781975182380"/>
+        </con:parameters>
+        <con:environmentSpec>
+          <con:entry environmentId="2fdbe3a9-add1-4363-b523-9745f3d70b20">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Generate Assignmnet  Start and End Time" id="64155e43-e529-43a9-8114-8c5c3969aa82">
+    <con:settings/>
+    <con:config>
+      <script>import java.lang.*;
+import java.util.Date
+import java.util.Calendar
+import java.util.TimeZone
+import java.text.SimpleDateFormat
+
+
+def dueTime = context.expand( '${#TestCase#DueTime}' )
+def dueDate = context.expand( '${#TestCase#DueDate}' )
+
+def accessDate = context.expand( '${#TestCase#accessDate}' )
+def accessTime = context.expand( '${#TestCase#accessTime}' )
+
+def accessibleFromTimezone = context.expand( '${CreateAssignment#accessibleFromTimezone}' )
+def timeZoneOffset = context.expand( '${CreateAssignment#timeZoneOffset}' )
+def isImmediateAvailable = context.expand( '${CreateAssignment#isImmediateAvailable}' )
+
+isImmediateAvailable=true
+def createAssignmentTimeZone = context.expand( '${#Project#CreateAssignmentTimeZone}' )
+accessibleFromTimezone =createAssignmentTimeZone
+def createAssignmentTimeZoneOffset = context.expand( '${#Project#CreateAssignmentTimeZoneOffset}' )
+timeZoneOffset=createAssignmentTimeZoneOffset
+
+
+log.info("accessibleFromTimezone : "+accessibleFromTimezone)
+log.info("timeZoneOffset : "+timeZoneOffset)
+log.info("isImmediateAvailable : "+isImmediateAvailable)
+
+def assignmnetDueTime_MS =context.expand( '${#Project#CreateAssignmentDueTimeInMilliSeconds}' ) as int
+log.info(assignmnetDueTime_MS)
+def createAssignmentDueTimeInDays = context.expand( '${#Project#CreateAssignmentDueTimeInDays}' ) as int
+log.info("createAssignmentDueTimeInDays  "+createAssignmentDueTimeInDays)
+//def createAssignmentDueTimeInMilliSeconds = context.expand( '${#Project#CreateAssignmentDueTimeInMilliSeconds}' )
+
+
+def now= new Date()
+
+Calendar cal = Calendar.getInstance();
+Date today = new Date();
+cal.setTime(today);
+cal.add(Calendar.DATE, createAssignmentDueTimeInDays)
+Date currentDatePlusOne = cal.getTime();
+SimpleDateFormat currentDatePlusOn = new SimpleDateFormat("yyyy-MM-dd")
+SimpleDateFormat duteTimePlus = new SimpleDateFormat("hh:mm a")
+
+currentDatePlusOn.setTimeZone(TimeZone.getTimeZone(accessibleFromTimezone));
+duteTimePlus.setTimeZone(TimeZone.getTimeZone(accessibleFromTimezone));
+def DueDateData
+def DueTimeData
+if(createAssignmentDueTimeInDays==0)
+{
+	 DueDateData= currentDatePlusOn.format(new Date(now.getTime()+assignmnetDueTime_MS))
+ DueTimeData= duteTimePlus.format(new Date(now.getTime()+assignmnetDueTime_MS))
+}else
+{
+DueDateData= currentDatePlusOn.format(currentDatePlusOne)
+ DueTimeData= duteTimePlus.format(new Date(now.getTime()+assignmnetDueTime_MS))
+}
+
+
+if(isImmediateAvailable.toString() == "true")
+{
+	log.info("true")
+SimpleDateFormat DateAndtimee = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss")
+SimpleDateFormat JustTime = new SimpleDateFormat("hh:mm a")
+
+DateAndtimee.setTimeZone(TimeZone.getTimeZone(accessibleFromTimezone));
+JustTime.setTimeZone(TimeZone.getTimeZone(accessibleFromTimezone));
+
+def CurrentDateandTime= DateAndtimee.format(new Date(now.getTime()+8000))
+def CurrentTimeBeforeAdd= JustTime.format(new Date())
+def CurrentTimeAfterAddg= JustTime.format(new Date(now.getTime()+8000))
+def accesDate = CurrentDateandTime+timeZoneOffset
+def accesTime = CurrentTimeAfterAddg
+
+ accessDate = accesDate
+ accessTime = accesTime
+log.info("accesDateTime= "+accesDate)
+log.info("CurrentTimeBeforeAdd= "+CurrentTimeBeforeAdd)	
+log.info("CurrentTimeAfterAddg "+CurrentTimeAfterAddg)	
+
+}
+else
+{
+		log.info("false")
+Calendar cal2 = Calendar.getInstance();
+Date today2 = new Date();
+cal2.setTime(today);
+cal2.add(Calendar.DATE, 10)
+Date currentDatePlusOne2 = cal2.getTime();
+SimpleDateFormat currentDatePlusOn2 = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss")
+SimpleDateFormat JustTime2 = new SimpleDateFormat("hh:mm a")
+
+currentDatePlusOn2.setTimeZone(TimeZone.getTimeZone(accessibleFromTimezone));
+JustTime2.setTimeZone(TimeZone.getTimeZone(accessibleFromTimezone));
+
+def futuredate2= currentDatePlusOn2.format(currentDatePlusOne2)
+def futureTime2= JustTime2.format(currentDatePlusOne2)
+accessDate = futuredate2+timeZoneOffset
+ accessTime = futureTime2
+//log.info("hgfgfhgf"+futuredate2)
+}
+log.info("DueDate =" +DueDateData +" and Time = "+ DueTimeData)
+log.info("accessDate =" +accessDate +" and Time = "+ accessTime)
+
+testRunner.testCase.setPropertyValue("dueDate", DueDateData)
+testRunner.testCase.setPropertyValue("dueTime", DueTimeData)
+testRunner.testCase.setPropertyValue("accessDate", accessDate)
+testRunner.testCase.setPropertyValue("accessTime", accessTime)</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Enter Child Assignment Details" id="58a32bca-012d-4ea8-9759-d887a693815b">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Create Batch Assignment" resourcePath="/api/phx-batch-assignment-management/v1/assignments" methodName="Method 1" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Enter Child Assignment Details" id="51dc24ed-ef5f-4c1c-90af-9e3bd077eea0" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${Create Course#Response#$['enrollmentToken']}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_ssoInstructor}" value="${#Project#ssoInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:request>{
+	  "attemptType": "${CreateAssignment#attemptType}",
+      "assignmentType": {
+        "type": "ModifiedInCode"
+      },
+     "submissionCount": ${CreateAssignment#submissionCount},
+      "sections": [
+        {
+          "sectionCode": [
+            "*"
+          ],
+          "dueDate": "${#TestCase#DueDate}",
+          "dueDateTime": "${#TestCase#DueTime}",
+          "dueDateTimezone": "${#Project#CreateAssignmentTimeZone}",
+          "accessibleFrom": "${#TestCase#accessDate}",
+          "accessibleFromTimezone": "${#Project#CreateAssignmentTimeZone}",
+          "isForEveryOne": true,
+          "isImmediateAvailable":${CreateAssignment#isImmediateAvailable} ,
+          "isUnlocked": ${CreateAssignment#isUnlocked}
+        }
+      ],</con:request>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/phx-batch-assignment-management/v1/assignments</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="a4bda559-ac84-43a9-b490-f3d6df6cc11a" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>401</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="1f80a252-ca88-46e5-b0b0-756f4ff558df" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="2fdbe3a9-add1-4363-b523-9745f3d70b20">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasource" name="Change Score and Assignment" id="4171bf92-1391-4bfd-8b50-5c6a3dc8eba0">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:DataSourceStep">
+      <con:dataSource type="Grid">
+        <con:configuration>
+          <check><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">false</con:entry></xml-fragment>]]></check>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">68</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">2</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">78</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">3</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <recognizeAsPlainText>true</recognizeAsPlainText>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>Score</con:property>
+      <con:property>assignmentNumber</con:property>
+      <con:property>Iteration</con:property>
+      <con:startRow/>
+      <con:endRow>1</con:endRow>
+      <con:recordsPerIteration>1</con:recordsPerIteration>
+      <con:completeLastOperation>false</con:completeLastOperation>
+      <con:trimValues>false</con:trimValues>
+      <con:entitizeValues>false</con:entitizeValues>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:expandProperties>false</con:expandProperties>
+      <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Set Score" id="6d92f678-f08c-4859-aabd-d088c07d18bb">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import java.lang.*;
+
+
+def score = context.expand( '${Change Score and Assignment#Score}' )
+def assignmentNumber = context.expand( '${Change Score and Assignment#assignmentNumber}' )
+
+
+log.info(score)
+log.info(assignmentNumber)
+testRunner.testCase.testSuite.project.setPropertyValue("AttemptScore", score)
+testRunner.testCase.testSuite.project.setPropertyValue("AssignmnetIndex", assignmentNumber)</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Arrange Skills Batch Child Assests" id="a5b58bee-b545-4b21-82f1-968a75db2928">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import com.eviware.soapui.model.testsuite.TestRunner.Status
+import groovy.json.JsonOutput
+import groovy.json.*
+
+  class AssignmentBody {
+    def resourceTypeName
+    def name
+    def resourceTypeId
+    def assetType
+    def assetCode
+    def assetVersion
+    def assetId
+    def isGraded
+    def isAssigned
+    def points
+
+  }
+def value = testRunner.testCase.testSteps["Get product details"].testRequest.response
+//def value = testRunner.testCase.testSteps["Get Product Assignment Details"].testRequest.response
+def responseValue = value.responseContent
+
+def resourceTypeLabel = "Skill Asset"//context.expand('${#TestSuite#ResourceTypeLabel}')
+testRunner.testCase.testSuite.setPropertyValue("resourceTypeLabel", resourceTypeLabel.toString())
+
+log.info(resourceTypeLabel.toString())
+
+def slurper = new JsonSlurper()
+
+def json = slurper.parseText(responseValue)
+
+def allconatins = json.containers
+
+def assignmentNames = []
+def assignmentPublishedVersion = []
+def assignmentExternalAssetId = []
+def AllBatchAsignmnetData
+def ChildAssetsList = []
+def MapActivity =[]
+AllBatchAsignmnetData = "" //"\"assignments\": ["
+
+def rawRequest1234 = context.expand('${Enter Child Assignment Details#RawRequest}')
+def attemptTypedata = context.expand( '${CreateAssignment#attemptType}' )
+
+
+//log.info(rawRequest1234)
+String hhhhhh = rawRequest1234.toString()
+
+def objectAllData
+String assetCollectionCode = ""
+String lableName = ""
+int i = 0;
+int ChildAssertCutOff = 100
+
+log.info(AllBatchAsignmnetData.toString())
+int assertNumber = 0
+
+def assignmentNumber123 = context.expand( '${Change Score and Assignment#assignmentNumber}' )
+
+def number = (assignmentNumber123 as int)+3
+int assignmentNumber = number
+
+for (def eachcontainer in allconatins) {
+
+  if (!(eachcontainer == null)) {
+    def childContainers = eachcontainer.containers
+    for (def eachchildContainers in childContainers) {
+      if (!(eachchildContainers == null)) {
+        def allAssets = eachchildContainers.assets
+        for (def eachAllAssets in allAssets) {
+          if (eachAllAssets.resourceTypeLabel.toString().equals(resourceTypeLabel)) {
+            if (!(eachAllAssets == null)) {
+              def allChildAssets = eachAllAssets.assets
+
+              for (def eachallChildAssets in allChildAssets) {
+                if (!(eachallChildAssets == null)) {
+                  assertNumber++;
+                  if (assertNumber == assignmentNumber) {
+                    log.info("Assignment Name= "+eachallChildAssets.assetLabel.toString())
+
+                    lableName = eachallChildAssets.assetLabel
+                    assetCollectionCode = eachallChildAssets.assetCollectionCode
+
+                    def SkillsAssets = eachallChildAssets.assets
+                    for (def eachchildallAsserts in SkillsAssets) {
+                      if (!(eachchildallAsserts == null)) {
+                       
+                        if(ChildAssertCutOff>i)
+                        {
+                        if (eachchildallAsserts.assets == null) {
+                          i++
+                         // ChildAssetsList.add("\""+eachchildallAsserts.assetLabel.toString()+"\"")
+                        //  log.info("check  12345  over view case  "+eachchildallAsserts.toString())
+                        def resourceTypeNameData="Skill Overview"
+                        def assignmentype="BASIC_TYPE"
+                        def isGradedValue = false
+                        def pointsValue = 0
+                         if(eachchildallAsserts.assetCode.toString().contains("Articulate"))
+                            {
+                            	assignmentExternalAssetId.add("\""+eachchildallAsserts.id.toString()+"\"")
+                              MapActivity.add("\""+eachchildallAsserts.assetCode.toString()+"\"")
+					      ChildAssetsList.add("\""+"INTERACTIVE_CASE_STUDIES"+"\"")
+                            	resourceTypeNameData= "Interactive Case Study"
+                                assignmentype="INTERACTIVE_CASE_STUDIES"
+                                isGradedValue=true
+                                pointsValue=100
+                             }
+                             else if(eachchildallAsserts.assetCode.toString().contains("HTML"))
+                             {
+                             	resourceTypeNameData= "Skill Overview"
+                             	assignmentype="BASIC_TYPE"
+                             	 isGradedValue=false
+                                pointsValue=0
+                             }
+                            
+                          AssignmentBody dataObject = new AssignmentBody(
+
+                            resourceTypeName: resourceTypeNameData,
+                            name: eachchildallAsserts.assetLabel.toString(),
+                            resourceTypeId: eachchildallAsserts.resourceTypeId.toString(),
+                            assetType: eachchildallAsserts.assetType.toString(),
+                            assetCode: eachchildallAsserts.assetCode.toString(),
+                            assetVersion: eachchildallAsserts.publishedVersion.toString(),
+                            assetId: eachchildallAsserts.id.toString(),
+                            isGraded: isGradedValue,
+                            isAssigned: (eachchildallAsserts.assignable.toString().equals("N")?false:true) ,
+                            points: pointsValue,
+                          )
+                          def dataObjectValue = JsonOutput.toJson(dataObject)
+                          // log.info(dataObjectValue.toString())
+                          String scripitdata = dataObjectValue.toString().substring(1)
+                        def  rawRequest1234temp= rawRequest1234
+                         rawRequest1234temp= rawRequest1234temp.replace("ModifiedInCode",assignmentype.toString())
+                          def childdAssert = rawRequest1234temp.toString() + scripitdata
+                          AllBatchAsignmnetData = AllBatchAsignmnetData + childdAssert.toString() + ","
+                        } else {
+                         
+                          //log.info("check  12345 "+eachchildallAsserts.toString())
+                          def ResourcechildAssets = eachchildallAsserts.assets
+                          for (def ecahResourcechildAssets in ResourcechildAssets) {
+                            if (!(ecahResourcechildAssets == null)) {
+                            	i++
+                              //log.info("check data 1234 "+ecahResourcechildAssets.toString())
+                              ///======
+                              def isGradedValue = true
+                              def pointsValue = 100
+                              //log.info(i+" = "+eachchildallAsserts.toString())
+                              //log.info(eachchildallAsserts.assetLabel.toString())
+                              if (ecahResourcechildAssets.gradable.toString().equals("N")) {
+                                isGradedValue = false
+                                pointsValue = 0
+                              }
+                             // log.info("1234567 = "+eachchildallAsserts.toString())
+                              assignmentExternalAssetId.add("\""+ecahResourcechildAssets.id.toString()+"\"")
+                              MapActivity.add("\""+ecahResourcechildAssets.assetCode.toString()+"\"")
+					      ChildAssetsList.add("\""+eachchildallAsserts.assetLabel.toString()+"\"")
+                              AssignmentBody dataObject = new AssignmentBody(
+
+                                resourceTypeName: eachchildallAsserts.assetLabel.toString(),
+                                name: ecahResourcechildAssets.assetLabel.toString(),
+                                resourceTypeId: eachchildallAsserts.resourceTypeId.toString(),
+                                assetType: ecahResourcechildAssets.assetType.toString(),
+                                assetCode: ecahResourcechildAssets.assetCode.toString(),
+                                assetVersion: ecahResourcechildAssets.publishedVersion.toString(),
+                                assetId: ecahResourcechildAssets.id.toString(),
+                                isGraded: isGradedValue,
+                                isAssigned: (eachchildallAsserts.assignable.toString().equals("N")?false:true) ,
+                                points: pointsValue ,
+                              )
+                              def dataObjectValue = JsonOutput.toJson(dataObject)
+                              //log.info(dataObjectValue.toString())
+                              String scripitdata = dataObjectValue.toString().substring(1)
+                                 def assignmentype="BASIC_TYPE"
+                              def  rawRequest1234temp= rawRequest1234
+                                 if(eachchildallAsserts.assetLabel.toString().equals("Videos"))
+                                 {
+                                 	assignmentype="VIDEOS"
+                           rawRequest1234temp= rawRequest1234temp.replace(attemptTypedata.toString(),"Completion")
+                                 	//log.info("video enteted")
+                                 }
+                                 else if(eachchildallAsserts.assetLabel.toString().equals("Quiz"))
+                                 {
+                                 	assignmentype="QUIZ"
+                                 }
+                                 else if(eachchildallAsserts.assetLabel.toString().equals("Checklists"))
+                                 {
+                                 	assignmentype="CHECKLIST"
+                                 }
+                                 else if(eachchildallAsserts.assetLabel.toString()=="")
+                                 {
+                                 	assignmentype=""
+                                 }
+
+                               
+                                 //log.info(assignmentype+" 12345 "+ecahResourcechildAssets.assetLabel.toString() )
+                                  
+                              rawRequest1234temp= rawRequest1234temp.replace("ModifiedInCode",assignmentype.toString())
+                              def childdAssert = rawRequest1234temp.toString() + scripitdata
+                             // childdAssert=  childdAssert.replace("BASIC_TYPE",eachchildallAsserts.assetLabel)
+                              AllBatchAsignmnetData = AllBatchAsignmnetData + childdAssert.toString() + ","
+
+                              //======================
+                            }
+
+                          }
+                        }
+                      }//child cutt of end.
+
+                      }
+                    }
+
+                  }
+
+                }
+              }
+            }
+
+          }
+        }
+
+        //break
+      }
+
+      //   break
+    }
+
+  }
+  //break
+}
+//log.info("final out put "+AllBatchAsignmnetData.toString())
+AllBatchAsignmnetData = AllBatchAsignmnetData.toString().substring(0, AllBatchAsignmnetData.toString().size() - 1)
+//AllBatchAsignmnetData=AllBatchAsignmnetData+"]"
+log.info("final out put " + AllBatchAsignmnetData.toString())
+testRunner.testCase.setPropertyValue("AllBatchAsignmnetData", AllBatchAsignmnetData.toString())
+testRunner.testCase.setPropertyValue("batchAssignmentName", lableName.toString())
+testRunner.testCase.setPropertyValue("skillId", assetCollectionCode.toString())
+testRunner.testCase.setPropertyValue("skillId", assetCollectionCode.toString())
+
+testRunner.testCase.testSuite.setPropertyValue("MapedActivityIDs", MapActivity.toString())
+testRunner.testCase.testSuite.setPropertyValue("MapedAssertTypes", ChildAssetsList.toString())
+testRunner.testCase.testSuite.setPropertyValue("MapedAssertIds", assignmentExternalAssetId.toString())
+testRunner.testCase.testSuite.setPropertyValue("childAssestCount", i.toString())
+
+//def childAssestCount = context.expand( '${#Project#childAssestCount}' )
+
+log.info("asset id = "+MapActivity.toString())
+log.info("lableName  ==" + ChildAssetsList.toString())
+log.info("assetCollectionCode ==" + assignmentExternalAssetId.toString())
+
+log.info("Child Asserts = " + i)
+//log.info("ChildAssetsList =  "+  ChildAssetsList.toString())
+//log.info("Size   "+MapActivity.size().toString())</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Create Assignment" id="22c63bd8-e85b-4bc0-b392-a6cbb5dbd178">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Create Batch Assignment" resourcePath="/api/phx-batch-assignment-management/v1/assignments" methodName="Method 1" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Create Assignment" id="51dc24ed-ef5f-4c1c-90af-9e3bd077eea0" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${#Project#CourseEnrollmentToken}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_ssoInstructor}" value="${#Project#ssoInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:request>{
+   "batchAssignmentName": "${#TestCase#batchAssignmentName}",
+  "productIsbn": "9781975182380",
+  "productId": "9781975182380",
+  "courseId": "${#TestSuite#CourseId}",
+  "assignments": [${#TestCase#AllBatchAsignmnetData}],
+  "consumer": "SKILL",
+  "isCoded": ${CreateAssignment#isCoded},
+  "commonSettings": {
+   "timeZone": "${#Project#CreateAssignmentTimeZone}",
+    "attemptLimit": ${CreateAssignment#maxAttempts},
+    "isHighlightLateSubmission": ${CreateAssignment#isHighlightLateSubmission},
+    "isBroadcastingRequired": ${CreateAssignment#isBroadcastingRequired}
+  },
+  "additionalDetails": {
+   "skillId": "${#TestCase#skillId}",
+    "assetCollectionName": "${#TestCase#batchAssignmentName}",
+    "showActivityCheckBox": [
+      {
+        "sectionCode": [
+            "${Create course#Response#$['sectionId']}"
+           
+          ],
+        "showActivitiesCheckBox": ${CreateAssignment#showActivitiesCheckBox}
+      }
+    ],
+    "resourceTypeId": "26df6f6d-2d30-4d99-9b14-466f8835bcd5"
+  },
+  "metaInformation": {
+    "isCoded": ${CreateAssignment#isCoded}
+  }
+}</con:request>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/phx-batch-assignment-management/v1/assignments</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="a4bda559-ac84-43a9-b490-f3d6df6cc11a" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="1f80a252-ca88-46e5-b0b0-756f4ff558df" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="b5686779-9fb6-4646-98bc-284a43e4d2ee" name="Script Assertion" disabled="true">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+def response = context.expand( '${Create Assignment#Response}' )
+
+def childAssertsCount = context.expand( '${#TestCase#ChildAssertsCount}' )
+
+def verifyResponse = new JsonSlurper().parseText(response)
+assert verifyResponse.batchId != null
+assert verifyResponse.assignmentUUID!= null
+//log.info(verifyResponse.assignmentUUID.size())
+assert verifyResponse.assignmentUUID.size() ==childAssertsCount as int</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="2fdbe3a9-add1-4363-b523-9745f3d70b20">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="delay" name="Wait fr created assignmnet" id="129768ca-3d27-4889-bb26-56ac56d0545b" disabled="true">
+    <con:settings/>
+    <con:config>
+      <delay>30000</delay>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasource" name="Data Source Credetails" id="7a4f773d-cfdf-49ca-ac22-67ba12fee931">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:DataSourceStep">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>${#Project#TestDataExcelFile}</file>
+          <worksheet>${#Project#DB_Data_ExcelSheetName}</worksheet>
+          <cell>A2</cell>
+          <ignoreEmpty>false</ignoreEmpty>
+          <evaluateFormulas>false</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>StudentUserEmail</con:property>
+      <con:property>StudentPassword</con:property>
+      <con:property>WitchSection</con:property>
+      <con:startRow/>
+      <con:endRow>0</con:endRow>
+      <con:recordsPerIteration>1</con:recordsPerIteration>
+      <con:completeLastOperation>false</con:completeLastOperation>
+      <con:trimValues>false</con:trimValues>
+      <con:entitizeValues>false</con:entitizeValues>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:expandProperties>false</con:expandProperties>
+      <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Set Credetails" id="b39dc78f-132d-4290-a79c-39dcaf4c8b7f">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import java.lang.*;
+
+def studentUserEmail = context.expand( '${Data Source Credetails#StudentUserEmail}' )
+def studentPassword = context.expand( '${Data Source Credetails#StudentPassword}' )
+
+
+//testRunner.testCase.testSuite.project.setPropertyValue("StudnetEmail", "AutomationStudent08")
+//testRunner.testCase.testSuite.project.setPropertyValue("StudentPassword", "Welcome001")
+
+testRunner.testCase.testSuite.project.setPropertyValue("StudnetEmail", studentUserEmail)
+testRunner.testCase.testSuite.project.setPropertyValue("StudentPassword", studentPassword)
+
+
+def witchSection = context.expand( '${Data Source Credetails#WitchSection}' )
+
+log.info("sdsfdgf "+witchSection )
+
+def data = "\${#Project#Section"+witchSection.toString()+"Password}"
+/*
+if(witchSection.toString()=="1")
+{
+	def section1Password = context.expand( '${#Project#Section1Password}' )
+}
+else if(witchSection.toString()=="2")
+{
+	def section1Password = context.expand( '${#Project#Section1Password}' )
+}
+*/
+
+def section1Password = context.expand( data )
+log.info("password "+section1Password)
+testRunner.testCase.testSuite.project.setPropertyValue("StudentJoinPassword", section1Password)</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="GetAccessTokenStudent1" id="c663a2ec-f918-4718-bcf3-796ed14047e9">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Auth API" resourcePath="/Authentication/UsernameInSso" methodName="Method 1" xsi:type="con:RestRequestStep">
+      <con:restRequest name="GetAccessTokenStudent1" id="7a8b79ab-de89-4998-ba4f-b6708ff27d44" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>https://preprod-sso.hlrpbooks.com</con:endpoint>
+        <con:request>{
+  "Email": "${#Project#StudnetEmail}",
+  "Password": "${#Project#StudentPassword}",
+  "PostbackUrlOnSuccess": "${#Project#PostbackUrlOnSuccess}",
+  "SiteId": "${#Project#SystemId}",
+  "StaySignIn": false,
+    "UrlToRedirectOnSuccess": "${#Project#UrlToRedirectOnSuccess}",
+  "Timestamp": "2022-10-04T05:23:53.382Z",
+  "SourceUrl": "${#Project#SourceUrl}",
+  "AccessCode": "",
+  "SiteInfoType": "Education",
+  "WorkflowId": ""
+}</con:request>
+        <con:originalUri>https://preprod-sso.hlrpbooks.com/Authentication/UsernameInSso</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="1de409a2-83ad-4119-9963-7a2d299ce263" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="32a7ec59-9333-4c75-89de-3863fec4fa2c" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="7b97dea9-f6f0-473e-ae65-367e168d9ca7" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+
+def response = context.expand( '${GetAccessTokenStudent1#Response}' )
+
+
+def verifyResponse = new JsonSlurper().parseText(response)
+log.info(verifyResponse.Data.AuthenicationResult)
+
+assert verifyResponse.Data.AuthenicationResult != null</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="delay" name="Wait for Access student" id="ed5a9f36-21e3-49d5-b99f-e2b27410a8a0">
+    <con:settings/>
+    <con:config>
+      <delay>${#Project#LoginDealy}</delay>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Set Tokens Student1" id="d75e067e-4b39-4e9c-aaa0-8d5f58fa2638">
+    <con:settings/>
+    <con:config>
+      <script><![CDATA[import groovy.json.JsonSlurper
+import java.lang.*;
+def response = context.expand( '${GetAccessTokenStudent1#Response}' )
+
+def resp = new JsonSlurper().parseText(response)
+
+def start = resp.Data.AuthenicationResult.indexOf("<AccessToken>")+13;
+def end = resp.Data.AuthenicationResult.indexOf("</AccessToken>");
+def xaccesstoken = resp.Data.AuthenicationResult.substring(start, end);
+//result["xaccessTokenStudent"]=xaccesstoken
+
+def ssostart = resp.Data.AuthenicationResult.indexOf("<TokenKey>")+10;
+def ssoend = resp.Data.AuthenicationResult.indexOf("</TokenKey>");
+def ssotoken = resp.Data.AuthenicationResult.substring(ssostart, ssoend);
+//result["ssoStudent"]=ssotoken
+
+def IDstart = resp.Data.AuthenicationResult.indexOf("<UserId>")+8;
+def IDend = resp.Data.AuthenicationResult.indexOf("</UserId>");
+def StudentId = resp.Data.AuthenicationResult.substring(IDstart, IDend);
+
+
+testRunner.testCase.testSuite.project.setPropertyValue("StudentUserId", StudentId)
+testRunner.testCase.testSuite.project.setPropertyValue("xaccessTokenStudent", xaccesstoken)
+testRunner.testCase.testSuite.project.setPropertyValue("ssoStudent", ssotoken)
+
+log.info("StudentUserId = "+ StudentId)
+log.info("xaccessTokenStudent =  " + xaccesstoken)
+log.info("ssoStudent = "+ssotoken)]]></script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Loacte course in student join" id="33fb19ef-7a63-4af5-834f-25d0875b5bd6">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Student Search Course" resourcePath="/api/class-management/v2/class-wrapper/search/passcode/{Password}" methodName="Method 1" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Loacte course in student join" id="481ffffb-0c31-49cf-b198-cc533d483980" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="${#Project#Key_ssoStudent}" value="${#Project#ssoStudent}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenStudent}" value="${#Project#xaccessTokenStudent}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:request/>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/class-management/v2/class-wrapper/search/passcode/</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="82ba8780-1ade-4633-9729-3d67b0db9a56" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>201</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="52a32018-748b-4575-b14a-52aa15f38cae" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="d8338b4d-feef-4344-a50a-c85abb5fcf52" name="Script Assertion" disabled="true">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+def response222 = context.expand( '${Create course#Response}' )
+
+def rawRequest = context.expand( '${Create course#RawRequest}' )
+
+def  responsedata= context.expand( '${Loacte course in student join#Response}' )
+
+def  rawRequestData= new JsonSlurper().parseText(rawRequest)
+def response = new JsonSlurper().parseText(responsedata)
+def response22 = new JsonSlurper().parseText(response222)
+
+assert response.message =="Passcode search completed."
+assert response.data.id  == response22.sectionId
+assert response.data.name == rawRequestData.sectionName
+assert response.data.number == rawRequestData.number
+assert response.data.products.isbn  == rawRequestData.products
+assert response.data.academicTerm  == rawRequestData.academicTerm
+assert response.data.academicYear  == rawRequestData.academicYear
+assert response.data.state=="ACTIVE"
+assert response.data.instructors !=null
+assert response.data.instructors[0].userId == rawRequestData.instructor
+assert response.data.courseId  == response22.id
+assert response.data.courseName  == rawRequestData.name
+assert response.data.timeZoneId == rawRequestData.timeZoneId
+assert response.data.sfdcAccountId  == rawRequestData.sfdcAccountId
+assert response.data.programTypeId  == rawRequestData.programTypeId
+
+assert response.data.startDate.toString().substring(0,response.data.startDate.toString().size()-1) == rawRequestData.startDate.toString().substring(0,rawRequestData.startDate.toString().size()-5)
+
+assert response.data.endDate.toString().substring(0,response.data.endDate.toString().size()-1) == rawRequestData.endDate.toString().substring(0,rawRequestData.endDate.toString().size()-5)</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="Password" value="${#Project#StudentJoinPassword}"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>Password</con:entry>
+        </con:parameterOrder>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Groovy Script" id="8ab2caeb-6f51-4565-84fb-da7cb9081745">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import java.lang.*;
+
+def response = context.expand( '${Loacte course in student join#Response#$[\'data\'][\'id\']}' )
+
+log.info(response)
+testRunner.testCase.testSuite.project.setPropertyValue("JoinedSectionid", response)</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Student join a course" id="f62addec-2fd7-471f-91ce-cd3397f7574b">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Student Join Course" resourcePath="/api/ccm/v2/private/user/enrollment" methodName="Method 1" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Student join a course" id="121a8d27-235a-4523-b0de-29d285db07f0" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="${#Project#Key_ssoStudent}" value="${#Project#ssoStudent}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenStudent}" value="${#Project#xaccessTokenStudent}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:request>{
+  "id": "${Loacte course in student join#Response#$['data']['id']}",
+  "role": "STUDENT",
+  "status": "ACTIVE"
+}</con:request>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/ccm/v2/private/user/enrollment</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="8a6050a3-5f0c-4a36-8005-d97bb006323e" name="Valid HTTP Status Codes" disabled="true">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="6deda5a2-b3c7-49a7-873a-2b58dbed9bc9" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="ae524d2f-124b-46a5-891f-f58810d4aaf0" name="Script Assertion" disabled="true">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+def response = context.expand( '${Student join a course#Response}' )
+
+def verifyResponse = new JsonSlurper().parseText(response)
+
+assert verifyResponse.enrollmentToken != null</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="delay" name="wait for assignmnet in student end" id="8350748c-0378-4d35-a997-773da60967ff">
+    <con:settings/>
+    <con:config>
+      <delay>120000</delay>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Student verify assigned assignment" id="3ecf92c2-b483-410d-8f93-355f18143e9c">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Get Assignment details for a course" methodName="Method 2" resourcePath="/api/phx-batch-assignment-management/v1/assignment-wrapper/assignments" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Student verify assigned assignment" id="161aae54-eb0b-4832-9883-1c0328249a58" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${#Project#CourseEnrollmentToken}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_ssoInstructor}" value="${#Project#ssoInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint xsi:nil="true"/>
+        <con:request/>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/phx-batch-assignment-management/v1/assignment-wrapper/assignments</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="087666df-beae-4a9d-a691-c39b21c17eb7" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="7ff33cb9-6880-4e13-96c8-44a16dc5f78b" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="a1b3e4e6-4b6c-48e8-a0a8-418d3a99608c" name="Script Assertion" disabled="true">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+
+def rawRequest = context.expand( '${create skills assignment#RawRequest}' )
+
+def resp = context.expand( '${Student verify assigned assignment#Response}' )
+
+
+
+
+def request = new JsonSlurper().parseText(rawRequest)
+def response = new JsonSlurper().parseText(resp)
+
+
+for(resp1 in response.name ){
+	if(request.name==resp1){
+	assert request.name == resp1	
+	
+	}
+log.info resp1
+}
+
+for(resp2 in response.activities.name ){
+	if(request.assignments.name==resp2){
+	assert request.assignments.name == resp2	
+	
+	}
+log.info resp2
+}
+
+for(resp3 in response.activities.points ){
+	if(request.assignments.points==resp3){
+	assert request.assignments.points == resp3	
+
+	}
+log.info resp3
+}
+
+for(resp4 in response.activities.isGraded ){
+	if(request.assignments.isGraded==resp4){
+	assert request.assignments.isGraded == resp4	
+
+	}
+log.info resp4
+}
+
+for(resp5 in response.activities.isHighlightLateSubmission ){
+	if(request.commonSettings.isHighlightLateSubmission==resp5){
+	assert request.commonSettings.isHighlightLateSubmission == resp5	
+
+	}
+log.info resp5
+}
+
+for(resp6 in response.activities.maxAttempts ){
+	if(request.commonSettings.attemptLimit==resp6){
+	assert request.commonSettings.attemptLimit == resp6
+
+	}
+log.info resp6
+}
+
+for(resp7 in response.activities.productIsbn ){
+	if(request.productIsbn==resp7){
+	assert request.productIsbn == resp7
+
+	}
+log.info resp7
+}
+
+
+for(resp8 in response.activities.courseId ){
+	if(request.courseId==resp8){
+	assert request.courseId == resp8
+
+	}
+log.info resp8
+}
+
+for(resp9 in response.activities.assets.assetId ){
+	if(request.assignments.assetId==resp9){
+	assert request.assignments.assetId == resp9
+
+	}
+log.info resp9
+}
+
+for(resp10 in response.activities.assetVersion ){
+	if(request.assignments.assetVersion==resp10){
+	assert request.assignments.assetVersion == resp10
+
+	}
+log.info resp10
+}
+
+for(resp11 in response.activities.attemptType ){
+	if(request.assignments.attemptType==resp11){
+	assert request.assignments.attemptType == resp11
+
+	}
+log.info resp11
+}
+
+for(resp12 in response.activities.skillId ){
+	if(request.assignments.skillId==resp12){
+	assert request.assignments.skillId == resp12
+
+	}
+log.info resp12
+}
+
+for(resp13 in response.activities.sections.sectionCode ){
+	if(request.assignments.sections.sectionCode==resp13){
+	assert request.assignments.sections.sectionCode == resp13
+
+	}
+log.info resp13
+}
+
+for(resp14 in response.activities.sections.dueDateTime ){
+	if(request.assignments.sections.dueDate==resp14){
+	assert request.assignments.sections.dueDate == resp14
+
+	}
+log.info resp14
+}
+
+for(resp15 in response.activities.sections.dueDateTimezone ){
+	if(request.assignments.sections.dueDateTimezone==resp15){
+	assert request.assignments.sections.dueDateTimezone == resp15
+
+	}
+log.info resp15
+}
+
+for(resp16 in response.activities.sections.accessibleFrom ){
+	if(request.assignments.sections.accessibleFrom==resp16){
+	assert request.assignments.sections.accessibleFrom == resp16
+
+	}
+log.info resp16
+}
+
+for(resp17 in response.activities.assetCode ){
+	if(request.assignments.sections.assetCode==resp17){
+	assert request.assignments.sections.assetCode == resp17
+
+	}
+log.info resp17
+}</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Count" id="0fe68836-a319-41f9-a689-eff9f00cd839" name="Check count of [0]" disabled="true">
+          <con:configuration>
+            <path>$[*]['activities'][*]</path>
+            <content>${#Project#childAssestCount}</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" id="5d049629-e3c3-4494-b089-645c4537ce70" name="Match content of [status]" disabled="true">
+          <con:configuration>
+            <path>$[0]['status']</path>
+            <content>"COMPLETED"</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Count" id="3d3155fb-c6b0-4abc-a6df-4499bd437364" name="Check count of [0]" disabled="true">
+          <con:configuration>
+            <path>$[*]['activities'][*]</path>
+            <content>${#Project#childAssestCount}</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="mergeBatch" value="true"/>
+          <con:entry key="course" value="${Create Assignment#RawRequest#$['courseId']}"/>
+          <con:entry key="group" value="upcoming"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>course</con:entry>
+          <con:entry>mergeBatch</con:entry>
+          <con:entry>group</con:entry>
+        </con:parameterOrder>
+        <con:environmentSpec>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasource" name="Data Source" id="31d04e14-3f5e-4aea-8612-8d79c1c37a01">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:DataSourceStep">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>${#Project#TestDataExcelFile}</file>
+          <worksheet>loop</worksheet>
+          <cell>A2</cell>
+          <ignoreEmpty>false</ignoreEmpty>
+          <evaluateFormulas>false</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>Itrations</con:property>
+      <con:property>Score</con:property>
+      <con:startRow/>
+      <con:endRow>${#TestCase#numberOfAttempts}</con:endRow>
+      <con:recordsPerIteration>1</con:recordsPerIteration>
+      <con:completeLastOperation>true</con:completeLastOperation>
+      <con:trimValues>false</con:trimValues>
+      <con:entitizeValues>false</con:entitizeValues>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:expandProperties>false</con:expandProperties>
+      <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="delay" name="Delay 2" id="17b47ee3-a657-47db-9490-c7493a02474e">
+    <con:settings/>
+    <con:config>
+      <delay>${#TestSuite#DefultPushDealy}</delay>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Groovy Script 2" id="2eb75853-f864-42d1-ad26-6be4ed8a6c15">
+    <con:settings/>
+    <con:config>
+      <script>def itrations = context.expand( '${Data Source#Itrations}' ) as int 
+//def score = context.expand( '${Data Source#Score}' )
+def score = context.expand( '${Change Score and Assignment#Score}' )
+
+log.info("score "+score)
+log.info("itrations "+itrations)
+testRunner.testCase.testSuite.setPropertyValue("PushItrations", itrations.toString())
+testRunner.testCase.testSuite.setPropertyValue("PushScore", score)
+testRunner.testCase.testSuite.setPropertyValue("AttemptCount", (itrations+1).toString())</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="calltestcase" name="Attempt Single Skills Resource" id="cc954e9d-aab8-45d7-9780-9f86ad87404f">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RunTestCaseStep" copyHttpSession="true" copyLoadTestProperties="true" ignoreEmptyProperties="true">
+      <con:targetTestCase>cdf732dc-3716-411d-8ce4-f2a3ce146342</con:targetTestCase>
+      <con:properties>
+        <con:property>
+          <con:name>accessDate</con:name>
+        </con:property>
+        <con:property>
+          <con:name>DueDate</con:name>
+        </con:property>
+        <con:property>
+          <con:name>EffectiveDate</con:name>
+        </con:property>
+        <con:property>
+          <con:name>ExpireDate</con:name>
+        </con:property>
+        <con:property>
+          <con:name>tomorrow</con:name>
+        </con:property>
+        <con:property>
+          <con:name>tomorrow2</con:name>
+        </con:property>
+        <con:property>
+          <con:name>instructorUserId</con:name>
+        </con:property>
+        <con:property>
+          <con:name>numberOfAttempts</con:name>
+        </con:property>
+        <con:property>
+          <con:name>StudentenrollmentToken</con:name>
+        </con:property>
+        <con:property>
+          <con:name>accessTime</con:name>
+        </con:property>
+        <con:property>
+          <con:name>DueTime</con:name>
+        </con:property>
+        <con:property>
+          <con:name>startAt</con:name>
+        </con:property>
+        <con:property>
+          <con:name>completedAt</con:name>
+        </con:property>
+        <con:property>
+          <con:name>sentAt</con:name>
+        </con:property>
+        <con:property>
+          <con:name>Assertid</con:name>
+        </con:property>
+        <con:property>
+          <con:name>Loop</con:name>
+        </con:property>
+      </con:properties>
+      <con:returnProperties/>
+      <con:runMode>SINGLETON_AND_WAIT</con:runMode>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="calltestcase" name="AttempthBatchAssignment" id="a79ac256-e86d-40ce-9867-97962ab7494f">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RunTestCaseStep" copyHttpSession="true" copyLoadTestProperties="true" ignoreEmptyProperties="true">
+      <con:targetTestCase>02d90e41-90fe-40a2-af2f-372f809e3a31</con:targetTestCase>
+      <con:properties>
+        <con:property>
+          <con:name>Key</con:name>
+          <con:value xsi:nil="true"/>
+        </con:property>
+        <con:property>
+          <con:name>Value</con:name>
+          <con:value xsi:nil="true"/>
+        </con:property>
+        <con:property>
+          <con:name>listCutOff</con:name>
+          <con:value>1</con:value>
+        </con:property>
+        <con:property>
+          <con:name>inputType</con:name>
+          <con:value xsi:nil="true"/>
+        </con:property>
+        <con:property>
+          <con:name>inputActivityId</con:name>
+          <con:value xsi:nil="true"/>
+        </con:property>
+        <con:property>
+          <con:name>PushSQSBody</con:name>
+          <con:value>{
+    "id": "3614",
+    "meta": {
+        "grade": "PASS",
+        "score": "2/6"
+    },
+    "type": "Scored",
+    "score": "3",
+    "assetId": "321635",
+      "systemId": "38021402-0936-4a3d-bca7-6e5ec7ca251b",
+      "startedAt": "2023-05-08T16:54:54.605Z",
+   "completedAt": "2023-05-08T16:57:57.605Z",
+     "sentAt": "2023-05-08T16:58:58.605Z", "userId": "4abe920a-c89e-4c4e-84ee-455700b4f17f","activityId": "CP4_SkillChecklist_604d8aa35e662","classIds": ["gT8TR1MC8MKP_sT8TR1MCA155"] }</con:value>
+        </con:property>
+        <con:property>
+          <con:name>inputAssetId</con:name>
+          <con:value xsi:nil="true"/>
+        </con:property>
+        <con:property>
+          <con:name>tomorrow</con:name>
+          <con:value>Tue, Apr 25 2023</con:value>
+        </con:property>
+        <con:property>
+          <con:name>tomorrow2</con:name>
+          <con:value>2023-04-25</con:value>
+        </con:property>
+        <con:property>
+          <con:name>CommonSSoToken</con:name>
+          <con:value>xSUJJh+syo5i+BIowlle9ta99oN0e0I7WtSf1BpRoOuoKPMxJygIiwghMe5wLOhfHl9fPlqklk3izOUR/uEszabPBOAKxMxhAXTKocKe/dwkOlxsb3hh4yRbPcfPbNTZ/fyF2rxHtfkQxzoIICWIjw0qwejeEPoOt0CKyFr3DiEX8uEbs4CNmlmqpmhAp3vY8OtWsYnPL8EbKDjFdhMqOsP8cvtUotnwSo0dlDObJb3w61axic8vwRsoOMV2Eyo630wrBBu7150YywUNIWWq94cfBV0TUW/S</con:value>
+        </con:property>
+        <con:property>
+          <con:name>CommonxaccessToken</con:name>
+          <con:value>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzc28ud2tocGUuY29tIiwiYXVkIjoiM2MzOTg0NmMtODg2YS1kZjExLWIxMTUtMDA1MDU2YzAwMDA4IiwiYXV0aF90aW1lIjoxNjgzNTU5NDY3LCJuYW1lIjoiaW5zdHJ1Y3RvcjIgcWUwMiIsImp0aSI6IjVhOGM4OWZmLWViOGUtNDJmMC1hZWU3LWRiYmUzNDZhZWUwNyIsImlhdCI6MTY4MzU1OTQ2NywiZXhwIjoxNjgzNjQ1ODY3LCJzdWIiOiJlZTc0MWM2OS03NDg0LTRmNDMtOTk4Yi00NTU3MDBiN2VjMzMiLCJyb2xlcyI6IndraHBlLWVuZCB1c2VyIiwid2tocGVfcGVybWlzc2lvbnMiOlsiQ2FuVXNlUGVyc29uYWxpemF0aW9uRmVhdHVyZXMiXSwid2tocGVfdG9rZW4iOiJ4U1VKSmgrc3lvNWkrQklvd2xsZTl0YTk5b04wZTBJN1d0U2YxQnBSb091b0tQTXhKeWdJaXdnaE1lNXdMT2hmSGw5ZlBscWtsazNpek9VUi91RXN6YWJQQk9BS3hNeGhBWFRLb2NLZS9kd2tPbHhzYjNoaDR5UmJQY2ZQYk5UWi9meUYycnhIdGZrUXh6b0lJQ1dJancwcXdlamVFUG9PdDBDS3lGcjNEaUVYOHVFYnM0Q05tbG1xcG1oQXAzdlk4T3RXc1luUEw4RWJLRGpGZGhNcU9zUDhjdnRVb3Rud1NvMGRsRE9iSmIzdzYxYXhpYzh2d1Jzb09NVjJFeW82MzB3ckJCdTcxNTBZeXdVTklXV3E5NGNmQlYwVFVXL1MiLCJ0b2tlbl90eXBlIjoiYmVhcmVyIn0.BNa6ZMjqSFxI7kNCAtLikVoq1U6sm_2-PVhPxvnnE1lcL756fNoJiojxgZq-L_8snqC9RfDf4vDWWW3PiI99mD687oKMCsxw39OAMqXzJGviwBYryXK0BnS7U8bGfYlTTkcoDaqncjG8Ke2LtAIhfa5BD_NfAC9qiblrdaklqgE</con:value>
+        </con:property>
+        <con:property>
+          <con:name>AssestId</con:name>
+          <con:value>321635</con:value>
+        </con:property>
+        <con:property>
+          <con:name>startAt</con:name>
+        </con:property>
+        <con:property>
+          <con:name>completedAt</con:name>
+        </con:property>
+        <con:property>
+          <con:name>sentAt</con:name>
+        </con:property>
+      </con:properties>
+      <con:returnProperties>
+        <con:entry>Key</con:entry>
+        <con:entry>Value</con:entry>
+        <con:entry>listCutOff</con:entry>
+        <con:entry>inputType</con:entry>
+        <con:entry>inputActivityId</con:entry>
+        <con:entry>PushSQSBody</con:entry>
+        <con:entry>inputAssetId</con:entry>
+        <con:entry>tomorrow</con:entry>
+        <con:entry>tomorrow2</con:entry>
+        <con:entry>CommonSSoToken</con:entry>
+        <con:entry>CommonxaccessToken</con:entry>
+        <con:entry>AssestId</con:entry>
+      </con:returnProperties>
+      <con:runMode>SINGLETON_AND_WAIT</con:runMode>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="Data Source Loop 2" id="ecb1a83d-6fc6-47b3-9350-2f16bf896efc">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>Data Source</dataSourceStep>
+      <targetStep>Delay 2</targetStep>
+      <discardResults>false</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="Data Source Loop" id="aa5b0d9c-ac92-4d0d-a625-19cbbc8bd2ee">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>Data Source Credetails</dataSourceStep>
+      <targetStep>Set Credetails</targetStep>
+      <discardResults>false</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="Change Assignmnet and Score" id="8ced24c9-f5d2-45c3-a45f-cc6e752969b1">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>Change Score and Assignment</dataSourceStep>
+      <targetStep>Set Score</targetStep>
+      <discardResults>false</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:properties>
+    <con:property>
+      <con:name>accessDate</con:name>
+      <con:value>2023-05-08T09:20:18+05:30</con:value>
+    </con:property>
+    <con:property>
+      <con:name>DueDate</con:name>
+      <con:value>2023-05-09</con:value>
+    </con:property>
+    <con:property>
+      <con:name>EffectiveDate</con:name>
+      <con:value>2023-04-18T00:00:00.000Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>ExpireDate</con:name>
+      <con:value>2023-05-18T00:00:00.000Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>tomorrow</con:name>
+      <con:value>Tue, Apr 18 2023</con:value>
+    </con:property>
+    <con:property>
+      <con:name>tomorrow2</con:name>
+      <con:value>2023-04-18</con:value>
+    </con:property>
+    <con:property>
+      <con:name>instructorUserId</con:name>
+      <con:value>0345b785-ba3e-4b3a-9c6c-447101694d75</con:value>
+    </con:property>
+    <con:property>
+      <con:name>numberOfAttempts</con:name>
+      <con:value>0</con:value>
+    </con:property>
+    <con:property>
+      <con:name>StudentenrollmentToken</con:name>
+      <con:value>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODE4ODU5NjAsImp0aSI6IjAxZDNiYzFlLWJlMzMtNGNjOS04OGU3LWI4ZTcxMjMzNTNhNSIsImlhdCI6MTY4MTcxMzE2MCwiaXNzIjoiaHR0cHM6Ly9waG9lbml4LWNjbS50aGVwb2ludC5sd3cuY29tIiwibmJmIjoxNjgxNzEzMTYwLCJzdWIiOiI5ZTZlOGM1Ny02ODNlLTRjNTQtODkzMS00NDc0MDE1OWQ2ODUiLCJobHJwX2NjbSI6W3siciI6InMiLCJjcnMiOiJnU0VCUUJLRzk5SUIiLCJzZWMiOiJnU0VCUUJLRzk5SUJfc1NFQlFCS0dBMlIifV19.kKMRJHB4y0Tno_H-esNrWhe-RsUn8zHCmazkZhhKCgXyBFbLRWiD2zyGp5MOZCZbIW1WIlQg4CjosIPwQtw204mHb6iNohaZtznNKEaZ5_BbW3241Stf9E_xo2X9qBCl_zrYUpX1M4uR066aPvoD5d_hViNCAynUW7OXzK3nC4VgF9F6amwQSDrje6AeD8D8vLTw_kmFk9eGSkVvEWnd5ZssYCAzqyVdgadLGbFrWj2N3TOIPsEkgR3HoJ17Ipg_ZCAwBqrAiPG5WMqQsNbMexKeSeb2bMA5FQuasV9Qc3YK9aphsr4ER17HAAZ1F1GtO_gmaYBO8xKU11WX1_UDGx5Dt0cpeRM24oonRf4sGS-BIsWXCsG8fTyaYzfJajIv7xh-ibK5NYtp2fji4W1l9ErKyfMX8bh27B5TnSOPjKZQydo4bqRnpK6IeiSCKmhbi195Yzzzns9h3Zs0edCV70UnEnFPO23gHIM2tSjkk_HNUitc8rR3ErYXKQx_p3t4RyAYcP8dbqi0RdepDBYoyR8LtFpfF63PYKKSk9SD5ePpqcqyqfHDibuL_Onmn0q14sF5TkXmnFLrj15Bxx4dgJV6BwTwbc3n_I-y5unOB6nbSR2PwINbsueSx7hjmebMPzZJqUwCGeehUnvGvt5vMbMY1ofYglw1HxryhcCvgdo</con:value>
+    </con:property>
+    <con:property>
+      <con:name>accessTime</con:name>
+      <con:value>09:20 PM</con:value>
+    </con:property>
+    <con:property>
+      <con:name>DueTime</con:name>
+      <con:value>01:20 AM</con:value>
+    </con:property>
+    <con:property>
+      <con:name>startAt</con:name>
+      <con:value>2023-04-26T19:34:34.605Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>completedAt</con:name>
+      <con:value>2023-04-26T19:37:37.605Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>sentAt</con:name>
+      <con:value>2023-04-26T19:38:38.605Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>AllBatchAsignmnetData</con:name>
+      <con:value>{
+	  "attemptType": "Highest Grade",
+      "assignmentType": {
+        "type": "BASIC_TYPE"
+      },
+     "submissionCount": null,
+      "sections": [
+        {
+          "sectionCode": [
+            "*"
+          ],
+          "dueDate": "2023-05-09",
+          "dueDateTime": "01:20 AM",
+          "dueDateTimezone": "Asia/Kolkata",
+          "accessibleFrom": "2023-05-08T09:20:18+05:30",
+          "accessibleFromTimezone": "Asia/Kolkata",
+          "isForEveryOne": true,
+          "isImmediateAvailable":true ,
+          "isUnlocked": true
+        }
+      ],"points":0,"assetVersion":"2.0.0","assetCode":"CP4_HTML_604d8c4aae82c","resourceTypeName":"Skill Overview","isGraded":false,"assetId":"321824","assetType":"asset","isAssigned":true,"resourceTypeId":"00509e76-f348-11ea-972b-0242ac1d0003","name":"Skill 1-5 Overview"},{
+	  "attemptType": "Completion",
+      "assignmentType": {
+        "type": "VIDEOS"
+      },
+     "submissionCount": null,
+      "sections": [
+        {
+          "sectionCode": [
+            "*"
+          ],
+          "dueDate": "2023-05-09",
+          "dueDateTime": "01:20 AM",
+          "dueDateTimezone": "Asia/Kolkata",
+          "accessibleFrom": "2023-05-08T09:20:18+05:30",
+          "accessibleFromTimezone": "Asia/Kolkata",
+          "isForEveryOne": true,
+          "isImmediateAvailable":true ,
+          "isUnlocked": true
+        }
+      ],"points":100,"assetVersion":"2.0.0","assetCode":"CP4_VIDEO_5db74c3fcd1fb","resourceTypeName":"Videos","isGraded":true,"assetId":"301337","assetType":"asset","isAssigned":true,"resourceTypeId":"05dad4eb-f350-11ea-a28e-0242ac1d0002","name":"Preparing a Sterile Field: Prepackaged Kits"},{
+	  "attemptType": "Highest Grade",
+      "assignmentType": {
+        "type": "QUIZ"
+      },
+     "submissionCount": null,
+      "sections": [
+        {
+          "sectionCode": [
+            "*"
+          ],
+          "dueDate": "2023-05-09",
+          "dueDateTime": "01:20 AM",
+          "dueDateTimezone": "Asia/Kolkata",
+          "accessibleFrom": "2023-05-08T09:20:18+05:30",
+          "accessibleFromTimezone": "Asia/Kolkata",
+          "isForEveryOne": true,
+          "isImmediateAvailable":true ,
+          "isUnlocked": true
+        }
+      ],"points":100,"assetVersion":"1.0.0","assetCode":"CP4_QuizManager_60873f9e49ee6","resourceTypeName":"Quiz","isGraded":true,"assetId":"322794","assetType":"asset","isAssigned":true,"resourceTypeId":"0e68a14f-f348-11ea-972b-0242ac1d0003","name":"Quiz: Preparing a Sterile Field Using a Commercially Prepared Sterile Kit or Tray"},{
+	  "attemptType": "Highest Grade",
+      "assignmentType": {
+        "type": "CHECKLIST"
+      },
+     "submissionCount": null,
+      "sections": [
+        {
+          "sectionCode": [
+            "*"
+          ],
+          "dueDate": "2023-05-09",
+          "dueDateTime": "01:20 AM",
+          "dueDateTimezone": "Asia/Kolkata",
+          "accessibleFrom": "2023-05-08T09:20:18+05:30",
+          "accessibleFromTimezone": "Asia/Kolkata",
+          "isForEveryOne": true,
+          "isImmediateAvailable":true ,
+          "isUnlocked": true
+        }
+      ],"points":100,"assetVersion":"1.0.0","assetCode":"CP4_SkillChecklist_604d8aa16bbec","resourceTypeName":"Checklists","isGraded":true,"assetId":"321634","assetType":"asset","isAssigned":true,"resourceTypeId":"15eb416f-f348-11ea-972b-0242ac1d0003","name":"SKILL 1-5  Preparing a Sterile Field Using a Commercially Prepared Sterile Kit or Tray"}</con:value>
+    </con:property>
+    <con:property>
+      <con:name>batchAssignmentName</con:name>
+      <con:value>Skill 1-5  Preparing a Sterile Field Using a Commercially Prepared Sterile Kit or Tray</con:value>
+    </con:property>
+    <con:property>
+      <con:name>skillId</con:name>
+      <con:value>PHX_COL_608a6ebe3654e</con:value>
+    </con:property>
+  </con:properties>
+  <con:reportParameters/>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:testCase>

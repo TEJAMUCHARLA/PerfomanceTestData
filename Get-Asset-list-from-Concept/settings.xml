@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" xsi:type="con:RestService" id="9a297f2d-3839-4475-90a1-550f8a8df74f" name="Get Asset list from Concept" type="rest_ex" wadlVersion="https://swagger.io/openapiv3/specification">
+  <con:settings id="7797c307-7426-4b57-aaa8-ccd86175bfdc">
+    <con:setting id="9a297f2d-3839-4475-90a1-550f8a8df74ffileName">Get-Asset-list-from-Concept</con:setting>
+  </con:settings>
+  <con:definitionCache type="TEXT" rootPart="Get Asset list from Concept.json">
+    <con:part>
+      <con:url>Get Asset list from Concept.json</con:url>
+      <con:content>{"openapi":"3.0.1","info":{"title":"Get Asset list from Concept","version":"1.0.0"},"servers":[{"url":"/"}],"paths":{"/api/product-title-management/v1/product/{ISBN}/nursingConcepts":{"get":{"responses":{"default":{"description":"Default response"}}},"parameters":[{"name":"ISBN","in":"path","required":true,"style":"simple","explode":false},{"name":"published","in":"query","required":false,"style":"form","explode":true}]}}}</con:content>
+      <con:type>https://swagger.io/openapiv3/specification</con:type>
+    </con:part>
+  </con:definitionCache>
+  <con:endpoints/>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:interface>

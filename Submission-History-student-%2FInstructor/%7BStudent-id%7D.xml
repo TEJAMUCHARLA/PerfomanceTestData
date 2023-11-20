@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="{Student id}" path="/api/gradebook-process-management/v1/submissionHistory/student/{Student id}" id="afded144-7740-437d-b24b-92e389383b7b">
+  <con:settings id="90941eeb-fab0-4157-82d9-a3adc7176c14">
+    <con:setting id="afded144-7740-437d-b24b-92e389383b7bfileName">%7BStudent-id%7D</con:setting>
+  </con:settings>
+  <con:parameters>
+    <con:parameter required="true">
+      <con:name>Student id</con:name>
+      <con:value>Student id</con:value>
+      <con:style>TEMPLATE</con:style>
+      <con:default>Student id</con:default>
+    </con:parameter>
+    <con:parameter required="true">
+      <con:name>isAssigned</con:name>
+      <con:value>true</con:value>
+      <con:style>QUERY</con:style>
+      <con:default>true</con:default>
+    </con:parameter>
+    <con:parameter required="true">
+      <con:name>classId</con:name>
+      <con:value>{Section id}</con:value>
+      <con:style>QUERY</con:style>
+      <con:default>{Section id}</con:default>
+    </con:parameter>
+    <con:parameter required="true">
+      <con:name>assetId</con:name>
+      <con:value>{Asset id}</con:value>
+      <con:style>QUERY</con:style>
+      <con:default>{Asset id}</con:default>
+    </con:parameter>
+  </con:parameters>
+  <con:method name="Method 1" id="44453d29-eb5b-45d0-af3c-52526b92a1f4" method="GET">
+    <con:settings/>
+    <con:parameters/>
+    <con:request name="Request 1" id="0ac77c98-ebc7-4f02-86c3-e6b1f3f75472" mediaType="application/json">
+      <con:settings>
+        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+      </con:settings>
+      <con:endpoint>${#Project#ENV_URL}</con:endpoint>
+      <con:request/>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters/>
+      <con:environmentSpec>
+        <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+        <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+        <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:request>
+    <con:environmentSpec>
+      <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
+  </con:method>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:resource>

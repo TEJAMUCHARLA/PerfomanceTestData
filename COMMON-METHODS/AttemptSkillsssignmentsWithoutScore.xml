@@ -1,0 +1,973 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase xmlns:con="http://eviware.com/soapui/config" id="cdf732dc-3716-411d-8ce4-f2a3ce146342" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="AttemptSkillsssignmentsWithoutScore" searchProperties="true" timeout="0">
+  <con:settings id="00167232-a44e-49b5-83b4-5d72df26318a">
+    <con:setting id="GeneratableJUnitReport@Folder">D:\Ready APi Daily Data\March30\Issue</con:setting>
+    <con:setting id="cdf732dc-3716-411d-8ce4-f2a3ce146342fileName">AttemptSkillsssignmentsWithoutScore</con:setting>
+  </con:settings>
+  <con:testStep type="delay" name="Delay" id="2e2af53b-8901-4856-ae4a-fd4ed0a8f7f9" disabled="true">
+    <con:settings/>
+    <con:config>
+      <delay>90000</delay>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasource" name="TestDataDataSuource" id="7620e1ff-1963-42e4-bba1-0d21eb0a8ae0">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:DataSourceStep">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>${#Project#TestDataExcelFile}</file>
+          <worksheet>CreateCourse</worksheet>
+          <cell>A2</cell>
+          <ignoreEmpty>false</ignoreEmpty>
+          <evaluateFormulas>true</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>Number</con:property>
+      <con:property>sectionName</con:property>
+      <con:property>programTypeId</con:property>
+      <con:property>timeZoneId</con:property>
+      <con:property>academicTerm</con:property>
+      <con:property>academicYear</con:property>
+      <con:property>sfdcAccountId</con:property>
+      <con:property>products</con:property>
+      <con:property>instructor</con:property>
+      <con:property>Products2</con:property>
+      <con:property>user</con:property>
+      <con:property>Env</con:property>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Groovy Script" id="d6bac3b1-4e4f-43cf-8f99-16e564faa0fb">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import com.eviware.soapui.model.testsuite.TestRunner.Status
+import groovy.json.JsonOutput
+import groovy.json.*
+
+
+testRunner.testCase.setPropertyValue("Loop", "0")</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="delay" name="wait for student join" id="64eb2efd-32f8-4db3-9e0c-656c18f78046">
+    <con:settings/>
+    <con:config>
+      <delay>${#Project#LoginDealy}</delay>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasource" name="Change Score and Assignment" id="846b9179-2c4c-4674-96a1-a429df16063d" disabled="true">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:DataSourceStep">
+      <con:dataSource type="Grid">
+        <con:configuration>
+          <check><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">false</con:entry></xml-fragment>]]></check>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">68</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">2</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">78</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">3</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row>&lt;xml-fragment>&lt;con:entry xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></row>
+          <recognizeAsPlainText>true</recognizeAsPlainText>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>Score</con:property>
+      <con:property>assignmentNumber</con:property>
+      <con:startRow/>
+      <con:endRow>1</con:endRow>
+      <con:recordsPerIteration>1</con:recordsPerIteration>
+      <con:completeLastOperation>false</con:completeLastOperation>
+      <con:trimValues>false</con:trimValues>
+      <con:entitizeValues>false</con:entitizeValues>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:expandProperties>false</con:expandProperties>
+      <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Set Score" id="d2178913-c48c-4f4b-b9bb-9776b4ef6014" disabled="true">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import java.lang.*;
+
+
+def score = context.expand( '${Change Score and Assignment#Score}' )
+def assignmentNumber = context.expand( '${Change Score and Assignment#assignmentNumber}' )
+
+
+log.info(score)
+log.info(assignmentNumber)
+testRunner.testCase.testSuite.project.setPropertyValue("AttemptScore", score)
+testRunner.testCase.testSuite.project.setPropertyValue("AssignmnetIndex", assignmentNumber)</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasource" name="Get Assignmnet Type" id="17223931-2bce-4769-b22e-3c656ddd0473">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:DataSourceStep">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>${#Project#TestDataExcelFile}</file>
+          <worksheet>AllAssignmentsData</worksheet>
+          <cell>A42</cell>
+          <ignoreEmpty>false</ignoreEmpty>
+          <evaluateFormulas>false</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:preload>true</con:preload>
+      <con:property>number</con:property>
+      <con:property>AssignmentType</con:property>
+      <con:property>AttemptBodyData</con:property>
+      <con:property>DetailsMapedName</con:property>
+      <con:startRow/>
+      <con:endRow>3</con:endRow>
+      <con:recordsPerIteration>1</con:recordsPerIteration>
+      <con:completeLastOperation>false</con:completeLastOperation>
+      <con:trimValues>false</con:trimValues>
+      <con:entitizeValues>false</con:entitizeValues>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:expandProperties>false</con:expandProperties>
+      <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Generate Assignmnet  Start and End Time" id="13f8bdbc-52f0-4d30-b980-2500cdac6e58">
+    <con:settings/>
+    <con:config>
+      <script>import java.lang.*;
+import java.util.Date
+import java.util.Calendar
+import java.util.TimeZone
+import java.text.SimpleDateFormat
+
+
+def attemptBodyData = context.expand( '${Get Assignmnet Type#AttemptBodyData}' )
+
+log.info("hv "+attemptBodyData)
+if(!(attemptBodyData.toString().equals("")))
+{
+
+def loop = context.expand( '${#TestCase#Loop}' )
+def loop1234 = loop as int 
+log.info("before "+loop1234)
+	log.info("before 34343 "+loop1234)
+	testRunner.testCase.setPropertyValue("Loop", (loop1234+1).toString())
+ loop1234 = context.expand( '${#TestCase#Loop}' )
+
+log.info("After "+loop1234)
+}
+
+Calendar cal = Calendar.getInstance();
+Date today = new Date();
+cal.setTime(today);
+//cal.add(Calendar.DATE, 1)
+Date currentDatePlusOne = cal.getTime();
+//"sentAt": "2023-04-13T07:55:29.504Z",
+def accessibleFromTimezone= "UTC"
+
+//MM-dd-yyyy HH:mm:ss 
+//SimpleDateFormat Date1 = new SimpleDateFormat("yyyy-MM-dd")
+//SimpleDateFormat Time1= new SimpleDateFormat("hh:mm:m")
+
+SimpleDateFormat Date1 = new SimpleDateFormat("yyyy-MM-dd")
+SimpleDateFormat Time1= new SimpleDateFormat("HH:mm:m")
+//2023-04-04T11:51:14.9780634Z
+Date1.setTimeZone(TimeZone.getTimeZone(accessibleFromTimezone));
+Time1.setTimeZone(TimeZone.getTimeZone(accessibleFromTimezone));
+
+
+def assignmnetDueTime_MS = context.expand( '${#TestSuite#AssignmnetDueTime_MS}' ) as int
+
+def AttemptTimeLimit = 0
+//AttemptTimeLimit=240000
+
+log.info(AttemptTimeLimit)
+
+def DueDateData= Date1.format(currentDatePlusOne)
+
+def DueTimeData= Time1.format(new Date(new Date().getTime()-60000))
+
+def comAt= Time1.format(new Date(new Date().getTime()+AttemptTimeLimit+120000))
+def senAt= Time1.format(new Date(new Date().getTime()+AttemptTimeLimit+180000))
+
+/*
+def startAt = DueDateData+"T"+DueTimeData+".866Z"
+def completedAt = DueDateData+"T"+comAt+".866Z"
+def sentAt = DueDateData+"T"+senAt+".866Z"
+*/
+def startAt = DueDateData+"T"+DueTimeData+".605Z"
+def completedAt = DueDateData+"T"+comAt+".605Z"
+def sentAt = DueDateData+"T"+senAt+".605Z"
+//log.info("startAt = "+startAt)
+
+log.info("startAt = "+startAt)
+log.info("completedAt = "+completedAt)
+log.info("sentAt = "+sentAt)
+
+testRunner.testCase.setPropertyValue("startAt", startAt)
+testRunner.testCase.setPropertyValue("completedAt", completedAt)
+testRunner.testCase.setPropertyValue("sentAt", sentAt)
+
+
+
+
+
+/*
+def dueTime = context.expand( '${#TestCase#DueTime}' )
+def dueDate = context.expand( '${#TestCase#DueDate}' )
+
+def accessDate = context.expand( '${#TestCase#accessDate}' )
+def accessTime = context.expand( '${#TestCase#accessTime}' )
+
+def accessibleFromTimezone = context.expand( '${CreateAssignment#accessibleFromTimezone}' )
+def timeZoneOffset = context.expand( '${CreateAssignment#timeZoneOffset}' )
+def isImmediateAvailable = context.expand( '${CreateAssignment#isImmediateAvailable}' )
+//isImmediateAvailable=true
+log.info("accessibleFromTimezone : "+accessibleFromTimezone)
+log.info("timeZoneOffset : "+timeZoneOffset)
+log.info("isImmediateAvailable : "+isImmediateAvailable)
+
+def now= new Date()
+
+Calendar cal = Calendar.getInstance();
+Date today = new Date();
+cal.setTime(today);
+//cal.add(Calendar.DATE, 1)
+Date currentDatePlusOne = cal.getTime();
+SimpleDateFormat currentDatePlusOn = new SimpleDateFormat("yyyy-MM-dd")
+SimpleDateFormat duteTimePlus = new SimpleDateFormat("hh:mm a")
+
+currentDatePlusOn.setTimeZone(TimeZone.getTimeZone(accessibleFromTimezone));
+duteTimePlus.setTimeZone(TimeZone.getTimeZone(accessibleFromTimezone));
+
+def DueDateData= currentDatePlusOn.format(currentDatePlusOne)
+def DueTimeData= duteTimePlus.format(new Date(now.getTime()+120000))
+
+if(isImmediateAvailable.toString() == "true")
+{
+	log.info("true")
+SimpleDateFormat DateAndtimee = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss")
+SimpleDateFormat JustTime = new SimpleDateFormat("hh:mm a")
+
+DateAndtimee.setTimeZone(TimeZone.getTimeZone(accessibleFromTimezone));
+JustTime.setTimeZone(TimeZone.getTimeZone(accessibleFromTimezone));
+
+def CurrentDateandTime= DateAndtimee.format(new Date(now.getTime()+120000))
+def CurrentTimeBeforeAdd= JustTime.format(new Date())
+def CurrentTimeAfterAddg= JustTime.format(new Date(now.getTime()+120000))
+def accesDate = CurrentDateandTime+timeZoneOffset
+def accesTime = CurrentTimeAfterAddg
+
+ accessDate = accesDate
+ accessTime = accesTime
+log.info("accesDateTime= "+accesDate)
+log.info("CurrentTimeBeforeAdd= "+CurrentTimeBeforeAdd)	
+log.info("CurrentTimeAfterAddg "+CurrentTimeAfterAddg)	
+
+}
+else
+{
+		log.info("false")
+Calendar cal2 = Calendar.getInstance();
+Date today2 = new Date();
+cal2.setTime(today);
+cal2.add(Calendar.DATE, 10)
+Date currentDatePlusOne2 = cal2.getTime();
+SimpleDateFormat currentDatePlusOn2 = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss")
+SimpleDateFormat JustTime2 = new SimpleDateFormat("hh:mm a")
+
+currentDatePlusOn2.setTimeZone(TimeZone.getTimeZone(accessibleFromTimezone));
+JustTime2.setTimeZone(TimeZone.getTimeZone(accessibleFromTimezone));
+
+def futuredate2= currentDatePlusOn2.format(currentDatePlusOne2)
+def futureTime2= JustTime2.format(currentDatePlusOne2)
+accessDate = futuredate2+timeZoneOffset
+ accessTime = futureTime2
+//log.info("hgfgfhgf"+futuredate2)
+}
+log.info("DueDate =" +DueDateData +" and Time = "+ DueTimeData)
+log.info("accessDate =" +accessDate +" and Time = "+ accessTime)
+
+testRunner.testCase.setPropertyValue("dueDate", DueDateData)
+testRunner.testCase.setPropertyValue("dueTime", DueTimeData)
+testRunner.testCase.setPropertyValue("accessDate", accessDate)
+testRunner.testCase.setPropertyValue("accessTime", accessTime)
+
+
+*/</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="AttemptCommonPushBody" id="b0aedd33-080b-4972-bb3b-39509b9695d3">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="pushSQS" methodName="Method 1" resourcePath="/api/gradebook-process-management/v1/pushSqsQueue" xsi:type="con:RestRequestStep">
+      <con:restRequest name="AttemptCommonPushBody" id="0356f71d-de87-4d0e-8c1b-3c08512d544b" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenStudent}" value="" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_ssoStudent}" value="" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:request>"startedAt": "${#TestCase#startAt}",
+ "completedAt": "${#TestCase#completedAt}",
+ "sentAt": "${#TestCase#sentAt}",
+
+"userId": "${#Project#StudentUserId}",
+"systemId": "${#Project#SystemId}",
+"activityId": "D_activityId",
+ "correlationId": "D_correlationId",
+ "score": "D_score", 
+  "classIds": [
+        "${#Project#JoinedSectionid}"
+    ]
+	
+}</con:request>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/gradebook-process-management/v1/pushSqsQueue</con:originalUri>
+        <con:assertion type="Response SLA Assertion" id="a9854fe8-1173-41fd-83b1-cb912fb39936" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Arrange Attempt Body Data" id="d9eb2525-766f-4583-a552-9b4134b5f3d0">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import com.eviware.soapui.model.testsuite.TestRunner.Status
+import groovy.json.JsonOutput
+import groovy.json.*
+
+
+def rawRequest = context.expand( '${AttemptCommonPushBody#RawRequest}' )
+def rawRequestData = rawRequest
+
+//log.info(rawRequestData)
+testRunner.testCase.testSuite.setPropertyValue("Attempt_BodyData","")
+def attemptBodyData = context.expand( '${Get Assignmnet Type#AttemptBodyData}' )
+//log.info(attemptBodyData)
+
+def number = context.expand( '${Get Assignmnet Type#number}' )
+def assignmentType = context.expand( '${Get Assignmnet Type#AssignmentType}' )
+//def resourceTypeId = context.expand( '${Get Assignmnet Type#resourceTypeId}' )
+def detailsMapedName = context.expand( '${Get Assignmnet Type#DetailsMapedName}' )
+
+def resourceTypeLableName = detailsMapedName
+log.info("Type = "+resourceTypeLableName)
+//resourceTypeLableName ="Interactive Tutorials"
+
+def assignmnetIndex = context.expand( '${#Project#AssignmnetIndex}' )
+
+def assignmentNumber = assignmnetIndex
+
+log.info(assignmentNumber)
+def AssignmentNames = ""
+def PublishedVersions =""
+def ExternalAssetIds = ""
+def Actvityids = ""
+
+if(assignmentType.contains("Skills_"))
+{
+	log.info("I am Skills ")
+AssignmentNames = "\${#TestSuite#Skills_"+resourceTypeLableName+"AssignmentNames#\$["+assignmentNumber+"]}"
+ PublishedVersions = "\${#TestSuite#Skills_"+resourceTypeLableName+"PublishedVersions#\$["+assignmentNumber+"]}"
+ ExternalAssetIds = "\${#TestSuite#Skills_"+resourceTypeLableName+"ExternalAssetIds#\$["+assignmentNumber+"]}"
+ Actvityids = "\${#TestSuite#Skills_"+resourceTypeLableName+"Actvityids#\$["+assignmentNumber+"]}"
+}
+else
+{
+	log.info("I am CPE ")
+ AssignmentNames = "\${#TestSuite#CCM2_"+resourceTypeLableName+"AssignmentNames#\$["+assignmentNumber+"]}"
+ PublishedVersions = "\${#TestSuite#CCM2_"+resourceTypeLableName+"PublishedVersions#\$["+assignmentNumber+"]}"
+ ExternalAssetIds = "\${#TestSuite#CCM2_"+resourceTypeLableName+"ExternalAssetIds#\$["+assignmentNumber+"]}"
+ Actvityids = "\${#TestSuite#CCM2_"+resourceTypeLableName+"Actvityids#\$["+assignmentNumber+"]}"
+}
+def cCM2_AssignmentNames = context.expand( AssignmentNames )
+def cCM2_PublishedVersions = context.expand(PublishedVersions)
+def cCM2_ExternalAssetIds = context.expand( ExternalAssetIds )
+def cCM2_Actvityids = context.expand( Actvityids )
+
+def name =""
+def assetId=""
+def version=""
+def type=""
+def typeId=""
+
+
+name=cCM2_AssignmentNames
+assetId=cCM2_ExternalAssetIds
+version = cCM2_PublishedVersions
+type=assignmentType
+//typeId=resourceTypeId
+def tempData = rawRequestData
+tempData=tempData.replace("D_activityId",cCM2_Actvityids)
+
+
+def attemptScore = context.expand( '${#Project#AttemptScore}' )
+
+//def attemptScore = score1234
+
+log.info("score "+attemptScore)
+
+if(attemptBodyData.toString().contains("Achievement"))
+{
+   tempData=tempData.replace("D_score","1")
+   log.info("I am Video")
+}
+else
+{
+	log.info("I am Scored")
+	tempData=tempData.replace("D_score",attemptScore)
+}
+//==================
+
+attemptBodyData = attemptBodyData.replace("D_AssertId",assetId)
+
+log.info("name :"+cCM2_AssignmentNames+"assert id := "+cCM2_ExternalAssetIds+"version := "+cCM2_PublishedVersions+"ActivityId := "+cCM2_Actvityids)
+
+def finalPushBody= attemptBodyData+tempData
+//def bodyData=rawRequestData.toString().replace("D_name",name).replace("D_assetId",assetId).replace("D_assetVersion",version).replace("D_type",type).replace("D_resourceTypeId",typeId)
+def collectionId_List = context.expand( '${#TestSuite#collectionId_List}' )
+
+def idssss = collectionId_List.split("#")
+def loop = context.expand( '${#TestCase#Loop}' )
+
+def i = loop as int
+i = i-1
+log.info("dbd "+i+" = "+idssss[i])
+
+def colId= idssss[i]
+log.info("col id "+colId)
+log.info("List "+idssss)
+finalPushBody = finalPushBody.replace("D_correlationId",colId.toString())
+log.info("final body = "+finalPushBody)
+
+testRunner.testCase.testSuite.setPropertyValue("Attempt_BodyData",finalPushBody)
+log.info("Assert id = "+assetId)
+testRunner.testCase.setPropertyValue("Assertid",assetId)</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Push to SQS" id="bf5dfa68-0ed0-4656-9482-26f7f1072ca9">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="pushSQS" methodName="Method 1" resourcePath="/api/gradebook-process-management/v1/pushSqsQueue" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Push to SQS" id="0356f71d-de87-4d0e-8c1b-3c08512d544b" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="${#Project#Key_ssoStudent}" value="${#Project#ssoStudent}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenStudent}" value="${#Project#xaccessTokenStudent}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:request>${#TestSuite#Attempt_BodyData}</con:request>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/gradebook-process-management/v1/pushSqsQueue</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="26163957-cf3c-4bf9-9928-2bef78e226f8" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="a9854fe8-1173-41fd-83b1-cb912fb39936" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="delay" name="Wait for next Push" id="f627a2a5-bd88-418b-aaab-14d13e246a9f">
+    <con:settings/>
+    <con:config>
+      <delay>${#TestSuite#pushDealy}</delay>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Verify Submission History Student" id="dce77a4f-bde9-41cc-a6f8-8950c4a4d040">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Submission History student /Instructor" methodName="Method 1" resourcePath="/api/gradebook-process-management/v1/submissionHistory/student/{Student id}" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Verify Submission History Student" id="8f92f9e1-70bf-4dd2-82de-9338691f6432" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${#TestSuite#CourseEnrollmentToken}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenStudent}" value="${#Project#xaccessTokenStudent}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_ssoStudent}" value="${#Project#ssoStudent}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint xsi:nil="true"/>
+        <con:request/>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/gradebook-process-management/v1/submissionHistory/student/398ccfc3-203f-47af-94e3-4474015c2b1f</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="08ce3de9-602a-4e2d-b1c4-8bb67fc9f105" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="5a76f898-017c-4d31-b87c-f4257f5de080" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="f5116360-55f9-4401-a0e5-6e0cb94b41e7" name="Script Assertion" disabled="true">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+
+def rawRequest = context.expand( '${Push to SQS#RawRequest}' )
+
+def response = context.expand( '${Verify Submission History Student#Response}' )
+
+
+def response2 = context.expand( '${Update Assignment#Response}' )
+
+
+def PushSQSrequest = new JsonSlurper().parseText(rawRequest)
+def Getresponse = new JsonSlurper().parseText(response)
+def Assignment = new JsonSlurper().parseText(response2)
+
+def systemId = context.expand( '${#Project#SystemId}' )
+
+assert Getresponse.data.assetId[0] == Assignment.assets.assetId.toString()
+
+
+def itrations = context.expand( '${Data Source#Itrations}' )
+def value  = itrations as int
+def submissionHistory =Getresponse.data[0].submissionHistory[value]
+
+assert submissionHistory.submissionId ==PushSQSrequest.id
+
+assert submissionHistory.id !=null
+assert submissionHistory.systemId==systemId
+assert submissionHistory.classId ==PushSQSrequest.classIds[0]
+assert submissionHistory.userId ==PushSQSrequest.userId
+assert submissionHistory.activityId ==PushSQSrequest.activityId
+assert submissionHistory.activityName !=null
+
+
+assert submissionHistory.score.toString() == PushSQSrequest.score
+
+assert submissionHistory.type ==PushSQSrequest.type
+assert submissionHistory.metaData !=null
+
+assert submissionHistory.status=="grade-process-completed"
+assert submissionHistory.startAt  !=null
+assert submissionHistory.completedAt !=null
+assert submissionHistory.sentAt  !=null
+assert submissionHistory.reportData != null
+
+assert submissionHistory.isGraded == true</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" id="e1a4dfe4-7dec-420a-ab9b-0552cec02e23" name="Match content of [assetId]">
+          <con:configuration>
+            <path>$['data'][0]['assetId']</path>
+            <content>${#TestCase#Assertid}</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="classId" value="${Push to SQS#RawRequest#$['classIds'][0]}"/>
+          <con:entry key="assetId" value="${#TestCase#Assertid}"/>
+          <con:entry key="Student id" value="${#Project#StudentUserId}"/>
+        </con:parameters>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Verify Submission History Instructor" id="90973359-b045-4c8a-bcee-8ab7f57e66d7">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Submission History student /Instructor" methodName="Method 1" resourcePath="/api/gradebook-process-management/v1/submissionHistory/student/{Student id}" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Verify Submission History Instructor" id="8f92f9e1-70bf-4dd2-82de-9338691f6432" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${#TestSuite#CourseEnrollmentToken}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_ssoInstructor}" value="${#Project#ssoInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint xsi:nil="true"/>
+        <con:request/>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/gradebook-process-management/v1/submissionHistory/student/398ccfc3-203f-47af-94e3-4474015c2b1f</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="08ce3de9-602a-4e2d-b1c4-8bb67fc9f105" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="5a76f898-017c-4d31-b87c-f4257f5de080" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" id="59cc1a12-5ea2-49c5-b2ee-bdb01eeccdf4" name="Match content of [assetId]">
+          <con:configuration>
+            <path>$['data'][0]['assetId']</path>
+            <content>${#TestCase#Assertid}</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="d728b3c9-027d-4095-ad89-9ed4ea6edbc3" name="Script Assertion" disabled="true">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+
+def rawRequest = context.expand( '${Push to SQS#RawRequest}' )
+
+def response = context.expand( '${Verify Submission History Instructor#Response}' )
+
+
+def response2 = context.expand( '${Update Assignment#Response}' )
+
+
+def PushSQSrequest = new JsonSlurper().parseText(rawRequest)
+def Getresponse = new JsonSlurper().parseText(response)
+def Assignment = new JsonSlurper().parseText(response2)
+
+ 
+def systemId = context.expand( '${#Project#SystemId}' )
+
+assert Getresponse.data.assetId[0] == Assignment.assets.assetId.toString()
+
+
+def itrations = context.expand( '${Data Source#Itrations}' )
+def value  = itrations as int
+log.info(value)
+
+def submissionHistory =Getresponse.data[0].submissionHistory[value]
+
+assert submissionHistory.submissionId ==PushSQSrequest.id
+
+
+assert submissionHistory.id !=null
+assert submissionHistory.systemId==systemId
+assert submissionHistory.classId ==PushSQSrequest.classIds[0]
+assert submissionHistory.userId ==PushSQSrequest.userId
+assert submissionHistory.activityId ==PushSQSrequest.activityId
+assert submissionHistory.activityName !=null
+
+
+assert submissionHistory.score.toString() == PushSQSrequest.score
+assert submissionHistory.percentage.toString() ==PushSQSrequest.score
+
+
+assert submissionHistory.type ==PushSQSrequest.type
+assert submissionHistory.metaData !=null
+
+assert submissionHistory.status=="grade-process-completed"
+assert submissionHistory.startAt  !=null
+assert submissionHistory.completedAt !=null
+assert submissionHistory.sentAt  !=null
+assert submissionHistory.reportData != null
+
+assert submissionHistory.isGraded == true
+
+//assert Getrespon.submissionHistory[0].submissionId !=null</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="classId" value="${Push to SQS#RawRequest#$['classIds'][0]}"/>
+          <con:entry key="assetId" value="${#TestCase#Assertid}"/>
+          <con:entry key="Student id" value="${#Project#StudentUserId}"/>
+        </con:parameters>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="Data Source Loop" id="d8c65564-ce0f-4bc0-a6c7-64d9f8fa6c93">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>Get Assignmnet Type</dataSourceStep>
+      <targetStep>Generate Assignmnet  Start and End Time</targetStep>
+      <discardResults>false</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Verify final Student Grades After Attempt" id="81c75655-d66e-4598-b131-c576b7669f2c">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="GetAssignedGrades" resourcePath="/api/phx-gradebook-management/v1/ccm/course/{courseId}/section/{sectionId}/grades" methodName="Method 1" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Verify final Student Grades After Attempt" id="17b947f0-bc28-40d6-a2c7-1f869e08db62" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${Create course#Response#$['enrollmentToken']}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenStudent}" value="${#Project#xaccessTokenStudent}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_ssoStudent}" value="${#Project#ssoStudent}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:endpoint xsi:nil="true"/>
+        <con:request/>
+        <con:originalUri>https://dev01-ccm.hlrpphoenix.com/api/phx-gradebook-management/v1/ccm/course/gM3MIFVPW5L/section/gM3MIFVPW5L_sM3MIFVRAQ1/grades</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="44745bfe-b054-4b69-a903-ea70d658d185" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="0130b747-8cc6-4c76-beed-706840b09912" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" name="Script Assertion" id="cd25367b-d27a-4728-82bf-427dbeb77588" disabled="true">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+
+def response = context.expand( '${Verify final Student Grades After Attempt#Response}' )
+def studentUserId = context.expand( '${#Project#StudentUserId}' )
+def responseUpdate = context.expand( '${Update Assignment#Response}' )
+
+
+def Getresponse = new JsonSlurper().parseText(response)
+def Assignment = new JsonSlurper().parseText(responseUpdate)
+
+def score2 = context.expand( '${Data Source#Score}' )
+log.info(score2)
+def score  = 15
+def percentage = 15
+
+assert Getresponse.totalClassAverageScore == score
+assert Getresponse.totalClassAverageGrades == percentage
+assert Getresponse.totalClassCompletionRates == 100
+
+
+assert Getresponse.studentDetails.userId[0] == studentUserId
+assert Getresponse.studentDetails.firstName[0] == null
+assert Getresponse.studentDetails.lastName[0] == null
+assert Getresponse.studentDetails.studentScore[0]== score
+//log.info(Getresponse.studentDetails.studentPercentage[0].toString())
+assert Getresponse.sectionGradebookSettings.id!==null
+assert Getresponse.sectionGradebookSettings.courseId!==null
+assert Getresponse.sectionGradebookSettings.gradeThreshhold!==null
+
+assert Getresponse.sectionGradebookSettings.color!==null
+assert Getresponse.sectionGradebookSettings.highLightLateSubmission==[true] || [false]
+assert Getresponse.sectionGradebookSettings.defValBottomRow==1
+assert Getresponse.sectionGradebookSettings.showAverages==[true] || [false]
+assert Getresponse.sectionGradebookSettings.isDefaultSetting==[true] || [false]
+
+
+assert Getresponse.grades.assignmentId[0] == Assignment.id
+assert Getresponse.grades.assignmentTitle[0]== Assignment.name
+
+assert Getresponse.grades.assignmentAssetId[0] == Assignment.assets.assetId
+assert Getresponse.grades.assignmentType[0]== Assignment.assignmentType.type
+assert Getresponse.grades.points[0]==Assignment.points
+assert Getresponse.grades.isGraded[0]==Assignment.isGraded
+assert Getresponse.grades.maxAttempts[0]==Assignment.maxAttempts
+
+assert Getresponse.grades[0].sections[0].sectionCode[0]!==Assignment.sections[0].sectionCode[0]
+assert Getresponse.grades[0].sections[0].dueDateTime==Assignment.sections[0].dueDateTime
+assert Getresponse.grades[0].sections[0].dueTime==Assignment.sections[0].dueTime
+assert Getresponse.grades[0].sections[0].dueDateTimezone==Assignment.sections[0].dueDateTimezone
+assert Getresponse.grades[0].sections[0].accessibleFromTimezone==Assignment.sections[0].accessibleFromTimezone
+
+//assert Getresponse.grades[0].sections[0].accessibleFrom==Assignment.sections[0].accessibleFrom
+
+assert Getresponse.grades[0].sections[0].isForEveryOne !=null
+assert Getresponse.grades[0].sections[0].isImmediateAvailable==Assignment.sections[0].isImmediateAvailable
+assert Getresponse.grades[0].sections[0].sectionGroup!=null
+assert Getresponse.grades[0].sections[0].isUnlocked==Assignment.sections[0].isUnlocked
+
+
+assert Getresponse.grades[0].assetDetails[0].assetId.toString()==Assignment.assets.assetId.toString()
+assert Getresponse.grades[0].assetDetails[0].label==Assignment.name
+assert Getresponse.grades[0].assetDetails[0].isSbar==[true] || [false]
+assert Getresponse.grades[0].assetDetails[0].resourceTypeId!=null
+assert Getresponse.grades[0].assetDetails[0].resourceType !=null
+
+
+assert Getresponse.grades[0].assetDetails[0].attemptDetails[0].userId==studentUserId
+assert Getresponse.grades[0].assetDetails[0].attemptDetails[0].attemptScore==score
+
+assert Getresponse.grades[0].assetDetails[0].attemptDetails[0].attemptPercentage==percentage
+assert Getresponse.grades[0].assetDetails[0].attemptDetails[0].startedAt !=null
+assert Getresponse.grades[0].assetDetails[0].attemptDetails[0].completedAt !=null
+assert Getresponse.grades[0].assetDetails[0].attemptDetails[0].displayScoreLabel== percentage+"%"
+
+
+assert Getresponse.grades[0].consumer==Assignment.consumer
+assert Getresponse.grades[0].skillId==null
+assert Getresponse.grades[0].externalPrepuId==null
+assert Getresponse.grades[0].assetType!=null
+assert Getresponse.grades[0].isHighlightLateSubmission==[true] || [false]
+assert Getresponse.grades[0].productIsbn==Assignment.productIsbn
+assert Getresponse.grades[0].resourceType!=null
+assert Getresponse.grades[0].isCpeBatch==[true] || [false]
+assert Getresponse.skillGrades==null</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="studentId" value="${#Project#StudentUserId}"/>
+          <con:entry key="sectionId" value="${Push to SQS#RawRequest#$['classIds'][0]}"/>
+          <con:entry key="courseId" value="${#TestSuite#CourseId}"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>courseId</con:entry>
+          <con:entry>sectionId</con:entry>
+          <con:entry>studentId</con:entry>
+        </con:parameterOrder>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="Data Source Loop Score" id="8b557740-51ca-4afd-93b6-b389ed5f9998" disabled="true">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>Change Score and Assignment</dataSourceStep>
+      <targetStep>Set Score</targetStep>
+      <discardResults>true</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:properties>
+    <con:property>
+      <con:name>accessDate</con:name>
+      <con:value>2023-04-18T06:11:52-05:00</con:value>
+    </con:property>
+    <con:property>
+      <con:name>DueDate</con:name>
+      <con:value>2023-04-18</con:value>
+    </con:property>
+    <con:property>
+      <con:name>EffectiveDate</con:name>
+      <con:value>2023-04-18T00:00:00.000Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>ExpireDate</con:name>
+      <con:value>2023-05-18T00:00:00.000Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>tomorrow</con:name>
+      <con:value>Tue, Apr 18 2023</con:value>
+    </con:property>
+    <con:property>
+      <con:name>tomorrow2</con:name>
+      <con:value>2023-04-18</con:value>
+    </con:property>
+    <con:property>
+      <con:name>instructorUserId</con:name>
+      <con:value>0345b785-ba3e-4b3a-9c6c-447101694d75</con:value>
+    </con:property>
+    <con:property>
+      <con:name>numberOfAttempts</con:name>
+      <con:value>1</con:value>
+    </con:property>
+    <con:property>
+      <con:name>StudentenrollmentToken</con:name>
+      <con:value>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODE4ODU5NjAsImp0aSI6IjAxZDNiYzFlLWJlMzMtNGNjOS04OGU3LWI4ZTcxMjMzNTNhNSIsImlhdCI6MTY4MTcxMzE2MCwiaXNzIjoiaHR0cHM6Ly9waG9lbml4LWNjbS50aGVwb2ludC5sd3cuY29tIiwibmJmIjoxNjgxNzEzMTYwLCJzdWIiOiI5ZTZlOGM1Ny02ODNlLTRjNTQtODkzMS00NDc0MDE1OWQ2ODUiLCJobHJwX2NjbSI6W3siciI6InMiLCJjcnMiOiJnU0VCUUJLRzk5SUIiLCJzZWMiOiJnU0VCUUJLRzk5SUJfc1NFQlFCS0dBMlIifV19.kKMRJHB4y0Tno_H-esNrWhe-RsUn8zHCmazkZhhKCgXyBFbLRWiD2zyGp5MOZCZbIW1WIlQg4CjosIPwQtw204mHb6iNohaZtznNKEaZ5_BbW3241Stf9E_xo2X9qBCl_zrYUpX1M4uR066aPvoD5d_hViNCAynUW7OXzK3nC4VgF9F6amwQSDrje6AeD8D8vLTw_kmFk9eGSkVvEWnd5ZssYCAzqyVdgadLGbFrWj2N3TOIPsEkgR3HoJ17Ipg_ZCAwBqrAiPG5WMqQsNbMexKeSeb2bMA5FQuasV9Qc3YK9aphsr4ER17HAAZ1F1GtO_gmaYBO8xKU11WX1_UDGx5Dt0cpeRM24oonRf4sGS-BIsWXCsG8fTyaYzfJajIv7xh-ibK5NYtp2fji4W1l9ErKyfMX8bh27B5TnSOPjKZQydo4bqRnpK6IeiSCKmhbi195Yzzzns9h3Zs0edCV70UnEnFPO23gHIM2tSjkk_HNUitc8rR3ErYXKQx_p3t4RyAYcP8dbqi0RdepDBYoyR8LtFpfF63PYKKSk9SD5ePpqcqyqfHDibuL_Onmn0q14sF5TkXmnFLrj15Bxx4dgJV6BwTwbc3n_I-y5unOB6nbSR2PwINbsueSx7hjmebMPzZJqUwCGeehUnvGvt5vMbMY1ofYglw1HxryhcCvgdo</con:value>
+    </con:property>
+    <con:property>
+      <con:name>accessTime</con:name>
+      <con:value>06:11 AM</con:value>
+    </con:property>
+    <con:property>
+      <con:name>DueTime</con:name>
+      <con:value>06:11 AM</con:value>
+    </con:property>
+    <con:property>
+      <con:name>startAt</con:name>
+      <con:value>2023-05-08T17:02:2.605Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>completedAt</con:name>
+      <con:value>2023-05-08T17:05:5.605Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>sentAt</con:name>
+      <con:value>2023-05-08T17:06:6.605Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>Assertid</con:name>
+      <con:value>321632</con:value>
+    </con:property>
+    <con:property>
+      <con:name>Loop</con:name>
+      <con:value>4</con:value>
+    </con:property>
+  </con:properties>
+  <con:reportParameters/>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:testCase>

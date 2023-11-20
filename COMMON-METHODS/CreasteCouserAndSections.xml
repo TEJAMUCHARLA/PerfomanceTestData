@@ -1,0 +1,1741 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase xmlns:con="http://eviware.com/soapui/config" id="dd9042f9-36df-49e2-acb7-2e2389cb40ed" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="CreasteCouserAndSections" searchProperties="true" timeout="0">
+  <con:settings id="6fea7b1e-80cc-43cd-94cf-1ec1f3352875">
+    <con:setting id="GeneratableJUnitReport@Folder">D:\Ready APi Daily Data\March30\Issue</con:setting>
+    <con:setting id="dd9042f9-36df-49e2-acb7-2e2389cb40edfileName">CreasteCouserAndSections</con:setting>
+  </con:settings>
+  <con:testStep type="datasource" name="TestDataDataSuource" id="9b9b8f5f-7a51-4d1b-abea-f36606f8b7ea">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:DataSourceStep">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>${#Project#TestDataExcelFile}</file>
+          <worksheet>CreateCourse</worksheet>
+          <cell>A2</cell>
+          <ignoreEmpty>false</ignoreEmpty>
+          <evaluateFormulas>true</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>Number</con:property>
+      <con:property>sectionName</con:property>
+      <con:property>programTypeId</con:property>
+      <con:property>timeZoneId</con:property>
+      <con:property>academicTerm</con:property>
+      <con:property>academicYear</con:property>
+      <con:property>sfdcAccountId</con:property>
+      <con:property>products</con:property>
+      <con:property>instructor</con:property>
+      <con:property>Products2</con:property>
+      <con:property>user</con:property>
+      <con:property>Env</con:property>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Generate Course Start and End Time" id="6f4bcc2a-9d00-4194-a399-96ddd4ad9a84">
+    <con:settings/>
+    <con:config>
+      <script>import java.lang.*;
+import java.util.Date
+import java.util.Calendar
+import java.util.TimeZone
+import java.text.SimpleDateFormat
+
+def createCourseDueTimeInDays = context.expand( '${#Project#CreateCourseDueTimeInDays}' ) as int
+def creteCourseTimeZone = context.expand( '${#Project#CreteCourseTimeZone}' )
+
+
+SimpleDateFormat timer = new SimpleDateFormat("yyyy-MM-dd")
+timer.setTimeZone(TimeZone.getTimeZone("UTC"));
+def Currentday= timer.format(new Date())
+context.setProperty("CurrentDate",Currentday)
+Currentday =Currentday+"T00:00:00.000Z"
+context.testCase.setPropertyValue('EffectiveDate',Currentday )
+
+Calendar cal = Calendar.getInstance();
+Date today = new Date();
+cal.setTime(today);
+cal.add(Calendar.DATE, createCourseDueTimeInDays)
+Date currentDatePlusOne = cal.getTime();
+SimpleDateFormat currentDatePlusOn = new SimpleDateFormat("yyyy-MM-dd")
+currentDatePlusOn.setTimeZone(TimeZone.getTimeZone("UTC"));
+def futuredate= currentDatePlusOn.format(currentDatePlusOne)
+futuredate =futuredate+"T00:00:00.000Z"
+context.testCase.setPropertyValue('ExpireDate', futuredate)
+
+log.info Currentday + " : Currentdate"
+log.info futuredate + " : Futuredate"</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="calltestcase" name="Run Test Case" id="e55c1e6c-b12c-4bec-948d-6e1c5a8f52ea">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RunTestCaseStep" copyHttpSession="true" copyLoadTestProperties="true">
+      <con:targetTestCase>0b8ba07b-9a45-41a2-bb80-8b982fd421d2</con:targetTestCase>
+      <con:properties>
+        <con:property>
+          <con:name>test1</con:name>
+          <con:value>23er</con:value>
+        </con:property>
+      </con:properties>
+      <con:returnProperties/>
+      <con:runMode>PARALLELL</con:runMode>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Create course" id="de5ba481-85b7-4e9c-bc2f-190c32d2739e">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Create course" methodName="Method 1" resourcePath="/api/ccm/v2/course" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Create course" id="b0f4feb9-49e2-4e5c-9708-387917dd39cc" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="${#Project#Key_ssoInstructor}" value="${#Project#ssoInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="New header" value="" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint xsi:nil="true"/>
+        <con:request>{
+  "name": "${#Project#CreateCourseName}",
+  "number": "${#TestCase#CourseSerialNumber}",
+  "sectionName": "${TestDataDataSuource#SectionName}",
+  "programTypeId": "${TestDataDataSuource#ProgramTypeId}",
+  "startDate": "${#TestCase#EffectiveDate}",
+  "endDate": "${#TestCase#ExpireDate}",
+  "timeZoneId": "${#Project#CreateCourseTimeZone}",
+  "academicTerm": "${TestDataDataSuource#AcademicTerm}",
+  "academicYear": ${TestDataDataSuource#AcademicYear},
+  "sfdcAccountId":"${TestDataDataSuource#SfdcAccountId}",
+  "products": [
+    "${TestDataDataSuource#Products}",
+    "${TestDataDataSuource#Products2}"
+  ],
+  "instructor": "${#Project#instructorUserId}",
+  "role": "${#Project#InstuctorRoleValue}"
+}</con:request>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/ccm/v2/course</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="b1e33441-e5c8-4e08-9dde-2835210b5b15" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="44cfc69a-ed44-44b9-be23-7111ebc952ac" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="ecb68bb5-b91b-4300-bbc1-c8d013e74118" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+import groovy.*
+
+def response = context.expand( '${Create course#Response}' )
+def testCase = messageExchange.modelItem.testCase;
+def verifyResponse = new JsonSlurper().parseText(response)
+
+assert verifyResponse.id != null
+assert verifyResponse.sectionId != null
+assert verifyResponse.enrollmentToken != null
+assert verifyResponse.passcode != null
+def harResponse = context.expand( '${Create course#HarResponse#$[\'status\']}' )
+def responseID = context.expand( '${Create course#Response#$[\'id\']}' )
+def rawRequestName = context.expand( '${Create course#RawRequest#$[\'name\']}' )
+
+if(harResponse.toString()=="200")
+{
+def courseSerialNumber = context.expand( '${#TestSuite#CourseSerialNumber}' ) as int 
+//testRunner.testCase.testSuite.setPropertyValue("CourseSerialNumber",(courseSerialNumber+1).toString())
+testCase.setPropertyValue("CourseSerialNumber",(courseSerialNumber+1).toString())
+testCase.setPropertyValue("CourseName",rawRequestName.toString())
+testCase.setPropertyValue("CourseId",responseID)
+}</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="GetCourseDetails" id="b6d24d7c-e932-4dab-b0b8-b93b7c34b617">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import java.lang.*;
+
+
+def ArrayData = new ArrayList()
+testRunner.testCase.testSuite.setPropertyValue("collectionId_List","")
+
+
+def response = context.expand( '${Create course#Response}' )
+
+def rawRequest = context.expand( '${Create course#RawRequest}' )
+def Section2response = context.expand( '${Create section#Response#$[\'id\']}' )
+def Section2Password = context.expand( '${Create section#Response#$[\'passcode\']}' )
+
+
+def responseData = new JsonSlurper().parseText(response)
+def rawRequestData = new JsonSlurper().parseText(rawRequest)
+
+
+
+
+testRunner.testCase.testSuite.setPropertyValue("CourseId", responseData.id.toString())
+testRunner.testCase.testSuite.setPropertyValue("Section1Id",responseData.sectionId.toString())
+testRunner.testCase.testSuite.setPropertyValue("Section2Id",Section2response.toString())
+
+testRunner.testCase.testSuite.project.setPropertyValue("Section1Password",responseData.passcode.toString())
+testRunner.testCase.testSuite.project.setPropertyValue("Section2Password",Section2Password.toString())
+
+testRunner.testCase.testSuite.project.setPropertyValue("CourseEnrollmentToken",responseData.enrollmentToken.toString())
+testRunner.testCase.testSuite.setPropertyValue("CourseName",rawRequestData.name.toString())
+testRunner.testCase.testSuite.setPropertyValue("Assignment_BodyData",rawRequestData.name.toString())
+def courseSerialNumber = context.expand( '${#TestSuite#CourseSerialNumber}' ) as int 
+
+testRunner.testCase.testSuite.setPropertyValue("CourseSerialNumber",(courseSerialNumber+1).toString())
+
+log.info( responseData.id.toString())
+log.info(responseData.sectionId.toString())
+log.info(Section2response.toString())
+log.info(responseData.enrollmentToken.toString())
+log.info(rawRequestData.name.toString())</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="delay" name="wait for created couser" id="1988995d-5d83-4cad-a343-c3ea97ddaed3">
+    <con:settings/>
+    <con:config>
+      <delay>${#Project#GetDetailsDealy}</delay>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Verify Created course" id="9ba3a200-ac35-4281-a96d-b63362ce88bd">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Verify created course" resourcePath="/api/ccm/v2/class/{Course Id}" methodName="Method 1" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Verify Created course" id="48485526-7e76-42a5-9e1d-b0b3a52e582b" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${#Project#CourseEnrollmentToken}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_ssoInstructor}" value="${#Project#ssoInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:request/>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/ccm/v2/course/Course%20Id</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="dc6a1d49-4516-43b1-9ff7-184715d3c6d6" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="d17fc11d-9fc3-492e-859d-343a2a802249" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="2de439bf-21c6-481f-a9f4-db24dc7f871a" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+def rawRequest = context.expand( '${Create course#RawRequest}' )
+
+def getCourseResponse = context.expand( '${Verify Created course#Response}' )
+def response = context.expand( '${Create course#Response}' )
+def instructorUserId = context.expand( '${#Project#instructorUserId}' )
+
+
+
+def createCourseRawrequest = new JsonSlurper().parseText(rawRequest)
+def verifyCourseresponse = new JsonSlurper().parseText(getCourseResponse)
+def response2 = new JsonSlurper().parseText(response)
+
+
+assert response2.id == verifyCourseresponse.id
+assert createCourseRawrequest.name == verifyCourseresponse.name
+assert createCourseRawrequest.number == verifyCourseresponse.number
+assert createCourseRawrequest.sfdcAccountid == verifyCourseresponse.sfdcAccountid
+assert createCourseRawrequest.programTypeid == verifyCourseresponse.programTypeid
+assert createCourseRawrequest.timeZoneid == verifyCourseresponse.timeZoneid
+assert createCourseRawrequest.academicTerm == verifyCourseresponse.academicTerm
+assert createCourseRawrequest.academicYear == verifyCourseresponse.academicYear
+
+
+//assert createCourseRawrequest.products[0] == verifyCourseresponse.products.isbn[0]
+
+assert createCourseRawrequest.startDate.toString().substring(0,createCourseRawrequest.startDate.toString().size()-5) == verifyCourseresponse.startDate.toString().substring(0,verifyCourseresponse.startDate.toString().size()-1)
+assert createCourseRawrequest.endDate.toString().substring(0,createCourseRawrequest.endDate.toString().size()-5) == verifyCourseresponse.endDate.toString().substring(0,verifyCourseresponse.endDate.toString().size()-1)
+assert verifyCourseresponse.instructors.userId[0] ==instructorUserId</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="Course Id" value="${#TestSuite#CourseId}"/>
+        </con:parameters>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Create section" id="54efd819-7c4b-455b-a808-c747744f3d85">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Create section" methodName="Method 1" resourcePath="/api/ccm/v2/course/{Course Id}/sections" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Create section" id="0f50a0aa-e777-479f-9de8-a19cd8ac5fe5" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${#Project#CourseEnrollmentToken}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_ssoInstructor}" value="${#Project#ssoInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:request>{"name":"Section02"}</con:request>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="62221b03-8a98-4162-825b-daa12604757e" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="baccd89c-c594-445d-8145-aa4f83a5e582" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="a527dd41-b056-415c-ac0c-2bbec5503ca7" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+
+def response = context.expand( '${Create section#Response}' )
+
+
+def verifyResponse = new JsonSlurper().parseText(response)
+
+assert verifyResponse.id != null
+assert verifyResponse.passcode != null</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="Course Id" value="${#TestSuite#CourseId}"/>
+        </con:parameters>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="delay" name="wait for added section" id="37c23ec7-b29c-41b6-bb41-a709928cc7aa">
+    <con:settings/>
+    <con:config>
+      <delay>${#Project#GetDetailsDealy}</delay>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Verify Created Section" id="13c10f6f-3a60-4361-b108-9215e81363c4">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Get Sections" methodName="Method 1" resourcePath="/api/ccm/v2/course/{Course Id}/sections" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Verify Created Section" id="b3712cea-13ca-4efa-b6f6-2094f16101a8" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${#Project#CourseEnrollmentToken}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_ssoInstructor}" value="${#Project#ssoInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:request/>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/ccm/v2/course/gKEJF4QQN63/sections</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="e517886a-5455-419d-a1e3-074c5063d6df" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="e3ed2842-128e-41c1-9ce1-2d1df2220b59" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="46de6a30-4298-49ff-b560-a15e6b785ae3" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+
+def createdSectionRawrequest = context.expand( '${Create section#RawRequest}' )
+def responseSection = context.expand( '${Create section#Response}' )
+
+def verifySectionResponse = context.expand( '${Verify Created Section#Response}' )
+
+def rawRequestCourse = context.expand( '${Create course#RawRequest}' )
+def responseCourse = context.expand( '${Create course#Response}' )
+
+def createdRawrequest = new JsonSlurper().parseText(createdSectionRawrequest)
+def verifyResponse = new JsonSlurper().parseText(verifySectionResponse)
+def VerifyrawRequestCourse = new JsonSlurper().parseText(rawRequestCourse)
+def VerifyresponseCourse = new JsonSlurper().parseText(responseCourse)
+def VerifyresponseSection = new JsonSlurper().parseText(responseSection)
+
+
+assert verifyResponse.name==VerifyrawRequestCourse.name
+
+assert verifyResponse.sections.name.contains(VerifyrawRequestCourse.sectionName)
+assert verifyResponse.sections.id.contains(VerifyresponseCourse.sectionId)
+assert verifyResponse.sections.passcode.contains(VerifyresponseCourse.passcode)
+
+assert verifyResponse.sections.enrolled.contains(true)==false
+
+assert verifyResponse.sections.name.contains(createdRawrequest.name)
+assert verifyResponse.sections.id.contains(VerifyresponseSection.id)
+assert verifyResponse.sections.passcode.contains(VerifyresponseSection.passcode)</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Count" id="b021acfc-96e1-4d09-8870-35294430a379" name="Check count of [0]">
+          <con:configuration>
+            <path>$['sections'][*]</path>
+            <content>2</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="Course Id" value="${#TestSuite#CourseId}"/>
+        </con:parameters>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Get Product Assignment Details" id="1b483ed2-2524-4100-b4f5-cc59549093d7">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Get Asset list from product" resourcePath="/api/product-title-management/v1/product/isbn/{ISBN}/published" methodName="Method 1" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Get Product Assignment Details" id="8a2c7d41-f915-4cce-9f92-b9c8787e3af4" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/></con:setting>
+        </con:settings>
+        <con:request/>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/product-title-management/v1/product/isbn/9781975124465/published</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="c4d0abc4-492d-4f4c-9d60-d712436c113b" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="0b42c78e-fd0f-4660-b0d2-245e31f11f02" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="ISBN" value="${Create course#RawRequest#$['products'][0]}"/>
+        </con:parameters>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="GetCourseDetails 2" id="0e2f2e3b-4668-4ef1-8677-fdacdc1d2730">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import java.lang.*;
+
+
+def response = context.expand( '${Create course#Response}' )
+
+def rawRequest = context.expand( '${Create course#RawRequest}' )
+def Section2response = context.expand( '${Create section#Response#$[\'id\']}' )
+def response2password = context.expand( '${Create section#Response#$[\'passcode\']}' )
+
+
+def responseData = new JsonSlurper().parseText(response)
+def rawRequestData = new JsonSlurper().parseText(rawRequest)
+
+
+
+
+testRunner.testCase.testSuite.setPropertyValue("CourseId", responseData.id.toString())
+
+testRunner.testCase.testSuite.project.setPropertyValue("Section1Password",responseData.passcode.toString())
+testRunner.testCase.testSuite.project.setPropertyValue("Section2Password",response2password.toString())
+
+testRunner.testCase.testSuite.project.setPropertyValue("CourseEnrollmentToken",responseData.enrollmentToken.toString())
+testRunner.testCase.testSuite.setPropertyValue("CourseName",rawRequestData.name.toString())
+testRunner.testCase.testSuite.setPropertyValue("Assignment_BodyData",rawRequestData.name.toString())
+
+
+log.info( responseData.id.toString())
+log.info(responseData.passcode.toString())
+log.info(response2password.toString())
+log.info(responseData.enrollmentToken.toString())
+log.info(rawRequestData.name.toString())</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Get assignments" id="e669e4c9-baec-4b68-baa8-26fc64ae630d">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import com.eviware.soapui.model.testsuite.TestRunner.Status
+
+def value = testRunner.testCase.testSteps["Get Product Assignment Details"].testRequest.response
+def responseValue = value.responseContent
+
+def slurper = new JsonSlurper()
+def json = slurper.parseText(responseValue)
+def allconatins=json.containers
+//def AllResource=[]
+//def resourceTypeId=[]
+def AllResource = new ArrayList()
+def resourceTypeId = new ArrayList()
+  log.info("Alldfmnvbsnv")
+//==========================================
+for(def eachcontainer in allconatins )
+{
+	if(!(eachcontainer==null))
+	{
+	
+	     def  ChildContainer=eachcontainer.containers
+
+               for(def eachchildcontainer in ChildContainer )
+              {
+	           if(!(eachchildcontainer==null))
+	             {
+	               def  assets=eachchildcontainer.assets
+
+	                   for(def eachAsset in assets )
+                          {
+
+                          if(! (AllResource.contains(eachAsset.resourceType.toString())))
+                          { 
+                          	resourceTypeId.add(eachAsset.resourceTypeId.toString())
+                          	AllResource.add(eachAsset.resourceType.toString())
+                          	//resourceTypeId.add("\""+eachAsset.resourceTypeId.toString()+"\"")
+                          	//AllResource.add("\""+eachAsset.resourceType.toString()+"\"")
+                          }
+                          	
+	                }
+	            }  
+               }
+	     	
+	      }
+	      
+  }
+  log.info("Alldfmnvbsnv")
+log.info("AllResourceCount = "+AllResource.size())
+log.info("AllResource = "+AllResource)
+log.info("resourceTypeIdSCout = "+resourceTypeId.size())
+log.info("resourceTypeId = "+resourceTypeId)
+ 
+  
+//==========================================
+
+
+
+
+for(def eachResource in AllResource )
+{
+def assignmentNames=[]
+def assignmentPublishedVersion=[]
+def assignmentExternalAssetId=[]
+def assignmentActvityids=[]
+def resourceTypeLabel=""
+resourceTypeLabel =eachResource
+log.info(resourceTypeLabel.toString()+"======== Start =========="+resourceTypeLabel.toString())
+for(def eachcontainer in allconatins )
+{
+
+	if(!(eachcontainer==null))
+	{
+
+		
+	     def  ChildContainer=eachcontainer.containers
+
+               for(def eachchildcontainer in ChildContainer )
+              {
+	           if(!(eachchildcontainer==null))
+	             {
+	               def  assets=eachchildcontainer.assets
+
+	                   for(def eachAsset in assets )
+                          {
+                              if(eachAsset.resourceType.toString().equals(resourceTypeLabel))
+                              { 
+                              	//log.info(eachAsset)
+                              	//break
+                              	//assignmentAssetCodes.add("\""+eachAsset3.assetCode.toString()+"\"")
+                              	assignmentActvityids.add("\""+eachAsset.assetCode.toString()+"\"")
+                              	assignmentNames.add("\""+eachAsset.label.toString()+"\"")
+
+                              	if(resourceTypeLabel.toString().equals("PrepU Mastery Level Quizzes by Chapter"))
+                              	{
+                              		//log.info(eachAsset)
+                              		//break
+                              	}
+                              
+                              	assignmentPublishedVersion.add("\""+eachAsset.assetVersion.toString()+"\"")
+                              
+                              	assignmentExternalAssetId.add(eachAsset.externalAssetId)
+                              	
+                               }
+         	               
+	                       }
+	            }  
+               }
+	     	
+	      }
+	      
+  }
+log.info(assignmentNames)
+log.info(assignmentPublishedVersion)
+log.info(assignmentExternalAssetId)
+log.info (assignmentActvityids)
+
+log.info(assignmentNames.size())
+log.info(assignmentPublishedVersion.size())
+log.info(assignmentExternalAssetId.size())
+log.info(assignmentActvityids.size())
+
+
+ testRunner.testCase.testSuite.setPropertyValue( ("CCM2_"+resourceTypeLabel.toString()+"AssignmentNames"), assignmentNames.toString())
+ testRunner.testCase.testSuite.setPropertyValue("CCM2_"+ resourceTypeLabel.toString()+"PublishedVersions", assignmentPublishedVersion.toString())
+ testRunner.testCase.testSuite.setPropertyValue("CCM2_"+ resourceTypeLabel.toString()+"ExternalAssetIds", assignmentExternalAssetId.toString())
+  testRunner.testCase.testSuite.setPropertyValue("CCM2_"+ resourceTypeLabel.toString()+"Actvityids", assignmentActvityids.toString())
+
+  log.info(resourceTypeLabel.toString()+"======= End ==========="+resourceTypeLabel.toString()) 
+}
+
+def array = []
+for(def EacResource in AllResource )
+{
+//	assignmentNames.add("\""+eachAsset.label.toString()+"\"")
+	array.add("\""+EacResource.toString()+"\"")
+}
+testRunner.testCase.testSuite.setPropertyValue( "AllResourceTypesNames", array.toString())
+  testRunner.testCase.testSuite.setPropertyValue( "AllResourceTypeIds", resourceTypeId.toString())
+//def allResourceTypeIds = context.expand( '${#Project#AllResourceTypeIds#$[0]}' )</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Get skills product" id="fc0f988a-b58e-49c1-b6b1-e4ca57078382">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Get Asset list from skills product" methodName="Method 1" resourcePath="/api/skills-pt-refactor-management/v1/product/isbn/{ISBN}/published" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Get skills product" id="6d94ab01-d6f9-4e72-88cf-11d42d7d3258" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="sso-token" value="${#Project#ssoInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="x-access-token" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:request/>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/skills-pt-refactor-management/v1/product/isbn/9781975182380/published</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="e4ca2611-f1ee-439a-af79-688c8dc7ad65" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="fe9828fd-605f-4cf4-ba2e-522b9e160fc7" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="ISBN" value="${Create course#RawRequest#$['products'][1]}"/>
+        </con:parameters>
+        <con:environmentSpec>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Get Quize assignments" id="f0de8a82-9866-462c-b5f4-9cd88072536a">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import com.eviware.soapui.model.testsuite.TestRunner.Status
+def resourceTypeLabel = context.expand( '${#TestSuite#ResourceTypeLabel}' )
+
+def value = testRunner.testCase.testSteps["Get skills product"].testRequest.response
+def responseValue = value.responseContent
+
+
+resourceTypeLabel="Quiz"
+
+
+def slurper = new JsonSlurper()
+def json = slurper.parseText(responseValue)
+
+def allconatins=json.containers
+
+def assignmentNames=[]
+def assignmentPublishedVersion=[]
+def assignmentExternalAssetId=[]
+
+def assignmentActvityids=[]
+
+for(def eachcontainer in allconatins )
+{
+
+	if(!(eachcontainer==null))
+	{	
+	     def  ChildContainer=eachcontainer.containers
+
+               for(def eachchildcontainer in ChildContainer )
+              {
+	           if(!(eachchildcontainer==null))
+	             {
+	             
+	               def  assets=eachchildcontainer.assets
+
+	                   for(def eachAsset in assets )
+                          {
+
+                               def  assets2  =  eachAsset.assets
+
+                          for(def eachAsset2 in assets2 )
+                          {	
+                          		//log.info("data check "+eachAsset2.assetLabel.toString())
+                          	//log.info("data check " +eachAsset2)
+                          	def  assets3  =  eachAsset2.assets
+                          	
+                              	
+                              for(def eachAsset3 in assets3 )
+                               {
+
+                               
+                          
+                               if(eachAsset3.assetLabel.toString().equals(resourceTypeLabel))
+                              { 
+
+
+                              	def  assets4  =  eachAsset3.assets
+                              	  for(def eachAsset4 in assets4 )
+                                    {
+                          	
+                              //   log.info(eachAsset4.resourceTypeId.toString())
+                                    assignmentNames.add("\""+eachAsset4.assetLabel.toString()+"\"")
+                              	
+                              	assignmentPublishedVersion.add("\""+eachAsset4.publishedVersion.toString()+"\"")
+                              
+                              	assignmentExternalAssetId.add(eachAsset4.id)
+                          	       assignmentActvityids.add("\""+eachAsset4.assetCode.toString()+"\"")
+                          	        
+                          	        }
+                              	
+                             }
+                          	
+                          	}
+
+                          	
+                          }
+         	
+	                       }
+	            }  
+               }
+	     	
+	      }
+	      
+  }
+log.info(assignmentNames)
+log.info(assignmentPublishedVersion)
+log.info(assignmentExternalAssetId)
+
+log.info (assignmentActvityids)
+
+log.info(assignmentNames.size())
+log.info(assignmentPublishedVersion.size())
+log.info(assignmentExternalAssetId.size())
+log.info(assignmentActvityids.size())
+
+
+ testRunner.testCase.testSuite.setPropertyValue( ("Skills_"+resourceTypeLabel.toString()+"AssignmentNames"), assignmentNames.toString())
+ testRunner.testCase.testSuite.setPropertyValue("Skills_"+ resourceTypeLabel.toString()+"PublishedVersions", assignmentPublishedVersion.toString())
+ testRunner.testCase.testSuite.setPropertyValue("Skills_"+ resourceTypeLabel.toString()+"ExternalAssetIds", assignmentExternalAssetId.toString())
+ testRunner.testCase.testSuite.setPropertyValue("Skills_"+ resourceTypeLabel.toString()+"Actvityids", assignmentActvityids.toString())
+
+//log.info(assignmentNames[0].toString())
+//log.info( assignmentPublishedVersion[0].toString())
+//log.info(assignmentExternalAssetId[0].toString())
+
+//testRunner.testCase.setPropertyValue( "assignmentNames",assignmentNames[0].toString())
+//testRunner.testCase.setPropertyValue( "assignmentPublishedVersion", assignmentPublishedVersion[0].toString())
+//testRunner.testCase.setPropertyValue( "assignmentExternalAssetId", assignmentExternalAssetId[0].toString())</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Get Videos assignments" id="8c6812d7-5940-4d6e-9ddc-0dd96d1dc3e7">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import com.eviware.soapui.model.testsuite.TestRunner.Status
+
+
+def value = testRunner.testCase.testSteps["Get skills product"].testRequest.response
+def responseValue = value.responseContent
+
+
+resourceTypeLabel="Videos"
+def resourceTypeId=""
+
+def slurper = new JsonSlurper()
+def json = slurper.parseText(responseValue)
+
+def allconatins=json.containers
+
+def assignmentNames=[]
+def assignmentPublishedVersion=[]
+def assignmentExternalAssetId=[]
+  def assignmentActvityids=[]
+for(def eachcontainer in allconatins )
+{
+
+	if(!(eachcontainer==null))
+	{	
+	     def  ChildContainer=eachcontainer.containers
+
+               for(def eachchildcontainer in ChildContainer )
+              {
+	           if(!(eachchildcontainer==null))
+	             {
+	               def  assets=eachchildcontainer.assets
+
+	                   for(def eachAsset in assets )
+                          {
+
+                               def  assets2  =  eachAsset.assets
+
+                          for(def eachAsset2 in assets2 )
+                          {
+                          	def  assets3  =  eachAsset2.assets
+                          	
+                              
+                              for(def eachAsset3 in assets3 )
+                          {
+                          	//log.info(eachAsset3.assetLabel.toString())
+                               if(eachAsset3.assetLabel.toString().equals(resourceTypeLabel))
+                              { 
+
+
+                              	def  assets4  =  eachAsset3.assets
+                              	  for(def eachAsset4 in assets4 )
+                                    {
+                          	
+                              resourceTypeId=eachAsset4.resourceTypeId.toString();
+                                   assignmentNames.add("\""+eachAsset4.assetLabel.toString()+"\"")
+                              	
+                              	assignmentPublishedVersion.add("\""+eachAsset4.publishedVersion.toString()+"\"")
+                              
+                              	assignmentExternalAssetId.add(eachAsset4.id)
+                          	       assignmentActvityids.add("\""+eachAsset4.assetCode.toString()+"\"")
+                          	        
+                          	        }
+                              	
+                             }
+                          	
+                          	}
+
+                          	
+                          }
+         	
+	                       }
+	            }  
+               }
+	     	
+	      }
+	      
+  }
+log.info(assignmentNames)
+log.info(assignmentPublishedVersion)
+log.info(assignmentExternalAssetId)
+log.info (assignmentActvityids)
+
+log.info(assignmentNames.size())
+log.info(assignmentPublishedVersion.size())
+log.info(assignmentExternalAssetId.size())
+log.info(assignmentActvityids.size())
+
+ testRunner.testCase.testSuite.setPropertyValue( ("Skills_"+resourceTypeLabel.toString()+"AssignmentNames"), assignmentNames.toString())
+ testRunner.testCase.testSuite.setPropertyValue( "Skills_"+resourceTypeLabel.toString()+"PublishedVersions", assignmentPublishedVersion.toString())
+ testRunner.testCase.testSuite.setPropertyValue("Skills_"+ resourceTypeLabel.toString()+"ExternalAssetIds", assignmentExternalAssetId.toString())
+ testRunner.testCase.testSuite.setPropertyValue("Skills_"+ resourceTypeLabel.toString()+"Actvityids", assignmentActvityids.toString())
+ 
+
+
+//log.info(assignmentNames[0].toString())
+//log.info( assignmentPublishedVersion[0].toString())
+//log.info(assignmentExternalAssetId[0].toString())
+
+//testRunner.testCase.setPropertyValue( "assignmentNames",assignmentNames[0].toString())
+//testRunner.testCase.setPropertyValue( "assignmentPublishedVersion", assignmentPublishedVersion[0].toString())
+//testRunner.testCase.setPropertyValue( "assignmentExternalAssetId", assignmentExternalAssetId[0].toString())</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Get  Case Studies assignments" id="ab23839b-fb30-4ebc-bb49-7caae2a2043e">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import com.eviware.soapui.model.testsuite.TestRunner.Status
+def resourceTypeLabel ="Case Studies" //context.expand( '${#TestSuite#ResourceTypeLabel}' )
+
+ log.info(resourceTypeLabel.toString())
+def value = testRunner.testCase.testSteps["Get skills product"].testRequest.response
+def responseValue = value.responseContent
+
+def resourceTypeId=""
+def slurper = new JsonSlurper()
+def json = slurper.parseText(responseValue)
+
+def allconatins=json.containers
+
+def assignmentNames=[]
+def assignmentPublishedVersion=[]
+def assignmentExternalAssetId=[]
+ def assignmentActvityids=[]
+
+for(def eachcontainer in allconatins )
+{
+
+	if(!(eachcontainer==null))
+	{	
+	     def  ChildContainer=eachcontainer.containers
+
+               for(def eachchildcontainer in ChildContainer )
+              {
+	           if(!(eachchildcontainer==null))
+	             {
+	               def  assets=eachchildcontainer.assets
+
+                           for(def eachAsset2 in assets )
+                            {
+                            	    if(!(eachAsset2==null))
+	                             {
+                                       if(eachAsset2.resourceTypeLabel.toString().equals(resourceTypeLabel))
+                                         { 
+                                                   //  log.info(eachAsset2.toString())
+                                                      if(!(eachAsset2==null))
+	                                                { 
+	                                               def assets3	= eachAsset2.assets
+	                                             	//log.info(eachAsset2.resourceTypeLabel.toString())
+	                                             
+                                                     for(def eachAsset3 in assets3)
+                                                      {                                                    	
+                                                    //	log.info(eachAsset3.assetLabel.toString())
+                                                    resourceTypeId=eachAsset3.resourceTypeId.toString()
+                          	           assignmentNames.add("\""+eachAsset3.assetLabel.toString()+"\"")
+                              	
+                              	        assignmentPublishedVersion.add("\""+eachAsset3.publishedVersion.toString()+"\"")
+                              
+                              	          assignmentExternalAssetId.add(eachAsset3.externalAssetId)
+                                       assignmentActvityids.add("\""+eachAsset3.assetCode.toString()+"\"")
+                              	          
+                                                       }
+                                                  
+                                                      }
+                                         }
+                                       }
+                               }
+				 }
+                 }
+
+	                 
+                             
+                          	
+            
+         	
+	   }
+	         
+	      
+  }
+log.info(assignmentNames)
+log.info(assignmentPublishedVersion)
+log.info(assignmentExternalAssetId)
+log.info(assignmentActvityids)
+
+
+log.info(assignmentNames.size())
+log.info(assignmentPublishedVersion.size())
+log.info(assignmentExternalAssetId.size())
+log.info(assignmentActvityids.size())
+
+
+log.info(resourceTypeId)
+  testRunner.testCase.testSuite.setPropertyValue( ("Skills_"+resourceTypeLabel.toString()+"AssignmentNames"), assignmentNames.toString())
+ testRunner.testCase.testSuite.setPropertyValue("Skills_"+resourceTypeLabel.toString()+"PublishedVersions", assignmentPublishedVersion.toString())
+ testRunner.testCase.testSuite.setPropertyValue("Skills_"+ resourceTypeLabel.toString()+"ExternalAssetIds", assignmentExternalAssetId.toString())
+ testRunner.testCase.testSuite.setPropertyValue("Skills_"+ resourceTypeLabel.toString()+"Actvityids", assignmentActvityids.toString())
+
+
+// log.info(assignmentNames[0].toString())
+// log.info( assignmentPublishedVersion[0].toString())
+// log.info(assignmentExternalAssetId[0].toString())
+
+// testRunner.testCase.setPropertyValue( "assignmentNames",assignmentNames[0].toString())
+// testRunner.testCase.setPropertyValue( "assignmentPublishedVersion", assignmentPublishedVersion[0].toString())
+// testRunner.testCase.setPropertyValue( "assignmentExternalAssetId", assignmentExternalAssetId[0].toString())</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Get CheckList assignments" id="c3dc08f6-c5f9-47ba-9562-fa3b8c75c1b5">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import com.eviware.soapui.model.testsuite.TestRunner.Status
+def resourceTypeLabel ="Checklists"
+ log.info(resourceTypeLabel.toString())
+def value = testRunner.testCase.testSteps["Get skills product"].testRequest.response
+def responseValue = value.responseContent
+
+//resourceTypeLabel="Quiz"
+def resourceTypeId=""
+
+def slurper = new JsonSlurper()
+def json = slurper.parseText(responseValue)
+
+def allconatins=json.containers
+
+def assignmentNames=[]
+def assignmentPublishedVersion=[]
+def assignmentExternalAssetId=[]
+ def assignmentActvityids=[]
+
+
+for(def eachcontainer in allconatins )
+{
+
+	if(!(eachcontainer==null))
+	{	
+	     def  ChildContainer=eachcontainer.containers
+
+               for(def eachchildcontainer in ChildContainer )
+              {
+	           if(!(eachchildcontainer==null))
+	             {
+	               def  assets=eachchildcontainer.assets
+
+	                   for(def eachAsset in assets )
+                          {
+
+                               def  assets2  =  eachAsset.assets
+
+                          for(def eachAsset2 in assets2 )
+                          {
+                          	def  assets3  =  eachAsset2.assets
+                          	
+                              
+                              for(def eachAsset3 in assets3 )
+                          {
+                          	//log.info(eachAsset3.assetLabel.toString())
+                               if(eachAsset3.assetLabel.toString().equals(resourceTypeLabel))
+                              { 
+
+                                       resourceTypeId=eachAsset3.resourceTypeId.toString()
+                              	def  assets4  =  eachAsset3.assets
+                              	  for(def eachAsset4 in assets4 )
+                                    {
+                          	
+                                   
+                                    assignmentNames.add("\""+eachAsset4.assetLabel.toString()+"\"")
+                              	
+                              	assignmentPublishedVersion.add("\""+eachAsset4.publishedVersion.toString()+"\"")
+                              
+                              	assignmentExternalAssetId.add(eachAsset4.id)
+                          	     assignmentActvityids.add("\""+eachAsset4.assetCode.toString()+"\"")
+                          	        
+                          	        }
+                              	
+                             }
+                          	
+                          	}
+
+                          	
+                          }
+         	
+	                       }
+	            }  
+               }
+	     	
+	      }
+	      
+  }
+log.info(assignmentNames)
+log.info(assignmentPublishedVersion)
+log.info(assignmentExternalAssetId)
+log.info("jhvfd "+assignmentActvityids)
+log.info(assignmentNames.size())
+log.info(assignmentPublishedVersion.size())
+log.info(assignmentExternalAssetId.size())
+log.info("jhvfd "+assignmentActvityids.size())
+
+
+log.info(resourceTypeId)
+
+ testRunner.testCase.testSuite.setPropertyValue( ("Skills_"+resourceTypeLabel.toString()+"AssignmentNames"), assignmentNames.toString())
+ testRunner.testCase.testSuite.setPropertyValue("Skills_"+ resourceTypeLabel.toString()+"PublishedVersions", assignmentPublishedVersion.toString())
+ testRunner.testCase.testSuite.setPropertyValue("Skills_"+ resourceTypeLabel.toString()+"ExternalAssetIds", assignmentExternalAssetId.toString())
+  testRunner.testCase.testSuite.setPropertyValue("Skills_"+ resourceTypeLabel.toString()+"Actvityids", assignmentActvityids.toString())
+//log.info(assignmentNames[0].toString())
+//log.info( assignmentPublishedVersion[0].toString())
+//log.info(assignmentExternalAssetId[0].toString())
+
+//testRunner.testCase.setPropertyValue( "assignmentNames",assignmentNames[0].toString())
+//testRunner.testCase.setPropertyValue( "assignmentPublishedVersion", assignmentPublishedVersion[0].toString())
+//testRunner.testCase.setPropertyValue( "assignmentExternalAssetId", assignmentExternalAssetId[0].toString())</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Get Topics assignments" id="6ac9cb47-e998-4f2f-b4f5-027d0d2a696c">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import com.eviware.soapui.model.testsuite.TestRunner.Status
+def resourceTypeLabel = "Topic Overview"
+def value = testRunner.testCase.testSteps["Get skills product"].testRequest.response
+def responseValue = value.responseContent
+
+
+def resourceTypeId=""
+
+
+def slurper = new JsonSlurper()
+def json = slurper.parseText(responseValue)
+
+def allconatins=json.containers
+
+def assignmentNames=[]
+def assignmentPublishedVersion=[]
+def assignmentExternalAssetId=[]
+
+ def assignmentActvityids=[]
+
+for(def eachcontainer in allconatins )
+{
+
+	if(!(eachcontainer==null))
+	{	
+	     def  ChildContainer=eachcontainer.containers
+
+               for(def eachchildcontainer in ChildContainer )
+              {
+	           if(!(eachchildcontainer==null))
+	             {
+	               def  assets=eachchildcontainer.assets
+
+	                   for(def eachAsset in assets )
+                          {
+							   if(!(eachAsset==null))
+	                             {
+                                  
+                                  if(eachAsset.label.toString().equals(resourceTypeLabel))
+                                    { 
+							 resourceTypeId=eachAsset.resourceTypeId.toString()
+							     assignmentNames.add("\""+eachAsset.containerLabel.toString()+"\"")
+                              	
+                              	assignmentPublishedVersion.add("\""+eachAsset.publishedVersion.toString()+"\"")
+                              
+                              	assignmentExternalAssetId.add(eachAsset.externalAssetId)
+                              	assignmentActvityids.add("\""+eachAsset.assetCode.toString()+"\"")
+							        }
+				               }
+	                      }
+	              }  
+               }
+	     	
+	      }
+	      
+  }
+log.info(assignmentNames)
+log.info(assignmentPublishedVersion)
+log.info(assignmentExternalAssetId)
+log.info(assignmentActvityids)
+
+
+log.info(assignmentNames.size())
+log.info(assignmentPublishedVersion.size())
+log.info(assignmentExternalAssetId.size())
+log.info(assignmentActvityids.size())
+log.info(resourceTypeId)
+
+testRunner.testCase.testSuite.setPropertyValue( ("Skills_"+resourceTypeLabel.toString()+"AssignmentNames"), assignmentNames.toString())
+ testRunner.testCase.testSuite.setPropertyValue("Skills_"+ resourceTypeLabel.toString()+"PublishedVersions", assignmentPublishedVersion.toString())
+ testRunner.testCase.testSuite.setPropertyValue("Skills_"+ resourceTypeLabel.toString()+"ExternalAssetIds", assignmentExternalAssetId.toString())
+ testRunner.testCase.testSuite.setPropertyValue("Skills_"+ resourceTypeLabel.toString()+"resourceTypeId", resourceTypeId.toString())
+  testRunner.testCase.testSuite.setPropertyValue("Skills_"+ resourceTypeLabel.toString()+"Actvityids", assignmentActvityids.toString())
+//log.info(assignmentNames[0].toString())
+//log.info( assignmentPublishedVersion[0].toString())
+//log.info(assignmentExternalAssetId[0].toString())
+
+//testRunner.testCase.setPropertyValue( "assignmentNames",assignmentNames[0].toString())
+//testRunner.testCase.setPropertyValue( "assignmentPublishedVersion", assignmentPublishedVersion[0].toString())
+//testRunner.testCase.setPropertyValue( "assignmentExternalAssetId", assignmentExternalAssetId[0].toString())</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Get Prepu Concepts Product" id="7b7d6442-b8f9-49f5-8da8-1601f66c9f15">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Get Asset list from Concept" methodName="Method 1" resourcePath="/api/product-title-management/v1/product/{ISBN}/nursingConcepts" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Get Prepu Concepts Product" id="68b89923-a680-40b4-9cda-26282e74d730" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:request/>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/product-title-management/v1/product/9781975186777/nursingConcepts</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="01e4e6ce-ff71-48d4-b040-175791dc607e" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="074ad5b3-8fdd-4ff8-b2a9-3f12e1c6ad6b" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="ISBN" value="${Create course#RawRequest#$['products'][0]}"/>
+          <con:entry key="published" value="true"/>
+        </con:parameters>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Get prepu concept details" id="de383c37-2941-4215-8fe9-3cefe8936d27">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import com.eviware.soapui.model.testsuite.TestRunner.Status
+
+def value = testRunner.testCase.testSteps["Get Prepu Concepts Product"].testRequest.response
+def responseValue = value.responseContent
+
+def resourceTypeLabel = context.expand( '${#TestSuite#ResourceTypeLabel}' )
+testRunner.testCase.testSuite.setPropertyValue( "resourceTypeLabel", resourceTypeLabel.toString())
+resourceTypeLabel="PrepU Mastery Level Quizzes By Concept"
+ log.info(resourceTypeLabel.toString())
+
+def slurper = new JsonSlurper()
+def json = slurper.parseText(responseValue)
+
+def allconatins=json
+
+def assignmentNames=[]
+def assignmentPublishedVersion=[]
+def assignmentExternalAssetId=[]
+def assignmentActvityids=[]
+
+for(def eachcontainer in allconatins )
+{
+ 
+	if(!(eachcontainer==null))
+	{
+
+  //  log.info(eachcontainer)
+
+		 
+	     def  ChildContainer=eachcontainer.assets
+
+               for(def eachchildcontainer in ChildContainer )
+              {
+	           if(!(eachchildcontainer==null))
+	             {
+	                   	if(eachchildcontainer.resourceTypeLabel.toString().equals(resourceTypeLabel))
+                              { 
+                              //log.info(eachchildcontainer)
+                              //break;
+                              	assignmentNames.add("\""+eachchildcontainer.label.toString()+"\"")
+                              	
+                              	assignmentPublishedVersion.add("\""+eachchildcontainer.externalAssetVersion.toString()+"\"")
+                              
+                              	assignmentExternalAssetId.add(eachchildcontainer.externalAssetId)
+                              	assignmentActvityids.add("\""+eachchildcontainer.assetCode.toString()+"\"")
+                               }
+	             	 /*
+	               def  assets=eachchildcontainer.assets
+
+	                   for(def eachAsset in assets )
+                          {
+                          	
+                              if(eachAsset.resourceType.toString().equals(resourceTypeLabel))
+                              { 
+                              	assignmentNames.add("\""+eachAsset.label.toString()+"\"")
+                              	
+                              	assignmentPublishedVersion.add("\""+eachAsset.productVersion.toString()+"\"")
+                              
+                              	assignmentExternalAssetId.add(eachAsset.externalAssetId)
+                              	
+                               }
+         	
+	                       }
+	                       */
+	            }  
+               }
+
+	     	
+	      }
+	      
+  }
+log.info(assignmentNames)
+log.info(assignmentPublishedVersion)
+log.info(assignmentExternalAssetId)
+log.info(assignmentActvityids)
+
+log.info(assignmentNames.size())
+log.info(assignmentPublishedVersion.size())
+log.info(assignmentExternalAssetId.size())
+
+
+ testRunner.testCase.testSuite.setPropertyValue( "ListAssignmentNames", assignmentNames.toString())
+ testRunner.testCase.testSuite.setPropertyValue( "PublishedVersions", assignmentPublishedVersion.toString())
+ testRunner.testCase.testSuite.setPropertyValue( "ExternalAssetIds", assignmentExternalAssetId.toString())
+
+testRunner.testCase.testSuite.setPropertyValue( ("CCM2_"+resourceTypeLabel.toString()+"AssignmentNames"), assignmentNames.toString())
+ testRunner.testCase.testSuite.setPropertyValue("CCM2_"+ resourceTypeLabel.toString()+"PublishedVersions", assignmentPublishedVersion.toString())
+ testRunner.testCase.testSuite.setPropertyValue("CCM2_"+ resourceTypeLabel.toString()+"ExternalAssetIds", assignmentExternalAssetId.toString())
+  testRunner.testCase.testSuite.setPropertyValue("CCM2_"+ resourceTypeLabel.toString()+"Actvityids", assignmentActvityids.toString())
+ 
+//log.info(assignmentNames[0].toString())
+//log.info( assignmentPublishedVersion[0].toString())
+//log.info(assignmentExternalAssetId[0].toString())
+
+//testRunner.testCase.setPropertyValue( "assignmentNames",assignmentNames[0].toString())
+//testRunner.testCase.setPropertyValue( "assignmentPublishedVersion", assignmentPublishedVersion[0].toString())
+//testRunner.testCase.setPropertyValue( "assignmentExternalAssetId", assignmentExternalAssetId[0].toString())</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="GetQCBearerToken" id="964f6375-5734-43bc-ad8d-3525ce734bd6">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="QCAccessBarear" resourcePath="/1/authKeys/sso" methodName="Method 1" xsi:type="con:RestRequestStep">
+      <con:restRequest name="GetQCBearerToken" id="3a62e14d-0100-4b97-bae6-fd5f72a143c5" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint xsi:nil="true"/>
+        <con:request/>
+        <con:originalUri>https://sakurai-api-preproduction.prep-u.com/1/authKeys/sso</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="cef4adde-28e8-4d53-9fb3-62762ff2f4c5" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="a775fab5-b9e5-4801-9770-8f5c0cd7dbb8" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="6dd13ed6-cc37-40a5-a15d-4d666fe133f3" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+
+
+
+def Response = context.expand( '${GetQCBearerToken#Response}' )
+
+def ResponseData = new JsonSlurper().parseText(Response)
+
+
+assert ResponseData.data.id !=null
+assert ResponseData.data.token !=null
+assert ResponseData.data.refreshToken !=null
+assert ResponseData.data.product !=null
+
+context.testCase.setPropertyValue('BarerToken', "Bearer "+ResponseData.data.token.toString())</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="product" value="${Create course#RawRequest#$['products'][0]}"/>
+          <con:entry key="sakurai-primary-product-isbn" value="${Create course#RawRequest#$['products'][0]}"/>
+          <con:entry key="token" value="${#Project#QCSSoToken}"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>token</con:entry>
+          <con:entry>product</con:entry>
+          <con:entry>sakurai-primary-product-isbn</con:entry>
+        </con:parameterOrder>
+        <con:environmentSpec>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Create QC Collection" id="ee237d93-53e1-4870-ada2-60ee18f64812">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="QCCreateCollection" resourcePath="/1/questionSets" methodName="Method 1" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Create QC Collection" id="4a8634a6-dc16-4aa5-9e8e-9a1252d796d3" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint xsi:nil="true"/>
+        <con:request>{
+  "parentId": null,
+  "name": "${Create course#RawRequest#$['name']} Collection" ,
+  "mode": null,
+  "totalQuestions": null,
+  "totalRetiredQuestions": null,
+  "enabled": false,
+  "isStandardizedExam": false,
+  "classIdScope": null,
+  "parentOwner": null,
+  "user": "${GetQCBearerToken#Response#$['data']['id']}",
+  "product": "${GetQCBearerToken#Response#$['data']['product']}"
+}</con:request>
+        <con:originalUri>https://sakurai-api-preproduction.prep-u.com/1/authKeys/sso</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="d01e8536-943c-4037-84bf-05ca08616212" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>201</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="1d497cfe-ff03-4cd6-b850-eb015f599368" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="Authorization" value="${#TestCase#BarerToken}"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>Authorization</con:entry>
+        </con:parameterOrder>
+        <con:environmentSpec>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="GetQCCollectionProductId" id="f25d5ff0-0416-45d9-b11d-7e5d13c96f3c">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="GETCreatedCourseQCID" resourcePath="/1/questionSets" methodName="Method 1" xsi:type="con:RestRequestStep">
+      <con:restRequest name="GetQCCollectionProductId" id="9522e6b7-99fd-4eed-98ee-39cc2f4a77b6" mediaType="application/x-www-form-urlencoded" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint xsi:nil="true"/>
+        <con:request/>
+        <con:originalUri>https://sakurai-api-preproduction.prep-u.com/1/authKeys/sso</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="6dbd7e33-9a0d-4b92-8ace-0731fedb198f" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="06f68942-1a40-4f22-bf5b-de916a3c3bdc" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="76514f8b-bf21-4e76-a72b-9df8e852f5bb" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+
+
+
+def Response = context.expand( '${GetQCCollectionProductId#Response}' )
+def rawRequest = context.expand( '${Create QC Collection#RawRequest}' )
+
+def ResponseData = new JsonSlurper().parseText(Response)
+def rawRequestData = new JsonSlurper().parseText(rawRequest)
+
+def IsColectionCreated = false
+
+for(def data in ResponseData.data)
+{
+	if(data.name.toString().equals(rawRequestData.name.toString()))
+	{
+		IsColectionCreated=true
+		log.info(data.id)
+		context.testCase.setPropertyValue('CollectionQnID', data.id.toString())
+	}
+	
+}
+
+assert IsColectionCreated
+//context.testCase.setPropertyValue('BarerToken', "Bearer "+ResponseData.data.token.toString())</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="Authorization" value="${#TestCase#BarerToken}"/>
+          <con:entry key="productId" value="${GetQCBearerToken#Response#$['data']['product']}"/>
+          <con:entry key="includeStandardizedExams" value="0"/>
+          <con:entry key="userId" value="${GetQCBearerToken#Response#$['data']['id']}"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>includeStandardizedExams</con:entry>
+          <con:entry>productId</con:entry>
+          <con:entry>userId</con:entry>
+          <con:entry>Authorization</con:entry>
+        </con:parameterOrder>
+        <con:environmentSpec>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="AddItemToCollection" id="acf65713-7fa9-42cc-b217-c06a83ad202a">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="QCAddItem" resourcePath="/1/questionSets/{UserId}/addItem" methodName="Method 1" xsi:type="con:RestRequestStep">
+      <con:restRequest name="AddItemToCollection" id="2640ced5-4b4c-407e-be1e-92cec3477736" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:request>{
+"itemId":"229007",
+"type":"question"
+}</con:request>
+        <con:originalUri>https://sakurai-api-preproduction.prep-u.com/1/questionSets/1500626636/addItem</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="ed7350ae-e074-4a71-adb1-1970efac31ee" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="19822171-030b-47cc-bb44-78a6da746416" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" id="78d0ef31-3839-4d8b-ab2c-73d10d306691" name="Match content of [data]">
+          <con:configuration>
+            <path>$['data']</path>
+            <content>true</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" id="d8928c4f-1489-4a55-ad7d-53197f94ee6b" name="Match content of [errors]">
+          <con:configuration>
+            <path>$['errors']</path>
+            <content>[ ]</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="Authorization" value="${#TestCase#BarerToken}"/>
+          <con:entry key="UserId" value="${#TestCase#CollectionQnID}"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>UserId</con:entry>
+          <con:entry>Authorization</con:entry>
+        </con:parameterOrder>
+        <con:environmentSpec>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="delay" name="wait for collection" id="636d5f28-2cf9-4909-8452-79104139042c">
+    <con:settings/>
+    <con:config>
+      <delay>${#TestSuite#CollectionCreation}</delay>
+    </con:config>
+  </con:testStep>
+  <con:properties>
+    <con:property>
+      <con:name>accessDate</con:name>
+      <con:value>2023-04-17T10:08:23-05:00</con:value>
+    </con:property>
+    <con:property>
+      <con:name>DueDate</con:name>
+      <con:value>2023-05-15</con:value>
+    </con:property>
+    <con:property>
+      <con:name>EffectiveDate</con:name>
+      <con:value>2023-11-20T00:00:00.000Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>ExpireDate</con:name>
+      <con:value>2024-03-19T00:00:00.000Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>tomorrow</con:name>
+      <con:value>Tue, Apr 18 2023</con:value>
+    </con:property>
+    <con:property>
+      <con:name>tomorrow2</con:name>
+      <con:value>2023-04-18</con:value>
+    </con:property>
+    <con:property>
+      <con:name>instructorUserId</con:name>
+      <con:value>0345b785-ba3e-4b3a-9c6c-447101694d75</con:value>
+    </con:property>
+    <con:property>
+      <con:name>numberOfAttempts</con:name>
+      <con:value>1</con:value>
+    </con:property>
+    <con:property>
+      <con:name>StudentenrollmentToken</con:name>
+      <con:value>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODE4ODU5NjAsImp0aSI6IjAxZDNiYzFlLWJlMzMtNGNjOS04OGU3LWI4ZTcxMjMzNTNhNSIsImlhdCI6MTY4MTcxMzE2MCwiaXNzIjoiaHR0cHM6Ly9waG9lbml4LWNjbS50aGVwb2ludC5sd3cuY29tIiwibmJmIjoxNjgxNzEzMTYwLCJzdWIiOiI5ZTZlOGM1Ny02ODNlLTRjNTQtODkzMS00NDc0MDE1OWQ2ODUiLCJobHJwX2NjbSI6W3siciI6InMiLCJjcnMiOiJnU0VCUUJLRzk5SUIiLCJzZWMiOiJnU0VCUUJLRzk5SUJfc1NFQlFCS0dBMlIifV19.kKMRJHB4y0Tno_H-esNrWhe-RsUn8zHCmazkZhhKCgXyBFbLRWiD2zyGp5MOZCZbIW1WIlQg4CjosIPwQtw204mHb6iNohaZtznNKEaZ5_BbW3241Stf9E_xo2X9qBCl_zrYUpX1M4uR066aPvoD5d_hViNCAynUW7OXzK3nC4VgF9F6amwQSDrje6AeD8D8vLTw_kmFk9eGSkVvEWnd5ZssYCAzqyVdgadLGbFrWj2N3TOIPsEkgR3HoJ17Ipg_ZCAwBqrAiPG5WMqQsNbMexKeSeb2bMA5FQuasV9Qc3YK9aphsr4ER17HAAZ1F1GtO_gmaYBO8xKU11WX1_UDGx5Dt0cpeRM24oonRf4sGS-BIsWXCsG8fTyaYzfJajIv7xh-ibK5NYtp2fji4W1l9ErKyfMX8bh27B5TnSOPjKZQydo4bqRnpK6IeiSCKmhbi195Yzzzns9h3Zs0edCV70UnEnFPO23gHIM2tSjkk_HNUitc8rR3ErYXKQx_p3t4RyAYcP8dbqi0RdepDBYoyR8LtFpfF63PYKKSk9SD5ePpqcqyqfHDibuL_Onmn0q14sF5TkXmnFLrj15Bxx4dgJV6BwTwbc3n_I-y5unOB6nbSR2PwINbsueSx7hjmebMPzZJqUwCGeehUnvGvt5vMbMY1ofYglw1HxryhcCvgdo</con:value>
+    </con:property>
+    <con:property>
+      <con:name>accessTime</con:name>
+      <con:value>10:08 PM</con:value>
+    </con:property>
+    <con:property>
+      <con:name>DueTime</con:name>
+      <con:value>10:06 PM</con:value>
+    </con:property>
+    <con:property>
+      <con:name>CourseSerialNumber</con:name>
+      <con:value>419</con:value>
+    </con:property>
+    <con:property>
+      <con:name>BarerToken</con:name>
+      <con:value>Bearer NzQwYTBhMjVkZGNjODdkYmQ3NGJkMGJjZWJlZmNkNmIxMjM1NGQ2ZmJmMzc5OWY1ZjkxNTNmYjA1MjliOTJjZA</con:value>
+    </con:property>
+    <con:property>
+      <con:name>CollectionQnID</con:name>
+      <con:value>1500116841</con:value>
+    </con:property>
+    <con:property>
+      <con:name>CourseName</con:name>
+      <con:value>Performance Test Data 50 Assignments _Nov20_131340</con:value>
+    </con:property>
+    <con:property>
+      <con:name>CourseId</con:name>
+      <con:value>g1148RYUD32U</con:value>
+    </con:property>
+  </con:properties>
+  <con:reportParameters/>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:testCase>

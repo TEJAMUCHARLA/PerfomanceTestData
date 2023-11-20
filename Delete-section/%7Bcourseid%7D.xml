@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="{courseid}" path="/api/phx-assignment-management/v1/assignment/{Assignment id}" id="1907220b-3b2f-4415-8b91-0e71802d138e">
+  <con:settings id="163f803d-5be5-42b5-a5bb-5b027011a565">
+    <con:setting id="1907220b-3b2f-4415-8b91-0e71802d138efileName">%7Bcourseid%7D</con:setting>
+  </con:settings>
+  <con:parameters>
+    <con:parameter required="true">
+      <con:name>section</con:name>
+      <con:value>{sectionid}</con:value>
+      <con:style>QUERY</con:style>
+      <con:default>{sectionid}</con:default>
+    </con:parameter>
+    <con:parameter>
+      <con:name>Assignment id</con:name>
+      <con:value>assignment id</con:value>
+      <con:style>TEMPLATE</con:style>
+      <con:default>assignment id</con:default>
+    </con:parameter>
+  </con:parameters>
+  <con:method name="Method 1" id="951aa7ca-1aea-4273-a4f6-beec49e5e85f" method="DELETE">
+    <con:settings/>
+    <con:parameters/>
+    <con:request name="Request 1" id="c2cd2725-a9e8-4495-a3af-77748cd93da5" mediaType="application/json" postQueryString="false">
+      <con:settings>
+        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+      </con:settings>
+      <con:endpoint xsi:nil="true"/>
+      <con:request/>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters>
+        <con:entry key="Assignment id" value="assignment id"/>
+      </con:parameters>
+      <con:parameterOrder>
+        <con:entry>section</con:entry>
+        <con:entry>Assignment id</con:entry>
+      </con:parameterOrder>
+      <con:environmentSpec>
+        <con:entry environmentId="ca7b482c-9f9d-47cd-9dee-6e3bf47cdb75">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+        <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+        <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+        <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:request>
+    <con:environmentSpec>
+      <con:entry environmentId="ca7b482c-9f9d-47cd-9dee-6e3bf47cdb75">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+      <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
+  </con:method>
+  <con:environmentSpec>
+    <con:entry environmentId="ca7b482c-9f9d-47cd-9dee-6e3bf47cdb75">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:resource>

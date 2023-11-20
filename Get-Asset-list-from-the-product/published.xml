@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="published" path="/api/product-title-management/v1/product/isbn/{ISBN}/published" id="43333072-df35-4f76-847e-3dfed5e07072">
+  <con:settings id="7c42dcb1-fc37-45d7-8590-91b054eb8795">
+    <con:setting id="43333072-df35-4f76-847e-3dfed5e07072fileName">published</con:setting>
+  </con:settings>
+  <con:parameters>
+    <con:parameter required="true">
+      <con:name>ISBN</con:name>
+      <con:value>ISBN</con:value>
+      <con:style>TEMPLATE</con:style>
+      <con:default>ISBN</con:default>
+    </con:parameter>
+  </con:parameters>
+  <con:method name="Method 1" id="3fe46a94-2c16-4456-b3f4-61a3e1383482" method="GET">
+    <con:settings/>
+    <con:parameters/>
+    <con:request name="Request 1" id="1392ec2f-5afb-445d-8cf8-b8251206de14" mediaType="application/json">
+      <con:settings/>
+      <con:request/>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters>
+        <con:entry key="ISBN" value=""/>
+      </con:parameters>
+      <con:environmentSpec>
+        <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+        <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+        <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:request>
+    <con:environmentSpec>
+      <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
+  </con:method>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:resource>

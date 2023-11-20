@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" xsi:type="con:RestService" id="0e381a7c-94b8-45f2-88ca-cd2e0d429a44" name="QCAddItem" type="rest_ex" wadlVersion="https://swagger.io/openapiv3/specification">
+  <con:settings id="9c6ba19c-b84e-490c-9939-f544d89d9440">
+    <con:setting id="0e381a7c-94b8-45f2-88ca-cd2e0d429a44fileName">QCAddItem</con:setting>
+  </con:settings>
+  <con:definitionCache type="TEXT" rootPart="GTEQCItems.json">
+    <con:part>
+      <con:url>GTEQCItems.json</con:url>
+      <con:content>{"openapi":"3.0.1","info":{"title":"GTEQCItems","version":"1.0.0"},"servers":[{"url":"/"}],"paths":{"/1/questionSets/{UserId}/addItem":{"description":"","post":{"description":"","requestBody":{"content":{"application/json":{"example":"{\n\"itemId\":\"229007\",\n\"type\":\"question\"\n}"}}},"responses":{"default":{"description":"Default response"}}},"parameters":[{"name":"UserId","in":"path","required":true}]}}}</con:content>
+      <con:type>https://swagger.io/openapiv3/specification</con:type>
+    </con:part>
+  </con:definitionCache>
+  <con:endpoints/>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:interface>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" xsi:type="con:RestService" id="ea48d7ce-3a51-46a1-895f-38f91855a39c" name="GETCreatedCourseQCID" type="rest_ex" wadlVersion="https://swagger.io/openapiv3/specification">
+  <con:settings id="2dfee839-3945-44c4-9960-40097e439294">
+    <con:setting id="ea48d7ce-3a51-46a1-895f-38f91855a39cfileName">GETCreatedCourseQCID</con:setting>
+  </con:settings>
+  <con:definitionCache type="TEXT" rootPart="QCAccessBarear.json">
+    <con:part>
+      <con:url>QCAccessBarear.json</con:url>
+      <con:content>{"openapi":"3.0.1","info":{"title":"QCAccessBarear","version":"1.0.0"},"servers":[{"url":"/"}],"paths":{"/1/questionSets":{"description":"","post":{"description":"","parameters":[{"name":"Authorization","in":"header","required":true,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"example":"{\n  \"parentId\": null,\n  \"name\": \"test api automation12345\",\n  \"mode\": null,\n  \"totalQuestions\": null,\n  \"totalRetiredQuestions\": null,\n  \"enabled\": false,\n  \"isStandardizedExam\": false,\n  \"classIdScope\": null,\n  \"parentOwner\": null,\n  \"user\": \"1500626634\",\n  \"product\": \"165\"\n}"}}},"responses":{"default":{"description":"Default response"}}}}}}</con:content>
+      <con:type>https://swagger.io/openapiv3/specification</con:type>
+    </con:part>
+  </con:definitionCache>
+  <con:endpoints/>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:interface>

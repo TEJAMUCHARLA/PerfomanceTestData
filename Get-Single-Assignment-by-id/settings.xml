@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" xsi:type="con:RestService" id="64aa3ad8-8930-449f-923f-a165d8eb6b83" name="Get Single Assignment by id" type="rest_ex" wadlVersion="https://swagger.io/openapiv3/specification">
+  <con:settings id="a98e5f01-ee7f-479f-bcd5-596e25f472d9">
+    <con:setting id="64aa3ad8-8930-449f-923f-a165d8eb6b83fileName">Get-Single-Assignment-by-id</con:setting>
+  </con:settings>
+  <con:definitionCache type="TEXT" rootPart="Get Single Assignment by id.json">
+    <con:part>
+      <con:url>Get Single Assignment by id.json</con:url>
+      <con:content>{"openapi":"3.0.1","info":{"title":"Get Single Assignment by id","version":"1.0.0"},"servers":[{"url":"/"}],"paths":{"/api/phx-assignment-management/v1/assignment/{Assignment Id}":{"get":{"responses":{"default":{"description":"Default response"}}},"parameters":[{"name":"Assignment Id","in":"path","required":true,"style":"simple","explode":false}]}}}</con:content>
+      <con:type>https://swagger.io/openapiv3/specification</con:type>
+    </con:part>
+  </con:definitionCache>
+  <con:endpoints/>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:interface>

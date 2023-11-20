@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" xsi:type="con:RestService" id="10c837d5-6189-4840-a05c-1e06dc020df4" name="Student Search Course" type="rest_ex" wadlVersion="https://swagger.io/openapiv3/specification">
+  <con:settings id="4f1aa9c2-138e-4145-bc73-089f6fc679d3">
+    <con:setting id="10c837d5-6189-4840-a05c-1e06dc020df4fileName">Student-Search-Course</con:setting>
+  </con:settings>
+  <con:definitionCache type="TEXT" rootPart="Student Join Course.json">
+    <con:part>
+      <con:url>Student Join Course.json</con:url>
+      <con:content>{"openapi":"3.0.1","info":{"title":"Student Join Course","version":"1.0.0"},"servers":[{"url":"/"}],"paths":{"/api/class-management/v2/class-wrapper/search/passcode/{Password}":{"description":"","post":{"description":"","requestBody":{"content":{"application/x-www-form-urlencoded":{}}},"responses":{"default":{"description":"Default response"}}}}}}</con:content>
+      <con:type>https://swagger.io/openapiv3/specification</con:type>
+    </con:part>
+  </con:definitionCache>
+  <con:endpoints/>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:interface>

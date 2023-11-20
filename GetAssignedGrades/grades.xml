@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="grades" path="/api/phx-gradebook-management/v1/ccm/course/{courseId}/section/{sectionId}/grades" id="cdb3a7ca-99c2-4b33-a923-4fad8d3965d0">
+  <con:settings id="8a610189-ed4a-4193-8b36-25fe5673cf58">
+    <con:setting id="cdb3a7ca-99c2-4b33-a923-4fad8d3965d0fileName">grades</con:setting>
+  </con:settings>
+  <con:parameters>
+    <con:parameter required="true">
+      <con:name>courseId</con:name>
+      <con:value>courseId</con:value>
+      <con:style>TEMPLATE</con:style>
+      <con:default>courseId</con:default>
+    </con:parameter>
+    <con:parameter required="true">
+      <con:name>sectionId</con:name>
+      <con:value>sectionId</con:value>
+      <con:style>TEMPLATE</con:style>
+      <con:default>sectionId</con:default>
+    </con:parameter>
+  </con:parameters>
+  <con:method name="Method 1" id="71f07d6d-f0ef-41f9-9d3f-d35c6de979cd" method="GET">
+    <con:settings/>
+    <con:parameters>
+      <con:parameter required="true">
+        <con:name>studentId</con:name>
+        <con:value/>
+        <con:style>QUERY</con:style>
+        <con:default/>
+      </con:parameter>
+    </con:parameters>
+    <con:request name="Request 1" id="17b947f0-bc28-40d6-a2c7-1f869e08db62" mediaType="application/json">
+      <con:settings/>
+      <con:request/>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters>
+        <con:entry key="studentId" value="studentId"/>
+      </con:parameters>
+      <con:parameterOrder>
+        <con:entry>courseId</con:entry>
+        <con:entry>sectionId</con:entry>
+        <con:entry>studentId</con:entry>
+      </con:parameterOrder>
+      <con:environmentSpec>
+        <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+        <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+        <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:request>
+    <con:environmentSpec>
+      <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
+  </con:method>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:resource>
