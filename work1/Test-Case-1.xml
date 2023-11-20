@@ -48,57 +48,6 @@
       </con:restRequest>
     </con:config>
   </con:testStep>
-  <con:testStep type="groovy" name="Groovy Script" id="9a6d6df6-fc1b-42f8-b4f4-67dd3c3f2c9d">
-    <con:settings/>
-    <con:config>
-      <script><![CDATA[import groovy.json.JsonSlurper
-import com.eviware.soapui.model.testsuite.TestRunner.Status
-
-def value = testRunner.testCase.testSteps["Get Product Assignment Details"].testRequest.response
-def responseValue = value.responseContent
-
-def slurper = new JsonSlurper()
-def json = slurper.parseText(responseValue)
-def allconatins=json.containers
-def MatchContainerId="6013"
-def MatchAssetId="340715"
-def MatchResourceType="Pre-Lecture Quizzes"
-def MatchresourceTypeId="9"
-
-def AssetExisted = true
-for(def eachContainer in allconatins)
-{
-	//log.info("eachContainer "+eachContainer.id)
-  for(def Unit in eachContainer.containers)
-  {
-       //  if(Unit.id.toString()=="6013")
-        // {
-         	
-              for(def Assets in Unit.assets)
-              {
-              		
-                        if(Assets.container.toString().equals(MatchContainerId)&&Assets.externalAssetId.toString().equals(MatchAssetId)
-                        &&Assets.resourceTypeId.toString().equals(MatchresourceTypeId)&&Assets.resourceType.toString().equals(MatchResourceType))
-                        {
-                        	AssetExisted=true
-                       log.info("Assets "+Assets.assetCode)
-                       log.info("Assets "+Assets.label)
-                       break;
-                        	
-                        }
-              	 
-              		
-              }
-         		
-         //}	
-  }
-	
-	
-}
-
-assert AssetExisted]]></script>
-    </con:config>
-  </con:testStep>
   <con:testStep type="restrequest" name="Verify final Student Grades After Attempt" id="3d4de5da-4daa-44bc-8045-4449183e9c91">
     <con:settings/>
     <con:config service="GetAssignedGrades" resourcePath="/api/phx-gradebook-management/v1/ccm/course/{courseId}/section/{sectionId}/grades" methodName="Method 1" xsi:type="con:RestRequestStep">
@@ -228,7 +177,7 @@ assert totalAssignments&lt;=count</scriptText>
       </con:restRequest>
     </con:config>
   </con:testStep>
-  <con:testStep type="groovy" name="Attempt Instructor Page All assignments" id="e5d196c1-4039-4c0d-8e80-10901c6c767a">
+  <con:testStep type="groovy" name="Set Assignments Count" id="e5d196c1-4039-4c0d-8e80-10901c6c767a">
     <con:settings/>
     <con:config>
       <script>import groovy.json.JsonSlurper
@@ -245,47 +194,19 @@ def ExistingAssignmentsCount =null
 
 ExistingAssignmentsCount =json.grades.size() as int 
 
+
+ExistingAssignmentsCount= ExistingAssignmentsCount-1
 log.info("ExistingAssignmentsCount "+ExistingAssignmentsCount)
-
-
-/*
-def gradedAssignments = json.grades
-def AttemptAssetId=""
-def AttemptCorrelationId=""
-
-def AttemptResourceType=""
-def AttemptActivityId=""
-
-
-
-for(def GetAssignment in gradedAssignments)
-{
-
-     if(GetAssignment.assetDetails.size()>0)
-     {
-     		//log.info(GetAssignment.assetDetails[0].label)
-     		def assetDetails=GetAssignment.assetDetails[0]
-     		AttemptAssetId=assetDetails.assetId
-     		AttemptResourceType=assetDetails.resourceType
-     		
-     		AttemptCorrelationId=GetAssignment.assignmentId
-     	 //break;
-     } 
-}
-log.info("AttemptAssetId "+AttemptAssetId)
-log.info("AttemptResourceType "+AttemptResourceType)
-log.info("AttemptAssetId "+AttemptCorrelationId)\
-
-*/</script>
+testRunner.testCase.setPropertyValue("ExistingAssignmentsCount", ExistingAssignmentsCount.toString())</script>
     </con:config>
   </con:testStep>
-  <con:testStep type="datasource" name="Get Assignmnet Type" id="32c24082-7d42-4fc8-9a10-2ac24c332606">
+  <con:testStep type="datasource" name="Get EachAssignment" id="32c24082-7d42-4fc8-9a10-2ac24c332606">
     <con:settings/>
     <con:config xsi:type="con:DataSourceStep">
       <con:dataSource type="Excel">
         <con:configuration>
           <file>${#Project#TestDataExcelFile}</file>
-          <worksheet>AllAssignmentsPushBody</worksheet>
+          <worksheet>loop</worksheet>
           <cell>A2</cell>
           <ignoreEmpty>false</ignoreEmpty>
           <evaluateFormulas>false</evaluateFormulas>
@@ -294,12 +215,10 @@ log.info("AttemptAssetId "+AttemptCorrelationId)\
       <con:shared>true</con:shared>
       <con:restartShared>true</con:restartShared>
       <con:preload>true</con:preload>
-      <con:property>number</con:property>
-      <con:property>resourceType</con:property>
-      <con:property>AttemptBodyData</con:property>
-      <con:property>DetailsMapedName</con:property>
+      <con:property>Itrations</con:property>
+      <con:property>Score</con:property>
       <con:startRow/>
-      <con:endRow/>
+      <con:endRow>${#TestCase#ExistingAssignmentsCount}</con:endRow>
       <con:recordsPerIteration>1</con:recordsPerIteration>
       <con:completeLastOperation>false</con:completeLastOperation>
       <con:trimValues>false</con:trimValues>
@@ -309,7 +228,7 @@ log.info("AttemptAssetId "+AttemptCorrelationId)\
       <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
     </con:config>
   </con:testStep>
-  <con:testStep type="groovy" name="Attempt Instructor Page All assignments 2" id="ad90a220-5628-410c-81c2-6fc47222ca0a">
+  <con:testStep type="groovy" name="Attempt Instructor Page All assignments" id="ad90a220-5628-410c-81c2-6fc47222ca0a" disabled="true">
     <con:settings/>
     <con:config>
       <script>import groovy.json.JsonSlurper
@@ -317,11 +236,34 @@ import com.eviware.soapui.model.testsuite.TestRunner.Status
 
 
 def response = context.expand( '${GET Instrcutor resulust Page Details#Response}' )
+def itrations = context.expand( '${Get EachAssignment#Itrations}' )as int
+
+def AttemptAssetId=""
+def AttemptCorrelationId=""
+def AttemptResourceType=""
+def AttemptActivityId=""
+
 
 def slurper = new JsonSlurper()
 def json = slurper.parseText(response)
 
-def gradedAssignments = json.grades
+def gradedAssignments = json.grades[itrations]
+	def assetDetails=gradedAssignments.assetDetails[0]
+
+log.info("assetDetails "+gradedAssignments.assetDetails[0])
+testRunner.testCase.setPropertyValue("AssetDetailsJOSN", assetDetails.toString())
+
+    AttemptAssetId=assetDetails.assetId
+     AttemptResourceType=assetDetails.resourceType	
+    AttemptCorrelationId=gradedAssignments.assignmentId
+
+log.info("AttemptAssetId "+AttemptAssetId)
+log.info("AttemptResourceType "+AttemptResourceType)
+log.info("AttemptCorrelationId "+AttemptCorrelationId)
+    
+
+/*
+def gradedAssignments = json.grades[]
 def AttemptAssetId=""
 def AttemptCorrelationId=""
 
@@ -344,13 +286,444 @@ for(def GetAssignment in gradedAssignments)
 }
 log.info("AttemptAssetId "+AttemptAssetId)
 log.info("AttemptResourceType "+AttemptResourceType)
-log.info("AttemptAssetId "+AttemptCorrelationId)</script>
+log.info("AttemptAssetId "+AttemptCorrelationId)
+
+*/</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Generate Assignmnet  Start and End Time" id="bba6c622-db2f-4253-a3e2-94aecd9b12fa">
+    <con:settings/>
+    <con:config>
+      <script>import java.lang.*;
+import java.util.Date
+import java.util.Calendar
+import java.util.TimeZone
+import java.text.SimpleDateFormat
+
+
+
+Calendar cal = Calendar.getInstance();
+Date today = new Date();
+cal.setTime(today);
+//cal.add(Calendar.DATE, 1)
+Date currentDatePlusOne = cal.getTime();
+//"sentAt": "2023-04-13T07:55:29.504Z",
+def accessibleFromTimezone= "UTC"
+
+//MM-dd-yyyy HH:mm:ss 
+//SimpleDateFormat Date1 = new SimpleDateFormat("yyyy-MM-dd")
+//SimpleDateFormat Time1= new SimpleDateFormat("hh:mm:m")
+
+SimpleDateFormat Date1 = new SimpleDateFormat("yyyy-MM-dd")
+SimpleDateFormat Time1= new SimpleDateFormat("HH:mm:m")
+//2023-04-04T11:51:14.9780634Z
+Date1.setTimeZone(TimeZone.getTimeZone(accessibleFromTimezone));
+Time1.setTimeZone(TimeZone.getTimeZone(accessibleFromTimezone));
+
+
+//def assignmnetDueTime_MS = context.expand( '${#TestSuite#AssignmnetDueTime_MS}' ) as int
+def AttemptTimeLimit = 0
+//AttemptTimeLimit=240000
+
+log.info(AttemptTimeLimit)
+
+def DueDateData= Date1.format(currentDatePlusOne)
+
+def DueTimeData= Time1.format(new Date(new Date().getTime()-6000))
+
+def comAt= Time1.format(new Date(new Date().getTime()+AttemptTimeLimit+120000))
+def senAt= Time1.format(new Date(new Date().getTime()+AttemptTimeLimit+180000))
+
+/*
+def startAt = DueDateData+"T"+DueTimeData+".866Z"
+def completedAt = DueDateData+"T"+comAt+".866Z"
+def sentAt = DueDateData+"T"+senAt+".866Z"
+*/
+def startAt = DueDateData+"T"+DueTimeData+".605Z"
+def completedAt = DueDateData+"T"+comAt+".605Z"
+def sentAt = DueDateData+"T"+senAt+".605Z"
+//log.info("startAt = "+startAt)
+
+log.info("startAt = "+startAt)
+log.info("completedAt = "+completedAt)
+log.info("sentAt = "+sentAt)
+
+testRunner.testCase.setPropertyValue("startAt", startAt)
+testRunner.testCase.setPropertyValue("completedAt", completedAt)
+testRunner.testCase.setPropertyValue("sentAt", sentAt)</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="AttemptCommonPushBody" id="aecd4dcf-ea3f-45aa-b012-a1e15e1a89c9">
+    <con:settings/>
+    <con:config service="pushSQS" methodName="Method 1" resourcePath="/api/gradebook-process-management/v1/pushSqsQueue" xsi:type="con:RestRequestStep">
+      <con:restRequest name="AttemptCommonPushBody" id="0356f71d-de87-4d0e-8c1b-3c08512d544b" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenStudent}" value="" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_ssoStudent}" value="" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:request>"startedAt": "${#TestCase#startAt}",
+ "completedAt": "${#TestCase#completedAt}",
+ "sentAt": "${#TestCase#sentAt}",
+"userId": "DD_userId",
+"systemId": "${#Project#SystemId}",
+"activityId": "D_activityId",
+ "correlationId": "D_correlationId",
+ "score": "D_score", 
+  "classIds": [
+        "D_classIds"
+    ]
+	
+}</con:request>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/gradebook-process-management/v1/pushSqsQueue</con:originalUri>
+        <con:assertion type="Response SLA Assertion" id="a9854fe8-1173-41fd-83b1-cb912fb39936" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Set Assignment Attempt Details" id="9a6d6df6-fc1b-42f8-b4f4-67dd3c3f2c9d">
+    <con:settings/>
+    <con:config>
+      <script><![CDATA[import groovy.json.JsonSlurper
+import com.eviware.soapui.model.testsuite.TestRunner.Status
+
+testRunner.testCase.setPropertyValue("MatchContainerId","")
+testRunner.testCase.setPropertyValue("MatchAssetId","")
+testRunner.testCase.setPropertyValue("MatchResourceType","")
+testRunner.testCase.setPropertyValue("MatchResourceTypeId","")
+testRunner.testCase.setPropertyValue("AssetcorrelationId","")
+testRunner.testCase.setPropertyValue("AssetActivityId","")
+testRunner.testCase.setPropertyValue("AssetName","")
+testRunner.testCase.setPropertyValue("SectionCode","")
+
+
+def value = testRunner.testCase.testSteps["Get Product Assignment Details"].testRequest.response
+def responseValue = value.responseContent
+
+def ExistingAssignemnts = context.expand( '${GET Instrcutor resulust Page Details#Response}' )
+def itrations = context.expand( '${Get EachAssignment#Itrations}' )as int
+
+
+
+def slurper = new JsonSlurper()
+def json = slurper.parseText(responseValue)
+def existingAssignemnts = slurper.parseText(ExistingAssignemnts)
+
+itrations=0
+log.info("itrations "+itrations)
+def gradedAssignments = existingAssignemnts.grades[itrations]
+def assetDetailsJOSN = gradedAssignments.assetDetails[0]
+
+log.info("assetDetailsJOSN = "+assetDetailsJOSN)
+
+log.info("assetDetailsJOSN.container "+assetDetailsJOSN.container)
+log.info("assetDetailsJOSN.assetId "+assetDetailsJOSN.assetId)
+log.info("assetDetailsJOSN.resourceType "+assetDetailsJOSN.resourceType)
+log.info("assetDetailsJOSN.resourceTypeId "+assetDetailsJOSN.resourceTypeId)
+
+
+def MatchContainerId=assetDetailsJOSN.container.toString()
+def MatchAssetId=assetDetailsJOSN.assetId.toString()
+def MatchResourceType=assetDetailsJOSN.resourceType.toString()
+def MatchResourceTypeId=assetDetailsJOSN.resourceTypeId.toString()
+def AssetcorrelationId=gradedAssignments.assignmentId
+def AssetActivityId =""
+def AssetName =gradedAssignments.assignmentTitle.toString()
+def SectionCode=gradedAssignments.sections[0].sectionCode[0].toString()
+//def SectionCode=gradedAssignments.sections[0].sectionCode[0].toString()
+
+
+def allconatins=json.containers
+
+def AssetExisted = true
+for(def eachContainer in allconatins)
+{
+	//log.info("eachContainer "+eachContainer.id)
+  for(def Unit in eachContainer.containers)
+  {
+       //  if(Unit.id.toString()=="6013")
+        // {
+         //log.info("Unit.id.toString() "+Unit.id.toString())
+              for(def Assets in Unit.assets)
+              {
+              		
+                        if(Assets.container.toString().equals(MatchContainerId)&&Assets.externalAssetId.toString().equals(MatchAssetId)
+                        &&Assets.resourceType.toString().equals(MatchResourceType)&&Assets.resourceTypeId.toString().equals(MatchResourceTypeId))
+                        {
+                        	AssetExisted=true
+                       //log.info("Assets "+Assets.assetCode)
+                     //  log.info("Assets "+Assets.label)
+                       AssetActivityId=Assets.assetCode
+                    //   AssetName = Assets.label
+
+                                           break;
+                        	
+                        }
+              	 
+              		
+              }
+         		
+         //}	
+  }
+	
+	
+}
+
+assert AssetExisted
+if(MatchResourceType.toString().toLowerCase().contains("prepu"))
+{
+	 AssetActivityId=gradedAssignments.externalPrepuId.toString()
+}
+
+
+
+
+log.info("Detaials ====================== ")
+log.info("MatchContainerId = "+MatchContainerId)
+log.info("MatchAssetId = "+MatchAssetId)
+log.info("MatchResourceType = "+MatchResourceType)
+log.info("MatchResourceTypeId = "+MatchResourceTypeId)
+log.info("AssetcorrelationId = "+AssetcorrelationId)
+log.info("AssetActivityId = "+AssetActivityId)
+log.info("AssetName = "+AssetName)
+log.info("SectionCode = "+SectionCode)
+
+log.info("Detaials ====================== ")
+
+
+testRunner.testCase.setPropertyValue("MatchContainerId",MatchContainerId.toString())
+testRunner.testCase.setPropertyValue("MatchAssetId",MatchAssetId.toString())
+testRunner.testCase.setPropertyValue("MatchResourceType",MatchResourceType.toString())
+testRunner.testCase.setPropertyValue("MatchResourceTypeId",MatchResourceTypeId.toString())
+testRunner.testCase.setPropertyValue("AssetcorrelationId",AssetcorrelationId.toString())
+testRunner.testCase.setPropertyValue("AssetActivityId",AssetActivityId.toString())
+testRunner.testCase.setPropertyValue("AssetName",AssetName.toString())
+testRunner.testCase.setPropertyValue("SectionCode",SectionCode.toString())
+
+
+
+def attemptBodyData = context.expand( '${#TestCase#AttemptBodyData}' )
+testRunner.testCase.setPropertyValue("AttemptBodyData","")]]></script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasource" name="Get Assignmnet Type" id="e87a4ec3-edd3-4876-820e-eb099ff548a4">
+    <con:settings/>
+    <con:config xsi:type="con:DataSourceStep">
+      <con:dataSource type="Grid">
+        <con:configuration>
+          <check><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry></xml-fragment>]]></check>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">PrepU Mastery Level Quizzes by Chapter</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">{     "id": "1537254803",     "meta": {         "points": "100"     },     "type": "Achievement",     "quizzes": [         {             "id": D_activityId,             "name": "D_activityName",             "questionsAnswered": 5         }     ],     "sectionId": "mastery_level",     "sectionName": "Mastery Level Assignments",     "activityName": "D_activityName",     "masteryLevel": 2,     "quizzesTaken": 1,</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">PrepU Mastery Level Quizzes By Concept</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">{     "id": "1537254803",     "meta": {         "points": "100"     },     "type": "Achievement",     "quizzes": [         {             "id": D_activityId,             "name": "D_activityName",             "questionsAnswered": 5         }     ],     "sectionId": "mastery_level",     "sectionName": "Mastery Level Assignments",     "activityName": "D_activityName",     "masteryLevel": 2,     "quizzesTaken": 1,</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">PREP_U_QC</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">{     "id": "1537254803",     "meta": {         "points": "100"     },     "type": "Achievement",     "quizzes": [         {             "id": D_activityId,             "name": "D_activityName",             "questionsAnswered": 5         }     ],     "sectionId": "mastery_level",     "sectionName": "Mastery Level Assignments",     "activityName": "D_activityName",     "masteryLevel": 2,     "quizzesTaken": 1,</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Animations</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">"{     ""id"": ""lacldh2i"",     ""meta"": {         ""videoPosition"": 170.779766     },     ""type"": ""Achievement"",    ""productId"": null,   ""positionUpdated"": true," </con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Interactive Case Studies</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">"{     ""id"": ""ce3603cb-0250-46b5-a012-4d57ace2a663"",     ""type"": ""Scored"",  ""productId"": null," </con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Interactive Tutorials</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">"{     ""id"": ""ce3603cb-0250-46b5-a012-4d57ace2a663"",  ""productId"": null,     ""type"": ""Scored"",    " </con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Picmonic</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">"{      ""type"": ""Scored"",     ""id"": ""PICMONIC-1666074769-1963589"",     ""meta"": {         ""host"": ""www.picmonic.com"",         ""hints"": 0,         ""score"": ""10"",         ""correct"": 2,         ""attempts"": 5,         ""quizround"": 23120994,         ""seat_time"": 48,         ""total_time"": 33,         ""quiz_end_time"": 1666074768,         ""video_watched"": false,         ""lti_delivery_id"": 1963589,         ""quiz_start_time"": 1666074735,         ""end_unix_timestamp"": 1666074768,         ""lis_result_sourcedid"": ""eyJhc3NldENvZGUiOiJDUDRfUElDTU9OSUNfNWY0YmNmYjYxMzAxNyIsImFzc2lnbm1lbnRJZCI6IjQyMjg4MDU1NTU2Mjk1ODg0OCIsImNsYXNzSWRzIjpbImdMN1c4TEM3NFpGMV9zTDdXOExDNzZEWkgiXSwicHJvZHVjdElzYm4iOiI5NzgxOTc1MTI0NDY1Iiwic3lzdGVtSWQiOiIzYzM5ODQ2Yy04ODZhLWRmMTEtYjExNS0wMDUwNTZjMDAwMDgiLCJ0eXBlIjoiU2NvcmVkIiwiYWN0aXZpdHlOYW1lIjoiQUJDREVzIG9mIE1lbGFub21hIiwidXNlcklkIjoiMzEyMThkOGYtNTU3Ny00N2NhLWI0ODItNDMwYzAwZGIyZmRlIiwiYXV0aFRva2VuIjoiR290bHFrNmtrYXNabndqTWJBWU5DdmY4XC9aalphSXRVTW9xWlhcLzM1RjYraWp4RDRHVlYrNWpjMnBoeXVHQ3F2ZGtqUEZcLzlyNmJQMEQ4XC85aDNnRDduSFBoVHpZNzVVbjFCRytcL0FIdFRiejZSOUhzZUVFcHBMQkJCOTdwYzB6OWJxazZLK1JOdkM3MmpSaVJ5bllcL2NLanpEN08yZWVkZTJ5dGJTazl2VldrNWNMWWpWY2pZVE5Ca1puV0hpYkR6YzZVOU9vK1A2cDVacXFab1FLZDcyTVA4Y3Z0VW90bndGRTFucklYZXluRnpwVDA2ajRcL3FubG1xcG1oQXAzdlluWVp2MGJaUTl2ZitsZUlHR05CK2JLWDhuV1NzVzlvWCJ9"",         ""start_unix_timestamp"": 1666074720     },     ""ReportData"": [         {             ""hint"": 0,             ""correct"": 0,             ""end_time"": 1666074745,             ""attempted"": 1,             ""start_time"": 1666074735,             ""total_time"": 10,             ""answer_time"": 1666074740,             ""explanation"": ""Any change in size, shape, color, or elevation is important in diagnosis. New symtoms such as bleeding, itching, or crusting should be brought to the attention of the healthcare provider."",             ""question_id"": 43498,             ""question_text"": ""Which of the following is most likely associated with ABCDEs of melanoma?"",             ""correct_answer"": ""Evolving"",             ""selected_answer"": ""Erythema"",             ""question_image_url"": """"         },         {             ""hint"": 0,             ""correct"": 0,             ""end_time"": 1666074749,             ""attempted"": 1,             ""start_time"": 1666074745,             ""total_time"": 4,             ""answer_time"": 1666074747,             ""explanation"": ""The borders of an early melanoma tend to be uneven or difficult to define. Edges may be scalloped or notched."",             ""question_id"": 43495,             ""question_text"": ""Which of the following is most likely associated with ABCDEs of melanoma?"",             ""correct_answer"": ""Border"",             ""selected_answer"": ""Blaschko Lines"",             ""question_image_url"": """"         },         {             ""hint"": 0,             ""correct"": 1,             ""end_time"": 1666074755,             ""attempted"": 1,             ""start_time"": 1666074749,             ""total_time"": 6,             ""answer_time"": 1666074753,             ""explanation"": ""Melanoma lesions are typically irregular, or not symmetrical, in shape. Benign lesions are usually symmetrical."",             ""question_id"": 43494,             ""question_text"": ""Which of the following is most likely associated with ABCDEs of melanoma?"",             ""correct_answer"": ""Asymmetry"",             ""selected_answer"": ""Asymmetry"",             ""question_image_url"": """"         },         {             ""hint"": 0,             ""correct"": 1,             ""end_time"": 1666074764,             ""attempted"": 1,             ""start_time"": 1666074755,             ""total_time"": 9,             ""answer_time"": 1666074762,             ""explanation"": ""Melanoma lesions are often greater than 6 millimeters in diameter, which is greater than the size of a pencil eraser."",             ""question_id"": 43497,             ""question_text"": ""Which of the following is most likely associated with ABCDEs of melanoma?"",             ""correct_answer"": ""Diameter"",             ""selected_answer"": ""Diameter"",             ""question_image_url"": """"         },         {             ""hint"": 0,             ""correct"": 0,             ""end_time"": 1666074768,             ""attempted"": 1,             ""start_time"": 1666074764,             ""total_time"": 4,             ""answer_time"": 1666074766,             ""explanation"": ""The presence of more than one color (black, brown, blue, red, etc.) or the uneven distribution of color can be a warning sign. Benign moles are typically one shade."",             ""question_id"": 43496,             ""question_text"": ""Which of the following is most likely associated with ABCDEs of melanoma?"",             ""correct_answer"": ""Color"",             ""selected_answer"": ""Carotenaemia"",             ""question_image_url"": """"         }     ]," </con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Pre-Lecture Quizzes</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">"{     ""id"": ""lacldh2i"",     ""meta"": {         ""videoPosition"": 170.779766     },     ""type"": ""Achievement"",    ""productId"": null,   ""positionUpdated"": true," </con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Videos</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">"{     ""id"": ""lacldh2i"",     ""meta"": {         ""videoPosition"": 170.779766     },     ""type"": ""Achievement"",    ""productId"": null,   ""positionUpdated"": true," </con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Skills_VIDEOS</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">"{     ""id"": ""lab2t60x"",     ""meta"": {         ""videoPosition"": 357.813099     },     ""type"": ""Achievement"",     ""productId"": null,     ""positionUpdated"": false," </con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Skills_QUIZ</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">"{     ""id"": ""17064369"",     ""meta"": {         ""quizId"": D_AssertId,         ""quizTime"": ""1800 seconds"",         ""quizVersion"": 1,         ""totalCorrect"": 2,         ""totalAnswered"": 10,         ""totalIncorrect"": 8,         ""totalQuestions"": 10,         ""totalTimeSpent"": ""38 seconds"",         ""totalUnattempted"": 0     },     ""type"": ""Scored"",  ""productId"": null," </con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Skills_CASE_STUDIES</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">"{     ""id"": ""ce3603cb-0250-46b5-a012-4d57ace2a663"",     ""type"": ""Scored"",     ""productId"": null," </con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Skills_CHECKLIST</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">"{          ""id"": ""3614"",     ""meta"": {         ""grade"": ""PASS"",         ""score"": ""2/6""     },  ""assetId"": ""D_AssertId"",  ""productId"": ""1"",     ""type"": ""Scored"", " </con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <recognizeAsPlainText>true</recognizeAsPlainText>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>resourceType</con:property>
+      <con:property>AttemptBodyData</con:property>
+      <con:property>AttemptBodyData1</con:property>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Find ResourceType Body" id="6095db56-de16-467c-a91e-f2a448c5c4c7">
+    <con:settings/>
+    <con:config>
+      <script>def resourceType = context.expand( '${Get Assignmnet Type#resourceType}' )
+def matchResourceType = context.expand( '${#TestCase#MatchResourceType}' )
+def attemptBodyData = context.expand( '${Get Assignmnet Type#AttemptBodyData}' )
+
+log.info("attemptBodyData "+attemptBodyData)
+
+if(resourceType.toString().equals(matchResourceType.toString()))
+{
+	testRunner.testCase.setPropertyValue("AttemptBodyData", attemptBodyData.toString())
+	log.info("Existed")
+}</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="Data Source Loop" id="692196f2-8083-4403-9223-ff0260eca3c7">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>Get EachAssignment</dataSourceStep>
+      <targetStep>Find ResourceType Body</targetStep>
+      <discardResults>false</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Arrange Attempt Body Data" id="0a275ab2-f32b-49ca-96ab-15e4e65fd1fd">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import com.eviware.soapui.model.testsuite.TestRunner.Status
+import groovy.json.JsonOutput
+import groovy.json.*
+
+def rawRequest = context.expand( '${AttemptCommonPushBody#RawRequest}' )
+def rawRequestData = rawRequest
+
+//log.info(rawRequestData)
+testRunner.testCase.testSuite.setPropertyValue("Attempt_BodyData","")
+//def attemptBodyData = context.expand( '${Get Assignmnet Type#AttemptBodyData}' )
+def attemptBodyData = context.expand( '${#TestCase#AttemptBodyData}' )
+
+//log.info(attemptBodyData)
+
+def number = context.expand( '${Get Assignmnet Type#number}' )
+def assignmentType = context.expand( '${Get Assignmnet Type#resourceType}' )
+//def resourceType = context.expand( '${Get Assignmnet Type#resourceType}' )
+
+
+def name =""
+def assetId=""
+def version=""
+def type=""
+def typeId=""
+def sectionCode = context.expand( '${#TestCase#SectionCode}' )
+def assetName = context.expand( '${#TestCase#AssetName}' )
+def assetcorrelationId = context.expand( '${#TestCase#AssetcorrelationId}' )
+def matchResourceTypeId = context.expand( '${#TestCase#MatchResourceTypeId}' )
+def matchResourceType = context.expand( '${#TestCase#MatchResourceType}' )
+def matchAssetId = context.expand( '${#TestCase#MatchAssetId}' )
+def assetActivityId = context.expand( '${#TestCase#AssetActivityId}' )
+
+name=assetName
+assetId=matchAssetId
+version = ""
+type=matchResourceType
+//typeId=resourceTypeId
+def tempData = rawRequestData
+tempData=tempData.replace("D_activityId",assetActivityId)
+
+
+def attemptScore ="50"
+//def attemptScore = score1234
+log.info("score "+attemptScore)
+
+if(attemptBodyData.toString().contains("Achievement"))
+{
+   tempData=tempData.replace("D_score","1")
+   log.info("I am Video")
+}
+else
+{
+	log.info("I am Scored")
+	tempData=tempData.replace("D_score",attemptScore)
+}
+//==================
+
+attemptBodyData = attemptBodyData.replace("D_AssertId",assetId)
+
+log.info("name :"+assetName+"assert id := "+assetId+"version := "+version+"ActivityId := "+assetActivityId)
+
+def finalPushBody= attemptBodyData+tempData
+//def bodyData=rawRequestData.toString().replace("D_name",name).replace("D_assetId",assetId).replace("D_assetVersion",version).replace("D_type",type).replace("D_resourceTypeId",typeId)
+
+finalPushBody = finalPushBody.replace("D_correlationId",assetcorrelationId.toString())
+finalPushBody = finalPushBody.replace("D_classIds",sectionCode.toString())
+log.info("final body = "+finalPushBody)
+
+testRunner.testCase.testSuite.setPropertyValue("Final_Attempt_BodyData",finalPushBody)
+log.info("Assert id = "+assetId)
+testRunner.testCase.setPropertyValue("Assertid",assetId)</script>
     </con:config>
   </con:testStep>
   <con:properties>
     <con:property>
       <con:name>SubmittedAssignmentsCount</con:name>
       <con:value>48</con:value>
+    </con:property>
+    <con:property>
+      <con:name>AssetDetailsJOSN</con:name>
+      <con:value>{assetId=313, label=Acid-Base Balance, resourceTypeId=24, resourceType=PrepU Mastery Level Quizzes By Concept, container=6619, containerLabel=Acid-Base, contentTypeId=20, contentTypeName=Prepu, displayOrder=null, attemptDetails=[]}</con:value>
+    </con:property>
+    <con:property>
+      <con:name>startAt</con:name>
+      <con:value>2023-11-20T15:35:35.605Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>completedAt</con:name>
+      <con:value>2023-11-20T15:38:38.605Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>sentAt</con:name>
+      <con:value>2023-11-20T15:39:39.605Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>MatchContainerId</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>MatchAssetId</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>MatchResourceType</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>MatchResourceTypeId</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>AssetcorrelationId</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>AssetActivityId</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>AssetName</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>SectionCode</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>Assertid</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>AttemptBodyData</con:name>
+      <con:value>{     "id": "1537254803",     "meta": {         "points": "100"     },     "type": "Achievement",     "quizzes": [         {             "id": D_activityId,             "name": "D_activityName",             "questionsAnswered": 5         }     ],     "sectionId": "mastery_level",     "sectionName": "Mastery Level Assignments",     "activityName": "D_activityName",     "masteryLevel": 2,     "quizzesTaken": 1,</con:value>
+    </con:property>
+    <con:property>
+      <con:name>ExistingAssignmentsCount</con:name>
+      <con:value>47</con:value>
     </con:property>
   </con:properties>
   <con:reportParameters/>

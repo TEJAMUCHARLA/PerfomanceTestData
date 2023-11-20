@@ -4,6 +4,27 @@
     <con:setting id="7c00978c-862c-4add-a207-f052e26c6639fileName">work1</con:setting>
   </con:settings>
   <con:runType>SEQUENTIAL</con:runType>
-  <con:properties/>
+  <con:properties>
+    <con:property>
+      <con:name>Attempt_BodyData</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>Final_Attempt_BodyData</con:name>
+      <con:value>{     "id": "1537254803",     "meta": {         "points": "100"     },     "type": "Achievement",     "quizzes": [         {             "id": D_activityId,             "name": "D_activityName",             "questionsAnswered": 5         }     ],     "sectionId": "mastery_level",     "sectionName": "Mastery Level Assignments",     "activityName": "D_activityName",     "masteryLevel": 2,     "quizzesTaken": 1,"startedAt": "2023-11-20T15:35:35.605Z",
+ "completedAt": "2023-11-20T15:38:38.605Z",
+ "sentAt": "2023-11-20T15:39:39.605Z",
+"userId": "DD_userId",
+"systemId": "3c39846c-886a-df11-b115-005056c00008",
+"activityId": "",
+ "correlationId": "",
+ "score": "1", 
+  "classIds": [
+        ""
+    ]
+	
+}</con:value>
+    </con:property>
+  </con:properties>
   <con:reportParameters/>
 </con:testSuite>
