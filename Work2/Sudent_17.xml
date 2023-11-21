@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase xmlns:con="http://eviware.com/soapui/config" id="83333e8b-8ca6-43a0-bed0-c64fda1478d9" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Sudent_17" searchProperties="true" timeout="0">
+  <con:settings id="9954e355-c708-4ad8-abed-641ccabee9d7">
+    <con:setting id="83333e8b-8ca6-43a0-bed0-c64fda1478d9fileName">Sudent_17</con:setting>
+  </con:settings>
+  <con:testStep type="groovy" name="Groovy Script" id="7d6c83b2-3309-44db-9cd4-badb8d32ba01">
+    <con:settings/>
+    <con:config>
+      <script>def final_Attempt_BodyData = context.expand( '${#TestSuite#Final_Attempt_BodyData}' )
+def studentUserID = context.expand( '${#TestCase#StudentUserID}' )
+
+
+
+final_Attempt_BodyData=final_Attempt_BodyData.toString().replace("DD_userId",studentUserID.toString())
+
+testRunner.testCase.setPropertyValue("PushAttemptBody", final_Attempt_BodyData.toString())
+def pushAttemptBody = context.expand( '${#TestCase#PushAttemptBody}' )
+
+log.info("final_Attempt_BodyData "+pushAttemptBody)</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Push to SQS" id="e8e9f50f-ebd7-4335-868d-59c65b9e2124">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="pushSQS" methodName="Method 1" resourcePath="/api/gradebook-process-management/v1/pushSqsQueue" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Push to SQS" id="0356f71d-de87-4d0e-8c1b-3c08512d544b" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;con:entry key="${#Project#Key_xaccessTokenStudent}" value="${#Project#xaccessTokenStudent}" xmlns:con="http://eviware.com/soapui/config"/></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:request>${#TestCase#PushAttemptBody}</con:request>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/gradebook-process-management/v1/pushSqsQueue</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="26163957-cf3c-4bf9-9928-2bef78e226f8" name="Valid HTTP Status Codes" disabled="true">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="a9854fe8-1173-41fd-83b1-cb912fb39936" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="78cd09dc-2a8a-4a7b-86db-4af23e0edc94" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+
+def testCase = messageExchange.modelItem.testCase;
+def rawRequest = context.expand( '${Push to SQS#RawRequest#$[\'activityId\']}' )
+
+def response = context.expand( '${Push to SQS#Response#$[\'code\']}' )
+
+
+if(rawRequest.toString()=="")
+{
+	
+	assert response.toString()=="400"
+	testCase.setPropertyValue("StatusCode","400")
+}
+else
+{
+	assert response.toString()==""
+	testCase.setPropertyValue("StatusCode","200")
+}</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:properties>
+    <con:property>
+      <con:name>PushAttemptBody</con:name>
+      <con:value>{"id":"lacldh2i","meta":{"videoPosition":170.779766},"type":"Achievement","productId":null,"positionUpdated":true,"startedAt":"2023-11-21T10:48:48.605Z","completedAt":"2023-11-21T10:50:50.605Z","sentAt":"2023-11-21T10:51:51.605Z","userId":"f457d2f6-e5c9-49b0-ae8e-46090095fd02","systemId":"3c39846c-886a-df11-b115-005056c00008","activityId":"CP4_VIDEO_5bfc5e60457be","correlationId":"567538870556557312","score":"1","classIds":["g111Q1UCEEDFC_s111Q1UCEFRZS"]}</con:value>
+    </con:property>
+    <con:property>
+      <con:name>xaccessTokenStudent</con:name>
+      <con:value>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzc28ud2tocGUuY29tIiwiYXVkIjoiM2MzOTg0NmMtODg2YS1kZjExLWIxMTUtMDA1MDU2YzAwMDA4IiwiYXV0aF90aW1lIjoxNzAwNTYzNTM1LCJuYW1lIjoiUGVyZm9ybWFuY2UgU3R1ZGVudDExMTMiLCJqdGkiOiJmMjc5MGRmZS05OGY4LTQyOGYtYmVlOC1hMTE3YmEwNjQ5OTYiLCJpYXQiOjE3MDA1NjM1MzUsImV4cCI6MTcwMDY0OTkzNSwic3ViIjoiZjQ1N2QyZjYtZTVjOS00OWIwLWFlOGUtNDYwOTAwOTVmZDAyIiwicm9sZXMiOiJ3a2hwZS1lbmQgdXNlciIsIndraHBlX3Blcm1pc3Npb25zIjpbIkNhblVzZVBlcnNvbmFsaXphdGlvbkZlYXR1cmVzIl0sIndraHBlX3Rva2VuIjoiVTdTV3VueDNrSUp5M1pmb3ZBa2xTSUxGRTVabXozd2Q4bjd6RVpob1pSMUh0bENFRTBTVnJzOHNzN1pKY2U5QU80ZHp1aUQ0S2lKbGw4QlRKSit6QTNIUGhUelk3NVVuMUJHKy9BSHRUYno2UjlIc2VFRXBwTEJCQjk3cGMwejlNdFFkMXNISll6TXZZMjBBeGlFazJXU29LR0pUV3ZURm5GTjBpOEFIT1ZPb1hQY2FlbU1YWGRCa1puV0hpYkR6YzZVOU9vK1A2cDVacXFab1FLZDcyTVA4Y3Z0VW90bndGRTFucklYZXluRnpwVDA2ajQvcW5sbXFwbWhBcDN2WW5ZWnYwYlpROXZmK2xlSUdHTkIrYktYOG5XU3NXOW9YIiwidG9rZW5fdHlwZSI6ImJlYXJlciJ9.C6QM_dPhLzWQew7zSkuCruzN2ESW2mW3uQXS0sxeKcXwV2DaUcaj_grc5rl5CqonssWsf_qpCfOJ6tOCYmc_7DjtSejWcRqacd8mylaLhgN8KzL5Zq0s3Czl593EbVoWNWeR605ZUn5jL8Ka_qs7zk0cvmlaGNDu63STVIfYxeo</con:value>
+    </con:property>
+    <con:property>
+      <con:name>StudentUserID</con:name>
+      <con:value>f457d2f6-e5c9-49b0-ae8e-46090095fd02</con:value>
+    </con:property>
+    <con:property>
+      <con:name>StatusCode</con:name>
+      <con:value>200</con:value>
+    </con:property>
+  </con:properties>
+  <con:reportParameters/>
+</con:testCase>

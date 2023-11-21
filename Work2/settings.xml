@@ -3,7 +3,32 @@
   <con:settings id="eaf3243e-f967-4870-a709-fe154b44fb09">
     <con:setting id="59703d9f-6ced-4f92-b9f7-f2ad93e7229efileName">Work2</con:setting>
   </con:settings>
-  <con:runType>SEQUENTIAL</con:runType>
-  <con:properties/>
+  <con:runType>PARALLELL</con:runType>
+  <con:properties>
+    <con:property>
+      <con:name>TEST1</con:name>
+      <con:value>TEJA HI RAA</con:value>
+    </con:property>
+    <con:property>
+      <con:name>SETDATA</con:name>
+      <con:value>SET1</con:value>
+    </con:property>
+    <con:property>
+      <con:name>MyProp</con:name>
+      <con:value>someValue</con:value>
+    </con:property>
+    <con:property>
+      <con:name>Final_Attempt_BodyData</con:name>
+      <con:value>{"id":"lacldh2i","meta":{"videoPosition":170.779766},"type":"Achievement","productId":null,"positionUpdated":true,"startedAt":"2023-11-21T10:48:48.605Z","completedAt":"2023-11-21T10:50:50.605Z","sentAt":"2023-11-21T10:51:51.605Z","userId":"DD_userId","systemId":"3c39846c-886a-df11-b115-005056c00008","activityId":"CP4_VIDEO_5bfc5e60457be","correlationId":"567538870556557312","score":"1","classIds":["g111Q1UCEEDFC_s111Q1UCEFRZS"]}</con:value>
+    </con:property>
+    <con:property>
+      <con:name>xaccessTokenStudent</con:name>
+      <con:value>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzc28ud2tocGUuY29tIiwiYXVkIjoiM2MzOTg0NmMtODg2YS1kZjExLWIxMTUtMDA1MDU2YzAwMDA4IiwiYXV0aF90aW1lIjoxNzAwNTM4OTExLCJuYW1lIjoiUGVyZm9ybWFuY2UgU3R1ZGVudDExMTUiLCJqdGkiOiI0M2VhZDFiZS1iYTEwLTRiOGUtOGUyZS05NzRhYzg3MThiNTIiLCJpYXQiOjE3MDA1Mzg5MTEsImV4cCI6MTcwMDYyNTMxMSwic3ViIjoiYzBkZWFmNzItYzBlMy00NmIyLThiODQtNDYwOTAwOTYwNmNjIiwicm9sZXMiOiJ3a2hwZS1lbmQgdXNlciIsIndraHBlX3Blcm1pc3Npb25zIjpbIkNhblVzZVBlcnNvbmFsaXphdGlvbkZlYXR1cmVzIl0sIndraHBlX3Rva2VuIjoieTcrNXMvVXY5bWtSaERyRzYzeUx6ZkE1akxyODEwMm1EL1dRTUtSMDRaTmwrbi80Z25XV2owZ0hKQ3lGQ1Bkdzg2cFVVTXRzZVZOTFBncXFvalBhSHp0NW8yVHpmek95cFlSVG1BSUhPTVZCWWdTbWtqUFNVbTU5MEUrMi9KbFd6am1FUGR6ODQrM0VUVFBxbVNlb1lsZGhWSER6OG9DaExhaFJudjZWNUcwRlp2UE5pbVRkb3E5MGJsYXdMMkNvR3lnNHhYWVRLanJ5c3lrQVpKdHNZY1A4Y3Z0VW90bndSdGpML1phdWN2WWJLRGpGZGhNcU92S3pLUUJrbTJ4aDZ4ZGVLZWN3cFMzb1ZJTnRJVklGYlE5RzROblZMckNJYXJ1WmZ5Ty9ZTmM9IiwidG9rZW5fdHlwZSI6ImJlYXJlciJ9.NdOj7FknSJfVGZQPqP_PHty7Buh4bv3Zd-UzSfK6LEbzdlQfbo_Q5lWSQGeCKVGP13HGMl1KBINp4NAQlE4WG2REoyYvYp0eQ-Jh3Sns1YcNgoZdrahslJSZVChijTaxR4YVCA9H6ErAis8eV4saGC9fEGMgJL3fiGKwchreH34</con:value>
+    </con:property>
+    <con:property>
+      <con:name>UserId</con:name>
+      <con:value>c0deaf72-c0e3-46b2-8b84-4609009606cc</con:value>
+    </con:property>
+  </con:properties>
   <con:reportParameters/>
 </con:testSuite>

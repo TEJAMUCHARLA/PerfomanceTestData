@@ -322,7 +322,7 @@ testRunner.testCase.testSuite.project.setPropertyValue("AssignmnetIndex", assign
   "attemptType": "Highest Grade",
   "isHighlightLateSubmission": true,
   "isBroadcastingRequired": false,
-  "productIsbn": "9781975186777",
+  "productIsbn": "${#Project#ProductISBN}",
  "prepuDetails": D_prepuDetails,
  "metaInformation": {},
  "maxAttempts": 0,
@@ -337,9 +337,9 @@ testRunner.testCase.testSuite.project.setPropertyValue("AssignmnetIndex", assign
       "accessibleFrom": "${#TestCase#accessDate}",
       "accessibleFromTime": "${#TestCase#accessTime}",
       "accessibleFromTimezone": "${#Project#CreateAssignmentTimeZone}",
-      "isForEveryOne": ${CreateAssignment#isForEveryOne},
-      "isImmediateAvailable":${CreateAssignment#isImmediateAvailable},
-      "isUnlocked": ${CreateAssignment#isUnlocked}
+      "isForEveryOne":true,
+      "isImmediateAvailable":true,
+      "isUnlocked":true
     }
   ],
   
@@ -445,7 +445,7 @@ def resourceTypeId = context.expand( '${Get Assignmnet Type#resourceTypeId}' )
 def detailsMapedName = context.expand( '${Get Assignmnet Type#DetailsMapedName}' )
 def isGraded = context.expand( '${Get Assignmnet Type#IsGraded}' )
 
-
+isGraded= isGraded.toLowerCase()
 
 
 def resourceTypeLableName = detailsMapedName
@@ -707,11 +707,11 @@ assert totalAssignments&lt;=responseData.size()</scriptText>
   <con:properties>
     <con:property>
       <con:name>accessDate</con:name>
-      <con:value>2023-11-20T05:29:50-05:00</con:value>
+      <con:value>2023-11-21T05:44:25-05:00</con:value>
     </con:property>
     <con:property>
       <con:name>DueDate</con:name>
-      <con:value>2024-02-28</con:value>
+      <con:value>2024-02-29</con:value>
     </con:property>
     <con:property>
       <con:name>EffectiveDate</con:name>
@@ -743,15 +743,15 @@ assert totalAssignments&lt;=responseData.size()</scriptText>
     </con:property>
     <con:property>
       <con:name>accessTime</con:name>
-      <con:value>05:29 AM</con:value>
+      <con:value>05:44 AM</con:value>
     </con:property>
     <con:property>
       <con:name>DueTime</con:name>
-      <con:value>09:29 AM</con:value>
+      <con:value>09:44 AM</con:value>
     </con:property>
     <con:property>
       <con:name>AssignedAssignmnetCount</con:name>
-      <con:value>4</con:value>
+      <con:value>27</con:value>
     </con:property>
   </con:properties>
   <con:reportParameters/>

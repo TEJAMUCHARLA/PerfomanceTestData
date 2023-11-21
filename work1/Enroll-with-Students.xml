@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase xmlns:con="http://eviware.com/soapui/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="6908b8ea-1f09-453e-8fae-3319a9631c2d" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Enroll with Students" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" zephyrTestName="" zephyrTestId="">
+  <con:settings id="337fe865-f94a-4f69-9e3d-dddb1d9d35f8">
+    <con:setting id="6908b8ea-1f09-453e-8fae-3319a9631c2dfileName">Enroll-with-Students</con:setting>
+  </con:settings>
+  <con:testStep type="datasource" name="Data Source Credetails" id="96d8561a-c769-4314-96f4-a7a23ba67554">
+    <con:settings/>
+    <con:config xsi:type="con:DataSourceStep">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>${#Project#TestDataExcelFile}</file>
+          <worksheet>${#Project#DB_Data_ExcelSheetName}</worksheet>
+          <cell>A2</cell>
+          <ignoreEmpty>false</ignoreEmpty>
+          <evaluateFormulas>false</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>StudentUserEmail</con:property>
+      <con:property>StudentPassword</con:property>
+      <con:property>WitchSection</con:property>
+      <con:startRow/>
+      <con:endRow>5</con:endRow>
+      <con:recordsPerIteration>1</con:recordsPerIteration>
+      <con:completeLastOperation>false</con:completeLastOperation>
+      <con:trimValues>false</con:trimValues>
+      <con:entitizeValues>false</con:entitizeValues>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:expandProperties>false</con:expandProperties>
+      <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Set Credetails" id="cd99be5d-39c5-4b84-ae51-22f6ac8aac04">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import java.lang.*;
+
+def studentUserEmail = context.expand( '${Data Source Credetails#StudentUserEmail}' )
+def studentPassword = context.expand( '${Data Source Credetails#StudentPassword}' )
+
+
+//testRunner.testCase.testSuite.project.setPropertyValue("StudnetEmail", "AutomationStudent08")
+//testRunner.testCase.testSuite.project.setPropertyValue("StudentPassword", "Welcome001")
+
+testRunner.testCase.testSuite.project.setPropertyValue("StudnetEmail", studentUserEmail)
+testRunner.testCase.testSuite.project.setPropertyValue("StudentPassword", studentPassword)
+
+
+def witchSection = context.expand( '${Data Source Credetails#WitchSection}' )
+
+def data = "\${#Project#Section"+witchSection.toString()+"Password}"
+/*
+if(witchSection.toString()=="1")
+{
+	def section1Password = context.expand( '${#Project#Section1Password}' )
+}
+else if(witchSection.toString()=="2")
+{
+	def section1Password = context.expand( '${#Project#Section1Password}' )
+}
+*/
+
+def section1Password = context.expand( data )
+log.info("password "+section1Password)
+testRunner.testCase.testSuite.project.setPropertyValue("StudentJoinPassword", section1Password)</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="GetAccessTokenStudent1" id="d0eba31b-a9f2-4200-8953-c26649174f40">
+    <con:settings/>
+    <con:config service="Auth API" resourcePath="/Authentication/UsernameInSso" methodName="Method 1" xsi:type="con:RestRequestStep">
+      <con:restRequest name="GetAccessTokenStudent1" id="7a8b79ab-de89-4998-ba4f-b6708ff27d44" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>https://preprod-sso.hlrpbooks.com</con:endpoint>
+        <con:request>{
+  "Email": "${#Project#StudnetEmail}",
+  "Password": "${#Project#StudentPassword}",
+  "PostbackUrlOnSuccess": "${#Project#PostbackUrlOnSuccess}",
+  "SiteId": "${#Project#SystemId}",
+  "StaySignIn": false,
+    "UrlToRedirectOnSuccess": "${#Project#UrlToRedirectOnSuccess}",
+  "Timestamp": "2022-10-04T05:23:53.382Z",
+  "SourceUrl": "${#Project#SourceUrl}",
+  "AccessCode": "",
+  "SiteInfoType": "Education",
+  "WorkflowId": ""
+}</con:request>
+        <con:originalUri>https://preprod-sso.hlrpbooks.com/Authentication/UsernameInSso</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="1de409a2-83ad-4119-9963-7a2d299ce263" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="32a7ec59-9333-4c75-89de-3863fec4fa2c" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="7b97dea9-f6f0-473e-ae65-367e168d9ca7" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+
+def response = context.expand( '${GetAccessTokenStudent1#Response}' )
+
+
+def verifyResponse = new JsonSlurper().parseText(response)
+log.info(verifyResponse.Data.AuthenicationResult)
+
+assert verifyResponse.Data.AuthenicationResult != null</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="delay" name="Wait for Access student" id="2a91aacb-3c41-4f27-9475-c37e6fba85c7" disabled="true">
+    <con:settings/>
+    <con:config>
+      <delay>${#Project#LoginDealy}</delay>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Set Tokens Student1" id="79007aaf-aa9a-4f9d-a29f-a67b4ad2ffee">
+    <con:settings/>
+    <con:config>
+      <script><![CDATA[import groovy.json.JsonSlurper
+import java.lang.*;
+def response = context.expand( '${GetAccessTokenStudent1#Response}' )
+
+def resp = new JsonSlurper().parseText(response)
+
+def start = resp.Data.AuthenicationResult.indexOf("<AccessToken>")+13;
+def end = resp.Data.AuthenicationResult.indexOf("</AccessToken>");
+def xaccesstoken = resp.Data.AuthenicationResult.substring(start, end);
+//result["xaccessTokenStudent"]=xaccesstoken
+
+def ssostart = resp.Data.AuthenicationResult.indexOf("<TokenKey>")+10;
+def ssoend = resp.Data.AuthenicationResult.indexOf("</TokenKey>");
+def ssotoken = resp.Data.AuthenicationResult.substring(ssostart, ssoend);
+//result["ssoStudent"]=ssotoken
+
+def IDstart = resp.Data.AuthenicationResult.indexOf("<UserId>")+8;
+def IDend = resp.Data.AuthenicationResult.indexOf("</UserId>");
+def StudentId = resp.Data.AuthenicationResult.substring(IDstart, IDend);
+
+
+testRunner.testCase.testSuite.project.setPropertyValue("StudentUserId", StudentId)
+testRunner.testCase.testSuite.project.setPropertyValue("xaccessTokenStudent", xaccesstoken)
+testRunner.testCase.testSuite.project.setPropertyValue("ssoStudent", ssotoken)
+
+log.info("StudentUserId = "+ StudentId)
+log.info("xaccessTokenStudent =  " + xaccesstoken)
+log.info("ssoStudent = "+ssotoken)]]></script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Loacte course in student join" id="8fa01a33-2347-432a-964e-08a9b616fcf3">
+    <con:settings/>
+    <con:config service="Student Search Course" resourcePath="/api/class-management/v2/class-wrapper/search/passcode/{Password}" methodName="Method 1" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Loacte course in student join" id="481ffffb-0c31-49cf-b198-cc533d483980" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="${#Project#Key_ssoStudent}" value="${#Project#ssoStudent}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenStudent}" value="${#Project#xaccessTokenStudent}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:request/>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/class-management/v2/class-wrapper/search/passcode/</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="82ba8780-1ade-4633-9729-3d67b0db9a56" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>201</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="52a32018-748b-4575-b14a-52aa15f38cae" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="d8338b4d-feef-4344-a50a-c85abb5fcf52" name="Script Assertion" disabled="true">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+def response222 = context.expand( '${Create course#Response}' )
+
+def rawRequest = context.expand( '${Create course#RawRequest}' )
+
+def  responsedata= context.expand( '${Loacte course in student join#Response}' )
+
+def  rawRequestData= new JsonSlurper().parseText(rawRequest)
+def response = new JsonSlurper().parseText(responsedata)
+def response22 = new JsonSlurper().parseText(response222)
+
+assert response.message =="Passcode search completed."
+assert response.data.id  == response22.sectionId
+assert response.data.name == rawRequestData.sectionName
+assert response.data.number == rawRequestData.number
+assert response.data.products.isbn  == rawRequestData.products
+assert response.data.academicTerm  == rawRequestData.academicTerm
+assert response.data.academicYear  == rawRequestData.academicYear
+assert response.data.state=="ACTIVE"
+assert response.data.instructors !=null
+assert response.data.instructors[0].userId == rawRequestData.instructor
+assert response.data.courseId  == response22.id
+assert response.data.courseName  == rawRequestData.name
+assert response.data.timeZoneId == rawRequestData.timeZoneId
+assert response.data.sfdcAccountId  == rawRequestData.sfdcAccountId
+assert response.data.programTypeId  == rawRequestData.programTypeId
+
+assert response.data.startDate.toString().substring(0,response.data.startDate.toString().size()-1) == rawRequestData.startDate.toString().substring(0,rawRequestData.startDate.toString().size()-5)
+
+assert response.data.endDate.toString().substring(0,response.data.endDate.toString().size()-1) == rawRequestData.endDate.toString().substring(0,rawRequestData.endDate.toString().size()-5)</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="Password" value="${#Project#StudentJoinPassword}"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>Password</con:entry>
+        </con:parameterOrder>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Groovy Script 2" id="9430d3bf-8408-4dea-a868-6c91f2276336">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import java.lang.*;
+
+def response = context.expand( '${Loacte course in student join#Response#$[\'data\'][\'id\']}' )
+
+log.info(response)
+testRunner.testCase.testSuite.project.setPropertyValue("JoinedSectionid", response)</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Student join a course" id="fa9acf16-5b3d-48c6-a7ca-b897ef585f07">
+    <con:settings/>
+    <con:config service="Student Join Course" resourcePath="/api/ccm/v2/private/user/enrollment" methodName="Method 1" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Student join a course" id="121a8d27-235a-4523-b0de-29d285db07f0" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="${#Project#Key_ssoStudent}" value="${#Project#ssoStudent}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenStudent}" value="${#Project#xaccessTokenStudent}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:request>{
+  "id": "${Loacte course in student join#Response#$['data']['id']}",
+  "role": "STUDENT",
+  "status": "ACTIVE"
+}</con:request>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/ccm/v2/private/user/enrollment</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="8a6050a3-5f0c-4a36-8005-d97bb006323e" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="6deda5a2-b3c7-49a7-873a-2b58dbed9bc9" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="ae524d2f-124b-46a5-891f-f58810d4aaf0" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+def response = context.expand( '${Student join a course#Response}' )
+
+def verifyResponse = new JsonSlurper().parseText(response)
+
+assert verifyResponse.enrollmentToken != null</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasink" name="Set Tokens In Excel" id="92887dab-c91d-46b4-b7f7-fb9fcfff92a5">
+    <con:settings/>
+    <con:config xsi:type="con:DataSinkStep">
+      <con:dataSink type="Excel">
+        <con:configuration>
+          <file/>
+          <outfile>${#Project#TestDataExcelFile2}</outfile>
+          <worksheet>StudentAccessTokens</worksheet>
+          <cell>A2</cell>
+          <evaluateFormulas>false</evaluateFormulas>
+          <append>false</append>
+        </con:configuration>
+      </con:dataSink>
+      <con:properties>
+        <con:property>
+          <con:name>Number</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>TokenValue</con:name>
+          <con:value>${#Project#xaccessTokenStudent}</con:value>
+        </con:property>
+        <con:property>
+          <con:name>StudentUserID</con:name>
+          <con:value>${#Project#StudentUserId}</con:value>
+        </con:property>
+      </con:properties>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="Data Source Loop" id="40f1c895-12ac-469b-99fb-07e16b5a6a49">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>Data Source Credetails</dataSourceStep>
+      <targetStep>Set Credetails</targetStep>
+      <discardResults>false</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:testCase>

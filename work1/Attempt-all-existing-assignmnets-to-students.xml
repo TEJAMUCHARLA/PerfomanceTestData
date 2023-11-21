@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:testCase xmlns:con="http://eviware.com/soapui/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="1d8ca26b-8945-48c0-836a-6b89cf13da18" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Test Case 1" searchProperties="true" timeout="0">
+<con:testCase xmlns:con="http://eviware.com/soapui/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="1d8ca26b-8945-48c0-836a-6b89cf13da18" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Attempt all existing assignmnets to students" searchProperties="true" timeout="0">
   <con:settings id="4342e468-c9e5-4532-9977-ff42cb67057a">
-    <con:setting id="1d8ca26b-8945-48c0-836a-6b89cf13da18fileName">Test-Case-1</con:setting>
+    <con:setting id="1d8ca26b-8945-48c0-836a-6b89cf13da18fileName">Attempt-all-existing-assignmnets-to-students</con:setting>
   </con:settings>
   <con:testStep type="restrequest" name="Get Product Assignment Details" id="e3f21b3b-fea3-49bf-a45d-4225d1054904">
     <con:settings/>
@@ -29,7 +29,7 @@
         </con:credentials>
         <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
         <con:parameters>
-          <con:entry key="ISBN" value="9781975186708"/>
+          <con:entry key="ISBN" value="${#Project#ProductISBN}"/>
         </con:parameters>
         <con:environmentSpec>
           <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
@@ -48,59 +48,59 @@
       </con:restRequest>
     </con:config>
   </con:testStep>
-  <con:testStep type="restrequest" name="Verify final Student Grades After Attempt" id="3d4de5da-4daa-44bc-8045-4449183e9c91">
+  <con:testStep type="restrequest" name="Loacte course in student join" id="3b795593-20cd-4917-bbfd-92dde872ec9b">
     <con:settings/>
-    <con:config service="GetAssignedGrades" resourcePath="/api/phx-gradebook-management/v1/ccm/course/{courseId}/section/{sectionId}/grades" methodName="Method 1" xsi:type="con:RestRequestStep">
-      <con:restRequest name="Verify final Student Grades After Attempt" id="17b947f0-bc28-40d6-a2c7-1f869e08db62" mediaType="application/json">
+    <con:config service="Student Search Course" resourcePath="/api/class-management/v2/class-wrapper/search/passcode/{Password}" methodName="Method 1" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Loacte course in student join" id="481ffffb-0c31-49cf-b198-cc533d483980" mediaType="application/json" postQueryString="false">
         <con:settings>
           <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="${#Project#Key_ssoStudent}" value="${#Project#ssoStudent}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenStudent}" value="${#Project#xaccessTokenStudent}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
         </con:settings>
-        <con:endpoint xsi:nil="true"/>
         <con:request/>
-        <con:originalUri>https://dev01-ccm.hlrpphoenix.com/api/phx-gradebook-management/v1/ccm/course/gM3MIFVPW5L/section/gM3MIFVPW5L_sM3MIFVRAQ1/grades</con:originalUri>
-        <con:assertion type="Valid HTTP Status Codes" id="44745bfe-b054-4b69-a903-ea70d658d185" name="Valid HTTP Status Codes">
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/class-management/v2/class-wrapper/search/passcode/</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="82ba8780-1ade-4633-9729-3d67b0db9a56" name="Valid HTTP Status Codes">
           <con:settings/>
           <con:configuration>
-            <codes>200</codes>
+            <codes>201</codes>
           </con:configuration>
         </con:assertion>
-        <con:assertion type="Response SLA Assertion" id="0130b747-8cc6-4c76-beed-706840b09912" name="Response SLA">
+        <con:assertion type="Response SLA Assertion" id="52a32018-748b-4575-b14a-52aa15f38cae" name="Response SLA">
           <con:configuration>
             <SLA>${SLA}</SLA>
           </con:configuration>
         </con:assertion>
-        <con:assertion type="GroovyScriptAssertion" name="Script Assertion" id="cd25367b-d27a-4728-82bf-427dbeb77588">
+        <con:assertion type="GroovyScriptAssertion" id="d8338b4d-feef-4344-a50a-c85abb5fcf52" name="Script Assertion" disabled="true">
           <con:configuration>
             <scriptText>import groovy.json.JsonSlurper
 import java.lang.*;
+def response222 = context.expand( '${Create course#Response}' )
 
-def testCase = messageExchange.modelItem.testCase;
-def response = context.expand( '${Verify final Student Grades After Attempt#Response}' )
+def rawRequest = context.expand( '${Create course#RawRequest}' )
 
-def Getresponse = new JsonSlurper().parseText(response)
+def  responsedata= context.expand( '${Loacte course in student join#Response}' )
 
-log.info(Getresponse.grades.assetDetails.attemptDetails.displayScoreLabel.size())
+def  rawRequestData= new JsonSlurper().parseText(rawRequest)
+def response = new JsonSlurper().parseText(responsedata)
+def response22 = new JsonSlurper().parseText(response222)
 
-//Getresponse.grades.assetDetails
+assert response.message =="Passcode search completed."
+assert response.data.id  == response22.sectionId
+assert response.data.name == rawRequestData.sectionName
+assert response.data.number == rawRequestData.number
+assert response.data.products.isbn  == rawRequestData.products
+assert response.data.academicTerm  == rawRequestData.academicTerm
+assert response.data.academicYear  == rawRequestData.academicYear
+assert response.data.state=="ACTIVE"
+assert response.data.instructors !=null
+assert response.data.instructors[0].userId == rawRequestData.instructor
+assert response.data.courseId  == response22.id
+assert response.data.courseName  == rawRequestData.name
+assert response.data.timeZoneId == rawRequestData.timeZoneId
+assert response.data.sfdcAccountId  == rawRequestData.sfdcAccountId
+assert response.data.programTypeId  == rawRequestData.programTypeId
 
-int count =0
-for(def eachAssert in Getresponse.grades)
-{
-	//og.info(eachAssert.assetDetails.attemptDetails[0].displayScoreLabel[0].toString())
-	
-  if(eachAssert.assetDetails.attemptDetails[0].displayScoreLabel[0].toString()!=null)
-  {
-  	count++
-  }
-}
+assert response.data.startDate.toString().substring(0,response.data.startDate.toString().size()-1) == rawRequestData.startDate.toString().substring(0,rawRequestData.startDate.toString().size()-5)
 
-log.info("Submitted Assets "+count)
-testCase.setPropertyValue("SubmittedAssignmentsCount",(count).toString())
-
-def totalAssignments = context.expand( '${#Project#TotalAssignments}' )as int 
-totalAssignments = totalAssignments/2
-
-assert totalAssignments&lt;=count</scriptText>
+assert response.data.endDate.toString().substring(0,response.data.endDate.toString().size()-1) == rawRequestData.endDate.toString().substring(0,rawRequestData.endDate.toString().size()-5)</scriptText>
           </con:configuration>
         </con:assertion>
         <con:credentials>
@@ -109,23 +109,16 @@ assert totalAssignments&lt;=count</scriptText>
         </con:credentials>
         <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
         <con:parameters>
-          <con:entry key="studentId" value="${#Project#StudentUserId}"/>
-          <con:entry key="sectionId" value="${#Project#JoinedSectionid}"/>
-          <con:entry key="courseId" value="g11979PF3Y4"/>
+          <con:entry key="Password" value="${#Project#StudentJoinPassword}"/>
         </con:parameters>
         <con:parameterOrder>
-          <con:entry>courseId</con:entry>
-          <con:entry>sectionId</con:entry>
-          <con:entry>studentId</con:entry>
+          <con:entry>Password</con:entry>
         </con:parameterOrder>
         <con:environmentSpec>
           <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
             <con:authProfile>Inherit From Parent</con:authProfile>
           </con:entry>
           <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
-            <con:authProfile>Inherit From Parent</con:authProfile>
-          </con:entry>
-          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
             <con:authProfile>Inherit From Parent</con:authProfile>
           </con:entry>
           <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
@@ -156,7 +149,7 @@ assert totalAssignments&lt;=count</scriptText>
         </con:credentials>
         <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
         <con:parameters>
-          <con:entry key="course" value="g11979PF3Y4"/>
+          <con:entry key="course" value="${Loacte course in student join#Response#$['data']['courseId']}"/>
           <con:entry key="section" value="${#Project#JoinedSectionid}"/>
         </con:parameters>
         <con:parameterOrder>
@@ -226,69 +219,6 @@ testRunner.testCase.setPropertyValue("ExistingAssignmentsCount", ExistingAssignm
       <con:restartOnRun>true</con:restartOnRun>
       <con:expandProperties>false</con:expandProperties>
       <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
-    </con:config>
-  </con:testStep>
-  <con:testStep type="groovy" name="Attempt Instructor Page All assignments" id="ad90a220-5628-410c-81c2-6fc47222ca0a" disabled="true">
-    <con:settings/>
-    <con:config>
-      <script>import groovy.json.JsonSlurper
-import com.eviware.soapui.model.testsuite.TestRunner.Status
-
-
-def response = context.expand( '${GET Instrcutor resulust Page Details#Response}' )
-def itrations = context.expand( '${Get EachAssignment#Itrations}' )as int
-
-def AttemptAssetId=""
-def AttemptCorrelationId=""
-def AttemptResourceType=""
-def AttemptActivityId=""
-
-
-def slurper = new JsonSlurper()
-def json = slurper.parseText(response)
-
-def gradedAssignments = json.grades[itrations]
-	def assetDetails=gradedAssignments.assetDetails[0]
-
-log.info("assetDetails "+gradedAssignments.assetDetails[0])
-testRunner.testCase.setPropertyValue("AssetDetailsJOSN", assetDetails.toString())
-
-    AttemptAssetId=assetDetails.assetId
-     AttemptResourceType=assetDetails.resourceType	
-    AttemptCorrelationId=gradedAssignments.assignmentId
-
-log.info("AttemptAssetId "+AttemptAssetId)
-log.info("AttemptResourceType "+AttemptResourceType)
-log.info("AttemptCorrelationId "+AttemptCorrelationId)
-    
-
-/*
-def gradedAssignments = json.grades[]
-def AttemptAssetId=""
-def AttemptCorrelationId=""
-
-def AttemptResourceType=""
-def AttemptActivityId=""
-
-for(def GetAssignment in gradedAssignments)
-{
-
-     if(GetAssignment.assetDetails.size()>0)
-     {
-     		//log.info(GetAssignment.assetDetails[0].label)
-     		def assetDetails=GetAssignment.assetDetails[0]
-     		AttemptAssetId=assetDetails.assetId
-     		AttemptResourceType=assetDetails.resourceType
-     		
-     		AttemptCorrelationId=GetAssignment.assignmentId
-     	 //break;
-     } 
-}
-log.info("AttemptAssetId "+AttemptAssetId)
-log.info("AttemptResourceType "+AttemptResourceType)
-log.info("AttemptAssetId "+AttemptCorrelationId)
-
-*/</script>
     </con:config>
   </con:testStep>
   <con:testStep type="groovy" name="Generate Assignmnet  Start and End Time" id="bba6c622-db2f-4253-a3e2-94aecd9b12fa">
@@ -431,7 +361,7 @@ def slurper = new JsonSlurper()
 def json = slurper.parseText(responseValue)
 def existingAssignemnts = slurper.parseText(ExistingAssignemnts)
 
-itrations=0
+//itrations=0
 log.info("itrations "+itrations)
 def gradedAssignments = existingAssignemnts.grades[itrations]
 def assetDetailsJOSN = gradedAssignments.assetDetails[0]
@@ -534,20 +464,20 @@ testRunner.testCase.setPropertyValue("AttemptBodyData","")]]></script>
       <con:dataSource type="Grid">
         <con:configuration>
           <check><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry></xml-fragment>]]></check>
-          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">PrepU Mastery Level Quizzes by Chapter</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">{     "id": "1537254803",     "meta": {         "points": "100"     },     "type": "Achievement",     "quizzes": [         {             "id": D_activityId,             "name": "D_activityName",             "questionsAnswered": 5         }     ],     "sectionId": "mastery_level",     "sectionName": "Mastery Level Assignments",     "activityName": "D_activityName",     "masteryLevel": 2,     "quizzesTaken": 1,</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
-          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">PrepU Mastery Level Quizzes By Concept</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">{     "id": "1537254803",     "meta": {         "points": "100"     },     "type": "Achievement",     "quizzes": [         {             "id": D_activityId,             "name": "D_activityName",             "questionsAnswered": 5         }     ],     "sectionId": "mastery_level",     "sectionName": "Mastery Level Assignments",     "activityName": "D_activityName",     "masteryLevel": 2,     "quizzesTaken": 1,</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
-          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">PREP_U_QC</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">{     "id": "1537254803",     "meta": {         "points": "100"     },     "type": "Achievement",     "quizzes": [         {             "id": D_activityId,             "name": "D_activityName",             "questionsAnswered": 5         }     ],     "sectionId": "mastery_level",     "sectionName": "Mastery Level Assignments",     "activityName": "D_activityName",     "masteryLevel": 2,     "quizzesTaken": 1,</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
-          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Animations</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">"{     ""id"": ""lacldh2i"",     ""meta"": {         ""videoPosition"": 170.779766     },     ""type"": ""Achievement"",    ""productId"": null,   ""positionUpdated"": true," </con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
-          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Interactive Case Studies</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">"{     ""id"": ""ce3603cb-0250-46b5-a012-4d57ace2a663"",     ""type"": ""Scored"",  ""productId"": null," </con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
-          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Interactive Tutorials</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">"{     ""id"": ""ce3603cb-0250-46b5-a012-4d57ace2a663"",  ""productId"": null,     ""type"": ""Scored"",    " </con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
-          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Picmonic</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">"{      ""type"": ""Scored"",     ""id"": ""PICMONIC-1666074769-1963589"",     ""meta"": {         ""host"": ""www.picmonic.com"",         ""hints"": 0,         ""score"": ""10"",         ""correct"": 2,         ""attempts"": 5,         ""quizround"": 23120994,         ""seat_time"": 48,         ""total_time"": 33,         ""quiz_end_time"": 1666074768,         ""video_watched"": false,         ""lti_delivery_id"": 1963589,         ""quiz_start_time"": 1666074735,         ""end_unix_timestamp"": 1666074768,         ""lis_result_sourcedid"": ""eyJhc3NldENvZGUiOiJDUDRfUElDTU9OSUNfNWY0YmNmYjYxMzAxNyIsImFzc2lnbm1lbnRJZCI6IjQyMjg4MDU1NTU2Mjk1ODg0OCIsImNsYXNzSWRzIjpbImdMN1c4TEM3NFpGMV9zTDdXOExDNzZEWkgiXSwicHJvZHVjdElzYm4iOiI5NzgxOTc1MTI0NDY1Iiwic3lzdGVtSWQiOiIzYzM5ODQ2Yy04ODZhLWRmMTEtYjExNS0wMDUwNTZjMDAwMDgiLCJ0eXBlIjoiU2NvcmVkIiwiYWN0aXZpdHlOYW1lIjoiQUJDREVzIG9mIE1lbGFub21hIiwidXNlcklkIjoiMzEyMThkOGYtNTU3Ny00N2NhLWI0ODItNDMwYzAwZGIyZmRlIiwiYXV0aFRva2VuIjoiR290bHFrNmtrYXNabndqTWJBWU5DdmY4XC9aalphSXRVTW9xWlhcLzM1RjYraWp4RDRHVlYrNWpjMnBoeXVHQ3F2ZGtqUEZcLzlyNmJQMEQ4XC85aDNnRDduSFBoVHpZNzVVbjFCRytcL0FIdFRiejZSOUhzZUVFcHBMQkJCOTdwYzB6OWJxazZLK1JOdkM3MmpSaVJ5bllcL2NLanpEN08yZWVkZTJ5dGJTazl2VldrNWNMWWpWY2pZVE5Ca1puV0hpYkR6YzZVOU9vK1A2cDVacXFab1FLZDcyTVA4Y3Z0VW90bndGRTFucklYZXluRnpwVDA2ajRcL3FubG1xcG1oQXAzdlluWVp2MGJaUTl2ZitsZUlHR05CK2JLWDhuV1NzVzlvWCJ9"",         ""start_unix_timestamp"": 1666074720     },     ""ReportData"": [         {             ""hint"": 0,             ""correct"": 0,             ""end_time"": 1666074745,             ""attempted"": 1,             ""start_time"": 1666074735,             ""total_time"": 10,             ""answer_time"": 1666074740,             ""explanation"": ""Any change in size, shape, color, or elevation is important in diagnosis. New symtoms such as bleeding, itching, or crusting should be brought to the attention of the healthcare provider."",             ""question_id"": 43498,             ""question_text"": ""Which of the following is most likely associated with ABCDEs of melanoma?"",             ""correct_answer"": ""Evolving"",             ""selected_answer"": ""Erythema"",             ""question_image_url"": """"         },         {             ""hint"": 0,             ""correct"": 0,             ""end_time"": 1666074749,             ""attempted"": 1,             ""start_time"": 1666074745,             ""total_time"": 4,             ""answer_time"": 1666074747,             ""explanation"": ""The borders of an early melanoma tend to be uneven or difficult to define. Edges may be scalloped or notched."",             ""question_id"": 43495,             ""question_text"": ""Which of the following is most likely associated with ABCDEs of melanoma?"",             ""correct_answer"": ""Border"",             ""selected_answer"": ""Blaschko Lines"",             ""question_image_url"": """"         },         {             ""hint"": 0,             ""correct"": 1,             ""end_time"": 1666074755,             ""attempted"": 1,             ""start_time"": 1666074749,             ""total_time"": 6,             ""answer_time"": 1666074753,             ""explanation"": ""Melanoma lesions are typically irregular, or not symmetrical, in shape. Benign lesions are usually symmetrical."",             ""question_id"": 43494,             ""question_text"": ""Which of the following is most likely associated with ABCDEs of melanoma?"",             ""correct_answer"": ""Asymmetry"",             ""selected_answer"": ""Asymmetry"",             ""question_image_url"": """"         },         {             ""hint"": 0,             ""correct"": 1,             ""end_time"": 1666074764,             ""attempted"": 1,             ""start_time"": 1666074755,             ""total_time"": 9,             ""answer_time"": 1666074762,             ""explanation"": ""Melanoma lesions are often greater than 6 millimeters in diameter, which is greater than the size of a pencil eraser."",             ""question_id"": 43497,             ""question_text"": ""Which of the following is most likely associated with ABCDEs of melanoma?"",             ""correct_answer"": ""Diameter"",             ""selected_answer"": ""Diameter"",             ""question_image_url"": """"         },         {             ""hint"": 0,             ""correct"": 0,             ""end_time"": 1666074768,             ""attempted"": 1,             ""start_time"": 1666074764,             ""total_time"": 4,             ""answer_time"": 1666074766,             ""explanation"": ""The presence of more than one color (black, brown, blue, red, etc.) or the uneven distribution of color can be a warning sign. Benign moles are typically one shade."",             ""question_id"": 43496,             ""question_text"": ""Which of the following is most likely associated with ABCDEs of melanoma?"",             ""correct_answer"": ""Color"",             ""selected_answer"": ""Carotenaemia"",             ""question_image_url"": """"         }     ]," </con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
-          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Pre-Lecture Quizzes</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">"{     ""id"": ""lacldh2i"",     ""meta"": {         ""videoPosition"": 170.779766     },     ""type"": ""Achievement"",    ""productId"": null,   ""positionUpdated"": true," </con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
-          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Videos</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">"{     ""id"": ""lacldh2i"",     ""meta"": {         ""videoPosition"": 170.779766     },     ""type"": ""Achievement"",    ""productId"": null,   ""positionUpdated"": true," </con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
-          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Skills_VIDEOS</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">"{     ""id"": ""lab2t60x"",     ""meta"": {         ""videoPosition"": 357.813099     },     ""type"": ""Achievement"",     ""productId"": null,     ""positionUpdated"": false," </con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
-          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Skills_QUIZ</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">"{     ""id"": ""17064369"",     ""meta"": {         ""quizId"": D_AssertId,         ""quizTime"": ""1800 seconds"",         ""quizVersion"": 1,         ""totalCorrect"": 2,         ""totalAnswered"": 10,         ""totalIncorrect"": 8,         ""totalQuestions"": 10,         ""totalTimeSpent"": ""38 seconds"",         ""totalUnattempted"": 0     },     ""type"": ""Scored"",  ""productId"": null," </con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
-          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Skills_CASE_STUDIES</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">"{     ""id"": ""ce3603cb-0250-46b5-a012-4d57ace2a663"",     ""type"": ""Scored"",     ""productId"": null," </con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
-          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Skills_CHECKLIST</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">"{          ""id"": ""3614"",     ""meta"": {         ""grade"": ""PASS"",         ""score"": ""2/6""     },  ""assetId"": ""D_AssertId"",  ""productId"": ""1"",     ""type"": ""Scored"", " </con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
-          <recognizeAsPlainText>true</recognizeAsPlainText>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">PrepU Mastery Level Quizzes by Chapter</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">{     "id": "1537254803",     "meta": {         "points": "100"     },     "type": "Achievement",     "quizzes": [         {             "id": 0000 ,          "name": "D_activityName",             "questionsAnswered": 5         }     ],     "sectionId": "mastery_level",     "sectionName": "Mastery Level Assignments",     "activityName": "D_activityName",     "masteryLevel": 2,     "quizzesTaken": 1,</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">PrepU Mastery Level Quizzes By Concept</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">{     "id": "1537254803",     "meta": {         "points": "100"     },     "type": "Achievement",     "quizzes": [         {             "id":0000,             "name": "D_activityName",             "questionsAnswered": 5         }     ],     "sectionId": "mastery_level",     "sectionName": "Mastery Level Assignments",     "activityName": "D_activityName",     "masteryLevel": 2,     "quizzesTaken": 1,</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">PREP_U_QC</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">{   "id": "1500139884",   "meta": {     "points": 10,     "partial_credit_scoring": {       "total_points": 1,       "points_earned": 1,       "points_attempted": 1     }   },   "type": "Scored",   "quizzes": [     {       "id": "D_activityId",       "name": "Quiz 1",       "questionsAnswered": 1     }   ],   "sectionId": "question_collection",   "sectionName": "Question Collection Assignments",   "activityName": "D_activityName",   "masteryLevel": null,   "quizzesTaken": 1,   "isAnsweredAllQuestions": true }</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Animations</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">{     "id": "lacldh2i",     "meta": {         "videoPosition": 170.779766     },     "type": "Achievement",    "productId": null,   "positionUpdated": true,</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Interactive Case Studies</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">{     "id": "ce3603cb-0250-46b5-a012-4d57ace2a663",     "type": "Scored",  "productId": null,</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Interactive Tutorials</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">{     "id": "ce3603cb-0250-46b5-a012-4d57ace2a663",  "productId": null,     "type": "Scored",</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Picmonic</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">{ "type": "Scored",     "id": "PICMONIC-1666074769-1963589",     "meta": {         "host": "www.picmonic.com",         "hints": 0,         "score": "10",         "correct": 2,         "attempts": 5,         "quizround": 23120994,         "seat_time": 48,         "total_time": 33,         "quiz_end_time": 1666074768,         "video_watched": false,         "lti_delivery_id": 1963589,         "quiz_start_time": 1666074735,         "end_unix_timestamp": 1666074768,         "lis_result_sourcedid": "eyJhc3NldENvZGUiOiJDUDRfUElDTU9OSUNfNWY0YmNmYjYxMzAxNyIsImFzc2lnbm1lbnRJZCI6IjQyMjg4MDU1NTU2Mjk1ODg0OCIsImNsYXNzSWRzIjpbImdMN1c4TEM3NFpGMV9zTDdXOExDNzZEWkgiXSwicHJvZHVjdElzYm4iOiI5NzgxOTc1MTI0NDY1Iiwic3lzdGVtSWQiOiIzYzM5ODQ2Yy04ODZhLWRmMTEtYjExNS0wMDUwNTZjMDAwMDgiLCJ0eXBlIjoiU2NvcmVkIiwiYWN0aXZpdHlOYW1lIjoiQUJDREVzIG9mIE1lbGFub21hIiwidXNlcklkIjoiMzEyMThkOGYtNTU3Ny00N2NhLWI0ODItNDMwYzAwZGIyZmRlIiwiYXV0aFRva2VuIjoiR290bHFrNmtrYXNabndqTWJBWU5DdmY4XC9aalphSXRVTW9xWlhcLzM1RjYraWp4RDRHVlYrNWpjMnBoeXVHQ3F2ZGtqUEZcLzlyNmJQMEQ4XC85aDNnRDduSFBoVHpZNzVVbjFCRytcL0FIdFRiejZSOUhzZUVFcHBMQkJCOTdwYzB6OWJxazZLK1JOdkM3MmpSaVJ5bllcL2NLanpEN08yZWVkZTJ5dGJTazl2VldrNWNMWWpWY2pZVE5Ca1puV0hpYkR6YzZVOU9vK1A2cDVacXFab1FLZDcyTVA4Y3Z0VW90bndGRTFucklYZXluRnpwVDA2ajRcL3FubG1xcG1oQXAzdlluWVp2MGJaUTl2ZitsZUlHR05CK2JLWDhuV1NzVzlvWCJ9",         "start_unix_timestamp": 1666074720     },     "ReportData": [         {             "hint": 0,             "correct": 0,             "end_time": 1666074745,             "attempted": 1,             "start_time": 1666074735,             "total_time": 10,             "answer_time": 1666074740,             "explanation": "Any change in size, shape, color, or elevation is important in diagnosis. New symtoms such as bleeding, itching, or crusting should be brought to the attention of the healthcare provider.",             "question_id": 43498,             "question_text": "Which of the following is most likely associated with ABCDEs of melanoma?",             "correct_answer": "Evolving",             "selected_answer": "Erythema",             "question_image_url": ""         },         {             "hint": 0,             "correct": 0,             "end_time": 1666074749,             "attempted": 1,             "start_time": 1666074745,             "total_time": 4,             "answer_time": 1666074747,             "explanation": "The borders of an early melanoma tend to be uneven or difficult to define. Edges may be scalloped or notched.",             "question_id": 43495,             "question_text": "Which of the following is most likely associated with ABCDEs of melanoma?",             "correct_answer": "Border",             "selected_answer": "Blaschko Lines",             "question_image_url": ""         },         {             "hint": 0,             "correct": 1,             "end_time": 1666074755,             "attempted": 1,             "start_time": 1666074749,             "total_time": 6,             "answer_time": 1666074753,             "explanation": "Melanoma lesions are typically irregular, or not symmetrical, in shape. Benign lesions are usually symmetrical.",             "question_id": 43494,             "question_text": "Which of the following is most likely associated with ABCDEs of melanoma?",             "correct_answer": "Asymmetry",             "selected_answer": "Asymmetry",             "question_image_url": ""         },         {             "hint": 0,             "correct": 1,             "end_time": 1666074764,             "attempted": 1,             "start_time": 1666074755,             "total_time": 9,             "answer_time": 1666074762,             "explanation": "Melanoma lesions are often greater than 6 millimeters in diameter, which is greater than the size of a pencil eraser.",             "question_id": 43497,             "question_text": "Which of the following is most likely associated with ABCDEs of melanoma?",             "correct_answer": "Diameter",             "selected_answer": "Diameter",             "question_image_url": ""         },         {             "hint": 0,             "correct": 0,             "end_time": 1666074768,             "attempted": 1,             "start_time": 1666074764,             "total_time": 4,             "answer_time": 1666074766,             "explanation": "The presence of more than one color (black, brown, blue, red, etc.) or the uneven distribution of color can be a warning sign. Benign moles are typically one shade.",             "question_id": 43496,             "question_text": "Which of the following is most likely associated with ABCDEs of melanoma?",             "correct_answer": "Color",             "selected_answer": "Carotenaemia",             "question_image_url": ""         }     ],</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Pre-Lecture Quizzes</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">{     "id": "17064369",     "meta": {         "quizId": D_AssertId,         "quizTime": "1800 seconds",         "quizVersion": 1,         "totalCorrect": 2,         "totalAnswered": 10,         "totalIncorrect": 8,         "totalQuestions": 10,         "totalTimeSpent": "38 seconds",         "totalUnattempted": 0     },  "productId": null,     "type": "Scored",</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Videos</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">{     "id": "lacldh2i",     "meta": {         "videoPosition": 170.779766     },     "type": "Achievement",    "productId": null,   "positionUpdated": true,</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Skills_VIDEOS</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">{     "id": "lab2t60x",     "meta": {         "videoPosition": 357.813099     },     "type": "Achievement",     "productId": null,     "positionUpdated": false,</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Skills_QUIZ</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">{     "id": "17064369",     "meta": {         "quizId": D_AssertId,         "quizTime": "1800 seconds",         "quizVersion": 1,         "totalCorrect": 2,         "totalAnswered": 10,         "totalIncorrect": 8,         "totalQuestions": 10,         "totalTimeSpent": "38 seconds",         "totalUnattempted": 0     },     "type": "Scored",  "productId": null,</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Skills_CASE_STUDIES</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">{     "id": "ce3603cb-0250-46b5-a012-4d57ace2a663",     "type": "Scored",     "productId": null,</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Skills_CHECKLIST</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">{  "id": "3614",     "meta": {         "grade": "PASS",         "score": "2/6"     },  "assetId": "D_AssertId",  "productId": "1",     "type": "Scored", </con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+          <recognizeAsPlainText>false</recognizeAsPlainText>
         </con:configuration>
       </con:dataSource>
       <con:shared>true</con:shared>
@@ -555,6 +485,7 @@ testRunner.testCase.setPropertyValue("AttemptBodyData","")]]></script>
       <con:property>resourceType</con:property>
       <con:property>AttemptBodyData</con:property>
       <con:property>AttemptBodyData1</con:property>
+      <con:completeLastOperation>true</con:completeLastOperation>
       <con:restartOnRun>true</con:restartOnRun>
       <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
     </con:config>
@@ -578,7 +509,7 @@ if(resourceType.toString().equals(matchResourceType.toString()))
   <con:testStep type="datasourceloop" name="Data Source Loop" id="692196f2-8083-4403-9223-ff0260eca3c7">
     <con:settings/>
     <con:config>
-      <dataSourceStep>Get EachAssignment</dataSourceStep>
+      <dataSourceStep>Get Assignmnet Type</dataSourceStep>
       <targetStep>Find ResourceType Body</targetStep>
       <discardResults>false</discardResults>
     </con:config>
@@ -595,7 +526,7 @@ def rawRequest = context.expand( '${AttemptCommonPushBody#RawRequest}' )
 def rawRequestData = rawRequest
 
 //log.info(rawRequestData)
-testRunner.testCase.testSuite.setPropertyValue("Attempt_BodyData","")
+//testRunner.testCase.testSuite.setPropertyValue("Attempt_BodyData","")
 //def attemptBodyData = context.expand( '${Get Assignmnet Type#AttemptBodyData}' )
 def attemptBodyData = context.expand( '${#TestCase#AttemptBodyData}' )
 
@@ -626,6 +557,7 @@ type=matchResourceType
 //typeId=resourceTypeId
 def tempData = rawRequestData
 tempData=tempData.replace("D_activityId",assetActivityId)
+tempData=tempData.replace(":0000",assetActivityId)
 
 
 def attemptScore ="50"
@@ -645,6 +577,7 @@ else
 //==================
 
 attemptBodyData = attemptBodyData.replace("D_AssertId",assetId)
+attemptBodyData = attemptBodyData.replace("D_activityName",name)
 
 log.info("name :"+assetName+"assert id := "+assetId+"version := "+version+"ActivityId := "+assetActivityId)
 
@@ -657,7 +590,61 @@ log.info("final body = "+finalPushBody)
 
 testRunner.testCase.testSuite.setPropertyValue("Final_Attempt_BodyData",finalPushBody)
 log.info("Assert id = "+assetId)
-testRunner.testCase.setPropertyValue("Assertid",assetId)</script>
+testRunner.testCase.setPropertyValue("Assertid",assetId)
+
+
+def slurper = new JsonSlurper()
+def json = slurper.parseText(finalPushBody)
+
+log.info("json.quizzes.size() "+json.quizzes)
+if(!(json.quizzes==null))
+{
+//	log.info("json "+json.quizzes[0].id)
+      json.quizzes[0].id=assetActivityId as int
+ //    log.info("json "+json.quizzes[0].id)
+}
+finalPushBody =JsonOutput.toJson(json)
+def targetTestSuite = testRunner.testCase.testSuite.project.getTestSuiteByName("Work2")
+log.info("json.toString() "+json.toString())
+targetTestSuite.setPropertyValue("Final_Attempt_BodyData",finalPushBody.toString())
+def final_Attempt_BodyData = context.expand( '${#[Work2]#Final_Attempt_BodyData}' )
+log.info("final_Attempt_BodyData "+final_Attempt_BodyData)</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="CALL Student Attempt Suite" id="0958b174-4c57-4afd-9268-31e606cee896">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import java.lang.*;
+import java.util.concurrent.TimeUnit;
+import java.util.Date
+import java.util.Calendar
+import java.util.TimeZone
+import java.text.SimpleDateFormat
+
+def ProjectName= testRunner.testCase.testSuite.project.getName();
+def TestCaseName = testRunner.testCase.getLabel()
+def TestSuiteName = testRunner.testCase.testSuite.getLabel()
+def targetTestSuite = testRunner.testCase.testSuite.project.getTestSuiteByName("Work2")
+//def targetTestCase = targetTestSuite.getTestCaseByName("yourTargetTestCaseName")
+def runner =targetTestSuite.run(new com.eviware.soapui.support.types.StringToObjectMap(), false)
+
+def GetStatusOfTS1=runner.getStatus().toString()
+log.info("GetStatusOfTS1 "+GetStatusOfTS1)</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="delay" name="Delay" id="94833d81-9238-49a2-928b-70dd85a2d8e3">
+    <con:settings/>
+    <con:config>
+      <delay>2000</delay>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="ItrateAssignments" id="21d09bcc-3815-41cb-bbad-97e8a912ae2e">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>Get EachAssignment</dataSourceStep>
+      <targetStep>Generate Assignmnet  Start and End Time</targetStep>
+      <discardResults>false</discardResults>
     </con:config>
   </con:testStep>
   <con:properties>
@@ -671,59 +658,59 @@ testRunner.testCase.setPropertyValue("Assertid",assetId)</script>
     </con:property>
     <con:property>
       <con:name>startAt</con:name>
-      <con:value>2023-11-20T15:35:35.605Z</con:value>
+      <con:value>2023-11-21T10:48:48.605Z</con:value>
     </con:property>
     <con:property>
       <con:name>completedAt</con:name>
-      <con:value>2023-11-20T15:38:38.605Z</con:value>
+      <con:value>2023-11-21T10:50:50.605Z</con:value>
     </con:property>
     <con:property>
       <con:name>sentAt</con:name>
-      <con:value>2023-11-20T15:39:39.605Z</con:value>
+      <con:value>2023-11-21T10:51:51.605Z</con:value>
     </con:property>
     <con:property>
       <con:name>MatchContainerId</con:name>
-      <con:value/>
+      <con:value>6012</con:value>
     </con:property>
     <con:property>
       <con:name>MatchAssetId</con:name>
-      <con:value/>
+      <con:value>2341</con:value>
     </con:property>
     <con:property>
       <con:name>MatchResourceType</con:name>
-      <con:value/>
+      <con:value>Videos</con:value>
     </con:property>
     <con:property>
       <con:name>MatchResourceTypeId</con:name>
-      <con:value/>
+      <con:value>5</con:value>
     </con:property>
     <con:property>
       <con:name>AssetcorrelationId</con:name>
-      <con:value/>
+      <con:value>567538870556557312</con:value>
     </con:property>
     <con:property>
       <con:name>AssetActivityId</con:name>
-      <con:value/>
+      <con:value>CP4_VIDEO_5bfc5e60457be</con:value>
     </con:property>
     <con:property>
       <con:name>AssetName</con:name>
-      <con:value/>
+      <con:value>Watch and Learn: Administering Oral Medications</con:value>
     </con:property>
     <con:property>
       <con:name>SectionCode</con:name>
-      <con:value/>
+      <con:value>g111Q1UCEEDFC_s111Q1UCEFRZS</con:value>
     </con:property>
     <con:property>
       <con:name>Assertid</con:name>
-      <con:value/>
+      <con:value>2341</con:value>
     </con:property>
     <con:property>
       <con:name>AttemptBodyData</con:name>
-      <con:value>{     "id": "1537254803",     "meta": {         "points": "100"     },     "type": "Achievement",     "quizzes": [         {             "id": D_activityId,             "name": "D_activityName",             "questionsAnswered": 5         }     ],     "sectionId": "mastery_level",     "sectionName": "Mastery Level Assignments",     "activityName": "D_activityName",     "masteryLevel": 2,     "quizzesTaken": 1,</con:value>
+      <con:value>{     "id": "lacldh2i",     "meta": {         "videoPosition": 170.779766     },     "type": "Achievement",    "productId": null,   "positionUpdated": true,</con:value>
     </con:property>
     <con:property>
       <con:name>ExistingAssignmentsCount</con:name>
-      <con:value>47</con:value>
+      <con:value>23</con:value>
     </con:property>
   </con:properties>
   <con:reportParameters/>

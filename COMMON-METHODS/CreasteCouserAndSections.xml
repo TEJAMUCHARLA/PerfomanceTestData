@@ -104,9 +104,8 @@ log.info futuredate + " : Futuredate"</script>
   "academicYear": ${TestDataDataSuource#AcademicYear},
   "sfdcAccountId":"${TestDataDataSuource#SfdcAccountId}",
   "products": [
-    "${TestDataDataSuource#Products}",
-    "${TestDataDataSuource#Products2}",
-    "9781975186708"
+    "${#Project#ProductISBN}",
+    "${TestDataDataSuource#Products2}"
   ],
   "instructor": "${#Project#instructorUserId}",
   "role": "${#Project#InstuctorRoleValue}"
@@ -484,7 +483,7 @@ assert verifyResponse.sections.passcode.contains(VerifyresponseSection.passcode)
         </con:credentials>
         <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
         <con:parameters>
-          <con:entry key="ISBN" value="${Create course#RawRequest#$['products'][2]}"/>
+          <con:entry key="ISBN" value="${Create course#RawRequest#$['products'][0]}"/>
         </con:parameters>
         <con:environmentSpec>
           <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
@@ -1678,11 +1677,11 @@ assert IsColectionCreated
     </con:property>
     <con:property>
       <con:name>EffectiveDate</con:name>
-      <con:value>2023-11-20T00:00:00.000Z</con:value>
+      <con:value>2023-11-21T00:00:00.000Z</con:value>
     </con:property>
     <con:property>
       <con:name>ExpireDate</con:name>
-      <con:value>2024-03-19T00:00:00.000Z</con:value>
+      <con:value>2024-03-20T00:00:00.000Z</con:value>
     </con:property>
     <con:property>
       <con:name>tomorrow</con:name>
@@ -1714,23 +1713,23 @@ assert IsColectionCreated
     </con:property>
     <con:property>
       <con:name>CourseSerialNumber</con:name>
-      <con:value>421</con:value>
+      <con:value>431</con:value>
     </con:property>
     <con:property>
       <con:name>BarerToken</con:name>
-      <con:value>Bearer NGJlYzA5N2FhNjc4Y2M0ODc0MmMzNmJlMTE2ZTgyNWU1OTYyMzBlODg0NzhiOGY5ZmFmNDBlZTE0NTFiMzdiOA</con:value>
+      <con:value>Bearer ZDc3ZDQyZDRmMDJmYTdmODRjMTQ4NTlkYWI0MGFmNjIxMjk2NmJkZjRhMzM1MjNlOWQ3MjU3NGY0OTRiNjU3ZQ</con:value>
     </con:property>
     <con:property>
       <con:name>CollectionQnID</con:name>
-      <con:value>1500116843</con:value>
+      <con:value>1500116851</con:value>
     </con:property>
     <con:property>
       <con:name>CourseName</con:name>
-      <con:value>Performance Test Data 50 Assignments _Nov20_155909</con:value>
+      <con:value>Performance Test Data 50 Assignments _Nov21_161343</con:value>
     </con:property>
     <con:property>
       <con:name>CourseId</con:name>
-      <con:value>g11A5D32YNP</con:value>
+      <con:value>g111Q1UCEEDFC</con:value>
     </con:property>
   </con:properties>
   <con:reportParameters/>

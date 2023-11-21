@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase xmlns:con="http://eviware.com/soapui/config" id="a41b24cd-88f3-4dce-aacd-e250a4bc2e34" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Spred Student Access Tokens" searchProperties="true" timeout="0">
+  <con:settings id="675b2996-7acc-4f82-95ef-3f6861b9afe3">
+    <con:setting id="a41b24cd-88f3-4dce-aacd-e250a4bc2e34fileName">Spred-Student-Access-Tokens</con:setting>
+  </con:settings>
+  <con:testStep type="groovy" name="Disbale all Students" id="455f27bd-e44e-451f-a855-121b4b1bfba1">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+
+import com.eviware.soapui.model.testsuite.TestRunner.Status
+
+import groovy.json.JsonOutput
+
+import groovy.json.*
+
+def EachSuite = testRunner.testCase.testSuite.project.getTestSuiteByName("Work2")
+  for (def EachTeastCase in EachSuite.getTestCaseList())
+  {
+      log.info("EachTeastCase ="+EachTeastCase.name)
+       EachSuite.testCases[EachTeastCase.name].disabled = true
+  }</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="RE-SetJSON" id="c69ad559-8112-46b0-ac15-c1c0270776de">
+    <con:settings/>
+    <con:config>
+      <script>testRunner.testCase.setPropertyValue("mappedValues", "")</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="datasource" name="Read Student Access Details" id="44300b7f-95da-422e-ae89-523eaf5b6161">
+    <con:settings/>
+    <con:config xsi:type="con:DataSourceStep">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>${#Project#TestDataExcelFile2}</file>
+          <worksheet>StudentAccessTokens</worksheet>
+          <cell>A2</cell>
+          <ignoreEmpty>false</ignoreEmpty>
+          <evaluateFormulas>false</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:preload>true</con:preload>
+      <con:property>Number</con:property>
+      <con:property>TokenValue</con:property>
+      <con:property>StudentUserID</con:property>
+      <con:startRow/>
+      <con:endRow>4</con:endRow>
+      <con:recordsPerIteration>1</con:recordsPerIteration>
+      <con:completeLastOperation>false</con:completeLastOperation>
+      <con:trimValues>false</con:trimValues>
+      <con:entitizeValues>false</con:entitizeValues>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:expandProperties>false</con:expandProperties>
+      <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="MAP" id="319fa730-5652-4fee-ad8b-009542e8f9ce">
+    <con:settings/>
+    <con:config>
+      <script>def tokenValue = context.expand( '${Read Student Access Details#TokenValue}' )
+def studentUserID = context.expand( '${Read Student Access Details#StudentUserID}' )
+
+def mappedValues = context.expand( '${#TestCase#MappedValues}' )
+
+
+def data = mappedValues
+
+def data1 = "\""+"Token"+"\":\""+tokenValue+"\","
+
+data1 = data1+"\""+"UserId"+"\":\""+studentUserID+"\""
+data = data+"{"+data1+"},"
+
+log.info("data "+data)
+testRunner.testCase.setPropertyValue("mappedValues", data)</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="MAP DATA" id="f2c8396a-dfc6-4ee7-9cca-f0118f896e13">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>Read Student Access Details</dataSourceStep>
+      <targetStep>MAP</targetStep>
+      <discardResults>false</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Form JSON" id="b4ca2c1b-d97b-4bfe-b97d-c77f64c104d1">
+    <con:settings/>
+    <con:config>
+      <script>def mappedValues = context.expand( '${#TestCase#MappedValues}' )
+log.info("mappedValues "+mappedValues.size())
+mappedValues= mappedValues.substring(0,(mappedValues.size()-1))
+mappedValues = "["+mappedValues+"]"
+log.info("mappedValues "+mappedValues)
+testRunner.testCase.setPropertyValue("MappedValues",mappedValues)</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Set Students Access Tokens" id="0cb3a069-85b3-428b-9662-0959b3cb82af">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import java.lang.*;
+import java.util.concurrent.TimeUnit;
+import java.util.Date
+import java.util.Calendar
+import java.util.TimeZone
+import java.text.SimpleDateFormat
+
+def mappedValues = context.expand( '${#TestCase#MappedValues}' )
+
+def slurper = new JsonSlurper()
+def json = slurper.parseText(mappedValues)
+
+//log.info("ddf" +json[0].Token)
+def ProjectName= testRunner.testCase.testSuite.project.getName();
+def TestCaseName = testRunner.testCase.getLabel()
+def TestSuiteName = testRunner.testCase.testSuite.getLabel()
+def targetTestSuite = testRunner.testCase.testSuite.project.getTestSuiteByName("Work2")
+
+def AttemptStudentCount =json.size()
+log.info("AttemptStudentCount "+AttemptStudentCount)
+
+//DisabelStudents
+def TCName1=""
+for(int i =0 ;i&lt;AttemptStudentCount;i++)
+{
+      TCName1="Sudent_"
+	TCName1=TCName1+(i+1).toString()
+	log.info("TCName "+TCName1)
+	//def targetTestCase = targetTestSuite.getTestCaseByName(TCName1)
+targetTestSuite.testCases[TCName1].disabled =false
+}
+//DisabelStudents
+def TCName=""
+for(int i =0 ;i&lt;AttemptStudentCount;i++)
+{
+	TCName="Sudent_"
+	TCName=TCName+(i+1).toString()
+//	log.info("TCName "+TCName)
+	def targetTestCase = targetTestSuite.getTestCaseByName(TCName)
+	def Token=  json[i].Token
+	def UserID=  json[i].UserId
+  targetTestCase.setPropertyValue( "xaccessTokenStudent", Token.toString() )
+  targetTestCase.setPropertyValue( "StudentUserID", UserID.toString() )
+
+	
+}
+
+
+
+
+
+//def targetTestCase = targetTestSuite.getTestCaseByName("yourTargetTestCaseName")
+//targetTestSuite.setPropertyValue( "MyProp", 'someValue' )
+//targetTestSuite.addTestCase("TEST1234")</script>
+    </con:config>
+  </con:testStep>
+  <con:properties>
+    <con:property>
+      <con:name>MappedValues</con:name>
+      <con:value>[{"Token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzc28ud2tocGUuY29tIiwiYXVkIjoiM2MzOTg0NmMtODg2YS1kZjExLWIxMTUtMDA1MDU2YzAwMDA4IiwiYXV0aF90aW1lIjoxNzAwNTYzNTMyLCJuYW1lIjoiUGVyZm9ybWFuY2UgU3R1ZGVudDExMTEiLCJqdGkiOiI0ZjNiYTQ4Ni00ZjYzLTQ0OWEtYWUwYS04NGZjMGU1ODY3ODYiLCJpYXQiOjE3MDA1NjM1MzIsImV4cCI6MTcwMDY0OTkzMiwic3ViIjoiZDM0ODUwNTUtOWE2Zi00ZGY1LWI5YjMtNDYwOTAwOTVmODRjIiwicm9sZXMiOiJ3a2hwZS1lbmQgdXNlciIsIndraHBlX3Blcm1pc3Npb25zIjpbIkNhblVzZVBlcnNvbmFsaXphdGlvbkZlYXR1cmVzIl0sIndraHBlX3Rva2VuIjoiVTdTV3VueDNrSUp5M1pmb3ZBa2xTTXVIYUJyZnpJa1RFRGxLdnVIQTN3TEFsM2c4VDh5T292VXNxUTJSdzhnSjNNaVQrZGx3a0JITGJ4UjBFWktlRG5IUGhUelk3NVVuMUJHKy9BSHRUYno2UjlIc2VFRXBwTEJCQjk3cGMwejlEMERrM1VvckZYM2tzbmpreHNlNWEyUzVyTlVsY043Vm5GTjBpOEFIT1ZOZWswWm5mRmRWbjlCa1puV0hpYkR6YzZVOU9vK1A2cDVacXFab1FLZDcyTVA4Y3Z0VW90bndGRTFucklYZXluRnpwVDA2ajQvcW5sbXFwbWhBcDN2WW5ZWnYwYlpROXZmK2xlSUdHTkIrYktYOG5XU3NXOW9YIiwidG9rZW5fdHlwZSI6ImJlYXJlciJ9.YPCCq7yF26gxKOo4CM7Tc8F0ksDiiuYKREUQrfsePMCB2yisk3PlX_pl3uLIk4Ajk0VvQnN8vAKa_FtMYOiQ3kXeFb5emHvgWLG1E0sqVhFoMvjwbkEK1c1DeDsPOhR7Ul-2Vmja5MlCPCLB3ESFo07Ut6L1RUXzR6iB5VpUBn8","UserId":"d3485055-9a6f-4df5-b9b3-46090095f84c"},{"Token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzc28ud2tocGUuY29tIiwiYXVkIjoiM2MzOTg0NmMtODg2YS1kZjExLWIxMTUtMDA1MDU2YzAwMDA4IiwiYXV0aF90aW1lIjoxNzAwNTYzNTM0LCJuYW1lIjoiUGVyZm9ybWFuY2UgU3R1ZGVudDExMTIiLCJqdGkiOiI2YTVhZGIyNC00MGZiLTQ3YjEtYWM4ZC1lMjg5NDZkNmNjZmQiLCJpYXQiOjE3MDA1NjM1MzQsImV4cCI6MTcwMDY0OTkzNCwic3ViIjoiNTY2ZTZmMWMtYTA4MS00NDI0LTg1MTMtNDYwOTAwOTVmYWQ0Iiwicm9sZXMiOiJ3a2hwZS1lbmQgdXNlciIsIndraHBlX3Blcm1pc3Npb25zIjpbIkNhblVzZVBlcnNvbmFsaXphdGlvbkZlYXR1cmVzIl0sIndraHBlX3Rva2VuIjoiVTdTV3VueDNrSUp5M1pmb3ZBa2xTUGpxbXowUi9rZWdQRkp0Sm9uNFRlazMwOS85dS9BVkVPWTVqS1h4cGJuWlgreEg4T01sM3ZQYWZ6dC9IazA5YTNIUGhUelk3NVVuMUJHKy9BSHRUYno2UjlIc2VFRXBwTEJCQjk3cGMwejlaWk9TdG0zam82ZTU4WTZIRVNxaTR2T3dIcHU1ZEM2Rm5GTjBpOEFIT1ZNcWZWZHFvYWNLRDlCa1puV0hpYkR6YzZVOU9vK1A2cDVacXFab1FLZDcyTVA4Y3Z0VW90bndGRTFucklYZXluRnpwVDA2ajQvcW5sbXFwbWhBcDN2WW5ZWnYwYlpROXZmK2xlSUdHTkIrYktYOG5XU3NXOW9YIiwidG9rZW5fdHlwZSI6ImJlYXJlciJ9.gYkMX8GG0rcuThb2cNl4SloluZ5AiM2jeCQTb8JVzpbKovg7ibHEVQmpm0xTdRtHNmaPmf1OVFj7y3bYmLiVqNTrXI2BXglhsNAY55FW1BiyY1jcJL2G1vhrd-GIFksdEF9FCRpDTC3btcvyRyOQJ5QHjfy13KTmGvq-Jf-xRpg","UserId":"566e6f1c-a081-4424-8513-46090095fad4"},{"Token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzc28ud2tocGUuY29tIiwiYXVkIjoiM2MzOTg0NmMtODg2YS1kZjExLWIxMTUtMDA1MDU2YzAwMDA4IiwiYXV0aF90aW1lIjoxNzAwNTYzNTM1LCJuYW1lIjoiUGVyZm9ybWFuY2UgU3R1ZGVudDExMTMiLCJqdGkiOiJmMjc5MGRmZS05OGY4LTQyOGYtYmVlOC1hMTE3YmEwNjQ5OTYiLCJpYXQiOjE3MDA1NjM1MzUsImV4cCI6MTcwMDY0OTkzNSwic3ViIjoiZjQ1N2QyZjYtZTVjOS00OWIwLWFlOGUtNDYwOTAwOTVmZDAyIiwicm9sZXMiOiJ3a2hwZS1lbmQgdXNlciIsIndraHBlX3Blcm1pc3Npb25zIjpbIkNhblVzZVBlcnNvbmFsaXphdGlvbkZlYXR1cmVzIl0sIndraHBlX3Rva2VuIjoiVTdTV3VueDNrSUp5M1pmb3ZBa2xTSUxGRTVabXozd2Q4bjd6RVpob1pSMUh0bENFRTBTVnJzOHNzN1pKY2U5QU80ZHp1aUQ0S2lKbGw4QlRKSit6QTNIUGhUelk3NVVuMUJHKy9BSHRUYno2UjlIc2VFRXBwTEJCQjk3cGMwejlNdFFkMXNISll6TXZZMjBBeGlFazJXU29LR0pUV3ZURm5GTjBpOEFIT1ZPb1hQY2FlbU1YWGRCa1puV0hpYkR6YzZVOU9vK1A2cDVacXFab1FLZDcyTVA4Y3Z0VW90bndGRTFucklYZXluRnpwVDA2ajQvcW5sbXFwbWhBcDN2WW5ZWnYwYlpROXZmK2xlSUdHTkIrYktYOG5XU3NXOW9YIiwidG9rZW5fdHlwZSI6ImJlYXJlciJ9.C6QM_dPhLzWQew7zSkuCruzN2ESW2mW3uQXS0sxeKcXwV2DaUcaj_grc5rl5CqonssWsf_qpCfOJ6tOCYmc_7DjtSejWcRqacd8mylaLhgN8KzL5Zq0s3Czl593EbVoWNWeR605ZUn5jL8Ka_qs7zk0cvmlaGNDu63STVIfYxeo","UserId":"f457d2f6-e5c9-49b0-ae8e-46090095fd02"},{"Token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzc28ud2tocGUuY29tIiwiYXVkIjoiM2MzOTg0NmMtODg2YS1kZjExLWIxMTUtMDA1MDU2YzAwMDA4IiwiYXV0aF90aW1lIjoxNzAwNTYzNTM4LCJuYW1lIjoiUGVyZm9ybWFuY2UgU3R1ZGVudDExMTQiLCJqdGkiOiJkZTU4MmNlZC1mNTAwLTQ5N2MtYWZiYS0zZjcwMzY1MWYzYTMiLCJpYXQiOjE3MDA1NjM1MzgsImV4cCI6MTcwMDY0OTkzOCwic3ViIjoiZDhjNjIwOGYtMmExOS00ZDIzLTg2MWUtNDYwOTAwOTYwMDg1Iiwicm9sZXMiOiJ3a2hwZS1lbmQgdXNlciIsIndraHBlX3Blcm1pc3Npb25zIjpbIkNhblVzZVBlcnNvbmFsaXphdGlvbkZlYXR1cmVzIl0sIndraHBlX3Rva2VuIjoiVTdTV3VueDNrSUp5M1pmb3ZBa2xTTGkvNlpBRFlaVlgwNUVzQ3dUdnduWmtTS1RKOUZrU0ZMR3pCVVQ1RWcxd3NBZ3BUR3FtMHpDbWtxWUMxTG1YWkhIUGhUelk3NVVuMUJHKy9BSHRUYno2UjlIc2VFRXBwTEJCQjk3cGMwejkrYWd5YnplWW1JTHMrMVorMUlYMGp0aDR1S3JaTDUzVnpqRVdyME9RdFgzTUtYZURIcWwxOU5Ca1puV0hpYkR6YzZVOU9vK1A2cDVacXFab1FLZDcyTVA4Y3Z0VW90bndGRTFucklYZXluRnpwVDA2ajQvcW5sbXFwbWhBcDN2WW5ZWnYwYlpROXZmK2xlSUdHTkIrYktYOG5XU3NXOW9YIiwidG9rZW5fdHlwZSI6ImJlYXJlciJ9.DQQujBeqvwYG41qVYbZ9U8PH6rtHIAvg6EzPIq91wJ0-eNSwiVcLQEooNz5hiwFE2ECg2EIWV26LZQBDr_VbhBKSF-3pwUszMtMat5RRYh_UwPYHA5bwp_xeRKCZCxppF5awGpMtNnhVk4ydUYQdi_arACBTrXGrxXY1uuaLMMU","UserId":"d8c6208f-2a19-4d23-861e-460900960085"},{"Token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzc28ud2tocGUuY29tIiwiYXVkIjoiM2MzOTg0NmMtODg2YS1kZjExLWIxMTUtMDA1MDU2YzAwMDA4IiwiYXV0aF90aW1lIjoxNzAwNTYzNTQwLCJuYW1lIjoiUGVyZm9ybWFuY2UgU3R1ZGVudDExMTUiLCJqdGkiOiI3OTg1MDRlNS1jODI4LTQ0MTktOWFjYS04NDFlYzcwOGJkOWMiLCJpYXQiOjE3MDA1NjM1NDAsImV4cCI6MTcwMDY0OTk0MCwic3ViIjoiYzBkZWFmNzItYzBlMy00NmIyLThiODQtNDYwOTAwOTYwNmNjIiwicm9sZXMiOiJ3a2hwZS1lbmQgdXNlciIsIndraHBlX3Blcm1pc3Npb25zIjpbIkNhblVzZVBlcnNvbmFsaXphdGlvbkZlYXR1cmVzIl0sIndraHBlX3Rva2VuIjoiVTdTV3VueDNrSUp5M1pmb3ZBa2xTQk1qTFpwWUZvN0l1MzlEWnhOV1NadXArM29mZXZPbUR0YVUwZ2hqdHRXYjdWRDVIaDF1SUFmeldwcENjQkRrMVhIUGhUelk3NVVuMUJHKy9BSHRUYno2UjlIc2VFRXBwTEJCQjk3cGMwejlwRXRlV1BOY1JDQnkzcHdPY1RWQXBqYzN0d0dUbTZKcXpqRVdyME9RdFgwN2JZUzRienBvMU5Ca1puV0hpYkR6YzZVOU9vK1A2cDVacXFab1FLZDcyTVA4Y3Z0VW90bndGRTFucklYZXluRnpwVDA2ajQvcW5sbXFwbWhBcDN2WW5ZWnYwYlpROXZmK2xlSUdHTkIrYktYOG5XU3NXOW9YIiwidG9rZW5fdHlwZSI6ImJlYXJlciJ9.T32OLT9M3EzwfNRSQzEjxVr_dsN9KSz3uUS3MirkoezKpNqnQX4C3iWtlZ3H4AssWv5FCLvCHhxZo0k3h8HZV5Pn5IJV-Bibp1dIBN8OJ6phl048rGm82aclqSisIQ8YgGimdzdYfYR3wgSksMVPDKrsi1_3zkWP89a11DOW3no","UserId":"c0deaf72-c0e3-46b2-8b84-4609009606cc"}]</con:value>
+    </con:property>
+  </con:properties>
+  <con:reportParameters/>
+</con:testCase>
