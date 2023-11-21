@@ -57,7 +57,7 @@ def timeZoneOffset = context.expand( '${CreateAssignment#timeZoneOffset}' )
 def accessibleFromTimezone = context.expand( '${CreateAssignment#accessibleFromTimezone}' )
 
 testRunner.testCase.testSuite.project.setPropertyValue("ProductISBN","9781975186708") 
-testRunner.testCase.testSuite.project.setPropertyValue("CourseAssignmentCount","2") //Existimg resource types 9 , so 9*5+1 =54
+testRunner.testCase.testSuite.project.setPropertyValue("CourseAssignmentCount","5") //Existimg resource types 9 , so 9*5+1 =54
 testRunner.testCase.testSuite.project.setPropertyValue("TotalAssignments","10")//Assignment count for assertion
 testRunner.testCase.testSuite.project.setPropertyValue("CreateCourseName","Performance Test Data 50 Assignments "+currenTime.toString())
 testRunner.testCase.testSuite.project.setPropertyValue("CreateCourseTimeZone",accessibleFromTimezone.toString())
@@ -133,23 +133,50 @@ log.info("SetUpDone")</script>
         </con:property>
         <con:property>
           <con:name>CourseSerialNumber</con:name>
-          <con:value>431</con:value>
+          <con:value>433</con:value>
         </con:property>
         <con:property>
           <con:name>BarerToken</con:name>
-          <con:value>Bearer ZDc3ZDQyZDRmMDJmYTdmODRjMTQ4NTlkYWI0MGFmNjIxMjk2NmJkZjRhMzM1MjNlOWQ3MjU3NGY0OTRiNjU3ZQ</con:value>
+          <con:value>Bearer NTMwNjg5MWY0MDgzODg4ZTRlNjZhYTgxOTFjNmM0ZGIyOWMwZWI3ZjY2NDAyODQxN2MzZTYzNTUyNzU4MjA3Zg</con:value>
         </con:property>
         <con:property>
           <con:name>CollectionQnID</con:name>
-          <con:value>1500116851</con:value>
+          <con:value>1500116853</con:value>
         </con:property>
         <con:property>
           <con:name>CourseName</con:name>
-          <con:value>Performance Test Data 50 Assignments _Nov21_161343</con:value>
+          <con:value>Performance Test Data 50 Assignments _Nov21_162946</con:value>
         </con:property>
         <con:property>
           <con:name>CourseId</con:name>
-          <con:value>g111Q1UCEEDFC</con:value>
+          <con:value>g111QMGA8NXRQ</con:value>
+        </con:property>
+        <con:property>
+          <con:name>CourseSerialNumber2</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseName2</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseId2</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseSerialNumber3</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseName3</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseId3</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseSerialNumber4</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseName4</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseId4</con:name>
         </con:property>
       </con:properties>
       <con:returnProperties>
@@ -186,7 +213,7 @@ log.info("SetUpDone")</script>
       <con:properties>
         <con:property>
           <con:name>accessDate</con:name>
-          <con:value>2023-11-21T05:44:25-05:00</con:value>
+          <con:value>2023-11-21T06:00:26-05:00</con:value>
         </con:property>
         <con:property>
           <con:name>DueDate</con:name>
@@ -222,15 +249,15 @@ log.info("SetUpDone")</script>
         </con:property>
         <con:property>
           <con:name>accessTime</con:name>
-          <con:value>05:44 AM</con:value>
+          <con:value>06:00 AM</con:value>
         </con:property>
         <con:property>
           <con:name>DueTime</con:name>
-          <con:value>09:44 AM</con:value>
+          <con:value>10:00 AM</con:value>
         </con:property>
         <con:property>
           <con:name>AssignedAssignmnetCount</con:name>
-          <con:value>27</con:value>
+          <con:value>54</con:value>
         </con:property>
       </con:properties>
       <con:returnProperties>

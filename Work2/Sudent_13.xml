@@ -19,7 +19,7 @@ def pushAttemptBody = context.expand( '${#TestCase#PushAttemptBody}' )
 log.info("final_Attempt_BodyData "+pushAttemptBody)</script>
     </con:config>
   </con:testStep>
-  <con:testStep type="restrequest" name="Push to SQS" id="aebd5f39-5886-4f5e-ad26-182a7ade16e4" disabled="true">
+  <con:testStep type="restrequest" name="Push to SQS" id="aebd5f39-5886-4f5e-ad26-182a7ade16e4">
     <con:settings/>
     <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="pushSQS" methodName="Method 1" resourcePath="/api/gradebook-process-management/v1/pushSqsQueue" xsi:type="con:RestRequestStep">
       <con:restRequest name="Push to SQS" id="0356f71d-de87-4d0e-8c1b-3c08512d544b" mediaType="application/json" postQueryString="false">
@@ -90,11 +90,19 @@ else
   <con:properties>
     <con:property>
       <con:name>PushAttemptBody</con:name>
-      <con:value>{"id":"1537254803","meta":{"points":"100"},"type":"Achievement","quizzes":[{"id":1501294601,"name":"Chapter 1: Professional Nursing Practice","questionsAnswered":5}],"sectionId":"mastery_level","sectionName":"Mastery Level Assignments","activityName":"Chapter 1: Professional Nursing Practice","masteryLevel":2,"quizzesTaken":1,"startedAt":"2023-11-21T07:38:38.605Z","completedAt":"2023-11-21T07:40:40.605Z","sentAt":"2023-11-21T07:41:41.605Z","userId":"","systemId":"3c39846c-886a-df11-b115-005056c00008","activityId":"1501294601","correlationId":"567482162459181056","score":"1","classIds":["g111G3UCVRG_s111G3UCX614"]}</con:value>
+      <con:value>{"id":"17064369","meta":{"quizId":340714,"quizTime":"1800 seconds","quizVersion":1,"totalCorrect":2,"totalAnswered":10,"totalIncorrect":8,"totalQuestions":10,"totalTimeSpent":"38 seconds","totalUnattempted":0},"productId":null,"type":"Scored","startedAt":"2023-11-21T12:18:18.605Z","completedAt":"2023-11-21T12:20:20.605Z","sentAt":"2023-11-21T12:21:21.605Z","userId":"a4e91e6d-d6c1-479e-a120-4609009613c6","systemId":"3c39846c-886a-df11-b115-005056c00008","activityId":"CP4_QuizManager_614fdc4b4dad2","correlationId":"567560568404180992","score":"50","classIds":["g111T34DHF7NC_s111T34DHGM7S"]}</con:value>
     </con:property>
     <con:property>
       <con:name>StatusCode</con:name>
-      <con:value>400</con:value>
+      <con:value>200</con:value>
+    </con:property>
+    <con:property>
+      <con:name>xaccessTokenStudent</con:name>
+      <con:value>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzc28ud2tocGUuY29tIiwiYXVkIjoiM2MzOTg0NmMtODg2YS1kZjExLWIxMTUtMDA1MDU2YzAwMDA4IiwiYXV0aF90aW1lIjoxNzAwNTY4NTg1LCJuYW1lIjoiUGVyZm9ybWFuY2UgU3R1ZGVudDExMjMiLCJqdGkiOiJkMmM4M2EyYy1lNjIwLTRkYWUtYmZiMy0zNTA1NTJjOTU5ZGUiLCJpYXQiOjE3MDA1Njg1ODUsImV4cCI6MTcwMDY1NDk4NSwic3ViIjoiYTRlOTFlNmQtZDZjMS00NzllLWExMjAtNDYwOTAwOTYxM2M2Iiwicm9sZXMiOiJ3a2hwZS1lbmQgdXNlciIsIndraHBlX3Blcm1pc3Npb25zIjpbIkNhblVzZVBlcnNvbmFsaXphdGlvbkZlYXR1cmVzIl0sIndraHBlX3Rva2VuIjoiVTdTV3VueDNrSUtoVnRRVXhMVUVOUm5vZy90TU56QlY0OSt5bHljVkgzYnpySGQ3VTNUMUE1aWVLb3IxSzFuWFBxSTZ2Zm8ycmxveS9aKy91bVlOWEhIUGhUelk3NVVuMUJHKy9BSHRUYno2UjlIc2VFRXBwTEJCQjk3cGMwejlLVGpZOHhwNUZqeGMrN0pzTEk1SkZGL2Rra1JxQm1vcXpqRVdyME9RdFgzcnFMRDBqWFJGTGRCa1puV0hpYkR6YzZVOU9vK1A2cDVacXFab1FLZDcyTVA4Y3Z0VW90bndGRTFucklYZXluRnpwVDA2ajQvcW5sbXFwbWhBcDN2WW5ZWnYwYlpROXZmK2xlSUdHTkIrYktYOG5XU3NXOW9YIiwidG9rZW5fdHlwZSI6ImJlYXJlciJ9.rFOGcCxxQxIoG0D1KrZv2RpHLsss0D_-4BcsTc8D9qA_QntAhb-DH7JIadEoIOF0QEOe589a5c0cjsiBp7CokV9HH-CHJK9iKhiA6IbfM3maANXUSiyUuNt2OK8ay3irGkJXdjx7biUCQbAus1_Q3TuziuAerMLrsG50jqCuXwI</con:value>
+    </con:property>
+    <con:property>
+      <con:name>StudentUserID</con:name>
+      <con:value>a4e91e6d-d6c1-479e-a120-4609009613c6</con:value>
     </con:property>
   </con:properties>
   <con:reportParameters/>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase xmlns:con="http://eviware.com/soapui/config" id="625d4697-ce9a-49b8-97f6-bf5beaebc5f7" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Create Course and Enroll Students" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" zephyrTestName="" zephyrTestId="">
+  <con:settings id="337fe865-f94a-4f69-9e3d-dddb1d9d35f8">
+    <con:setting id="1a87fd06-ba6d-4a2e-a574-12b8a5349026fileName">Create-Course-and-Enroll-Students</con:setting>
+    <con:setting id="625d4697-ce9a-49b8-97f6-bf5beaebc5f7fileName">Create-Course-and-Enroll-Students</con:setting>
+  </con:settings>
+  <con:testStep type="datasource" name="CreateAssignment" id="c0cf42fe-8246-46f5-b988-b28955c4b6b6">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:DataSourceStep">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>${#Project#TestDataExcelFile}</file>
+          <worksheet>CreateAssignment</worksheet>
+          <cell>A143</cell>
+          <ignoreEmpty>false</ignoreEmpty>
+          <evaluateFormulas>false</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>points</con:property>
+      <con:property>isGraded</con:property>
+      <con:property>attemptType</con:property>
+      <con:property>isHighlightLateSubmission</con:property>
+      <con:property>isBroadcastingRequired</con:property>
+      <con:property>accessibleFromTimezone</con:property>
+      <con:property>timeZoneOffset</con:property>
+      <con:property>isForEveryOne</con:property>
+      <con:property>isImmediateAvailable</con:property>
+      <con:property>isUnlocked</con:property>
+      <con:property>NoOfAttempts</con:property>
+      <con:property>Remarks</con:property>
+      <con:property>resourse type</con:property>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="delay" name="Delay 3" id="93b493bb-d938-412e-829c-f4a1eeb913eb">
+    <con:settings/>
+    <con:config>
+      <delay>1000</delay>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="calltestcase" name="Call Create Course" id="46e0925c-22b8-448c-94c5-524e29d9702d">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RunTestCaseStep" copyLoadTestProperties="true" copyHttpSession="true" ignoreEmptyProperties="true">
+      <con:targetTestCase>dd9042f9-36df-49e2-acb7-2e2389cb40ed</con:targetTestCase>
+      <con:properties>
+        <con:property>
+          <con:name>accessDate</con:name>
+          <con:value>2023-04-17T10:08:23-05:00</con:value>
+        </con:property>
+        <con:property>
+          <con:name>DueDate</con:name>
+          <con:value>2023-05-15</con:value>
+        </con:property>
+        <con:property>
+          <con:name>EffectiveDate</con:name>
+          <con:value>2023-11-21T00:00:00.000Z</con:value>
+        </con:property>
+        <con:property>
+          <con:name>ExpireDate</con:name>
+          <con:value>2024-03-20T00:00:00.000Z</con:value>
+        </con:property>
+        <con:property>
+          <con:name>tomorrow</con:name>
+          <con:value>Tue, Apr 18 2023</con:value>
+        </con:property>
+        <con:property>
+          <con:name>tomorrow2</con:name>
+          <con:value>2023-04-18</con:value>
+        </con:property>
+        <con:property>
+          <con:name>instructorUserId</con:name>
+          <con:value>0345b785-ba3e-4b3a-9c6c-447101694d75</con:value>
+        </con:property>
+        <con:property>
+          <con:name>numberOfAttempts</con:name>
+          <con:value>1</con:value>
+        </con:property>
+        <con:property>
+          <con:name>StudentenrollmentToken</con:name>
+          <con:value>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODE4ODU5NjAsImp0aSI6IjAxZDNiYzFlLWJlMzMtNGNjOS04OGU3LWI4ZTcxMjMzNTNhNSIsImlhdCI6MTY4MTcxMzE2MCwiaXNzIjoiaHR0cHM6Ly9waG9lbml4LWNjbS50aGVwb2ludC5sd3cuY29tIiwibmJmIjoxNjgxNzEzMTYwLCJzdWIiOiI5ZTZlOGM1Ny02ODNlLTRjNTQtODkzMS00NDc0MDE1OWQ2ODUiLCJobHJwX2NjbSI6W3siciI6InMiLCJjcnMiOiJnU0VCUUJLRzk5SUIiLCJzZWMiOiJnU0VCUUJLRzk5SUJfc1NFQlFCS0dBMlIifV19.kKMRJHB4y0Tno_H-esNrWhe-RsUn8zHCmazkZhhKCgXyBFbLRWiD2zyGp5MOZCZbIW1WIlQg4CjosIPwQtw204mHb6iNohaZtznNKEaZ5_BbW3241Stf9E_xo2X9qBCl_zrYUpX1M4uR066aPvoD5d_hViNCAynUW7OXzK3nC4VgF9F6amwQSDrje6AeD8D8vLTw_kmFk9eGSkVvEWnd5ZssYCAzqyVdgadLGbFrWj2N3TOIPsEkgR3HoJ17Ipg_ZCAwBqrAiPG5WMqQsNbMexKeSeb2bMA5FQuasV9Qc3YK9aphsr4ER17HAAZ1F1GtO_gmaYBO8xKU11WX1_UDGx5Dt0cpeRM24oonRf4sGS-BIsWXCsG8fTyaYzfJajIv7xh-ibK5NYtp2fji4W1l9ErKyfMX8bh27B5TnSOPjKZQydo4bqRnpK6IeiSCKmhbi195Yzzzns9h3Zs0edCV70UnEnFPO23gHIM2tSjkk_HNUitc8rR3ErYXKQx_p3t4RyAYcP8dbqi0RdepDBYoyR8LtFpfF63PYKKSk9SD5ePpqcqyqfHDibuL_Onmn0q14sF5TkXmnFLrj15Bxx4dgJV6BwTwbc3n_I-y5unOB6nbSR2PwINbsueSx7hjmebMPzZJqUwCGeehUnvGvt5vMbMY1ofYglw1HxryhcCvgdo</con:value>
+        </con:property>
+        <con:property>
+          <con:name>accessTime</con:name>
+          <con:value>10:08 PM</con:value>
+        </con:property>
+        <con:property>
+          <con:name>DueTime</con:name>
+          <con:value>10:06 PM</con:value>
+        </con:property>
+        <con:property>
+          <con:name>CourseSerialNumber</con:name>
+          <con:value>433</con:value>
+        </con:property>
+        <con:property>
+          <con:name>BarerToken</con:name>
+          <con:value>Bearer NTMwNjg5MWY0MDgzODg4ZTRlNjZhYTgxOTFjNmM0ZGIyOWMwZWI3ZjY2NDAyODQxN2MzZTYzNTUyNzU4MjA3Zg</con:value>
+        </con:property>
+        <con:property>
+          <con:name>CollectionQnID</con:name>
+          <con:value>1500116853</con:value>
+        </con:property>
+        <con:property>
+          <con:name>CourseName</con:name>
+          <con:value>Performance Test Data 50 Assignments _Nov21_162946</con:value>
+        </con:property>
+        <con:property>
+          <con:name>CourseId</con:name>
+          <con:value>g111QMGA8NXRQ</con:value>
+        </con:property>
+        <con:property>
+          <con:name>CourseSerialNumber2</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseName2</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseId2</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseSerialNumber3</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseName3</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseId3</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseSerialNumber4</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseName4</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseId4</con:name>
+        </con:property>
+      </con:properties>
+      <con:returnProperties>
+        <con:entry>accessDate</con:entry>
+        <con:entry>DueDate</con:entry>
+        <con:entry>EffectiveDate</con:entry>
+        <con:entry>ExpireDate</con:entry>
+        <con:entry>tomorrow</con:entry>
+        <con:entry>tomorrow2</con:entry>
+        <con:entry>instructorUserId</con:entry>
+        <con:entry>numberOfAttempts</con:entry>
+        <con:entry>StudentenrollmentToken</con:entry>
+        <con:entry>accessTime</con:entry>
+        <con:entry>DueTime</con:entry>
+        <con:entry>CourseSerialNumber</con:entry>
+        <con:entry>BarerToken</con:entry>
+        <con:entry>CollectionQnID</con:entry>
+        <con:entry>CourseName</con:entry>
+        <con:entry>CourseId</con:entry>
+      </con:returnProperties>
+      <con:runMode>SINGLETON_AND_WAIT</con:runMode>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:testCase>

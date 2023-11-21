@@ -19,7 +19,7 @@
     </con:property>
     <con:property>
       <con:name>Final_Attempt_BodyData</con:name>
-      <con:value>{"id":"lacldh2i","meta":{"videoPosition":170.779766},"type":"Achievement","productId":null,"positionUpdated":true,"startedAt":"2023-11-21T10:48:48.605Z","completedAt":"2023-11-21T10:50:50.605Z","sentAt":"2023-11-21T10:51:51.605Z","userId":"DD_userId","systemId":"3c39846c-886a-df11-b115-005056c00008","activityId":"CP4_VIDEO_5bfc5e60457be","correlationId":"567538870556557312","score":"1","classIds":["g111Q1UCEEDFC_s111Q1UCEFRZS"]}</con:value>
+      <con:value>{"id":"lacldh2i","meta":{"videoPosition":170.779766},"type":"Achievement","productId":null,"positionUpdated":true,"startedAt":"2023-11-21T12:18:18.605Z","completedAt":"2023-11-21T12:20:20.605Z","sentAt":"2023-11-21T12:21:21.605Z","userId":"DD_userId","systemId":"3c39846c-886a-df11-b115-005056c00008","activityId":"","correlationId":"567560571495383040","score":"1","classIds":["g111T34DHF7NC_s111T34DHGM7S"]}</con:value>
     </con:property>
     <con:property>
       <con:name>xaccessTokenStudent</con:name>

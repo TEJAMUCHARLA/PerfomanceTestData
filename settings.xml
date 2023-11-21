@@ -2706,11 +2706,11 @@
     </con:property>
     <con:property>
       <con:name>xaccessTokenInstructor</con:name>
-      <con:value>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzc28ud2tocGUuY29tIiwiYXVkIjoiM2MzOTg0NmMtODg2YS1kZjExLWIxMTUtMDA1MDU2YzAwMDA4IiwiYXV0aF90aW1lIjoxNzAwNTYzNDI2LCJuYW1lIjoiQVBJX1BlcmZvcm1hbmNlX0luc3RydWN0b3IgMUBXay5jb20iLCJqdGkiOiIwZTNmYjAyOC0zMGFhLTQ3YzEtYjI4MC1iOTNkM2VhNGM0ZWEiLCJpYXQiOjE3MDA1NjM0MjYsImV4cCI6MTcwMDY0OTgyNiwic3ViIjoiOWNkYmUyMDAtMzQ1Mi00NzdhLThiMjYtNDYxNzAwOWEwNTkwIiwicm9sZXMiOiJ3a2hwZS1lbmQgdXNlciIsIndraHBlX3Blcm1pc3Npb25zIjpbIkNhblVzZVBlcnNvbmFsaXphdGlvbkZlYXR1cmVzIl0sIndraHBlX3Rva2VuIjoiVTdTV3VueDNrSUk3VjU2d1FJZWlLSFM1dHhTWEEzNzR3R1dMcWJ0eFNVN2FmTVV0MmxIcnpJUDg1QURrYVQ2M0orL3gwOVhLcW9LRFp6cG9JRFlGVDNIUGhUelk3NVVuMUJHKy9BSHRUYno2UjlIc2VFRXBwTEJCQjk3cGMwejl0d1ZXcXFYckFONjZGSlNzL0d2N1VIOEk1djVrbGloNm1LTUg5ZERveXA5d284TlY2aWNpa2RCa1puV0hpYkR6YzZVOU9vK1A2cDVacXFab1FLZDcyTVA4Y3Z0VW90bndGRTFucklYZXluRnpwVDA2ajQvcW5sbXFwbWhBcDN2WW5ZWnYwYlpROXZmK2xlSUdHTkIrYktYOG5XU3NXOW9YIiwidG9rZW5fdHlwZSI6ImJlYXJlciJ9.RVAsALj_BlpJFrwfVFT0E9pTDGgNN4ClWJPEkpW77WxMKLYfB9X8LRxjzVPIHQTGsXsc6DrQ3tk78mS429HOiB9w4cwdLFmPiMjckXIKMN8VuicCVR_dEnZsdVSK-RLHIg_1tJ3O51Voq69rXfnb27v3-Hi4KEAoLxMz5RP5Zec</con:value>
+      <con:value>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzc28ud2tocGUuY29tIiwiYXVkIjoiM2MzOTg0NmMtODg2YS1kZjExLWIxMTUtMDA1MDU2YzAwMDA4IiwiYXV0aF90aW1lIjoxNzAwNTY4NTMwLCJuYW1lIjoiQVBJX1BlcmZvcm1hbmNlX0luc3RydWN0b3IgMUBXay5jb20iLCJqdGkiOiIwZTYxZDVkNy02ODliLTRmYTAtYWFhOS1kYjJjMTkwNDk1NGYiLCJpYXQiOjE3MDA1Njg1MzAsImV4cCI6MTcwMDY1NDkzMCwic3ViIjoiOWNkYmUyMDAtMzQ1Mi00NzdhLThiMjYtNDYxNzAwOWEwNTkwIiwicm9sZXMiOiJ3a2hwZS1lbmQgdXNlciIsIndraHBlX3Blcm1pc3Npb25zIjpbIkNhblVzZVBlcnNvbmFsaXphdGlvbkZlYXR1cmVzIl0sIndraHBlX3Rva2VuIjoiVTdTV3VueDNrSUtvOVlLRTN4RWlOQjRlZngwVEtIeDNCclBXazJGVlpYT0RqNFE0dCt0clhveWxwaldJSURRVjh3REZhTEJ6Vjg2RFp6cG9JRFlGVDNIUGhUelk3NVVuMUJHKy9BSHRUYno2UjlIc2VFRXBwTEJCQjk3cGMwejl0d1ZXcXFYckFONjZGSlNzL0d2N1VIOEk1djVrbGloNm1LTUg5ZERveXA5d284TlY2aWNpa2RCa1puV0hpYkR6YzZVOU9vK1A2cDVacXFab1FLZDcyTVA4Y3Z0VW90bndGRTFucklYZXluRnpwVDA2ajQvcW5sbXFwbWhBcDN2WW5ZWnYwYlpROXZmK2xlSUdHTkIrYktYOG5XU3NXOW9YIiwidG9rZW5fdHlwZSI6ImJlYXJlciJ9.0QTmAF1ydoVeMR8uSOMImvhNHK0ntxbL67UtTYL4oRGQ6E9HDS7KO0bTuy4C_IrlbA7LFqno_xg3oFyca_KgboodJEAZjBvYqZ6fQreA-jc9KoDKEFuWT4ZDY6u-Z2cHIEgFXezZOCNR2msakI_09x-eM83KvdNfN6SB5JvLX0A</con:value>
     </con:property>
     <con:property>
       <con:name>ssoInstructor</con:name>
-      <con:value>U7SWunx3kII7V56wQIeiKHS5txSXA374wGWLqbtxSU7afMUt2lHrzIP85ADkaT63J+/x09XKqoKDZzpoIDYFT3HPhTzY75Un1BG+/AHtTbz6R9HseEEppLBBB97pc0z9twVWqqXrAN66FJSs/Gv7UH8I5v5klih6mKMH9dDoyp9wo8NV6icikdBkZnWHibDzc6U9Oo+P6p5ZqqZoQKd72MP8cvtUotnwFE1nrIXeynFzpT06j4/qnlmqpmhAp3vYnYZv0bZQ9vf+leIGGNB+bKX8nWSsW9oX</con:value>
+      <con:value>U7SWunx3kIKo9YKE3xEiNB4efx0TKHx3BrPWk2FVZXODj4Q4t+trXoylpjWIIDQV8wDFaLBzV86DZzpoIDYFT3HPhTzY75Un1BG+/AHtTbz6R9HseEEppLBBB97pc0z9twVWqqXrAN66FJSs/Gv7UH8I5v5klih6mKMH9dDoyp9wo8NV6icikdBkZnWHibDzc6U9Oo+P6p5ZqqZoQKd72MP8cvtUotnwFE1nrIXeynFzpT06j4/qnlmqpmhAp3vYnYZv0bZQ9vf+leIGGNB+bKX8nWSsW9oX</con:value>
     </con:property>
     <con:property>
       <con:name>InstructorEmial</con:name>
@@ -2726,7 +2726,7 @@
     </con:property>
     <con:property>
       <con:name>StudnetEmail</con:name>
-      <con:value>Performance_Student1116@Wk.com</con:value>
+      <con:value>Performance_Student1130@Wk.com</con:value>
     </con:property>
     <con:property>
       <con:name>StudentPassword</con:name>
@@ -2734,15 +2734,15 @@
     </con:property>
     <con:property>
       <con:name>StudentUserId</con:name>
-      <con:value>2e407b34-ec59-4d25-beb8-460900960437</con:value>
+      <con:value>da9f4ff3-81bd-4199-bb57-460900962402</con:value>
     </con:property>
     <con:property>
       <con:name>xaccessTokenStudent</con:name>
-      <con:value>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzc28ud2tocGUuY29tIiwiYXVkIjoiM2MzOTg0NmMtODg2YS1kZjExLWIxMTUtMDA1MDU2YzAwMDA4IiwiYXV0aF90aW1lIjoxNzAwNTYzNTQyLCJuYW1lIjoiUGVyZm9ybWFuY2UgU3R1ZGVudDExMTYiLCJqdGkiOiI4ZmVhZTQ0ZC0yODI4LTQ3MzctYjk5Ni02MGQ5NDBkYWZlZjciLCJpYXQiOjE3MDA1NjM1NDIsImV4cCI6MTcwMDY0OTk0Miwic3ViIjoiMmU0MDdiMzQtZWM1OS00ZDI1LWJlYjgtNDYwOTAwOTYwNDM3Iiwicm9sZXMiOiJ3a2hwZS1lbmQgdXNlciIsIndraHBlX3Blcm1pc3Npb25zIjpbIkNhblVzZVBlcnNvbmFsaXphdGlvbkZlYXR1cmVzIl0sIndraHBlX3Rva2VuIjoiVTdTV3VueDNrSUp5M1pmb3ZBa2xTSkw5NTVwaFB0V0pGVFpObjJGSndYQ21DRVBVL1pMUGJGcWE5NFgvNGNHTkZ1OHFGb0pWWkRxY290NmJIbU1rZ25IUGhUelk3NVVuMUJHKy9BSHRUYno2UjlIc2VFRXBwTEJCQjk3cGMwejlVWFpQT2UwRElRRmNDNis5MzBSMUg2TzJvanFmb2FGaHpqRVdyME9RdFgwWS9ic2RHWGdFZU5Ca1puV0hpYkR6YzZVOU9vK1A2cDVacXFab1FLZDcyTVA4Y3Z0VW90bndGRTFucklYZXluRnpwVDA2ajQvcW5sbXFwbWhBcDN2WW5ZWnYwYlpROXZmK2xlSUdHTkIrYktYOG5XU3NXOW9YIiwidG9rZW5fdHlwZSI6ImJlYXJlciJ9.OHG_PcncdQLPfDH-cUpCXl8eirKbP33F3UC7bFeRxwWOzZndi4j5GzDrHBZi999uSWYk8ycRw8A8IpF3GD1zFvUTslVnOFtTmgx5KWBeIT5_Idc8X5OZeXJr8LlVhHpXAgGIuHt6QmcxOo1Uilddu1D_iCvpyyZEikZLsucOjMY</con:value>
+      <con:value>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzc28ud2tocGUuY29tIiwiYXVkIjoiM2MzOTg0NmMtODg2YS1kZjExLWIxMTUtMDA1MDU2YzAwMDA4IiwiYXV0aF90aW1lIjoxNzAwNTY4NTk4LCJuYW1lIjoiUGVyZm9ybWFuY2UgU3R1ZGVudDExMzAiLCJqdGkiOiIzZjdmM2ZmMy1iMTYxLTRhYzItYjUzYy01OTE0YWU5ZmJiY2EiLCJpYXQiOjE3MDA1Njg1OTgsImV4cCI6MTcwMDY1NDk5OCwic3ViIjoiZGE5ZjRmZjMtODFiZC00MTk5LWJiNTctNDYwOTAwOTYyNDAyIiwicm9sZXMiOiJ3a2hwZS1lbmQgdXNlciIsIndraHBlX3Blcm1pc3Npb25zIjpbIkNhblVzZVBlcnNvbmFsaXphdGlvbkZlYXR1cmVzIl0sIndraHBlX3Rva2VuIjoiVTdTV3VueDNrSUtoVnRRVXhMVUVOYXdnNHRtUk1tcEZoMGRpQWF0K0ZSanArcVc3K0ZYMWVaY0xWQkR2bW1wWS9iUVJ6cld4NE9COFcvZ212WXpzekhIUGhUelk3NVVuMUJHKy9BSHRUYno2UjlIc2VFRXBwTEJCQjk3cGMwejllSDgzUmxOZGJaMExSL1hVN254YXhudVRDUjVpMDVwY3pqRVdyME9RdFgzZGpldFVVVnRwWmRCa1puV0hpYkR6YzZVOU9vK1A2cDVacXFab1FLZDcyTVA4Y3Z0VW90bndGRTFucklYZXluRnpwVDA2ajQvcW5sbXFwbWhBcDN2WW5ZWnYwYlpROXZmK2xlSUdHTkIrYktYOG5XU3NXOW9YIiwidG9rZW5fdHlwZSI6ImJlYXJlciJ9.H-b7v1xQGpvhZnWiKe7A_A7rP6ao6bqQEvxkjM5eg8WmxSV7cbQOFqO5fxKlPc-YpTM5Om4FsoPa4nvDlJoDmTkGVHOyiyTYIo-24c1x8rsjFkP5oHG7pMhUlZPH7eFmAPLkLYXXkDlF_UxBzldkb1jWK9hLZBFiN_eTnL67k-I</con:value>
     </con:property>
     <con:property>
       <con:name>ssoStudent</con:name>
-      <con:value>U7SWunx3kIJy3ZfovAklSJL955phPtWJFTZNn2FJwXCmCEPU/ZLPbFqa94X/4cGNFu8qFoJVZDqcot6bHmMkgnHPhTzY75Un1BG+/AHtTbz6R9HseEEppLBBB97pc0z9UXZPOe0DIQFcC6+930R1H6O2ojqfoaFhzjEWr0OQtX0Y/bsdGXgEeNBkZnWHibDzc6U9Oo+P6p5ZqqZoQKd72MP8cvtUotnwFE1nrIXeynFzpT06j4/qnlmqpmhAp3vYnYZv0bZQ9vf+leIGGNB+bKX8nWSsW9oX</con:value>
+      <con:value>U7SWunx3kIKhVtQUxLUENawg4tmRMmpFh0diAat+FRjp+qW7+FX1eZcLVBDvmmpY/bQRzrWx4OB8W/gmvYzszHHPhTzY75Un1BG+/AHtTbz6R9HseEEppLBBB97pc0z9eH83RlNdbZ0LR/XU7nxaxnuTCR5i05pczjEWr0OQtX3djetUUVtpZdBkZnWHibDzc6U9Oo+P6p5ZqqZoQKd72MP8cvtUotnwFE1nrIXeynFzpT06j4/qnlmqpmhAp3vYnYZv0bZQ9vf+leIGGNB+bKX8nWSsW9oX</con:value>
     </con:property>
     <con:property>
       <con:name>Key_ssoStudent</con:name>
@@ -2790,7 +2790,7 @@
     </con:property>
     <con:property>
       <con:name>QCSSoToken</con:name>
-      <con:value>U7SWunx3kII7V56wQIeiKHS5txSXA374wGWLqbtxSU7afMUt2lHrzIP85ADkaT63J+/x09XKqoKDZzpoIDYFT3HPhTzY75Un1BG+/AHtTbz6R9HseEEppLBBB97pc0z9twVWqqXrAN66FJSs/Gv7UH8I5v5klih6mKMH9dDoyp9wo8NV6icikdBkZnWHibDzc6U9Oo+P6p5ZqqZoQKd72MP8cvtUotnwFE1nrIXeynFzpT06j4/qnlmqpmhAp3vYnYZv0bZQ9vf+leIGGNB+bKX8nWSsW9oX</con:value>
+      <con:value>U7SWunx3kIKo9YKE3xEiNB4efx0TKHx3BrPWk2FVZXODj4Q4t+trXoylpjWIIDQV8wDFaLBzV86DZzpoIDYFT3HPhTzY75Un1BG+/AHtTbz6R9HseEEppLBBB97pc0z9twVWqqXrAN66FJSs/Gv7UH8I5v5klih6mKMH9dDoyp9wo8NV6icikdBkZnWHibDzc6U9Oo+P6p5ZqqZoQKd72MP8cvtUotnwFE1nrIXeynFzpT06j4/qnlmqpmhAp3vYnYZv0bZQ9vf+leIGGNB+bKX8nWSsW9oX</con:value>
     </con:property>
     <con:property>
       <con:name>Systemidchecklist</con:name>
@@ -2798,7 +2798,7 @@
     </con:property>
     <con:property>
       <con:name>CourseEnrollmentToken</con:name>
-      <con:value>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA3MzYyMjksImp0aSI6IjBmZWExZTA3LTY0MGEtNDhjMC1hNTVjLWU0OTM5OTQxMzBkYiIsImlhdCI6MTcwMDU2MzQyOSwiaXNzIjoiaHR0cHM6Ly9waG9lbml4LWNjbS50aGVwb2ludC5sd3cuY29tIiwibmJmIjoxNzAwNTYzNDI5LCJzdWIiOiI5Y2RiZTIwMC0zNDUyLTQ3N2EtOGIyNi00NjE3MDA5YTA1OTAiLCJobHJwX2NjbSI6W3siciI6ImkiLCJjcnMiOiJnMTExUTFVQ0VFREZDIn1dfQ.G1_hRJQHecUh4nSwn1CE7fgW_NDBZ2OzWB74FCua-n5eeF5Ii4CIM_Y9IvW2hyiv7d8Y11ft6X8uGO9lETdZoFdGjHGiBruDnxS8k68ERLM9kl79ZybF5SyoJ0j_fPKX_EWTxWq9MScKZBAeg2HBC2DbfK3p0WbeY3vTLy9W3TQJ-ZrAEZ-I2bAxaG95wcxR3MM3E8b5ItdTTv6_ySzbqoJRIxxRIJ6lCboY67Oo2vcXZWN8qWkHBX0iGWLjl0jK44xko_3FCEYjkMwTq6eXyeDESackOEpRGj8lGCUOV0aAEjP8mxp-Sc7RHdFhCfHd_SggnBXjfbPlkCi5EsTjerqcTLugvgUae9FQoNZT5O2iirtSnE8IwhA_dKMEUQO5JqYEDEppmwD-GHuK9W7c7izBHByCy02a22rwuoxPxiwAgXYZ3tT5svMn35IUVd8voFw7zfreE1JUZaPHWbnChAeNsixJ0oVLI6OZMJhSdW-ZV9RmkmpvK3PFhwoT9-1N7S01nlw7BVMFxw_L5mdwbqKkfVf24kfgyjdSHJoQ2JMjIBwEZO7Pmy7QYlawdHXC7iioTL8ZS10OmTjkDqvdK7TLfQmrcPxQhs1WuTY3Fpt7Ai2owwmJZg77km1BMSF4OfpPOukrQCuKm1o1iVfKArAItsXBeQ8ZIK5t69ElswI</con:value>
+      <con:value>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA3NDM3NjYsImp0aSI6IjIxNDRjNzllLTY2ZmItNDU4NC05ODRmLWJkY2IzODZkODA1YiIsImlhdCI6MTcwMDU3MDk2NiwiaXNzIjoiaHR0cHM6Ly9waG9lbml4LWNjbS50aGVwb2ludC5sd3cuY29tIiwibmJmIjoxNzAwNTcwOTY2LCJzdWIiOiI5Y2RiZTIwMC0zNDUyLTQ3N2EtOGIyNi00NjE3MDA5YTA1OTAiLCJobHJwX2NjbSI6W3siciI6ImkiLCJjcnMiOiJnMTExVUo3TjM2SlMifV19.l73CQ2vOlXyUObgHXef0G9zVJagjdHWrIlt5EVbf0Mv9pfiDZlT1_B8LVHeyXDaiiG2qywcgxEQ--oopuO1QNNfXA9X_CdbFE8jo1TnEF6aAtzndbqqco26W3-xIB910QcJ31LaACAnafNGg6QZ--Tu1Wu2VzX-8z1-hVDNWlKB4sUteLpLK0Z-D4tO8XJkBBo2FA_ZOXuOKsM_-rM_cnFIorUHl0C6bouRm6TJOG0pffHO3Sp9vYEujumwFfvq5v6rLluWeRNaK0I7m77P_YucBV2KZWgbBZTDcbgccef2jSrl4TorhZ_UBy15BGwvKag3UvC3q1LCwN03u2BYbBOmuELwnU9yFHc-VDVTAONlmbym63PDh-xoVJfdNtygWL6P3mCOIrTfrTYR7NYM00XzBPpLvrN4XdW4RDGvCfwwdXAgP1T7q-yOZZVCOV8ib34jhCRtEBOzBXjSdIXfT4b-Il3fr--HWHnVc2k11c7RIVAKPABSpsU5LF2ugrfo3LoqrAknuavyVZlE2pYSA36vE67XCA2MTQFsHjO7MY1MlCgkz3nwyRuTe1S-l3hTbTiex9CS1Nysy_4vMxKRqQPpBgX4se9rRaPDlNfBHlRc7U41-hV7k6dvk7oCHZBOxTHuzXBi2vM4mojRuepNMqQCg81obTueSO5K0KpYEFJU</con:value>
     </con:property>
     <con:property>
       <con:name>CCM2_EbookAssignmentNames</con:name>
@@ -3098,11 +3098,11 @@
     </con:property>
     <con:property>
       <con:name>Section1Password</con:name>
-      <con:value>111Q1UCEFRZS</con:value>
+      <con:value>111UJ7N38348</con:value>
     </con:property>
     <con:property>
       <con:name>Section2Password</con:name>
-      <con:value>111Q1XIFRAE</con:value>
+      <con:value>111T37XY7EEU</con:value>
     </con:property>
     <con:property>
       <con:name>StudentIoinPassword</con:name>
@@ -3110,11 +3110,11 @@
     </con:property>
     <con:property>
       <con:name>StudentJoinPassword</con:name>
-      <con:value>111Q1UCEFRZS</con:value>
+      <con:value>111T34DHGM7S</con:value>
     </con:property>
     <con:property>
       <con:name>JoinedSectionid</con:name>
-      <con:value>g111Q1UCEEDFC_s111Q1UCEFRZS</con:value>
+      <con:value>g111T34DHF7NC_s111T34DHGM7S</con:value>
     </con:property>
     <con:property>
       <con:name>DB_Data_ExcelSheetName</con:name>
@@ -3126,7 +3126,7 @@
     </con:property>
     <con:property>
       <con:name>AssignmnetIndex</con:name>
-      <con:value>2</con:value>
+      <con:value>5</con:value>
     </con:property>
     <con:property>
       <con:name>MapedActivityIDs</con:name>
@@ -3146,11 +3146,11 @@
     </con:property>
     <con:property>
       <con:name>CourseAssignmentCount</con:name>
-      <con:value>2</con:value>
+      <con:value>5</con:value>
     </con:property>
     <con:property>
       <con:name>CreateCourseName</con:name>
-      <con:value>Performance Test Data 50 Assignments _Nov21_162110</con:value>
+      <con:value>Performance Test Data 50 Assignments _Nov21_173848</con:value>
     </con:property>
     <con:property>
       <con:name>CreteCourseTimeZone</con:name>

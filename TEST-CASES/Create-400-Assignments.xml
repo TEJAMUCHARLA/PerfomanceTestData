@@ -147,6 +147,33 @@ log.info("SetUpDone")</script>
           <con:name>CourseId</con:name>
           <con:value>gTAD9D9152</con:value>
         </con:property>
+        <con:property>
+          <con:name>CourseSerialNumber2</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseName2</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseId2</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseSerialNumber3</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseName3</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseId3</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseSerialNumber4</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseName4</con:name>
+        </con:property>
+        <con:property>
+          <con:name>CourseId4</con:name>
+        </con:property>
       </con:properties>
       <con:returnProperties>
         <con:entry>accessDate</con:entry>

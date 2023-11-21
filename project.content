@@ -56,6 +56,12 @@ GETCreatedCourseQCID\GETCreatedCourseQCID.xml
 QCAddItem\%2F1%2FquestionSets%2F%7BUserId%7D%2FaddItem.xml
 Create-Batch-assignment\%7BAssignmentid%7D.xml
 Create-Batch-assignment\assignments.xml
+BACKUP\CreasteCouserAndSections.xml
+BACKUP\Create-Course-and-Enroll-Students.xml
+BACKUP\Enroll-with-Students.xml
+BACKUP\AssignCPEAssignments_With-prepu.xml
+BACKUP\Spred-Student-Access-Tokens.xml
+BACKUP\Attempt-all-existing-assignmnets-to-students.xml
 TEST-CASES\Create-50-Assignments.xml
 TEST-CASES\Create-100-Assignments.xml
 TEST-CASES\Create-200-Assignments.xml
@@ -68,8 +74,13 @@ COMMON-METHODS\AttemptSkillsssignmentsWithoutScore.xml
 COMMON-METHODS\AttemptSkillsBatch.xml
 COMMON-METHODS\Create-Skills-DB-Data.xml
 COMMON-METHODS\Create-CPE-DB-Data.xml
+COMMON-METHODS\CreasteCouserAndSections-2.xml
 ProjectTestData\StudentAndInsturctorLogin.xml
+work1\CreasteCouserAndSections.xml
+work1\Call-Create-Course.xml
 work1\Enroll-with-Students.xml
+work1\AssginAssignments.xml
+work1\AssignCPEAssignments_With-prepu.xml
 work1\Spred-Student-Access-Tokens.xml
 work1\Attempt-all-existing-assignmnets-to-students.xml
 Work2\Sudent_1.xml

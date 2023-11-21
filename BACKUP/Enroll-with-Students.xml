@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:testCase xmlns:con="http://eviware.com/soapui/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="6908b8ea-1f09-453e-8fae-3319a9631c2d" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Enroll with Students" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" zephyrTestName="" zephyrTestId="">
+<con:testCase xmlns:con="http://eviware.com/soapui/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="46ad84fc-070d-4525-a889-2cfb33acda91" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Enroll with Students" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" zephyrTestName="" zephyrTestId="">
   <con:settings id="337fe865-f94a-4f69-9e3d-dddb1d9d35f8">
     <con:setting id="6908b8ea-1f09-453e-8fae-3319a9631c2dfileName">Enroll-with-Students</con:setting>
+    <con:setting id="46ad84fc-070d-4525-a889-2cfb33acda91fileName">Enroll-with-Students</con:setting>
   </con:settings>
-  <con:testStep type="datasource" name="Data Source Credetails" id="96d8561a-c769-4314-96f4-a7a23ba67554">
+  <con:testStep type="datasource" name="Data Source Credetails" id="8fb6c9d2-8408-4278-a87d-a4671a7cde6b">
     <con:settings/>
     <con:config xsi:type="con:DataSourceStep">
       <con:dataSource type="Excel">
@@ -31,7 +32,7 @@
       <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
     </con:config>
   </con:testStep>
-  <con:testStep type="groovy" name="Set Credetails" id="cd99be5d-39c5-4b84-ae51-22f6ac8aac04">
+  <con:testStep type="groovy" name="Set Credetails" id="d9beb611-6da2-4e23-98fa-3003ee2469b5">
     <con:settings/>
     <con:config>
       <script>import groovy.json.JsonSlurper
@@ -51,8 +52,6 @@ testRunner.testCase.testSuite.project.setPropertyValue("StudentPassword", studen
 def witchSection = context.expand( '${Data Source Credetails#WitchSection}' )
 
 def data = "\${#Project#Section"+witchSection.toString()+"Password}"
-
-
 /*
 if(witchSection.toString()=="1")
 {
@@ -69,7 +68,7 @@ log.info("password "+section1Password)
 testRunner.testCase.testSuite.project.setPropertyValue("StudentJoinPassword", section1Password)</script>
     </con:config>
   </con:testStep>
-  <con:testStep type="restrequest" name="GetAccessTokenStudent1" id="d0eba31b-a9f2-4200-8953-c26649174f40">
+  <con:testStep type="restrequest" name="GetAccessTokenStudent1" id="69b5e869-9211-4d0d-a174-44509c3a8c76">
     <con:settings/>
     <con:config service="Auth API" resourcePath="/Authentication/UsernameInSso" methodName="Method 1" xsi:type="con:RestRequestStep">
       <con:restRequest name="GetAccessTokenStudent1" id="7a8b79ab-de89-4998-ba4f-b6708ff27d44" mediaType="application/json" postQueryString="false">
@@ -136,13 +135,13 @@ assert verifyResponse.Data.AuthenicationResult != null</scriptText>
       </con:restRequest>
     </con:config>
   </con:testStep>
-  <con:testStep type="delay" name="Wait for Access student" id="2a91aacb-3c41-4f27-9475-c37e6fba85c7" disabled="true">
+  <con:testStep type="delay" name="Wait for Access student" id="2fe3724d-81ad-431f-8412-7281a524d7df" disabled="true">
     <con:settings/>
     <con:config>
       <delay>${#Project#LoginDealy}</delay>
     </con:config>
   </con:testStep>
-  <con:testStep type="groovy" name="Set Tokens Student1" id="79007aaf-aa9a-4f9d-a29f-a67b4ad2ffee">
+  <con:testStep type="groovy" name="Set Tokens Student1" id="d10b53dd-8c12-4fec-91dc-16fb932add32">
     <con:settings/>
     <con:config>
       <script><![CDATA[import groovy.json.JsonSlurper
@@ -175,7 +174,7 @@ log.info("xaccessTokenStudent =  " + xaccesstoken)
 log.info("ssoStudent = "+ssotoken)]]></script>
     </con:config>
   </con:testStep>
-  <con:testStep type="restrequest" name="Loacte course in student join" id="8fa01a33-2347-432a-964e-08a9b616fcf3">
+  <con:testStep type="restrequest" name="Loacte course in student join" id="1ed0a660-f100-4b46-b99a-e931e5f945d4">
     <con:settings/>
     <con:config service="Student Search Course" resourcePath="/api/class-management/v2/class-wrapper/search/passcode/{Password}" methodName="Method 1" xsi:type="con:RestRequestStep">
       <con:restRequest name="Loacte course in student join" id="481ffffb-0c31-49cf-b198-cc533d483980" mediaType="application/json" postQueryString="false">
@@ -255,7 +254,7 @@ assert response.data.endDate.toString().substring(0,response.data.endDate.toStri
       </con:restRequest>
     </con:config>
   </con:testStep>
-  <con:testStep type="groovy" name="Groovy Script 2" id="9430d3bf-8408-4dea-a868-6c91f2276336">
+  <con:testStep type="groovy" name="Groovy Script 2" id="ffa41e36-0713-4101-a077-7261d1365132">
     <con:settings/>
     <con:config>
       <script>import groovy.json.JsonSlurper
@@ -267,7 +266,7 @@ log.info(response)
 testRunner.testCase.testSuite.project.setPropertyValue("JoinedSectionid", response)</script>
     </con:config>
   </con:testStep>
-  <con:testStep type="restrequest" name="Student join a course" id="fa9acf16-5b3d-48c6-a7ca-b897ef585f07">
+  <con:testStep type="restrequest" name="Student join a course" id="a74e819c-680f-49b9-a732-88588f9db0b7">
     <con:settings/>
     <con:config service="Student Join Course" resourcePath="/api/ccm/v2/private/user/enrollment" methodName="Method 1" xsi:type="con:RestRequestStep">
       <con:restRequest name="Student join a course" id="121a8d27-235a-4523-b0de-29d285db07f0" mediaType="application/json" postQueryString="false">
@@ -322,7 +321,7 @@ assert verifyResponse.enrollmentToken != null</scriptText>
       </con:restRequest>
     </con:config>
   </con:testStep>
-  <con:testStep type="datasink" name="Set Tokens In Excel" id="92887dab-c91d-46b4-b7f7-fb9fcfff92a5">
+  <con:testStep type="datasink" name="Set Tokens In Excel" id="fa426d61-408e-4d0b-865a-e4994cc21fe8">
     <con:settings/>
     <con:config xsi:type="con:DataSinkStep">
       <con:dataSink type="Excel">
@@ -351,7 +350,7 @@ assert verifyResponse.enrollmentToken != null</scriptText>
       </con:properties>
     </con:config>
   </con:testStep>
-  <con:testStep type="datasourceloop" name="Data Source Loop" id="40f1c895-12ac-469b-99fb-07e16b5a6a49">
+  <con:testStep type="datasourceloop" name="Data Source Loop" id="74a597f9-a663-4c30-9dd2-c8ab04a9cab4">
     <con:settings/>
     <con:config>
       <dataSourceStep>Data Source Credetails</dataSourceStep>

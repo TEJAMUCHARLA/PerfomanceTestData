@@ -36,11 +36,11 @@
     </con:property>
     <con:property>
       <con:name>CourseId</con:name>
-      <con:value>g111Q1UCEEDFC</con:value>
+      <con:value>g111UJ7N36JS</con:value>
     </con:property>
     <con:property>
       <con:name>Section1Id</con:name>
-      <con:value>g111Q1UCEEDFC_s111Q1UCEFRZS</con:value>
+      <con:value>111UEWDUF8X3</con:value>
     </con:property>
     <con:property>
       <con:name>CourseEnrollmentToken</con:name>
@@ -48,58 +48,19 @@
     </con:property>
     <con:property>
       <con:name>CourseName</con:name>
-      <con:value>Performance Test Data 50 Assignments _Nov21_161343</con:value>
+      <con:value>50_Performance Test Data 50 Assignments _Nov21_173848</con:value>
     </con:property>
     <con:property>
       <con:name>Assignment_BodyData</con:name>
-      <con:value>{
-  "courseId": "g111Q1UCEEDFC",
-  "points": 100,
-  "isGraded": false,
-  "attemptType": "Highest Grade",
-  "isHighlightLateSubmission": true,
-  "isBroadcastingRequired": false,
-  "productIsbn": "9781975186708",
- "prepuDetails": null,
- "metaInformation": {},
- "maxAttempts": 0,
-"sections": [
-    {
-      "sectionCode": [
-        "*" 
-      ],
-      "dueDate": "2024-02-29",
-      "dueDateTime": "09:44 AM",
-      "dueDateTimezone": "US/Eastern",
-      "accessibleFrom": "2023-11-21T05:44:25-05:00",
-      "accessibleFromTime": "05:44 AM",
-      "accessibleFromTimezone": "US/Eastern",
-      "isForEveryOne":true,
-      "isImmediateAvailable":true,
-      "isUnlocked":true
-    }
-  ],
-  
-  "name": "Ebook: Chapter 03",
-  "resourceTypeId": "2",
-  "assets": {
-    "assetId": 325222,
-    "assetVersion": "1.5.0",
-    "assetType": "ASSET"
-  },
-  "assignmentType": {
-    "type": "EBOOK",
-    "systemId": ""
-  }
-}</con:value>
+      <con:value>50_Performance Test Data 50 Assignments _Nov21_173848</con:value>
     </con:property>
     <con:property>
       <con:name>Section2Id</con:name>
-      <con:value/>
+      <con:value>g111T34DHF7NC_s111T37XY7EEU</con:value>
     </con:property>
     <con:property>
       <con:name>CourseSerialNumber</con:name>
-      <con:value>431</con:value>
+      <con:value>439</con:value>
     </con:property>
     <con:property>
       <con:name>CCM2_EbookAssignmentNames</con:name>
@@ -526,7 +487,7 @@
     </con:property>
     <con:property>
       <con:name>collectionId_List</con:name>
-      <con:value>567538710212509696#567538716797566976#567538723156131840#567538732824002560#567538737601314816#567538740730265600#567538745650184192#567538750435885056#567538760405745664#567538774028845056#567538778869071872#567538789379997696#567538794232807424#567538799186280448#567538802449448960#567538805809086464#567538810884194304#567538823408386048#567538834376491008#567538839585816576#567538853628346368#567538856950235136#567538860171460608#567538863493349376#567538867033341952#567538870556557312#567538880731938816#</con:value>
+      <con:value/>
     </con:property>
     <con:property>
       <con:name>CollectionQnID</con:name>

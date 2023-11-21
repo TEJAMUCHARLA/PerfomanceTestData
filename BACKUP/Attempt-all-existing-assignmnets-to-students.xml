@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:testCase xmlns:con="http://eviware.com/soapui/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="1d8ca26b-8945-48c0-836a-6b89cf13da18" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Attempt all existing assignmnets to students" searchProperties="true" timeout="0">
+<con:testCase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" id="2a780bf5-b778-4bbf-a223-f0eb4967f72a" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Attempt all existing assignmnets to students" searchProperties="true" timeout="0">
   <con:settings id="4342e468-c9e5-4532-9977-ff42cb67057a">
     <con:setting id="1d8ca26b-8945-48c0-836a-6b89cf13da18fileName">Attempt-all-existing-assignmnets-to-students</con:setting>
+    <con:setting id="2a780bf5-b778-4bbf-a223-f0eb4967f72afileName">Attempt-all-existing-assignmnets-to-students</con:setting>
   </con:settings>
-  <con:testStep type="restrequest" name="Get Product Assignment Details" id="e3f21b3b-fea3-49bf-a45d-4225d1054904">
+  <con:testStep type="restrequest" name="Get Product Assignment Details" id="a370112f-aa4c-48b1-afb7-59776bb9d6ee">
     <con:settings/>
     <con:config service="Get Asset list from product" resourcePath="/api/product-title-management/v1/product/isbn/{ISBN}/published" methodName="Method 1" xsi:type="con:RestRequestStep">
       <con:restRequest name="Get Product Assignment Details" id="8a2c7d41-f915-4cce-9f92-b9c8787e3af4" mediaType="application/json">
@@ -48,7 +49,7 @@
       </con:restRequest>
     </con:config>
   </con:testStep>
-  <con:testStep type="restrequest" name="Loacte course in student join" id="3b795593-20cd-4917-bbfd-92dde872ec9b">
+  <con:testStep type="restrequest" name="Loacte course in student join" id="3bd504a7-9bea-44d6-9c34-3d64916b2ec7">
     <con:settings/>
     <con:config service="Student Search Course" resourcePath="/api/class-management/v2/class-wrapper/search/passcode/{Password}" methodName="Method 1" xsi:type="con:RestRequestStep">
       <con:restRequest name="Loacte course in student join" id="481ffffb-0c31-49cf-b198-cc533d483980" mediaType="application/json" postQueryString="false">
@@ -128,7 +129,7 @@ assert response.data.endDate.toString().substring(0,response.data.endDate.toStri
       </con:restRequest>
     </con:config>
   </con:testStep>
-  <con:testStep type="restrequest" name="GET Instrcutor resulust Page Details" id="909a196f-c87c-45f3-abb1-7b04d0997f84">
+  <con:testStep type="restrequest" name="GET Instrcutor resulust Page Details" id="b9923391-7693-453e-85b8-2bbe4c075530">
     <con:settings/>
     <con:config service="GetAssignedGradesInstructor" resourcePath="/api/phx-gradebook-management/v1/ccm/course/{course}/section/{section}/grades" methodName="Method 1" xsi:type="con:RestRequestStep">
       <con:restRequest name="GET Instrcutor resulust Page Details" id="7710fec7-99ae-42cb-9579-57e6fcbc47ed" mediaType="application/json">
@@ -170,7 +171,7 @@ assert response.data.endDate.toString().substring(0,response.data.endDate.toStri
       </con:restRequest>
     </con:config>
   </con:testStep>
-  <con:testStep type="groovy" name="Set Assignments Count" id="e5d196c1-4039-4c0d-8e80-10901c6c767a">
+  <con:testStep type="groovy" name="Set Assignments Count" id="4279b057-cf71-4af8-aa27-8d42b6f0f423">
     <con:settings/>
     <con:config>
       <script>import groovy.json.JsonSlurper
@@ -193,7 +194,7 @@ log.info("ExistingAssignmentsCount "+ExistingAssignmentsCount)
 testRunner.testCase.setPropertyValue("ExistingAssignmentsCount", ExistingAssignmentsCount.toString())</script>
     </con:config>
   </con:testStep>
-  <con:testStep type="datasource" name="Get EachAssignment" id="32c24082-7d42-4fc8-9a10-2ac24c332606">
+  <con:testStep type="datasource" name="Get EachAssignment" id="87f58bff-7db0-4bfb-b01e-6fd86abda4d1">
     <con:settings/>
     <con:config xsi:type="con:DataSourceStep">
       <con:dataSource type="Excel">
@@ -221,7 +222,7 @@ testRunner.testCase.setPropertyValue("ExistingAssignmentsCount", ExistingAssignm
       <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
     </con:config>
   </con:testStep>
-  <con:testStep type="groovy" name="Generate Assignmnet  Start and End Time" id="bba6c622-db2f-4253-a3e2-94aecd9b12fa">
+  <con:testStep type="groovy" name="Generate Assignmnet  Start and End Time" id="62b0fb48-c07f-4f87-bb93-7b4221140c11">
     <con:settings/>
     <con:config>
       <script>import java.lang.*;
@@ -283,7 +284,7 @@ testRunner.testCase.setPropertyValue("completedAt", completedAt)
 testRunner.testCase.setPropertyValue("sentAt", sentAt)</script>
     </con:config>
   </con:testStep>
-  <con:testStep type="restrequest" name="AttemptCommonPushBody" id="aecd4dcf-ea3f-45aa-b012-a1e15e1a89c9">
+  <con:testStep type="restrequest" name="AttemptCommonPushBody" id="8c895736-309e-48d2-9ac4-58a8e3b3b940">
     <con:settings/>
     <con:config service="pushSQS" methodName="Method 1" resourcePath="/api/gradebook-process-management/v1/pushSqsQueue" xsi:type="con:RestRequestStep">
       <con:restRequest name="AttemptCommonPushBody" id="0356f71d-de87-4d0e-8c1b-3c08512d544b" mediaType="application/json" postQueryString="false">
@@ -333,7 +334,7 @@ testRunner.testCase.setPropertyValue("sentAt", sentAt)</script>
       </con:restRequest>
     </con:config>
   </con:testStep>
-  <con:testStep type="groovy" name="Set Assignment Attempt Details" id="9a6d6df6-fc1b-42f8-b4f4-67dd3c3f2c9d">
+  <con:testStep type="groovy" name="Set Assignment Attempt Details" id="7c8bee86-a3cd-4a76-82a6-830e02f5d1a4">
     <con:settings/>
     <con:config>
       <script><![CDATA[import groovy.json.JsonSlurper
@@ -458,7 +459,7 @@ def attemptBodyData = context.expand( '${#TestCase#AttemptBodyData}' )
 testRunner.testCase.setPropertyValue("AttemptBodyData","")]]></script>
     </con:config>
   </con:testStep>
-  <con:testStep type="datasource" name="Get Assignmnet Type" id="e87a4ec3-edd3-4876-820e-eb099ff548a4">
+  <con:testStep type="datasource" name="Get Assignmnet Type" id="a5759ce0-5430-4ec7-8bf0-8eab4931fb28">
     <con:settings/>
     <con:config xsi:type="con:DataSourceStep">
       <con:dataSource type="Grid">
@@ -490,7 +491,7 @@ testRunner.testCase.setPropertyValue("AttemptBodyData","")]]></script>
       <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
     </con:config>
   </con:testStep>
-  <con:testStep type="groovy" name="Find ResourceType Body" id="6095db56-de16-467c-a91e-f2a448c5c4c7">
+  <con:testStep type="groovy" name="Find ResourceType Body" id="1fdbd031-64de-494e-a9dd-d527a9717d4d">
     <con:settings/>
     <con:config>
       <script>def resourceType = context.expand( '${Get Assignmnet Type#resourceType}' )
@@ -506,7 +507,7 @@ if(resourceType.toString().equals(matchResourceType.toString()))
 }</script>
     </con:config>
   </con:testStep>
-  <con:testStep type="datasourceloop" name="Data Source Loop" id="692196f2-8083-4403-9223-ff0260eca3c7">
+  <con:testStep type="datasourceloop" name="Data Source Loop" id="d594db27-1cad-48fa-8614-96a560d16a4d">
     <con:settings/>
     <con:config>
       <dataSourceStep>Get Assignmnet Type</dataSourceStep>
@@ -514,7 +515,7 @@ if(resourceType.toString().equals(matchResourceType.toString()))
       <discardResults>false</discardResults>
     </con:config>
   </con:testStep>
-  <con:testStep type="groovy" name="Arrange Attempt Body Data" id="0a275ab2-f32b-49ca-96ab-15e4e65fd1fd">
+  <con:testStep type="groovy" name="Arrange Attempt Body Data" id="feaddde3-a433-474a-acad-3f6553365353">
     <con:settings/>
     <con:config>
       <script>import groovy.json.JsonSlurper
@@ -611,7 +612,7 @@ def final_Attempt_BodyData = context.expand( '${#[Work2]#Final_Attempt_BodyData}
 log.info("final_Attempt_BodyData "+final_Attempt_BodyData)</script>
     </con:config>
   </con:testStep>
-  <con:testStep type="groovy" name="CALL Student Attempt Suite" id="0958b174-4c57-4afd-9268-31e606cee896">
+  <con:testStep type="groovy" name="CALL Student Attempt Suite" id="733ba84b-b188-4858-a10e-20deaf380fed">
     <con:settings/>
     <con:config>
       <script>import groovy.json.JsonSlurper
@@ -627,31 +628,19 @@ def TestCaseName = testRunner.testCase.getLabel()
 def TestSuiteName = testRunner.testCase.testSuite.getLabel()
 def targetTestSuite = testRunner.testCase.testSuite.project.getTestSuiteByName("Work2")
 //def targetTestCase = targetTestSuite.getTestCaseByName("yourTargetTestCaseName")
-def assetActivityId = context.expand( '${#TestCase#AssetActivityId}' )
-
-log.info("assetActivityId "+assetActivityId)
-
-if(!(assetActivityId==""))
-{
-	
 def runner =targetTestSuite.run(new com.eviware.soapui.support.types.StringToObjectMap(), false)
-Thread.sleep(1000);
+
 def GetStatusOfTS1=runner.getStatus().toString()
-log.info("GetStatusOfTS1 "+GetStatusOfTS1)
-}
-else
-{
-	log.info("assetActivityId is Null "+assetActivityId)
-}</script>
+log.info("GetStatusOfTS1 "+GetStatusOfTS1)</script>
     </con:config>
   </con:testStep>
-  <con:testStep type="delay" name="Delay" id="94833d81-9238-49a2-928b-70dd85a2d8e3" disabled="true">
+  <con:testStep type="delay" name="Delay" id="7285bac1-a097-42da-b8c6-4918b1d3fd2d">
     <con:settings/>
     <con:config>
       <delay>2000</delay>
     </con:config>
   </con:testStep>
-  <con:testStep type="datasourceloop" name="ItrateAssignments" id="21d09bcc-3815-41cb-bbad-97e8a912ae2e">
+  <con:testStep type="datasourceloop" name="ItrateAssignments" id="93fa8f07-923f-4f62-a5a8-67314092501a" disabled="true">
     <con:settings/>
     <con:config>
       <dataSourceStep>Get EachAssignment</dataSourceStep>
@@ -670,55 +659,55 @@ else
     </con:property>
     <con:property>
       <con:name>startAt</con:name>
-      <con:value>2023-11-21T12:18:18.605Z</con:value>
+      <con:value>2023-11-21T11:20:20.605Z</con:value>
     </con:property>
     <con:property>
       <con:name>completedAt</con:name>
-      <con:value>2023-11-21T12:20:20.605Z</con:value>
+      <con:value>2023-11-21T11:22:22.605Z</con:value>
     </con:property>
     <con:property>
       <con:name>sentAt</con:name>
-      <con:value>2023-11-21T12:21:21.605Z</con:value>
+      <con:value>2023-11-21T11:23:23.605Z</con:value>
     </con:property>
     <con:property>
       <con:name>MatchContainerId</con:name>
-      <con:value>6034</con:value>
+      <con:value>6619</con:value>
     </con:property>
     <con:property>
       <con:name>MatchAssetId</con:name>
-      <con:value>2309</con:value>
+      <con:value>313</con:value>
     </con:property>
     <con:property>
       <con:name>MatchResourceType</con:name>
-      <con:value>Videos</con:value>
+      <con:value>PrepU Mastery Level Quizzes By Concept</con:value>
     </con:property>
     <con:property>
       <con:name>MatchResourceTypeId</con:name>
-      <con:value>5</con:value>
+      <con:value>24</con:value>
     </con:property>
     <con:property>
       <con:name>AssetcorrelationId</con:name>
-      <con:value>567560571495383040</con:value>
+      <con:value>567542738367545344</con:value>
     </con:property>
     <con:property>
       <con:name>AssetActivityId</con:name>
-      <con:value/>
+      <con:value>1501294723</con:value>
     </con:property>
     <con:property>
       <con:name>AssetName</con:name>
-      <con:value>Watch and Learn: Performing Hand Hygiene</con:value>
+      <con:value>Acid-Base Balance</con:value>
     </con:property>
     <con:property>
       <con:name>SectionCode</con:name>
-      <con:value>g111T34DHF7NC_s111T34DHGM7S</con:value>
+      <con:value>g111QMGA8NXRQ_s111QMGA8PCC6</con:value>
     </con:property>
     <con:property>
       <con:name>Assertid</con:name>
-      <con:value>2309</con:value>
+      <con:value>313</con:value>
     </con:property>
     <con:property>
       <con:name>AttemptBodyData</con:name>
-      <con:value>{     "id": "lacldh2i",     "meta": {         "videoPosition": 170.779766     },     "type": "Achievement",    "productId": null,   "positionUpdated": true,</con:value>
+      <con:value>{     "id": "1537254803",     "meta": {         "points": "100"     },     "type": "Achievement",     "quizzes": [         {             "id":0000,             "name": "D_activityName",             "questionsAnswered": 5         }     ],     "sectionId": "mastery_level",     "sectionName": "Mastery Level Assignments",     "activityName": "D_activityName",     "masteryLevel": 2,     "quizzesTaken": 1,</con:value>
     </con:property>
     <con:property>
       <con:name>ExistingAssignmentsCount</con:name>

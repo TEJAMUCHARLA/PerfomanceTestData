@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase xmlns:con="http://eviware.com/soapui/config" id="6d38a3f8-a6ad-4f73-97cd-754987217090" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="AssginAssignments" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" zephyrTestName="" zephyrTestId="">
+  <con:settings id="337fe865-f94a-4f69-9e3d-dddb1d9d35f8">
+    <con:setting id="6d38a3f8-a6ad-4f73-97cd-754987217090fileName">AssginAssignments</con:setting>
+  </con:settings>
+  <con:testStep type="calltestcase" name="Create Assignmnets" id="39310b4d-a0cb-4c3e-a24e-b56cb4754ee5">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RunTestCaseStep" copyHttpSession="true" copyLoadTestProperties="true" ignoreEmptyProperties="true">
+      <con:targetTestCase>2b24812c-5789-4c7f-be73-d6534e814e6c</con:targetTestCase>
+      <con:properties>
+        <con:property>
+          <con:name>accessDate</con:name>
+          <con:value>2023-11-21T07:10:13-05:00</con:value>
+        </con:property>
+        <con:property>
+          <con:name>DueDate</con:name>
+          <con:value>2024-02-29</con:value>
+        </con:property>
+        <con:property>
+          <con:name>EffectiveDate</con:name>
+          <con:value>2023-04-18T00:00:00.000Z</con:value>
+        </con:property>
+        <con:property>
+          <con:name>ExpireDate</con:name>
+          <con:value>2023-05-18T00:00:00.000Z</con:value>
+        </con:property>
+        <con:property>
+          <con:name>tomorrow</con:name>
+          <con:value>Tue, Apr 18 2023</con:value>
+        </con:property>
+        <con:property>
+          <con:name>tomorrow2</con:name>
+          <con:value>2023-04-18</con:value>
+        </con:property>
+        <con:property>
+          <con:name>instructorUserId</con:name>
+          <con:value>0345b785-ba3e-4b3a-9c6c-447101694d75</con:value>
+        </con:property>
+        <con:property>
+          <con:name>numberOfAttempts</con:name>
+          <con:value>1</con:value>
+        </con:property>
+        <con:property>
+          <con:name>StudentenrollmentToken</con:name>
+          <con:value>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODE4ODU5NjAsImp0aSI6IjAxZDNiYzFlLWJlMzMtNGNjOS04OGU3LWI4ZTcxMjMzNTNhNSIsImlhdCI6MTY4MTcxMzE2MCwiaXNzIjoiaHR0cHM6Ly9waG9lbml4LWNjbS50aGVwb2ludC5sd3cuY29tIiwibmJmIjoxNjgxNzEzMTYwLCJzdWIiOiI5ZTZlOGM1Ny02ODNlLTRjNTQtODkzMS00NDc0MDE1OWQ2ODUiLCJobHJwX2NjbSI6W3siciI6InMiLCJjcnMiOiJnU0VCUUJLRzk5SUIiLCJzZWMiOiJnU0VCUUJLRzk5SUJfc1NFQlFCS0dBMlIifV19.kKMRJHB4y0Tno_H-esNrWhe-RsUn8zHCmazkZhhKCgXyBFbLRWiD2zyGp5MOZCZbIW1WIlQg4CjosIPwQtw204mHb6iNohaZtznNKEaZ5_BbW3241Stf9E_xo2X9qBCl_zrYUpX1M4uR066aPvoD5d_hViNCAynUW7OXzK3nC4VgF9F6amwQSDrje6AeD8D8vLTw_kmFk9eGSkVvEWnd5ZssYCAzqyVdgadLGbFrWj2N3TOIPsEkgR3HoJ17Ipg_ZCAwBqrAiPG5WMqQsNbMexKeSeb2bMA5FQuasV9Qc3YK9aphsr4ER17HAAZ1F1GtO_gmaYBO8xKU11WX1_UDGx5Dt0cpeRM24oonRf4sGS-BIsWXCsG8fTyaYzfJajIv7xh-ibK5NYtp2fji4W1l9ErKyfMX8bh27B5TnSOPjKZQydo4bqRnpK6IeiSCKmhbi195Yzzzns9h3Zs0edCV70UnEnFPO23gHIM2tSjkk_HNUitc8rR3ErYXKQx_p3t4RyAYcP8dbqi0RdepDBYoyR8LtFpfF63PYKKSk9SD5ePpqcqyqfHDibuL_Onmn0q14sF5TkXmnFLrj15Bxx4dgJV6BwTwbc3n_I-y5unOB6nbSR2PwINbsueSx7hjmebMPzZJqUwCGeehUnvGvt5vMbMY1ofYglw1HxryhcCvgdo</con:value>
+        </con:property>
+        <con:property>
+          <con:name>accessTime</con:name>
+          <con:value>07:10 AM</con:value>
+        </con:property>
+        <con:property>
+          <con:name>DueTime</con:name>
+          <con:value>11:10 AM</con:value>
+        </con:property>
+        <con:property>
+          <con:name>AssignedAssignmnetCount</con:name>
+          <con:value>54</con:value>
+        </con:property>
+      </con:properties>
+      <con:returnProperties>
+        <con:entry>accessDate</con:entry>
+        <con:entry>DueDate</con:entry>
+        <con:entry>EffectiveDate</con:entry>
+        <con:entry>ExpireDate</con:entry>
+        <con:entry>tomorrow</con:entry>
+        <con:entry>tomorrow2</con:entry>
+        <con:entry>instructorUserId</con:entry>
+        <con:entry>numberOfAttempts</con:entry>
+        <con:entry>StudentenrollmentToken</con:entry>
+        <con:entry>accessTime</con:entry>
+        <con:entry>DueTime</con:entry>
+        <con:entry>AssignedAssignmnetCount</con:entry>
+      </con:returnProperties>
+      <con:runMode>SINGLETON_AND_WAIT</con:runMode>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:testCase>
