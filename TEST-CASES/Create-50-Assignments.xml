@@ -43,10 +43,6 @@ import java.util.Calendar
 import java.util.TimeZone
 import java.text.SimpleDateFormat
 
-
-
-
-
 def now= new Date()
 SimpleDateFormat currentDatePlusOn = new SimpleDateFormat("MMMdd_HHmmss")
 def currenTime= currentDatePlusOn.format(new Date(now.getTime()))
@@ -55,6 +51,8 @@ currenTime ="_"+currenTime
 
 def timeZoneOffset = context.expand( '${CreateAssignment#timeZoneOffset}' )
 def accessibleFromTimezone = context.expand( '${CreateAssignment#accessibleFromTimezone}' )
+
+log.info("accessibleFromTimezone "+accessibleFromTimezone)
 
 testRunner.testCase.testSuite.project.setPropertyValue("ProductISBN","9781975186708") 
 testRunner.testCase.testSuite.project.setPropertyValue("CourseAssignmentCount","5") //Existimg resource types 9 , so 9*5+1 =54

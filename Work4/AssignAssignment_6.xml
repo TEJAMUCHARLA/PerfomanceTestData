@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase xmlns:con="http://eviware.com/soapui/config" id="038df494-ab1c-4601-9bfb-3f3fe929d65d" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="AssignAssignment_6" searchProperties="true" timeout="0">
+  <con:settings id="5d555a9c-a765-4e5d-8b11-98dc09f90d41">
+    <con:setting id="038df494-ab1c-4601-9bfb-3f3fe929d65dfileName">AssignAssignment_6</con:setting>
+  </con:settings>
+  <con:testStep type="groovy" name="Groovy Script" id="75cffec1-9f31-4725-bf61-2d5310e593e0">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import com.eviware.soapui.model.testsuite.TestRunner.Status
+import groovy.json.JsonOutput
+import groovy.json.*
+
+import java.lang.*;
+import java.util.concurrent.TimeUnit;
+import java.util.Date
+import java.util.Calendar
+import java.util.TimeZone
+import java.text.SimpleDateFormat
+
+
+def final_AssignAssignment_BodyData = context.expand( '${#TestSuite#Final_AssignAssignment_BodyData}' )
+def activationCourseIndex = context.expand( '${#TestSuite#ActivationCourseIndex}' ) as int
+def instructorCourseIDs = context.expand( '${#TestCase#InstructorCourseIDs}' )
+
+//activationCourseIndex=0
+
+log.info("final_AssignAssignment_BodyData "+final_AssignAssignment_BodyData)
+log.info("activationCourseIndex "+activationCourseIndex)
+log.info("instructorCourseIDs  Actuall "+instructorCourseIDs[0])
+
+
+def slurper = new JsonSlurper()
+def InstructorCourseIDs = slurper.parseText(instructorCourseIDs)
+
+log.info("instructorCourseIDs "+InstructorCourseIDs)
+log.info("InstructorCourseIDs 12345 "+InstructorCourseIDs[activationCourseIndex])
+
+def CourseIDsData= InstructorCourseIDs[activationCourseIndex]
+log.info("CourseID === "+CourseIDsData.id)
+
+def CourseID= CourseIDsData.id
+final_AssignAssignment_BodyData=final_AssignAssignment_BodyData.replace("D_courseId",CourseID.toString())
+log.info("After Course "+final_AssignAssignment_BodyData)
+
+//CourseActivation Complted
+
+//Set X-Access Tokens
+
+//x-enrollment-token
+def enrollmentToken= CourseIDsData.enrollmentToken
+log.info(" enrollmentToken "+enrollmentToken)
+testRunner.testCase.setPropertyValue("InstuctorEnrollmentToken",enrollmentToken.toString() )
+
+testRunner.testCase.setPropertyValue("TC_AssignAssignment_BodyData",final_AssignAssignment_BodyData.toString() )</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Create Assignment" id="ab26db53-3277-4871-acd7-88b645df80a9">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Assignment" methodName="Method 1" resourcePath="/api/phx-assignment-management/v1/assignment" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Create Assignment" id="1a4e6fe9-5326-4c7d-953f-7c68b0ed4e29" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${#TestCase#InstuctorEnrollmentToken}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_ssoInstructor}" value="${#TestCase#SSOInStructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#TestCase#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint>/api/phx-assignment-management/v1/assignment</con:endpoint>
+        <con:request>${#TestCase#TC_AssignAssignment_BodyData}</con:request>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/phx-assignment-management/v1/assignment</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="7ff91766-5632-4a11-bab2-764d7d612b2c" name="Valid HTTP Status Codes" disabled="true">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="70e43fa9-49f2-48d8-897f-3f3f611b57ce" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="f76bdbd9-a026-4472-bd36-8a56e7c8e0ae" name="Script Assertion" disabled="true">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+
+def testCase = messageExchange.modelItem.testCase;
+def rawRequest = context.expand( '${Create Assignment#RawRequest}' )
+
+def response = context.expand( '${Create Assignment#Response#$[\'code\']}' )
+
+
+if(rawRequest.toString()=="")
+{
+	
+	assert response.toString()=="400"
+	testCase.setPropertyValue("StatusCode","400")
+}
+else
+{
+	assert response.toString()==""
+	testCase.setPropertyValue("StatusCode","200")
+}</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Count" id="28c8635e-7801-4929-8ad3-b70ce401f6c5" name="Check count of [sectionCode]" disabled="true">
+          <con:configuration>
+            <path>$['sections'][*]['sectionCode']</path>
+            <content>1</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:properties>
+    <con:property>
+      <con:name>xaccessTokenInstructor</con:name>
+      <con:value>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzc28ud2tocGUuY29tIiwiYXVkIjoiM2MzOTg0NmMtODg2YS1kZjExLWIxMTUtMDA1MDU2YzAwMDA4IiwiYXV0aF90aW1lIjoxNzAwNjU5MDQ1LCJuYW1lIjoiUGVyZm9ybWFuY2UgaW5zdHJ1Y3RvcjExNSIsImp0aSI6IjkwZTU3NDVkLWRiYzktNGE5NC1iZTk4LWQ2OGY2MDAyMjFlOCIsImlhdCI6MTcwMDY1OTA0NSwiZXhwIjoxNzAwNzQ1NDQ1LCJzdWIiOiJjM2ZjZDVlNi0yNzA2LTRlMDMtOGMzYS00NTBiMDBhZTFmYzgiLCJyb2xlcyI6IndraHBlLWVuZCB1c2VyIiwid2tocGVfcGVybWlzc2lvbnMiOlsiQ2FuVXNlUGVyc29uYWxpemF0aW9uRmVhdHVyZXMiXSwid2tocGVfdG9rZW4iOiJ6WmMveEVrRWpRMGVna3Nna2JUeUdlQlhTYVYvaFJ3SzBudER1U1NtUnEwS1lJSHNUWE5ybERvUUJYbDFSVUNYWmE4c0tVVDY0VktVNHppaVlKWGd0bkhQaFR6WTc1VW4xQkcrL0FIdFRiejZSOUhzZUVFcHBMQkJCOTdwYzB6OUxlVUZZZHphTE50Y29ram1aa2p0ckFkWUt4NXZmV0szamtaNll6WnZPb2hTbFZFcWtaQ1VRZEJrWm5XSGliRHpjNlU5T28rUDZwNVpxcVpvUUtkNzJNUDhjdnRVb3Rud0ZFMW5ySVhleW5GenBUMDZqNC9xbmxtcXBtaEFwM3ZZblladjBiWlE5dmYrbGVJR0dOQitiS1g4bldTc1c5b1giLCJ0b2tlbl90eXBlIjoiYmVhcmVyIn0.oci-hL-LCKsPvYigT3m9YecRtnOScAbhypF65xnEcjFNSvjy4My62a4bx3dd86gSr6aBwxXETi1AWMbLe47_M4_uAcviKgB_NNZzqhIub-2HEHRNFhoTtvla396mJtIl4pqsD43CtwA48kIflSSjl0VfH4XWlKrRwex8TjgLgkQ</con:value>
+    </con:property>
+    <con:property>
+      <con:name>InstructorUserID</con:name>
+      <con:value>c3fcd5e6-2706-4e03-8c3a-450b00ae1fc8</con:value>
+    </con:property>
+    <con:property>
+      <con:name>InstructorCourseIDs</con:name>
+      <con:value>[{"id":"g113AWXNY7KC","sectionId":"g113AWXNY7KC_s113AWXNY8YX4","enrollmentToken":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA4MzE4NDYsImp0aSI6IjZjMDY1YWM0LTlmMDItNGYzNC05YWQwLTNkMjhhYjA0ZDVlMyIsImlhdCI6MTcwMDY1OTA0NiwiaXNzIjoiaHR0cHM6Ly9waG9lbml4LWNjbS50aGVwb2ludC5sd3cuY29tIiwibmJmIjoxNzAwNjU5MDQ2LCJzdWIiOiJjM2ZjZDVlNi0yNzA2LTRlMDMtOGMzYS00NTBiMDBhZTFmYzgiLCJobHJwX2NjbSI6W3siciI6ImkiLCJjcnMiOiJnMTEzQVdYTlk3S0MifV19.egnhDqY42ruFofW7WlJsUNm5Fo5jhQBIj7ElXkarZqw2p_uKqjpsGXXzkb_D8wteBOuO2wvRhBpnoTz4-kb9RajGxacjsqxhgs8DuXwn0T5PJcwLgu0UOvwzHKMWYC4lVOfJD3P9wLQp4EiiyBlXoWhnoD484PG-KSma7rOfILNsL_aeYC7ZKwxCuVQGTOWM49iy7Vcor8lxqi47R9MlVrOLUk0HPp7xOjFlE-ai7HYdS4yKSZzvuGRvHUGvf5YJPNVJ4wrPeLfkgAxWvpH8-jxGZc16hI3BeJjji-Jj_ofV8yYRTl02D76GwMRvH7IEk4nU98_nf6yC_vSIbP8-xxQYZI23Bz7Uq_XpNt2xF5PeLZEGvak5oCxfHTxYje_Z0NkCJEdCuJxC4Kg8zL6T7g7Ie--4u1BmWRV56DsaHVPf0Qcn9NKMjdMP6VBPGKqXoMwa-stU4s1uhYO4OTjbhX1fGpDw1gB49dJ08gpRo46jtHjN2ke_n-ZA43w8WDfk3YTI1kqYuVsVgdfYeSUqknH4QfXeLjYcoIHmCZGnUASHou4e58HvV6uamyxhjBVakBbyDkp7PMct0CuXGCxh7byTX0BaxIg9FzYO86DKv9Ikm_WZqco9sjKxZly6Rnlp4_GNorlUfXmu73umPfxfLWAUfRq_aABay7TtgT7isa4","passcode":"113AWXNY8YX4"},{"id":"g113AWY3HKTS8","sectionId":"g113AWY3HKTS8_s113AWY3HM8C","enrollmentToken":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA4MzE4NDYsImp0aSI6IjYyODc4Y2ZlLTc3ZWItNDI5Zi04ZDE3LTk1MjIzNjgwNDc0NiIsImlhdCI6MTcwMDY1OTA0NiwiaXNzIjoiaHR0cHM6Ly9waG9lbml4LWNjbS50aGVwb2ludC5sd3cuY29tIiwibmJmIjoxNzAwNjU5MDQ2LCJzdWIiOiJjM2ZjZDVlNi0yNzA2LTRlMDMtOGMzYS00NTBiMDBhZTFmYzgiLCJobHJwX2NjbSI6W3siciI6ImkiLCJjcnMiOiJnMTEzQVdZM0hLVFM4In1dfQ.Bfowqofw4YBDZabxUbQbaO_e2LPWLBz5xc9RKfxTLkstRsXURwPODJZrqZGTuKcDCiO0RPcS-w3rWUFPXuF-d6Lo1HBL4q6-XTpV2NklPal-j97zgPulQF7lMsfM2fB8mrDvvLFyaijjuEk_dwz01Qb8A23zO5XAJyI65EtxMiPV3PeVSo6mGrnxNuEQqUvY-1ffyDtxDWgarQLbsQnSVFnXsnXfrr5O2YczkNtG1pVylgWIlBXp1MDhHl7is0XykZPUp55cOoJ62VljSjb1BLMK0KGhwkO-UIZlBt93IhIGUD8f2Ki58eUDkdLFCCu4WfaUPlOUn1Z6HKQ9VfSiEcMnxunGgbgsDgxJCE6eHBXz0I9Q8BM8TxhCrNtyQkgR3jUfstPRmH0VfBCatfCF1IJHC2CwMTwQXLTLUlIbeeS2wRcrarp0qVVwmFTYaV7eCEYaZqXQdK60hmhy0YgiMQlDuDzO1Qw-wETfvXxUMaU1dogKS-V-ZNcRmGcY6Hp11RvGE5S5rmgHJHRrB__9ov-WQQkKS0f2gZoLdlPj3gAeSdxXr9rLSZCIJ7AqZKTbvYqIB6aytg3dd5yg9hyaxr7kzpb1tjG1hJf53eLU_QyZdLfUu6GpBaWShQvxQE4dqpGUa8yuGAwS0jLI1PKybCI0RTk9_iOFRwVEo_l-rUw","passcode":"113AWY3HM8C"},{"id":"g113AWYUHIV","sectionId":"g113AWYUHIV_s113AWYUIF3B","enrollmentToken":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA4MzE4NDcsImp0aSI6IjNkZjFhMDY2LTE5MGMtNGQ4Ni05ZWUzLTNjMjQ1ZTBiYmJkNiIsImlhdCI6MTcwMDY1OTA0NywiaXNzIjoiaHR0cHM6Ly9waG9lbml4LWNjbS50aGVwb2ludC5sd3cuY29tIiwibmJmIjoxNzAwNjU5MDQ3LCJzdWIiOiJjM2ZjZDVlNi0yNzA2LTRlMDMtOGMzYS00NTBiMDBhZTFmYzgiLCJobHJwX2NjbSI6W3siciI6ImkiLCJjcnMiOiJnMTEzQVdZVUhJViJ9XX0.eWBnQcuk1_oV-vr-Big3jrq7Pnt8k1PL0EcmNfy1BKX6nf8XOIojIVpnyajXODFj2DqmVh0LxD2YuJXOkA-Ar00gs8vuN8tNrI2AjI6ZxYTHwqDi_w0_c8V59e4H6NIhNGkAerNI9dUGR8V4mY9DtoA06PlXP0sdOlLgCPmi96gtV9L-H_Jir2oZ5eNQ4H4XUvNA2lfj6zeVVxqKe-u_lln3U_F0uR693jj1q7_YcSZ4Br18s0zMFYVf5fH1JzUeogpidnHA2dKFDGJfTXZco59g8P7fb-TZyByyBwdTIV7hC6rL59CoeduHo9_hC4Puo2oXYZxXOtVZhME4Stuxmj7T4Fri-b2UhZeqNJ7DoP8QonuBiZILdJ1ezGGysNILmBbZKJlpL-8kqTtxl32_-4wdT16kft5eg6Q3c37nZyzPD657cDh_HrqfwxhM-vmUYDSAuPogovk3qOze_TM3VZ9wO7cFeJFZjHFEcPGtZ4X3i-airs-xFsCdbMZwtXYQG-0gZFLOrWEcgcEaIkaFWFd27-qiUtaNxCrTiwCFMhARJ9LegW8mwZFCCVEB9GVt2b1XJXslt1foPpccEMaQfI8kWQbtQGlnuCu2s6zFhFFNoIMXTisI_a2G1WGS77yeIut3j-r1jg7JDLVJHgnw0M_S3s2Lcde0ESPE-Ciu62A","passcode":"113AWYUIF3B"},{"id":"g113AX1ACWPGN","sectionId":"g113AX1ACWPGN_s113AX1ACY413","enrollmentToken":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA4MzE4NTAsImp0aSI6IjkyZTkwZWFhLTY2YjktNDlhYS05YWIwLTUxZTRkNzQ3Mzc1MyIsImlhdCI6MTcwMDY1OTA1MCwiaXNzIjoiaHR0cHM6Ly9waG9lbml4LWNjbS50aGVwb2ludC5sd3cuY29tIiwibmJmIjoxNzAwNjU5MDUwLCJzdWIiOiJjM2ZjZDVlNi0yNzA2LTRlMDMtOGMzYS00NTBiMDBhZTFmYzgiLCJobHJwX2NjbSI6W3siciI6ImkiLCJjcnMiOiJnMTEzQVgxQUNXUEdOIn1dfQ.ZPs1TzILZsPKv2JpW4tiF-GbrSaotYCVlLIcyhb2AUU8JUkn2V3besYf5F25pgV1B6gLYj3LRiu3ErFEt8JU3h6DcRCqASejZ98_qTgfkKAFDbcEwwrabRcOD90L47EYVhMJtNB2Xae1PD7VVVRPZiuX9zAY_ZMm_ho4g66Rn0XGyHB1L_gqNeW_hMESNAyjjDQJzHtPigXryQEB8T8w1ZA2Or4IiuC0LjU8LjfzNe73g4AgCM7iibNSca5LIMWByQNSikth-sho78s2Hz-_5O8KaCOQtbu2wBHfa_bwuv8lD_EBW-MMkIDCLH8JAVWbwaB1-j-mtJSFGZDFe8mMhXfr1wxLiitiqiBQ91ClKOFg0jBlAbwPcvSAy-NOTG2MYHptAPkZEdzxBTDC3qQQd66R5hszLHIidAS3-daMCoQjIEhknnUvBR3pcqOTVOQ_BHUIgshJXzF4XBC3nUsjADXNE02D71n32w124PP5xbU9sqERBd89zLLJrpaexsYjLeSgneB9Fjv_lrYMWEnK1DQUACxIYW09cA7d4e9VVsInNfZ4EaUZcImU9WXKY-r9I33K9PxwP9AQk0WlkQRr2_0MfeSCsm7BDxKNzSwcFvwwhRFh0gazDGHvk9y-BsssdJ_yjYVO_ex2CpJUHPgKAhVxfJPolWSBnEIaAvV87oI","passcode":"113AX1ACY413"}]</con:value>
+    </con:property>
+    <con:property>
+      <con:name>InstuctorEnrollmentToken</con:name>
+      <con:value>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA4MzE4NTAsImp0aSI6IjkyZTkwZWFhLTY2YjktNDlhYS05YWIwLTUxZTRkNzQ3Mzc1MyIsImlhdCI6MTcwMDY1OTA1MCwiaXNzIjoiaHR0cHM6Ly9waG9lbml4LWNjbS50aGVwb2ludC5sd3cuY29tIiwibmJmIjoxNzAwNjU5MDUwLCJzdWIiOiJjM2ZjZDVlNi0yNzA2LTRlMDMtOGMzYS00NTBiMDBhZTFmYzgiLCJobHJwX2NjbSI6W3siciI6ImkiLCJjcnMiOiJnMTEzQVgxQUNXUEdOIn1dfQ.ZPs1TzILZsPKv2JpW4tiF-GbrSaotYCVlLIcyhb2AUU8JUkn2V3besYf5F25pgV1B6gLYj3LRiu3ErFEt8JU3h6DcRCqASejZ98_qTgfkKAFDbcEwwrabRcOD90L47EYVhMJtNB2Xae1PD7VVVRPZiuX9zAY_ZMm_ho4g66Rn0XGyHB1L_gqNeW_hMESNAyjjDQJzHtPigXryQEB8T8w1ZA2Or4IiuC0LjU8LjfzNe73g4AgCM7iibNSca5LIMWByQNSikth-sho78s2Hz-_5O8KaCOQtbu2wBHfa_bwuv8lD_EBW-MMkIDCLH8JAVWbwaB1-j-mtJSFGZDFe8mMhXfr1wxLiitiqiBQ91ClKOFg0jBlAbwPcvSAy-NOTG2MYHptAPkZEdzxBTDC3qQQd66R5hszLHIidAS3-daMCoQjIEhknnUvBR3pcqOTVOQ_BHUIgshJXzF4XBC3nUsjADXNE02D71n32w124PP5xbU9sqERBd89zLLJrpaexsYjLeSgneB9Fjv_lrYMWEnK1DQUACxIYW09cA7d4e9VVsInNfZ4EaUZcImU9WXKY-r9I33K9PxwP9AQk0WlkQRr2_0MfeSCsm7BDxKNzSwcFvwwhRFh0gazDGHvk9y-BsssdJ_yjYVO_ex2CpJUHPgKAhVxfJPolWSBnEIaAvV87oI</con:value>
+    </con:property>
+    <con:property>
+      <con:name>TC_AssignAssignment_BodyData</con:name>
+      <con:value>{
+  "courseId": "g113AX1ACWPGN",
+  "points": 100,
+  "isGraded": false,
+  "attemptType": "Highest Grade",
+  "isHighlightLateSubmission": true,
+  "isBroadcastingRequired": false,
+  "productIsbn": "9781975186708",
+ "prepuDetails": null,
+ "metaInformation": {},
+ "maxAttempts": 0,
+"sections": [
+    {
+      "sectionCode": [
+        "*" 
+      ],
+      "dueDate": "2024-03-01",
+      "dueDateTime": "09:26 PM",
+      "dueDateTimezone": "US/Eastern",
+      "accessibleFrom": "2023-11-22T05:27:01-05:00",
+      "accessibleFromTime": "05:27 PM",
+      "accessibleFromTimezone": "US/Eastern",
+      "isForEveryOne":true,
+      "isImmediateAvailable":true,
+      "isUnlocked":true
+    }
+  ],
+  
+  "name": "Ebook: Chapter 61",
+  "resourceTypeId": "2",
+  "assets": {
+    "assetId": 325293,
+    "assetVersion": "1.9.0",
+    "assetType": "ASSET"
+  },
+  "assignmentType": {
+    "type": "EBOOK",
+    "systemId": ""
+  }
+}</con:value>
+    </con:property>
+    <con:property>
+      <con:name>SSOInStructor</con:name>
+      <con:value>zZc/xEkEjQ0egksgkbTyGeBXSaV/hRwK0ntDuSSmRq0KYIHsTXNrlDoQBXl1RUCXZa8sKUT64VKU4ziiYJXgtnHPhTzY75Un1BG+/AHtTbz6R9HseEEppLBBB97pc0z9LeUFYdzaLNtcokjmZkjtrAdYKx5vfWK3jkZ6YzZvOohSlVEqkZCUQdBkZnWHibDzc6U9Oo+P6p5ZqqZoQKd72MP8cvtUotnwFE1nrIXeynFzpT06j4/qnlmqpmhAp3vYnYZv0bZQ9vf+leIGGNB+bKX8nWSsW9oX</con:value>
+    </con:property>
+  </con:properties>
+  <con:reportParameters/>
+</con:testCase>

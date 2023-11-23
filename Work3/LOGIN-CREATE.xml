@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" id="a4c8f7f8-56f1-4b52-b57e-87cd01f92604" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="LOGIN CREATE" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" zephyrTestName="" zephyrTestId="">
+  <con:settings id="337fe865-f94a-4f69-9e3d-dddb1d9d35f8">
+    <con:setting id="a4c8f7f8-56f1-4b52-b57e-87cd01f92604fileName">LOGIN-CREATE</con:setting>
+  </con:settings>
+  <con:testStep type="datasource" name="CreateAssignment" id="f8bf6e27-2402-49e0-bc37-5e5c910ddf7e">
+    <con:settings/>
+    <con:config xsi:type="con:DataSourceStep">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>${#Project#TestDataExcelFile}</file>
+          <worksheet>CreateAssignment</worksheet>
+          <cell>A143</cell>
+          <ignoreEmpty>false</ignoreEmpty>
+          <evaluateFormulas>false</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>points</con:property>
+      <con:property>isGraded</con:property>
+      <con:property>attemptType</con:property>
+      <con:property>isHighlightLateSubmission</con:property>
+      <con:property>isBroadcastingRequired</con:property>
+      <con:property>accessibleFromTimezone</con:property>
+      <con:property>timeZoneOffset</con:property>
+      <con:property>isForEveryOne</con:property>
+      <con:property>isImmediateAvailable</con:property>
+      <con:property>isUnlocked</con:property>
+      <con:property>NoOfAttempts</con:property>
+      <con:property>Remarks</con:property>
+      <con:property>resourse type</con:property>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Test Case Test Data" id="8fa4ea48-dd2d-4f92-bafa-9b972fee90ab">
+    <con:settings/>
+    <con:config>
+      <script>import java.lang.*;
+import java.util.Date
+import java.util.Calendar
+import java.util.TimeZone
+import java.text.SimpleDateFormat
+
+def now= new Date()
+SimpleDateFormat currentDatePlusOn = new SimpleDateFormat("MMMdd_HHmmss")
+def currenTime= currentDatePlusOn.format(new Date(now.getTime()))
+log.info("TIME NOW "+currenTime)
+currenTime ="_"+currenTime
+
+def timeZoneOffset = context.expand( '${CreateAssignment#timeZoneOffset}' )
+def accessibleFromTimezone = context.expand( '${CreateAssignment#accessibleFromTimezone}' )
+
+log.info("accessibleFromTimezone "+accessibleFromTimezone)
+
+testRunner.testCase.testSuite.project.setPropertyValue("ProductISBN","9781975186708") 
+testRunner.testCase.testSuite.project.setPropertyValue("CourseAssignmentCount","5") //Existimg resource types 9 , so 9*5+1 =54
+testRunner.testCase.testSuite.project.setPropertyValue("TotalAssignments","10")//Assignment count for assertion
+testRunner.testCase.testSuite.project.setPropertyValue("CreateCourseName","Performance Test Data Assignments "+currenTime.toString())
+testRunner.testCase.testSuite.project.setPropertyValue("CreateCourseTimeZone",accessibleFromTimezone.toString())
+testRunner.testCase.testSuite.project.setPropertyValue("CreateCourseDueTimeInDays","120") //course dute time 4 months form current time
+testRunner.testCase.testSuite.project.setPropertyValue("CreateAssignmentDueTimeInDays","100")//assignmnet dute time 3 months fomr current time
+testRunner.testCase.testSuite.project.setPropertyValue("CreateAssignmentDueTimeInMilliSeconds","14400000")
+testRunner.testCase.testSuite.project.setPropertyValue("CreateAssignmentTimeZone",accessibleFromTimezone.toString())
+testRunner.testCase.testSuite.project.setPropertyValue("CreateAssignmentTimeZoneOffset",timeZoneOffset.toString())
+
+def instructorUser= ""
+def instructorPassword= ""
+
+//testRunner.testCase.testSuite.project.setPropertyValue("InstructorEmial",instructorUser.toString())
+//testRunner.testCase.testSuite.project.setPropertyValue("instructorPassword",instructorPassword.toString())
+
+log.info("SetUpDone")</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasource" name="Data Source Credetails" id="910886e1-af3e-4c8c-bafa-8be4f12a3ea9">
+    <con:settings/>
+    <con:config xsi:type="con:DataSourceStep">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>${#Project#TestDataExcelFile}</file>
+          <worksheet>PERF_Data_INST_Credentials_QE02</worksheet>
+          <cell>A2</cell>
+          <ignoreEmpty>false</ignoreEmpty>
+          <evaluateFormulas>false</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>StudentUserEmail</con:property>
+      <con:property>StudentPassword</con:property>
+      <con:property>WitchSection</con:property>
+      <con:startRow/>
+      <con:endRow>10</con:endRow>
+      <con:recordsPerIteration>1</con:recordsPerIteration>
+      <con:completeLastOperation>false</con:completeLastOperation>
+      <con:trimValues>false</con:trimValues>
+      <con:entitizeValues>false</con:entitizeValues>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:expandProperties>false</con:expandProperties>
+      <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Set Credetails" id="a5d82efc-dc61-40a4-b123-8f2c965516f8">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import java.lang.*;
+
+
+
+
+
+
+
+
+def studentUserEmail = context.expand( '${Data Source Credetails#StudentUserEmail}' )
+def studentPassword = context.expand( '${Data Source Credetails#StudentPassword}' )
+
+
+//testRunner.testCase.testSuite.project.setPropertyValue("StudnetEmail", "AutomationStudent08")
+//testRunner.testCase.testSuite.project.setPropertyValue("StudentPassword", "Welcome001")
+
+testRunner.testCase.testSuite.project.setPropertyValue("StudnetEmail", studentUserEmail)
+testRunner.testCase.testSuite.project.setPropertyValue("StudentPassword", studentPassword)
+
+
+def witchSection = context.expand( '${Data Source Credetails#WitchSection}' )
+
+def data = "\${#Project#Section"+witchSection.toString()+"Password}"
+
+
+/*
+if(witchSection.toString()=="1")
+{
+	def section1Password = context.expand( '${#Project#Section1Password}' )
+}
+else if(witchSection.toString()=="2")
+{
+	def section1Password = context.expand( '${#Project#Section1Password}' )
+}
+*/
+
+def section1Password = context.expand( data )
+log.info("password "+section1Password)
+testRunner.testCase.testSuite.project.setPropertyValue("StudentJoinPassword", section1Password)</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="GetAccessToken" id="c96a0d33-76b5-417e-a547-b9f84536930c">
+    <con:settings/>
+    <con:config service="Auth API" resourcePath="/Authentication/UsernameInSso" methodName="Method 1" xsi:type="con:RestRequestStep">
+      <con:restRequest name="GetAccessToken" id="7a8b79ab-de89-4998-ba4f-b6708ff27d44" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>https://preprod-sso.hlrpbooks.com</con:endpoint>
+        <con:request>{
+  "Email": "${Data Source Credetails#StudentUserEmail}",
+  "Password": "${Data Source Credetails#StudentPassword}",
+  "PostbackUrlOnSuccess": "${#Project#PostbackUrlOnSuccess}",
+  "SiteId": "${#Project#SystemId}",
+  "StaySignIn": false,
+    "UrlToRedirectOnSuccess": "${#Project#UrlToRedirectOnSuccess}",
+  "Timestamp": "2022-10-04T05:23:53.382Z",
+  "SourceUrl": "${#Project#SourceUrl}",
+  "AccessCode": "",
+  "SiteInfoType": "Education",
+  "WorkflowId": ""
+}</con:request>
+        <con:originalUri>https://preprod-sso.hlrpbooks.com/Authentication/UsernameInSso</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="1de409a2-83ad-4119-9963-7a2d299ce263" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="32a7ec59-9333-4c75-89de-3863fec4fa2c" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="7b97dea9-f6f0-473e-ae65-367e168d9ca7" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+
+def response = context.expand( '${GetAccessToken#Response}' )
+
+
+def verifyResponse = new JsonSlurper().parseText(response)
+log.info(verifyResponse.Data.AuthenicationResult)
+
+assert verifyResponse.Data.AuthenicationResult != null</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Set Tokens" id="173b973f-762e-4d53-9288-cf2605fd1168">
+    <con:settings/>
+    <con:config>
+      <script><![CDATA[import groovy.json.JsonSlurper
+import java.lang.*;
+def response = context.expand( '${GetAccessToken#Response}' )
+
+def resp = new JsonSlurper().parseText(response)
+
+def start = resp.Data.AuthenicationResult.indexOf("<AccessToken>")+13;
+def end = resp.Data.AuthenicationResult.indexOf("</AccessToken>");
+def xaccesstoken = resp.Data.AuthenicationResult.substring(start, end);
+
+//result["xaccessTokenInstructor"]=xaccesstoken
+
+def ssostart = resp.Data.AuthenicationResult.indexOf("<TokenKey>")+10;
+def ssoend = resp.Data.AuthenicationResult.indexOf("</TokenKey>");
+def ssotoken = resp.Data.AuthenicationResult.substring(ssostart, ssoend);
+//result["ssoInstructor"]=ssotoken
+
+def IDstart = resp.Data.AuthenicationResult.indexOf("<UserId>")+8;
+def IDend = resp.Data.AuthenicationResult.indexOf("</UserId>");
+def InstructorId = resp.Data.AuthenicationResult.substring(IDstart, IDend);
+//result["instructorUserId"]=InstructorId
+testRunner.testCase.setPropertyValue("instructorUserId", InstructorId)
+testRunner.testCase.setPropertyValue("xaccessTokenInstructor", xaccesstoken)
+testRunner.testCase.setPropertyValue("ssoInstructor", ssotoken)
+
+
+log.info("instructorUserId = "+ InstructorId)
+log.info("xaccessTokenInstructor =  " + xaccesstoken)
+log.info("ssoInstructor = "+ssotoken)
+
+ testRunner.testCase.testSuite.project.setPropertyValue("QCSSoToken", "")
+
+ testRunner.testCase.testSuite.project.setPropertyValue("QCSSoToken", ssotoken.toString())]]></script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Generate Course Start and End Time" id="92a58c23-a141-41a6-ae09-c2602a23729a">
+    <con:settings/>
+    <con:config>
+      <script>import java.lang.*;
+import java.util.Date
+import java.util.Calendar
+import java.util.TimeZone
+import java.text.SimpleDateFormat
+
+def createCourseDueTimeInDays = context.expand( '${#Project#CreateCourseDueTimeInDays}' ) as int
+def creteCourseTimeZone = context.expand( '${#Project#CreateCourseTimeZone}' )
+
+
+log.info("creteCourseTimeZone "+creteCourseTimeZone)
+SimpleDateFormat timer = new SimpleDateFormat("yyyy-MM-dd")
+timer.setTimeZone(TimeZone.getTimeZone("UTC"));
+def Currentday= timer.format(new Date())
+context.setProperty("CurrentDate",Currentday)
+Currentday =Currentday+"T00:00:00.000Z"
+context.testCase.setPropertyValue('EffectiveDate',Currentday )
+
+Calendar cal = Calendar.getInstance();
+Date today = new Date();
+cal.setTime(today);
+cal.add(Calendar.DATE, createCourseDueTimeInDays)
+Date currentDatePlusOne = cal.getTime();
+SimpleDateFormat currentDatePlusOn = new SimpleDateFormat("yyyy-MM-dd")
+currentDatePlusOn.setTimeZone(TimeZone.getTimeZone("UTC"));
+def futuredate= currentDatePlusOn.format(currentDatePlusOne)
+futuredate =futuredate+"T00:00:00.000Z"
+context.testCase.setPropertyValue('ExpireDate', futuredate)
+
+log.info Currentday + " : Currentdate"
+log.info futuredate + " : Futuredate"</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Create course1" id="bbae1dd0-52d5-43b1-a3e9-5369cb466309">
+    <con:settings/>
+    <con:config service="Create course" methodName="Method 1" resourcePath="/api/ccm/v2/course" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Create course1" id="b0f4feb9-49e2-4e5c-9708-387917dd39cc" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#TestCase#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint xsi:nil="true"/>
+        <con:request>{
+  "name": "50_${#Project#CreateCourseName}",
+  "number": "${#TestCase#CourseSerialNumber}",
+  "sectionName": "Sec1",
+  "programTypeId": "BSN",
+  "startDate": "${#TestCase#EffectiveDate}",
+  "endDate": "${#TestCase#ExpireDate}",
+  "timeZoneId": "${#Project#CreateCourseTimeZone}",
+  "academicTerm": "Summer",
+  "academicYear": 2025,
+  "sfdcAccountId":"001d0000029ZCmSAAW",
+  "products": [
+    "${#Project#ProductISBN}"
+  ],
+  "instructor": "${#TestCase#instructorUserId}",
+  "role": "${#Project#InstuctorRoleValue}"
+}</con:request>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/ccm/v2/course</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="b1e33441-e5c8-4e08-9dde-2835210b5b15" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="44cfc69a-ed44-44b9-be23-7111ebc952ac" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="ecb68bb5-b91b-4300-bbc1-c8d013e74118" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+import groovy.*
+
+def response = context.expand( '${Create course1#Response}' )
+def testCase = messageExchange.modelItem.testCase;
+def verifyResponse = new JsonSlurper().parseText(response)
+
+assert verifyResponse.id != null
+assert verifyResponse.sectionId != null
+assert verifyResponse.enrollmentToken != null
+assert verifyResponse.passcode != null
+def harResponse = context.expand( '${Create course1#HarResponse#$[\'status\']}' )
+def responseID = context.expand( '${Create course1#Response#$[\'id\']}' )
+def rawRequestName = context.expand( '${Create course1#RawRequest#$[\'name\']}' )
+
+if(harResponse.toString()=="200")
+{
+def courseSerialNumber = context.expand( '${#TestCase#CourseSerialNumber}' ) as int
+	// context.expand( '${#TestSuite#CourseSerialNumber}' ) as int 
+//testRunner.testCase.testSuite.setPropertyValue("CourseSerialNumber",(courseSerialNumber+1).toString())
+//testCase.setPropertyValue("CourseSerialNumber",(courseSerialNumber+1).toString())
+testCase.setPropertyValue("CourseName",rawRequestName.toString())
+testCase.setPropertyValue("CourseId",responseID)
+}</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Create course2" id="283406a0-2214-4426-811a-6a3de0c631d0">
+    <con:settings/>
+    <con:config service="Create course" methodName="Method 1" resourcePath="/api/ccm/v2/course" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Create course2" id="b0f4feb9-49e2-4e5c-9708-387917dd39cc" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#TestCase#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint xsi:nil="true"/>
+        <con:request>{
+  "name": "100_${#Project#CreateCourseName}",
+  "number": "${#TestCase#CourseSerialNumber}",
+  "sectionName": "Sec1",
+  "programTypeId": "BSN",
+  "startDate": "${#TestCase#EffectiveDate}",
+  "endDate": "${#TestCase#ExpireDate}",
+  "timeZoneId": "${#Project#CreateCourseTimeZone}",
+  "academicTerm": "Summer",
+  "academicYear": 2025,
+  "sfdcAccountId":"001d0000029ZCmSAAW",
+  "products": [
+    "${#Project#ProductISBN}"
+  ],
+  "instructor": "${#TestCase#instructorUserId}",
+  "role": "${#Project#InstuctorRoleValue}"
+}</con:request>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/ccm/v2/course</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="b1e33441-e5c8-4e08-9dde-2835210b5b15" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="44cfc69a-ed44-44b9-be23-7111ebc952ac" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="ecb68bb5-b91b-4300-bbc1-c8d013e74118" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+import groovy.*
+
+def response = context.expand( '${Create course2#Response}' )
+def testCase = messageExchange.modelItem.testCase;
+def verifyResponse = new JsonSlurper().parseText(response)
+
+assert verifyResponse.id != null
+assert verifyResponse.sectionId != null
+assert verifyResponse.enrollmentToken != null
+assert verifyResponse.passcode != null
+def harResponse = context.expand( '${Create course2#HarResponse#$[\'status\']}' )
+def responseID = context.expand( '${Create course2#Response#$[\'id\']}' )
+def rawRequestName = context.expand( '${Create course2#RawRequest#$[\'name\']}' )
+
+if(harResponse.toString()=="200")
+{
+def courseSerialNumber = context.expand( '${#TestCase#CourseSerialNumber}' )
+//testRunner.testCase.testSuite.setPropertyValue("CourseSerialNumber",(courseSerialNumber+1).toString())
+//testCase.setPropertyValue("CourseSerialNumber2",(courseSerialNumber+1).toString())
+testCase.setPropertyValue("CourseName2",rawRequestName.toString())
+testCase.setPropertyValue("CourseId2",responseID)
+}</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Create course3" id="5218b823-a259-4813-8376-8e66b99cdcbf">
+    <con:settings/>
+    <con:config service="Create course" methodName="Method 1" resourcePath="/api/ccm/v2/course" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Create course3" id="b0f4feb9-49e2-4e5c-9708-387917dd39cc" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#TestCase#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint xsi:nil="true"/>
+        <con:request>{
+  "name": "200_${#Project#CreateCourseName}",
+  "number": "${#TestCase#CourseSerialNumber}",
+  "sectionName": "Sec1",
+  "programTypeId": "BSN",
+  "startDate": "${#TestCase#EffectiveDate}",
+  "endDate": "${#TestCase#ExpireDate}",
+  "timeZoneId": "${#Project#CreateCourseTimeZone}",
+  "academicTerm": "Summer",
+  "academicYear": 2025,
+  "sfdcAccountId":"001d0000029ZCmSAAW",
+  "products": [
+    "${#Project#ProductISBN}"
+  ],
+  "instructor": "${#TestCase#instructorUserId}",
+  "role": "${#Project#InstuctorRoleValue}"
+}</con:request>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/ccm/v2/course</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="b1e33441-e5c8-4e08-9dde-2835210b5b15" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="44cfc69a-ed44-44b9-be23-7111ebc952ac" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="ecb68bb5-b91b-4300-bbc1-c8d013e74118" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+import groovy.*
+
+def response = context.expand( '${Create course3#Response}' )
+def testCase = messageExchange.modelItem.testCase;
+def verifyResponse = new JsonSlurper().parseText(response)
+
+assert verifyResponse.id != null
+assert verifyResponse.sectionId != null
+assert verifyResponse.enrollmentToken != null
+assert verifyResponse.passcode != null
+def harResponse = context.expand( '${Create course3#HarResponse#$[\'status\']}' )
+def responseID = context.expand( '${Create course3#Response#$[\'id\']}' )
+def rawRequestName = context.expand( '${Create course3#RawRequest#$[\'name\']}' )
+
+if(harResponse.toString()=="200")
+{
+def courseSerialNumber = context.expand( '${#TestCase#CourseSerialNumber}' ) as int
+//testRunner.testCase.testSuite.setPropertyValue("CourseSerialNumber",(courseSerialNumber+1).toString())
+//testCase.setPropertyValue("CourseSerialNumber3",(courseSerialNumber+1).toString())
+testCase.setPropertyValue("CourseName3",rawRequestName.toString())
+testCase.setPropertyValue("CourseId3",responseID)
+}</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Create course4" id="d65f27fc-4bbe-4314-871b-37c525d588e4">
+    <con:settings/>
+    <con:config service="Create course" methodName="Method 1" resourcePath="/api/ccm/v2/course" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Create course4" id="b0f4feb9-49e2-4e5c-9708-387917dd39cc" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#TestCase#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint xsi:nil="true"/>
+        <con:request>{
+  "name": "400_${#Project#CreateCourseName}",
+  "number": "${#TestCase#CourseSerialNumber}",
+  "sectionName": "Sec1",
+  "programTypeId": "BSN",
+  "startDate": "${#TestCase#EffectiveDate}",
+  "endDate": "${#TestCase#ExpireDate}",
+  "timeZoneId": "${#Project#CreateCourseTimeZone}",
+  "academicTerm": "Summer",
+  "academicYear": 2025,
+  "sfdcAccountId":"001d0000029ZCmSAAW",
+  "products": [
+    "${#Project#ProductISBN}"
+  ],
+  "instructor": "${#TestCase#instructorUserId}",
+  "role": "${#Project#InstuctorRoleValue}"
+}</con:request>
+        <con:originalUri>https://contentqa01-ccm.hlrpphoenix.com/api/ccm/v2/course</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="b1e33441-e5c8-4e08-9dde-2835210b5b15" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="44cfc69a-ed44-44b9-be23-7111ebc952ac" name="Response SLA">
+          <con:configuration>
+            <SLA>${SLA}</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="ecb68bb5-b91b-4300-bbc1-c8d013e74118" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+import java.lang.*;
+import groovy.*
+
+def response = context.expand( '${Create course4#Response}' )
+def testCase = messageExchange.modelItem.testCase;
+def verifyResponse = new JsonSlurper().parseText(response)
+
+assert verifyResponse.id != null
+assert verifyResponse.sectionId != null
+assert verifyResponse.enrollmentToken != null
+assert verifyResponse.passcode != null
+def harResponse = context.expand( '${Create course4#HarResponse#$[\'status\']}' )
+def responseID = context.expand( '${Create course4#Response#$[\'id\']}' )
+def rawRequestName = context.expand( '${Create course4#RawRequest#$[\'name\']}' )
+
+if(harResponse.toString()=="200")
+{
+def courseSerialNumber = context.expand( '${#TestCase#CourseSerialNumber}' ) as int
+//testRunner.testCase.testSuite.setPropertyValue("CourseSerialNumber",(courseSerialNumber+1).toString())
+testCase.setPropertyValue("CourseSerialNumber4",(courseSerialNumber+1).toString())
+testCase.setPropertyValue("CourseName4",rawRequestName.toString())
+testCase.setPropertyValue("CourseId4",responseID)
+}</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:environmentSpec>
+          <con:entry environmentId="5fdd3302-0f5d-4e97-86ac-499553156130">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="91a6eeff-dd67-4af8-98fd-225fe8ca80e2">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="84a8c881-bb29-487a-93b8-3f2e674fb825">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Together CourseIDs and EnrrolmentToken" id="19256121-9a8f-43fe-8973-23816ae3957f">
+    <con:settings/>
+    <con:config>
+      <script>import groovy.json.JsonSlurper
+import java.lang.*;
+def finalData =""
+for(int i =1;i&lt;=4;i++)
+{
+	   def data = "\${Create course"+i.toString()+"#Response}"
+def response = context.expand( data)
+
+	   log.info("response "+response)
+	   finalData=finalData+response+","
+}
+
+finalData =finalData.substring(0,finalData.size()-1)
+log.info("finalData "+finalData)
+
+finalData = "["+finalData+"]"
+log.info("finalData "+finalData)
+
+//def resp = new JsonSlurper().parseText(finalData)
+testRunner.testCase.setPropertyValue("CourseEnrollData", finalData.toString())</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasink" name="Set Tokens In Excel" id="3df0023e-c92d-455d-a7c5-e94afc660dfb">
+    <con:settings/>
+    <con:config xsi:type="con:DataSinkStep">
+      <con:dataSink type="Excel">
+        <con:configuration>
+          <file/>
+          <outfile>${#Project#TestDataExcelFile3}</outfile>
+          <worksheet>InstructorsAccessTokens</worksheet>
+          <cell>A2</cell>
+          <evaluateFormulas>false</evaluateFormulas>
+          <append>false</append>
+        </con:configuration>
+      </con:dataSink>
+      <con:properties>
+        <con:property>
+          <con:name>Number</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>TokenValue</con:name>
+          <con:value>${#TestCase#xaccessTokenInstructor}</con:value>
+        </con:property>
+        <con:property>
+          <con:name>InstructorUserID</con:name>
+          <con:value>${#TestCase#instructorUserId}</con:value>
+        </con:property>
+        <con:property>
+          <con:name>CourseIDs</con:name>
+          <con:value>${#TestCase#CourseEnrollData}</con:value>
+        </con:property>
+        <con:property>
+          <con:name>SSOInStructor</con:name>
+          <con:value>${#TestCase#ssoInstructor}</con:value>
+        </con:property>
+      </con:properties>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="Data Source Loop" id="8debb865-c0f6-4c3c-95e8-894cbcf709cb">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>Data Source Credetails</dataSourceStep>
+      <targetStep>Set Credetails</targetStep>
+      <discardResults>false</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:properties>
+    <con:property>
+      <con:name>instructorUserId</con:name>
+      <con:value>74fb0a3e-1db1-4dcb-b12f-450b00ae66d8</con:value>
+    </con:property>
+    <con:property>
+      <con:name>xaccessTokenInstructor</con:name>
+      <con:value>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzc28ud2tocGUuY29tIiwiYXVkIjoiM2MzOTg0NmMtODg2YS1kZjExLWIxMTUtMDA1MDU2YzAwMDA4IiwiYXV0aF90aW1lIjoxNzAwNjU5MDY2LCJuYW1lIjoiUGVyZm9ybWFuY2UgaW5zdHJ1Y3RvcjEyMCIsImp0aSI6IjYyZjRmNjY4LTQ1NGMtNGRiOS04NGJkLTMyMmVjOTkzNjZhYSIsImlhdCI6MTcwMDY1OTA2NiwiZXhwIjoxNzAwNzQ1NDY2LCJzdWIiOiI3NGZiMGEzZS0xZGIxLTRkY2ItYjEyZi00NTBiMDBhZTY2ZDgiLCJyb2xlcyI6IndraHBlLWVuZCB1c2VyIiwid2tocGVfcGVybWlzc2lvbnMiOlsiQ2FuVXNlUGVyc29uYWxpemF0aW9uRmVhdHVyZXMiXSwid2tocGVfdG9rZW4iOiJ6WmMveEVrRWpRMGVna3Nna2JUeUdWYWlDa0dlYW4zUDFUUDFVZ291WGp5Y3RxN1JmNFZCeWhwYkh1Ymp0cDZYTm1ZejNxcW9mRlRxY29UdlExT3loWEhQaFR6WTc1VW4xQkcrL0FIdFRiejZSOUhzZUVFcHBMQkJCOTdwYzB6OTI3Q0o0Z2ZKYTQ3bTBTN1NIZ0NzR1RjVmRsanBpTlNYamtaNll6WnZPb2hnNkZQRXROcTcwdEJrWm5XSGliRHpjNlU5T28rUDZwNVpxcVpvUUtkNzJNUDhjdnRVb3Rud0ZFMW5ySVhleW5GenBUMDZqNC9xbmxtcXBtaEFwM3ZZblladjBiWlE5dmYrbGVJR0dOQitiS1g4bldTc1c5b1giLCJ0b2tlbl90eXBlIjoiYmVhcmVyIn0.RH3-4YXkVnhge9B93yxmr446c6FjsxhKlR-5wVfsUGrBF8iUjJMIcuHlbn3JAtxOghyvZFujFOOH9t7uesBX5brhwWNu7poW3bSnNdK578PduNIx1GhZDESY5YMUrgvq7DlKGU39HAqiUiJoKMzfIK6usaMqOUNsUR-Zgcggqxc</con:value>
+    </con:property>
+    <con:property>
+      <con:name>ssoInstructor</con:name>
+      <con:value>zZc/xEkEjQ0egksgkbTyGVaiCkGean3P1TP1UgouXjyctq7Rf4VByhpbHubjtp6XNmYz3qqofFTqcoTvQ1OyhXHPhTzY75Un1BG+/AHtTbz6R9HseEEppLBBB97pc0z927CJ4gfJa47m0S7SHgCsGTcVdljpiNSXjkZ6YzZvOohg6FPEtNq70tBkZnWHibDzc6U9Oo+P6p5ZqqZoQKd72MP8cvtUotnwFE1nrIXeynFzpT06j4/qnlmqpmhAp3vYnYZv0bZQ9vf+leIGGNB+bKX8nWSsW9oX</con:value>
+    </con:property>
+    <con:property>
+      <con:name>EffectiveDate</con:name>
+      <con:value>2023-11-22T00:00:00.000Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>ExpireDate</con:name>
+      <con:value>2024-03-21T00:00:00.000Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>CourseSerialNumber</con:name>
+      <con:value>1</con:value>
+    </con:property>
+    <con:property>
+      <con:name>CourseName</con:name>
+      <con:value>50_Performance Test Data Assignments _Nov22_184700</con:value>
+    </con:property>
+    <con:property>
+      <con:name>CourseId</con:name>
+      <con:value>g113AXDY8EE</con:value>
+    </con:property>
+    <con:property>
+      <con:name>CourseSerialNumber2</con:name>
+      <con:value>21111111</con:value>
+    </con:property>
+    <con:property>
+      <con:name>CourseName2</con:name>
+      <con:value>100_Performance Test Data Assignments _Nov22_184700</con:value>
+    </con:property>
+    <con:property>
+      <con:name>CourseId2</con:name>
+      <con:value>g113AXEF5P8QG</con:value>
+    </con:property>
+    <con:property>
+      <con:name>CourseSerialNumber3</con:name>
+      <con:value>2111113</con:value>
+    </con:property>
+    <con:property>
+      <con:name>CourseName3</con:name>
+      <con:value>200_Performance Test Data Assignments _Nov22_184700</con:value>
+    </con:property>
+    <con:property>
+      <con:name>CourseId3</con:name>
+      <con:value>g113AXERX65ZC</con:value>
+    </con:property>
+    <con:property>
+      <con:name>CourseSerialNumber4</con:name>
+      <con:value>2</con:value>
+    </con:property>
+    <con:property>
+      <con:name>CourseName4</con:name>
+      <con:value>400_Performance Test Data Assignments _Nov22_184700</con:value>
+    </con:property>
+    <con:property>
+      <con:name>CourseId4</con:name>
+      <con:value>g113AXF3API8</con:value>
+    </con:property>
+    <con:property>
+      <con:name>CourseEnrollData</con:name>
+      <con:value>[{"id":"g113AXDY8EE","sectionId":"g113AXDY8EE_s113AXDY8FEYG","enrollmentToken":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA4MzE4NjcsImp0aSI6ImQ5YjllMzYyLThlMGQtNGJiOS1hMmU4LWVlY2I1MzliZTljNCIsImlhdCI6MTcwMDY1OTA2NywiaXNzIjoiaHR0cHM6Ly9waG9lbml4LWNjbS50aGVwb2ludC5sd3cuY29tIiwibmJmIjoxNzAwNjU5MDY3LCJzdWIiOiI3NGZiMGEzZS0xZGIxLTRkY2ItYjEyZi00NTBiMDBhZTY2ZDgiLCJobHJwX2NjbSI6W3siciI6ImkiLCJjcnMiOiJnMTEzQVhEWThFRSJ9XX0.kRyXk7ze96lZB_VSo909b9h9UUu6GsvD8QqVmNkwX66GVWcTV3Ja7eDeUePNlv0hX2Clm1gXy2R9-0azi9qhJXk4X661PAnlPKbS7uAnhrhqlfHBOqzM0H4MW0QrGeCuUlAXqu0nG3Jta23A4AlLeAX7HxCnrZdRKJk_JwFLfeiqN-ARUtetQVnsCJ8dj1qin9bYd4ExVjdLdn4KVOShjJ4nkMp1SKNwdhmxxdUbQk4Wi0fbq70tN9urFr2l3s2pM60sTEFQe2J458Vy1JvEr6x0odbnZzXvcUSKdNBlMD2INnaq3MCA3IhRVve5iTlceGlrRxMn6p2TVsG4yzydysyG2nbIQLmSzGEUHMdbYafXZn7HL227KvaqzvPp1p0Smf8S1qVRXdILzTvGKMDcxGMpDwwggonUBQOYGnzbzrpMy4rAR9v6_RPpv0yMZWvyC6ZlDkYSMZXcPMm6_FKMgBJtycHucodOTfivbrHavinNHDk5K7WzEIpOm-zKZqJwRya5DjD6QjNo7Ytei6E09umayEx1TewOcel59Ca1id8k5LbDgUhTe8-tnEgrt7CfKX6h7-7Tx7wyNbYlLQzRdN8e0s7b1BxAKZoaDsaPT8pgbx9CDV8KKqdy_aiZKikdyuypVKi5MnEm8wCIs80ERDRZz9Ya3pOIiYIrqX9Vpu8","passcode":"113AXDY8FEYG"},{"id":"g113AXEF5P8QG","sectionId":"g113AXEF5P8QG_s113AXEF5QNAW","enrollmentToken":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA4MzE4NjcsImp0aSI6IjQ5MmFmMWZiLTM5ZDQtNGRjMC05Y2IzLTExODllMzFjNWJlNCIsImlhdCI6MTcwMDY1OTA2NywiaXNzIjoiaHR0cHM6Ly9waG9lbml4LWNjbS50aGVwb2ludC5sd3cuY29tIiwibmJmIjoxNzAwNjU5MDY3LCJzdWIiOiI3NGZiMGEzZS0xZGIxLTRkY2ItYjEyZi00NTBiMDBhZTY2ZDgiLCJobHJwX2NjbSI6W3siciI6ImkiLCJjcnMiOiJnMTEzQVhFRjVQOFFHIn1dfQ.BD6I5VZhUM-G6Zej7-yM76qIb05w08b_SNRW_xeO6U713uBMrqZZSS4c-AonuOFGmlEWUxJrUT5zeAztcll84Uy4y9Qbkuz8bbgAfszQ6X4jqV6BFAJkcBW26emdCgUi3QI9Qs0M5XHWiHhJKc9Ydpt_ZE9FKo0TGWrLsr2Ht8PzDb0M9fSbjanb2ID_jXveL6oITVmOsezAgF1UAlGpuQ_csLSCIIQgQTFQSPJhUpw9AaiYBfIuw-K2yRs8ZylKTyiSiGMvJ51sUPP7v7_FN0zWJV7sffatualmqtdDOdskEPn3oGujYA-Q75U4bP-VuXiHlB753vIPTOe27sPZoAPl7JlEAdIqazrmCeHX9mWCQ2moiv_oKdV_oEh0Re9dTCkLtmSLbzfvizgX44DfNBprrL97njcgpjiXG8dJgKt21-qcgesgjDyQRkJhPvfSecuu5Wki8FrED7OHYHZILaQ9NR2FfmkdDA57Aq4S6XmCa2aJDI1GDSJddj8WUa6WGd1in8AiBzpFO-PGAFNHBRxlyFvFCDc0mneDRW3KglB2gwn61qI8LNXqKokGCgNB0kMIj1vjznL_TMsJEdvxHkeDSF1P046Uk7Mhg9bMX0NwwnxFHmbJxfB4BEbchBoImQh6bqS0P64DnMr-WUhvKh8jjNj1xU_tTgGaYUdq5-4","passcode":"113AXEF5QNAW"},{"id":"g113AXERX65ZC","sectionId":"g113AXERX65ZC_s113AXERX7KJS","enrollmentToken":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA4MzE4NjgsImp0aSI6IjJlNzllODAxLWU0YzItNDZlZi04Y2UyLTc2NzEyMTBlYWZmYyIsImlhdCI6MTcwMDY1OTA2OCwiaXNzIjoiaHR0cHM6Ly9waG9lbml4LWNjbS50aGVwb2ludC5sd3cuY29tIiwibmJmIjoxNzAwNjU5MDY4LCJzdWIiOiI3NGZiMGEzZS0xZGIxLTRkY2ItYjEyZi00NTBiMDBhZTY2ZDgiLCJobHJwX2NjbSI6W3siciI6ImkiLCJjcnMiOiJnMTEzQVhFUlg2NVpDIn1dfQ.RGLztSgf2mYm26gxWb-g_yBpb5GW9G_zoohlv3Sa_dYG6Xiz0wAKiHGGJG4xbZpR3Qzi5HcTyY_fib2iSrt6f7-ykSGs8eWcwZwhlqQQB1gFHknCNOz4sh1MNgLiTE-Z67qQp9koKLM0kM4mwJvTBg7fV3q9U2r3X4gblL-KZtDGO4Oj2YY4H9-rCokHclCIEhWXA1uyKwfU-j_LfToLpXAkJKGF3XUAAi3ogc2uN1Gf_B4-ikqSPD-DZjjb8GiSICQrfzeCzIyDstgZqeMxQcLsRAWe_0a15Ns0-VcFjSJRjXho58SrVNaMjemBClZW_NY4R0vbL8GrSyhsH7vI0rxhUOrdkRLbUkOMPNVE275pL6RVgsTZbbHiANG4MAHs4l7DEE-l3IMHcmuy4mDLTp-esm-iUc9N-U_5-1_rIT79SMEmbAVal2Oa7fOJNNl6gm1BlOUFVyJNHGiV5t2DJV4yi8odEK-vZ71XwcYDYcna1bWXaj19ZTznaRoizkv1pym6by9cLzuox5dJRNPAn8PrfBnKcfvdBsQLcdNeiCV5x8fk3EFUdJfh1C5OH-lM45Ry6zuGENcTyrTWVJPiazuBI-FbixwAXl9zMFER4_jkLzo3D1eQ7ku1vhAiGFcklX2RM3DhuI9pUBw86hjhdeWdQkohCrAUzHZkxSVbm1U","passcode":"113AXERX7KJS"},{"id":"g113AXF3API8","sectionId":"g113AXF3API8_s113AXF3AQX8","enrollmentToken":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA4MzE4NjgsImp0aSI6ImExYzFkZjZhLTdkNjQtNGQ4OC05ZmRmLWRmOTYzOTgxNmEwNCIsImlhdCI6MTcwMDY1OTA2OCwiaXNzIjoiaHR0cHM6Ly9waG9lbml4LWNjbS50aGVwb2ludC5sd3cuY29tIiwibmJmIjoxNzAwNjU5MDY4LCJzdWIiOiI3NGZiMGEzZS0xZGIxLTRkY2ItYjEyZi00NTBiMDBhZTY2ZDgiLCJobHJwX2NjbSI6W3siciI6ImkiLCJjcnMiOiJnMTEzQVhGM0FQSTgifV19.WOObc7lUwF2p60B2c6Iw9bEX_tNDy_iyzTbS4LARmlXmIkg_UXb0N9QntQlVvBuS99kDasj9FZGxqsZQeUr1G_uD-XxpM1TXCPJ4dF4RDhVaMLla6WCQNembyTapD0lDm5VQT06KDjr8AXtim0lcEBJdJbowY6zvRmzMRcRGlaS9kLY2hW5EITR5vCSv8v2PaAC2gNfjozPoGm_FEIOcxaii3JKwfqI14G1KUETpKzup6GkUVL4op7KZyGjUUghwRpa2Gzdp7eBrtPCG-wUN6VyFQtTWwiOWtAbpEk-2wZce9JbZwyscUALHNioJx-Y8Rj2Gcpba0gPztEcWG0s274zVIsUIMRtWnCmgJQcJ38W_QsYGaUYN1i1oodEYSsYTcTucx7-fTlHMXvu2iRpK6iRZqUlgoiz9HY8vjX9xn8X8NSp5pij9Hjji8XnPy4YhqUUztOFVmd4oz_vX5QAC7umD4fEVVD3i5nLQqbMVcVYUY5-doIRDuS0fOH_USqCA11CME-yxe_IASKioioRbRs80ZNjOs_OARqJbl_iXReFPxjPfGtvQ0eDoQJxJfPIHL0D2Y7-zDaerH6AqXIBSVzjm6mFH0XVageZ8jMWzdV1wOkNWh3GwE2c5m3bA2PCoPKnA4SOn3ZmY3nIVXJd7kb4Dxhkr4MBcaj7dC4ktuzQ","passcode":"113AXF3AQX8"}]</con:value>
+    </con:property>
+  </con:properties>
+  <con:reportParameters/>
+  <con:environmentSpec>
+    <con:entry environmentId="6ce173f5-e51c-4b7f-9575-82621bb74596">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:testCase>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite xmlns:con="http://eviware.com/soapui/config" id="8eacb1c4-43e1-447a-a8de-44f7c94a3e4c" name="Work4">
+  <con:settings id="3afde8d0-d93d-4b6a-92d1-2d946c18a950">
+    <con:setting id="8eacb1c4-43e1-447a-a8de-44f7c94a3e4cfileName">Work4</con:setting>
+  </con:settings>
+  <con:runType>PARALLELL</con:runType>
+  <con:properties>
+    <con:property>
+      <con:name>Final_AssignAssignment_BodyData</con:name>
+      <con:value>{
+  "courseId": "D_courseId",
+  "points": 100,
+  "isGraded": false,
+  "attemptType": "Highest Grade",
+  "isHighlightLateSubmission": true,
+  "isBroadcastingRequired": false,
+  "productIsbn": "9781975186708",
+ "prepuDetails": null,
+ "metaInformation": {},
+ "maxAttempts": 0,
+"sections": [
+    {
+      "sectionCode": [
+        "*" 
+      ],
+      "dueDate": "2024-03-01",
+      "dueDateTime": "09:26 PM",
+      "dueDateTimezone": "US/Eastern",
+      "accessibleFrom": "2023-11-22T05:27:01-05:00",
+      "accessibleFromTime": "05:27 PM",
+      "accessibleFromTimezone": "US/Eastern",
+      "isForEveryOne":true,
+      "isImmediateAvailable":true,
+      "isUnlocked":true
+    }
+  ],
+  
+  "name": "Ebook: Chapter 61",
+  "resourceTypeId": "2",
+  "assets": {
+    "assetId": 325293,
+    "assetVersion": "1.9.0",
+    "assetType": "ASSET"
+  },
+  "assignmentType": {
+    "type": "EBOOK",
+    "systemId": ""
+  }
+}</con:value>
+    </con:property>
+    <con:property>
+      <con:name>ActivationCourseIndex</con:name>
+      <con:value>3</con:value>
+    </con:property>
+  </con:properties>
+  <con:reportParameters/>
+</con:testSuite>

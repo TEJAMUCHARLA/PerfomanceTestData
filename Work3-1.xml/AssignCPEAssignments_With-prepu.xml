@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:testCase xmlns:con="http://eviware.com/soapui/config" id="2b24812c-5789-4c7f-be73-d6534e814e6c" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="AssignCPEAssignments_With prepu" searchProperties="true" timeout="0">
+<con:testCase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" id="8b75fcb0-e567-492c-9656-837984e7fbb5" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="AssignCPEAssignments_With prepu" searchProperties="true" timeout="0">
   <con:settings id="f9f1cd04-28ee-44ee-99a0-6e54c006837d">
     <con:setting id="GeneratableJUnitReport@Folder">D:\Ready APi Daily Data\March30\Issue</con:setting>
-    <con:setting id="2b24812c-5789-4c7f-be73-d6534e814e6cfileName">AssignCPEAssignments_With-prepu</con:setting>
+    <con:setting id="8b75fcb0-e567-492c-9656-837984e7fbb5fileName">AssignCPEAssignments_With-prepu</con:setting>
   </con:settings>
-  <con:testStep type="datasource" name="CreateAssignment" id="d4a62119-e9d6-4f21-98ce-27202f5fc3b8">
+  <con:testStep type="datasource" name="CreateAssignment" id="535a5d63-887c-428f-8968-1272d1b3dc90">
     <con:settings/>
-    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:DataSourceStep">
+    <con:config xsi:type="con:DataSourceStep">
       <con:dataSource type="Excel">
         <con:configuration>
           <file>${#Project#TestDataExcelFile}</file>
@@ -35,7 +35,7 @@
       <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
     </con:config>
   </con:testStep>
-  <con:testStep type="groovy" name="Generate Assignmnet  Start and End Time" id="f835c5c9-4878-43dc-beb2-4cc154025aaa">
+  <con:testStep type="groovy" name="Generate Assignmnet  Start and End Time" id="c5577b63-9c11-476b-b44d-82795ec3f2ec">
     <con:settings/>
     <con:config>
       <script>import java.lang.*;
@@ -152,9 +152,9 @@ testRunner.testCase.setPropertyValue("accessDate", accessDate)
 testRunner.testCase.setPropertyValue("accessTime", accessTime)</script>
     </con:config>
   </con:testStep>
-  <con:testStep type="datasource" name="Change Score and Assignment" id="8e8433f5-3a07-476f-8178-e81e7dbf6a81">
+  <con:testStep type="datasource" name="Change Score and Assignment" id="745dd49d-f631-425f-9d3c-a0cec134b9d8">
     <con:settings/>
-    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:DataSourceStep">
+    <con:config xsi:type="con:DataSourceStep">
       <con:dataSource type="Excel">
         <con:configuration>
           <file>${#Project#TestDataExcelFile}</file>
@@ -179,7 +179,7 @@ testRunner.testCase.setPropertyValue("accessTime", accessTime)</script>
       <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
     </con:config>
   </con:testStep>
-  <con:testStep type="groovy" name="Set Score" id="1e2295a0-8990-4de6-b067-6c1122e43206">
+  <con:testStep type="groovy" name="Set Score" id="86223099-d24d-4d68-8f43-59c8ae345097">
     <con:settings/>
     <con:config>
       <script>import groovy.json.JsonSlurper
@@ -196,15 +196,15 @@ testRunner.testCase.testSuite.project.setPropertyValue("AttemptScore", score)
 testRunner.testCase.testSuite.project.setPropertyValue("AssignmnetIndex", assignmentNumber)</script>
     </con:config>
   </con:testStep>
-  <con:testStep type="delay" name="Delay" id="acc410e6-15fb-4ea6-af9b-fdb08c992028" disabled="true">
+  <con:testStep type="delay" name="Delay" id="ce2e6a61-bca2-4022-8bf1-02e287aad693" disabled="true">
     <con:settings/>
     <con:config>
       <delay>1000</delay>
     </con:config>
   </con:testStep>
-  <con:testStep type="restrequest" name="PrePuDetails" id="8a8e7865-0073-48ad-8611-bac7e243653a">
+  <con:testStep type="restrequest" name="PrePuDetails" id="f1db6a50-cbe9-4c69-8656-360c601acd71">
     <con:settings/>
-    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Assignment" methodName="Method 1" resourcePath="/api/phx-assignment-management/v1/assignment" xsi:type="con:RestRequestStep">
+    <con:config service="Assignment" methodName="Method 1" resourcePath="/api/phx-assignment-management/v1/assignment" xsi:type="con:RestRequestStep">
       <con:restRequest name="PrePuDetails" id="1a4e6fe9-5326-4c7d-953f-7c68b0ed4e29" mediaType="application/json" postQueryString="false">
         <con:settings>
           <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${#Project#CourseEnrollmentToken} " xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
@@ -248,9 +248,9 @@ testRunner.testCase.testSuite.project.setPropertyValue("AssignmnetIndex", assign
       </con:restRequest>
     </con:config>
   </con:testStep>
-  <con:testStep type="restrequest" name="PrePuDetails_QC" id="a97e6207-c4c9-4730-8132-eec99a9d4ece" disabled="true">
+  <con:testStep type="restrequest" name="PrePuDetails_QC" id="1b7a620e-e35f-430c-9b7e-fe07552ed6fc" disabled="true">
     <con:settings/>
-    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Assignment" methodName="Method 1" resourcePath="/api/phx-assignment-management/v1/assignment" xsi:type="con:RestRequestStep">
+    <con:config service="Assignment" methodName="Method 1" resourcePath="/api/phx-assignment-management/v1/assignment" xsi:type="con:RestRequestStep">
       <con:restRequest name="PrePuDetails_QC" id="1a4e6fe9-5326-4c7d-953f-7c68b0ed4e29" mediaType="application/json" postQueryString="false">
         <con:settings>
           <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${#Project#CourseEnrollmentToken} " xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
@@ -300,15 +300,15 @@ testRunner.testCase.testSuite.project.setPropertyValue("AssignmnetIndex", assign
       </con:restRequest>
     </con:config>
   </con:testStep>
-  <con:testStep type="delay" name="Delay 2" id="f5ae6060-92aa-4c31-99d0-7ed1812d0cf1" disabled="true">
+  <con:testStep type="delay" name="Delay 2" id="ec26d086-bbbc-4532-9e58-be8b2d3aa95d" disabled="true">
     <con:settings/>
     <con:config>
       <delay>1000</delay>
     </con:config>
   </con:testStep>
-  <con:testStep type="restrequest" name="CPEAssignmentBody" id="d4c7acad-4d39-44e3-b9b9-fa4106bea5a5">
+  <con:testStep type="restrequest" name="CPEAssignmentBody" id="fb06f0ec-2f4b-478c-9218-574a05971642">
     <con:settings/>
-    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Assignment" methodName="Method 1" resourcePath="/api/phx-assignment-management/v1/assignment" xsi:type="con:RestRequestStep">
+    <con:config service="Assignment" methodName="Method 1" resourcePath="/api/phx-assignment-management/v1/assignment" xsi:type="con:RestRequestStep">
       <con:restRequest name="CPEAssignmentBody" id="1a4e6fe9-5326-4c7d-953f-7c68b0ed4e29" mediaType="application/json" postQueryString="false">
         <con:settings>
           <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${#Project#CourseEnrollmentToken} " xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
@@ -384,9 +384,9 @@ testRunner.testCase.testSuite.project.setPropertyValue("AssignmnetIndex", assign
       </con:restRequest>
     </con:config>
   </con:testStep>
-  <con:testStep type="datasource" name="Get Assignmnet Type" id="ef1cef78-7606-44c5-bd71-482a7ebc9ded">
+  <con:testStep type="datasource" name="Get Assignmnet Type" id="8545ee11-6661-48b9-b55d-59dac3823a24">
     <con:settings/>
-    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:DataSourceStep">
+    <con:config xsi:type="con:DataSourceStep">
       <con:dataSource type="Excel">
         <con:configuration>
           <file>${#Project#TestDataExcelFile}</file>
@@ -414,7 +414,7 @@ testRunner.testCase.testSuite.project.setPropertyValue("AssignmnetIndex", assign
       <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
     </con:config>
   </con:testStep>
-  <con:testStep type="groovy" name="ArrangeAssignmentBody" id="d7cf234b-2d75-44a2-b5c7-e33b9b6d8673">
+  <con:testStep type="groovy" name="ArrangeAssignmentBody" id="6d07056d-202f-4d8b-8108-37224d9b249f">
     <con:settings/>
     <con:config>
       <script>import groovy.json.JsonSlurper
@@ -457,11 +457,21 @@ def assignmnetIndex = context.expand( '${#Project#AssignmnetIndex}' )
 def assignmentNumber = assignmnetIndex
 
 log.info("assignmentNumber   "+assignmentNumber)
+/*
 def AssignmentNames = "\${#TestSuite#CCM2_"+resourceTypeLableName+"AssignmentNames#\$["+assignmentNumber+"]}"
 def PublishedVersions = "\${#TestSuite#CCM2_"+resourceTypeLableName+"PublishedVersions#\$["+assignmentNumber+"]}"
 def ExternalAssetIds = "\${#TestSuite#CCM2_"+resourceTypeLableName+"ExternalAssetIds#\$["+assignmentNumber+"]}"
 def Actvityids = "\${#TestSuite#CCM2_"+resourceTypeLableName+"Actvityids#\$["+assignmentNumber+"]}"
+*/
+def AssignmentNames = "\${#[MAPPED ASSETS]#CCM2_"+resourceTypeLableName+"AssignmentNames#\$["+assignmentNumber+"]}"
+def PublishedVersions = "\${#[MAPPED ASSETS]#CCM2_"+resourceTypeLableName+"PublishedVersions#\$["+assignmentNumber+"]}"
+def ExternalAssetIds = "\${#[MAPPED ASSETS]#CCM2_"+resourceTypeLableName+"ExternalAssetIds#\$["+assignmentNumber+"]}"
+def Actvityids = "\${#[MAPPED ASSETS]#CCM2_"+resourceTypeLableName+"Actvityids#\$["+assignmentNumber+"]}"
 
+//def cCM2_PicmonicPublishedVersions = context.expand( '${#[MAPPED ASSETS]#CCM2_PicmonicPublishedVersions#$[0]}' )
+
+
+log.info("formate "+AssignmentNames)
 def cCM2_AssignmentNames = context.expand( AssignmentNames )
 def cCM2_PublishedVersions = context.expand(PublishedVersions)
 def cCM2_ExternalAssetIds = context.expand( ExternalAssetIds )
@@ -504,12 +514,27 @@ else
 bodyData = bodyData.replace("D_prepuDetails",PrePuDetails.toString())
 
 log.info("final body = "+bodyData)
-testRunner.testCase.testSuite.setPropertyValue("Assignment_BodyData",bodyData.toString())</script>
+testRunner.testCase.testSuite.setPropertyValue("Assignment_BodyData",bodyData.toString())
+
+
+
+/*
+//finalPushBody =JsonOutput.toJson(json)
+def targetTestSuite = testRunner.testCase.testSuite.project.getTestSuiteByName("Work2")
+log.info("json.toString() "+json.toString())
+targetTestSuite.setPropertyValue("Final_Attempt_BodyData",finalPushBody.toString())
+def final_Attempt_BodyData = context.expand( '${#[Work2]#Final_Attempt_BodyData}' )
+log.info("final_Attempt_BodyData "+final_Attempt_BodyData)
+*/
+def targetTestSuite = testRunner.testCase.testSuite.project.getTestSuiteByName("Work4")
+targetTestSuite.setPropertyValue("Final_Attempt_BodyData",finalPushBody.toString())
+
+Work4</script>
     </con:config>
   </con:testStep>
-  <con:testStep type="restrequest" name="Create Assignment" id="d1a82570-9aa4-474e-8772-89bf1b89ada4">
+  <con:testStep type="restrequest" name="Create Assignment" id="40a83e7c-1c7a-4276-8381-60d7bf421d11">
     <con:settings/>
-    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Assignment" methodName="Method 1" resourcePath="/api/phx-assignment-management/v1/assignment" xsi:type="con:RestRequestStep">
+    <con:config service="Assignment" methodName="Method 1" resourcePath="/api/phx-assignment-management/v1/assignment" xsi:type="con:RestRequestStep">
       <con:restRequest name="Create Assignment" id="1a4e6fe9-5326-4c7d-953f-7c68b0ed4e29" mediaType="application/json" postQueryString="false">
         <con:settings>
           <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${#Project#CourseEnrollmentToken} " xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_ssoInstructor}" value="${#Project#ssoInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
@@ -585,7 +610,7 @@ else
       </con:restRequest>
     </con:config>
   </con:testStep>
-  <con:testStep type="groovy" name="Groovy Script" id="c1dc843a-67bb-45b7-a85b-42f2ce96f308">
+  <con:testStep type="groovy" name="Groovy Script" id="45e6962f-ab65-4ca8-8f57-aac9c6fad6e8">
     <con:settings/>
     <con:config>
       <script>import groovy.json.JsonSlurper
@@ -612,7 +637,7 @@ testRunner.testCase.testSuite.setPropertyValue("collectionId_List",collectionId_
 //assignmentPublishedVersion.add("\""+eachchildcontainer.externalAssetVersion.toString()+"\"")</script>
     </con:config>
   </con:testStep>
-  <con:testStep type="datasourceloop" name="Data Source Loop" id="b17aa5bd-eab3-438d-98db-0b62b7c4924f">
+  <con:testStep type="datasourceloop" name="Data Source Loop" id="872ba876-3ba6-4efb-9f38-a911f00e7b3e">
     <con:settings/>
     <con:config>
       <dataSourceStep>Get Assignmnet Type</dataSourceStep>
@@ -620,7 +645,7 @@ testRunner.testCase.testSuite.setPropertyValue("collectionId_List",collectionId_
       <discardResults>false</discardResults>
     </con:config>
   </con:testStep>
-  <con:testStep type="datasourceloop" name="Data Source Loop 2" id="da9a8d1b-f8b4-4229-93f9-3fcff85087b1">
+  <con:testStep type="datasourceloop" name="Data Source Loop 2" id="59a79d5a-074b-49ad-8dcf-2a67882e0037">
     <con:settings/>
     <con:config>
       <dataSourceStep>Change Score and Assignment</dataSourceStep>
@@ -628,9 +653,9 @@ testRunner.testCase.testSuite.setPropertyValue("collectionId_List",collectionId_
       <discardResults>false</discardResults>
     </con:config>
   </con:testStep>
-  <con:testStep type="restrequest" name="Verify assigned assignment in assignment page instructor end" id="d93a969e-f253-40a9-be95-c84af81b4225">
+  <con:testStep type="restrequest" name="Verify assigned assignment in assignment page instructor end" id="33f1fd83-0cfc-4b28-971a-d3ab66d1dafa">
     <con:settings/>
-    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Get Assignment details for a course" resourcePath="/api/phx-batch-assignment-management/v1/assignment-wrapper/assignments" methodName="Method 1" xsi:type="con:RestRequestStep">
+    <con:config service="Get Assignment details for a course" resourcePath="/api/phx-batch-assignment-management/v1/assignment-wrapper/assignments" methodName="Method 1" xsi:type="con:RestRequestStep">
       <con:restRequest name="Verify assigned assignment in assignment page instructor end" id="6a7147c8-565f-4a5c-a43b-0c9a777113fa" mediaType="application/json">
         <con:settings>
           <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment>&lt;con:entry key="x-enrollment-token" value="${#Project#CourseEnrollmentToken}" xmlns:con="http://eviware.com/soapui/config"/>&lt;con:entry key="${#Project#Key_xaccessTokenInstructor}" value="${#Project#xaccessTokenInstructor}" xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></con:setting>
@@ -707,11 +732,11 @@ assert totalAssignments&lt;=responseData.size()</scriptText>
   <con:properties>
     <con:property>
       <con:name>accessDate</con:name>
-      <con:value>2023-11-21T08:27:14-05:00</con:value>
+      <con:value>2023-11-22T07:02:03</con:value>
     </con:property>
     <con:property>
       <con:name>DueDate</con:name>
-      <con:value>2024-02-29</con:value>
+      <con:value>2024-03-01</con:value>
     </con:property>
     <con:property>
       <con:name>EffectiveDate</con:name>
@@ -743,11 +768,11 @@ assert totalAssignments&lt;=responseData.size()</scriptText>
     </con:property>
     <con:property>
       <con:name>accessTime</con:name>
-      <con:value>08:27 AM</con:value>
+      <con:value>07:02 AM</con:value>
     </con:property>
     <con:property>
       <con:name>DueTime</con:name>
-      <con:value>12:27 PM</con:value>
+      <con:value>11:01 AM</con:value>
     </con:property>
     <con:property>
       <con:name>AssignedAssignmnetCount</con:name>
