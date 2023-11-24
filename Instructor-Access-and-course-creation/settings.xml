@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<con:testSuite xmlns:con="http://eviware.com/soapui/config" id="a6128ca6-872e-40b2-9322-b803db01fa6c" name="Instructor Access and course creation">
-  <con:settings id="636dd86c-ea62-456a-b381-7123b8698c43">
-    <con:setting id="a6128ca6-872e-40b2-9322-b803db01fa6cfileName">Instructor-Access-and-course-creation</con:setting>
-  </con:settings>
-  <con:runType>SEQUENTIAL</con:runType>
-  <con:properties/>
-  <con:reportParameters/>
-</con:testSuite>

@@ -56,12 +56,11 @@ GETCreatedCourseQCID
 QCAddItem
 Create-Batch-assignment
 BACKUP
-TEST-CASES
 COMMON-METHODS
 ProjectTestData
 work1
 Work2
-Instructor-Access-and-course-creation
 Work3
 Work4
 MAPPED-ASSETS
+Work-ON-ANOTHER-PROJECT_ASSIGN

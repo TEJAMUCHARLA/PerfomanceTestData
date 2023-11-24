@@ -2805,7 +2805,7 @@
     </con:property>
     <con:property>
       <con:name>QCSSoToken</con:name>
-      <con:value>zZc/xEkEjQ0egksgkbTyGVaiCkGean3P1TP1UgouXjyctq7Rf4VByhpbHubjtp6XNmYz3qqofFTqcoTvQ1OyhXHPhTzY75Un1BG+/AHtTbz6R9HseEEppLBBB97pc0z927CJ4gfJa47m0S7SHgCsGTcVdljpiNSXjkZ6YzZvOohg6FPEtNq70tBkZnWHibDzc6U9Oo+P6p5ZqqZoQKd72MP8cvtUotnwFE1nrIXeynFzpT06j4/qnlmqpmhAp3vYnYZv0bZQ9vf+leIGGNB+bKX8nWSsW9oX</con:value>
+      <con:value>owoDrx1v0aPIOcSnvopwhdyApa57Pfz2DA8MKuyG8ajoqHuMnJqZzubm4VVXxwd3LYx30sdMuF35j2C95cfGvzt5o2TzfzOypYRTmAIHOMVBYgSmkjPSUm590E+2/JlWCOSkkPDAF2zKtGd3FxEuNpNYFcnv2mm3Xaq+D8fM3v374fkwSji3C690blawL2CoGyg4xXYTKjrysykAZJtsYcP8cvtUotnwRtjL/ZaucvYbKDjFdhMqOvKzKQBkm2xh6xdeKecwpS3oVINtIVIFbQ9G4NnVLrCIaruZfyO/YNc=</con:value>
     </con:property>
     <con:property>
       <con:name>Systemidchecklist</con:name>
@@ -3141,7 +3141,7 @@
     </con:property>
     <con:property>
       <con:name>AssignmnetIndex</con:name>
-      <con:value>60</con:value>
+      <con:value>0</con:value>
     </con:property>
     <con:property>
       <con:name>MapedActivityIDs</con:name>
@@ -3165,7 +3165,7 @@
     </con:property>
     <con:property>
       <con:name>CreateCourseName</con:name>
-      <con:value>Performance Test Data Assignments _Nov22_184700</con:value>
+      <con:value>Performance Test Data Assignments _Nov24_094502</con:value>
     </con:property>
     <con:property>
       <con:name>CreteCourseTimeZone</con:name>
@@ -3185,7 +3185,7 @@
     </con:property>
     <con:property>
       <con:name>CreateCourseTimeZone</con:name>
-      <con:value>US/Eastern</con:value>
+      <con:value>US/Central</con:value>
     </con:property>
     <con:property>
       <con:name>CreateAssignmentTimeZoneOffset</con:name>

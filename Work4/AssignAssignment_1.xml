@@ -148,19 +148,26 @@ else
     </con:property>
     <con:property>
       <con:name>InstuctorEnrollmentToken</con:name>
-      <con:value>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA4MzE4MjYsImp0aSI6ImZlZDYxMDQxLTBiMzMtNDZkOC05ZWJmLTUyYjRhNTQ0MmM2NSIsImlhdCI6MTcwMDY1OTAyNiwiaXNzIjoiaHR0cHM6Ly9waG9lbml4LWNjbS50aGVwb2ludC5sd3cuY29tIiwibmJmIjoxNzAwNjU5MDI2LCJzdWIiOiI5Yjg1ZDFhYS05ZmUyLTQ5ZTQtYTI2Mi00NTBiMDBhZGQ5YmIiLCJobHJwX2NjbSI6W3siciI6ImkiLCJjcnMiOiJnMTEzQVdJRkVJOVlGIn1dfQ.E2IZN_67NvndUfMOjEJ1D3NMZaYspb9gYhsg7xxAJNhjdJasaIhmGeSalRpLWzH81CQjkMMjnofOn2XYq5bnVYyNaHk0qtKkt7-Z89L7DsNLUekb1URsiEsr5nZiOA-4w0imfQwbH50qaf0RobhyhYc5u0Byz5QiE4MtDb5nuwqXVNE7PSJ83Q6xkNEp9kqp6xxC8EsqkeR4OSU00uu_mJMwMPgmgWjoA3EGnyoaOQtGhqU5kkh4XvYXEAUHG7_msZO_b-oMfJRQ6ARmOp0-kUTmDuQDUxPT5MQf73a8Ku9VJvQwekhO-Pfq1Pjb0MI8zIc1KmT15lPtNs1sgf4fEvU2pMQ5NW0lDHejm5S6DYWJaR4Rm9y73mpKN6qUTZEDr1Or8SbRqyGHkeD4Rarado2P_EP09YO5H1_gegStDNdYDH2S5hze_qLMLGwVgjrE5G4KyX2lnpHQ9CLNbilIWk7_wyxVTO-Er9Fj8sy1LRxLnK6IPwLq8etr3sD6KpsL0tSOJoGFcBOBHJhM5cnIL9k7utU6D9xqHJQz9_V-pApzDNZQpQs5fzrjqgKsc8Qx15H-P9Ypi4L5Y-G4OngeX7vtMLqpfVSKFCZcEz6x6Hc3MpJztErkYRkfM_u24KXcUCmZgnt1L-4kSHWHhcbx36S0YatR6S_I3avGE2S7_gM</con:value>
+      <con:value>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA4MzE4MjMsImp0aSI6IjA0YWJmYTljLTVmNDEtNGQ1MS1hMWE1LWZlODQ4MzhjMWNhNiIsImlhdCI6MTcwMDY1OTAyMywiaXNzIjoiaHR0cHM6Ly9waG9lbml4LWNjbS50aGVwb2ludC5sd3cuY29tIiwibmJmIjoxNzAwNjU5MDIzLCJzdWIiOiI5Yjg1ZDFhYS05ZmUyLTQ5ZTQtYTI2Mi00NTBiMDBhZGQ5YmIiLCJobHJwX2NjbSI6W3siciI6ImkiLCJjcnMiOiJnMTEzQVdHRFZIVkpCIn1dfQ.US39e0Fpftpnn8jJYVl5267WDsp0pFhjfZW1vCW8qF5xkky7tPznvHPn9IIyKgEsKleF_IRVNBDpJ0BmqfGOWVcpD9z69wKD7pONGBXpzp56WEtz1vVlhJCJXfR2IiTXFkLL88bSFX3NXtHR2V9MbiPfxBTCRcvZP6o-bNBeRJMBsaWzMoEa8_ji2t4iNgRslbuUcXOFdDDkxy4CEideRONbUiHn_7kXtkY006ybP62OcldvGXpWCqIsR1_7bfFv2gifn3VnVtZYbZz-eS6KwlvyZQlWG51SzXjYl-T4TU3tmtGnP35x9VPgXrfyK0wV8ySpWqg0FHklKLuavjiZ7cDpi81sdKp4bl5sdK-BuaXXmVtzPolJj8IlOb-pA7SXXwTq5bmkgLVWrHdS2RndOMg6tIvuNdLG9YYeZZfYcKntZpLM0z2w4LBKH5S9f62GFibJVE9LdFnV5ZhK3ve245uaAE_AADDgM668Cv1xgMNQGXUVhZFYawkThMZKNacPzsU1hacghgXqQ4HRnELYA54wTBrNSObM7Iif-fqDQUaZaegu6a0phKrWkt6p0WySUrxvQWPYPf_JPaS0OAHsvKWrLRrcAw6gIGl0dFp38ouevreolJgQ8ChKfQGoNw29o7eZro_7TElVz7pTXevyv5W1lpuVQa1ao-PQf7QKOn0</con:value>
     </con:property>
     <con:property>
       <con:name>TC_AssignAssignment_BodyData</con:name>
       <con:value>{
-  "courseId": "g113AWIFEI9YF",
+  "courseId": "g113AWGDVHVJB",
   "points": 100,
-  "isGraded": false,
+  "isGraded": true,
   "attemptType": "Highest Grade",
   "isHighlightLateSubmission": true,
   "isBroadcastingRequired": false,
   "productIsbn": "9781975186708",
- "prepuDetails": null,
+ "prepuDetails": [
+    {
+      "targetMasteryLevel": 8,
+      "externalPrepuId": 313,
+      "topicId": 313,
+      "isConceptBasedMl": true
+    }
+],
  "metaInformation": {},
  "maxAttempts": 0,
 "sections": [
@@ -168,11 +175,11 @@ else
       "sectionCode": [
         "*" 
       ],
-      "dueDate": "2024-03-01",
-      "dueDateTime": "09:26 PM",
+      "dueDate": "2024-03-02",
+      "dueDateTime": "04:09 AM",
       "dueDateTimezone": "US/Eastern",
-      "accessibleFrom": "2023-11-22T05:27:01-05:00",
-      "accessibleFromTime": "05:27 PM",
+      "accessibleFrom": "2023-11-23T12:09:38-05:00",
+      "accessibleFromTime": "12:09 AM",
       "accessibleFromTimezone": "US/Eastern",
       "isForEveryOne":true,
       "isImmediateAvailable":true,
@@ -180,15 +187,15 @@ else
     }
   ],
   
-  "name": "Ebook: Chapter 61",
-  "resourceTypeId": "2",
+  "name": "Acid-Base Balance",
+  "resourceTypeId": "24",
   "assets": {
-    "assetId": 325293,
-    "assetVersion": "1.9.0",
+    "assetId": 313,
+    "assetVersion": "1.0.0",
     "assetType": "ASSET"
   },
   "assignmentType": {
-    "type": "EBOOK",
+    "type": "PREP_U",
     "systemId": ""
   }
 }</con:value>

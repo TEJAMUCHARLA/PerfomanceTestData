@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite xmlns:con="http://eviware.com/soapui/config" id="992d7fb0-1774-442f-b606-875233d08f75" name="Work ON ANOTHER PROJECT_ASSIGN">
+  <con:settings id="3b29b3de-4e42-45c2-9d7d-8dcfa09405ac">
+    <con:setting id="01b3b45e-9ec8-4ae0-8b4b-b79f09b59859fileName">Work3</con:setting>
+    <con:setting id="992d7fb0-1774-442f-b606-875233d08f75fileName">Work-ON-ANOTHER-PROJECT_ASSIGN</con:setting>
+  </con:settings>
+  <con:runType>SEQUENTIAL</con:runType>
+  <con:properties>
+    <con:property>
+      <con:name>Assignment_BodyData</con:name>
+      <con:value>{
+  "courseId": "D_courseId",
+  "points": 100,
+  "isGraded": false,
+  "attemptType": "Highest Grade",
+  "isHighlightLateSubmission": true,
+  "isBroadcastingRequired": false,
+  "productIsbn": "9781975186708",
+ "prepuDetails": null,
+ "metaInformation": {},
+ "maxAttempts": 0,
+"sections": [
+    {
+      "sectionCode": [
+        "*" 
+      ],
+      "dueDate": "2024-03-02",
+      "dueDateTime": "03:39 AM",
+      "dueDateTimezone": "US/Eastern",
+      "accessibleFrom": "2023-11-23T11:39:11-05:00",
+      "accessibleFromTime": "11:39 PM",
+      "accessibleFromTimezone": "US/Eastern",
+      "isForEveryOne":true,
+      "isImmediateAvailable":true,
+      "isUnlocked":true
+    }
+  ],
+  
+  "name": "Ebook: Chapter 01",
+  "resourceTypeId": "2",
+  "assets": {
+    "assetId": 324556,
+    "assetVersion": "1.8.0",
+    "assetType": "ASSET"
+  },
+  "assignmentType": {
+    "type": "EBOOK",
+    "systemId": ""
+  }
+}</con:value>
+    </con:property>
+    <con:property>
+      <con:name>collectionId_List</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>FILELOCATIOn</con:name>
+      <con:value>F:\This PC\PERFOMACE TEAM DATA\TEST\TEJAMUTLIRUNTEST - Copy.xml</con:value>
+    </con:property>
+    <con:property>
+      <con:name>InstructorsCount</con:name>
+      <con:value>50</con:value>
+    </con:property>
+  </con:properties>
+  <con:reportParameters/>
+</con:testSuite>

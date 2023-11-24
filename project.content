@@ -62,10 +62,6 @@ BACKUP\Enroll-with-Students.xml
 BACKUP\AssignCPEAssignments_With-prepu.xml
 BACKUP\Spred-Student-Access-Tokens.xml
 BACKUP\Attempt-all-existing-assignmnets-to-students.xml
-TEST-CASES\Create-50-Assignments.xml
-TEST-CASES\Create-100-Assignments.xml
-TEST-CASES\Create-200-Assignments.xml
-TEST-CASES\Create-400-Assignments.xml
 COMMON-METHODS\CreasteCouserAndSections.xml
 COMMON-METHODS\AssignCPEAssignments_With-prepu.xml
 COMMON-METHODS\AttemptCPEAssignments_WITH-Prepu.xml
@@ -103,7 +99,6 @@ Work2\Sudent_17.xml
 Work2\Sudent_18.xml
 Work2\Sudent_19.xml
 Work2\Sudent_20.xml
-Instructor-Access-and-course-creation\LOGIN-CREATE.xml
 Work3\LOGIN-CREATE.xml
 Work3\Spred-Instructors-Access-Tokens.xml
 Work3\AssignCPEAssignments_With-prepu.xml
@@ -117,7 +112,10 @@ Work4\AssignAssignment_7.xml
 Work4\AssignAssignment_8.xml
 Work4\AssignAssignment_9.xml
 Work4\AssignAssignment_10.xml
-MAPPED-ASSETS\AssignCPEAssignments_With-prepu.xml
+MAPPED-ASSETS\MAP-Product-Assets.xml
+Work-ON-ANOTHER-PROJECT_ASSIGN\LOGIN-CREATE.xml
+Work-ON-ANOTHER-PROJECT_ASSIGN\Spred-Instructors-Access-Tokens.xml
+Work-ON-ANOTHER-PROJECT_ASSIGN\AssignCPEAssignments.xml
 Get-Product-All-Assignments-LoadTest.xml
 Load-Test-6.xml
 TC_28283_Verify-user-can-attempt-Push-SQS-with-all-mandatory-fields-with-valid-activity-id-only-for-created-Case-studies-assignment-LoadTest.xml
